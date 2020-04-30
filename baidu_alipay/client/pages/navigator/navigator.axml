@@ -1,6 +1,0 @@
-<swan-button  type="primary" Class="btn">
-    <navigator  class="nav" url="/pages/detail/detail?id=新页面">跳转到新页面</navigator>
-</swan-button>
-<swan-button  type="primary" Class="btn">
-    <navigator  class="nav" url="/pages/detail/detail?id=当前页" open-type="redirect">在当前页打开</navigator>
-</swan-button>

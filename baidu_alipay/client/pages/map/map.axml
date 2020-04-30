@@ -1,4 +1,0 @@
-<view  class="wrap">
-    <swan-map  id="myMap" style="width: 100%" scale="{{scale}}" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" position="{{position}}" showLocation="{{showLocation}}" polyline="{{polyline}}" controls="{{controls}}" circles="{{circles}}">
-    </swan-map>
-</view>

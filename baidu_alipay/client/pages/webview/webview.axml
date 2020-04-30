@@ -1,6 +1,0 @@
-<view >
-    <web-view  a:if="{{src}}" src="{{src}}"></web-view>
-    <view  class="tip">web-view是承载网页的容器</view>
-    <swan-button  type="primary" Class="btn" onTap="openWebViewInNewPage">新页面打开web-view</swan-button>
-    <swan-button  type="primary" Class="btn" onTap="openWebViewCurrent">当前页打开web-view</swan-button>
-</view>
