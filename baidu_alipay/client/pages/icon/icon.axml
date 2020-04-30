@@ -1,0 +1,18 @@
+<view  class="wrap">
+    <view  class="title">默认样式</view>
+    <view  class="group">
+        <view >
+            <icon  a:for-item="type" a:key="type" a:for="{{types.smallDefault}}" type="{{type}}" class="small-default"></icon>
+        </view>
+    </view>
+
+    <view  class="title">尺寸选择</view>
+    <view  class="group choose">
+        <icon  a:for-item="size" a:key="size" a:for="{{sizes}}" type="success" size="{{size}}" class="icon-size"></icon>
+    </view>
+
+    <view  class="title">颜色选择</view>
+    <view  class="group choose">
+        <icon  a:for-item="color" a:key="color" a:for="{{colors}}" type="success" size="40" color="{{color}}" class="icon-color"></icon>
+    </view>
+</view>

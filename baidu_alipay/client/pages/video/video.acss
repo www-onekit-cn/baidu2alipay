@@ -1,0 +1,11 @@
+/**
+ * @demo page component for video
+ * @author lvlei
+ */
+
+.video-wrap {
+    padding: 30px 23px 0;
+}
+.btn {
+    margin: 15px 23px 0;
+}

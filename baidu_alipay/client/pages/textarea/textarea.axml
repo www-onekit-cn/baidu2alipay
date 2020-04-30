@@ -1,0 +1,10 @@
+<view  class="wrap">
+    <view  class="section">
+        <view  class="title">输入区高度自适应</view>
+        <textarea  auto-height onInput="bindInput" onFocus="bindFocus" onBlur="bindBlur" onLinechange="bindLinechange"></textarea>
+    </view>
+    <view  class="section">
+        <view  class="title">自动聚焦的textarea</view>
+        <textarea  focus="{{!focus}}" style="height:{{height}}rem"></textarea>
+    </view>
+</view>

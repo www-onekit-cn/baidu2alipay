@@ -1,0 +1,110 @@
+{
+  "appInfo": {
+    "app_key": "yiDiHjQwMwN1Qa4HVLoQYhoHPjLwFklr",
+    "app_name": "工具回归",
+    "app_photo": "https://b.bdstatic.com/searchbox/mappconsole/image/20180327/1522122006202061.png",
+    "domains": {
+      "downloadFile": [
+        "https://www.baidu.com"
+      ],
+      "request": [
+        "https://www.baidu.com"
+      ],
+      "socket": [
+        "wss://www.baidu.com"
+      ],
+      "uploadFile": [
+        "https://www.baidu.com"
+      ]
+    },
+    "isExistsPackage": true,
+    "isTp": false,
+    "needWeb": true,
+    "tpAppId": null,
+    "webAction": [
+      "swan/navigateTo",
+      "swan/navigateBack",
+      "swan/switchTab",
+      "swan/reLaunch",
+      "swan/redirectTo",
+      "swan/postMessage",
+      "swan/previewImage",
+      "swan/getLocation"
+    ],
+    "webview_domains": []
+  },
+  "appid": "11182003",
+  "appkey": "yiDiHjQwMwN1Qa4HVLoQYhoHPjLwFklr",
+  "compilation-args": {
+    "options": [
+      {
+        "editable": true,
+        "extra": {
+          "compilationArgs": "--module cmd",
+          "ext": "",
+          "index": "pages/touchmove/touchmove",
+          "query": "",
+          "scene": {}
+        },
+        "id": 0,
+        "name": "touchmove"
+      }
+    ],
+    "selected": -2
+  },
+  "condition": {
+    "swan": {
+      "current": -2,
+      "list": [
+        {
+          "dependencyGraph": true,
+          "name": "camera",
+          "pathName": "pages/camera/camera",
+          "query": "",
+          "scene": ""
+        },
+        {
+          "dependencyGraph": true,
+          "name": "lottie",
+          "pathName": "pages/lottie/lottie",
+          "query": "",
+          "scene": ""
+        }
+      ]
+    }
+  },
+  "developType": "normal",
+  "editor": {
+    "curPath": "",
+    "expands": [
+      "/Users/zhangjin/Desktop/demo-1.0.1/pages",
+      "/Users/zhangjin/Desktop/demo-1.0.1/pages/component",
+      "/Users/zhangjin/Desktop/demo-1.0.1/pages/getUserInfo"
+    ],
+    "markdownUploadTimeMap": {},
+    "paths": [],
+    "recentlyFiles": [
+      "/Users/zhangjin/Desktop/demo-1.0.1/pages/component/component.swan",
+      "/Users/zhangjin/Desktop/demo-1.0.1/pages/component/component.js",
+      "/Users/zhangjin/Desktop/demo-1.0.1/pages/checkbox/checkbox.swan"
+    ]
+  },
+  "host": "baiduboxapp",
+  "libVersion": "2.10.19",
+  "project-info": {
+    "urlCheck": true
+  },
+  "publish": {
+    "hideTips": true,
+    "version": "1.0.1.8"
+  },
+  "setting": {
+    "urlCheck": false
+  },
+  "swan": {
+    "baiduboxapp": {
+      "extensionJsVersion": "1.5.3",
+      "swanJsVersion": "3.100.9"
+    }
+  }
+}

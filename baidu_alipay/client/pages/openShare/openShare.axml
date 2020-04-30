@@ -1,0 +1,9 @@
+<view  class="container">
+    <view  class="page-body">
+        <swan-button  type="primary" open-type="share" hover-stop-propagation="true">点击打开分享</swan-button>
+    </view>
+    <view  class="page-title">
+        <view  class="page-title-line"></view>
+        <view  class="page-title-text">{{title}}</view>
+    </view>
+</view>
