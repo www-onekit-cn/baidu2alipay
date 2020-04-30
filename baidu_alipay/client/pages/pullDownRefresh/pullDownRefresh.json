@@ -1,0 +1,10 @@
+{
+  "pullRefresh": true,
+  "defaultTitle": "下拉刷新",
+  "usingComponents": {
+    "swan-ad": "/onekit/ui/ad/ad",
+    "swan-button": "/onekit/ui/button/button",
+    "swan-map": "/onekit/ui/map/map",
+    "swan-video": "/onekit/ui/video/video"
+  }
+}

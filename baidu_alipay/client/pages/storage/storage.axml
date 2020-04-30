@@ -1,0 +1,17 @@
+<view  class="wrap">
+    <view  class="input-area">
+        <view  class="input-item border-top border-bottom">
+            <label >key</label>
+            <input  onInput="keyInput" class="input" type="text" placeholder="请输入key"></input>
+        </view>
+        <view  class="input-item border-bottom">
+            <label >value</label>
+            <input  onInput="valueInput" class="input" type="text" placeholder="请输入value"></input>
+        </view>
+    </view>
+    <view >
+        <swan-button  Class="btn" onTap="setStorage" type="primary" hover-stop-propagation="true">存储数据</swan-button>
+        <swan-button  Class="btn" onTap="getStorage" hover-stop-propagation="true">读取数据</swan-button>
+        <swan-button  Class="btn" onTap="clearStorage" hover-stop-propagation="true">清理数据</swan-button>    
+    </view>
+</view>

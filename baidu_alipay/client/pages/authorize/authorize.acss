@@ -1,0 +1,12 @@
+/**
+ * @file swan index apiDemo's css
+ * @author renzhonghua
+ */
+
+.page-body {
+    margin-top: 42px;
+}
+
+swan-button {
+    margin-bottom: 15px;
+}

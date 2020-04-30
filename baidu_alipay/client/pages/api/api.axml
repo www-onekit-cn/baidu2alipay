@@ -1,0 +1,21 @@
+<view  class="group">
+    <view  class="group-hd">
+        <image  class="group-logo" src="../../images/api_logo.png"></image>
+        <view  class="group-desc">以下将演示小程序接口能力，具体属性参数详见小程序开发文档。</view>
+    </view>
+
+    <view  a:for-index="index" a:for-item="item" a:key="item" a:for="{{items}}" class="group-bd">
+        <view  class="item border-bottom {{item.open ? '' : 'item-close'}}" onTap="toggleClick" data-index="{{index}}" data-id="{{item.id}}">
+            <image  class="item-logo" src="{{item.icon}}"></image>
+            <text  class="item-desc">{{item.name}}</text>
+            <image  a:if="{{item.id}}" class="item-logo item-toggle" src="../../images/right_arrow.png"></image>
+            <image  a:else class="item-logo item-toggle" src="{{item.open ? '../../images/close.png' : '../../images/open.png'}}"></image>
+        </view>
+        <view  a:if="{{item.open}}">
+            <view  class="sub-item border-bottom" a:for-item="subItem" a:key="subItem" a:for="{{item.list}}" onTap="oneItemClick" data-id="{{subItem.id}}">
+                <text  class="sub-item-desc">{{subItem.subName}}</text>
+                <image  class="item-logo sub-item-goto" src="../../images/right_arrow.png"></image>
+            </view>
+        </view>
+    </view>
+</view>

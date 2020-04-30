@@ -1,0 +1,11 @@
+<view  class="wrap">
+    <view  class="file-area border-bottom">
+        <view >
+            <image  class="file-icon" src="/images/file-pdf.png" mode="widthFix"></image>
+        </view>
+        <view  class="file-label">示例文件.pdf</view>
+    </view>
+    <view  class="button-area">
+        <swan-button  type="primary" Class="btn" onTap="downloadFile">下载文件</swan-button>
+    </view>
+</view>
