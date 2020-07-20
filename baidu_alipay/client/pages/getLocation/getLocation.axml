@@ -4,6 +4,6 @@
         <view  a:if="{{location}}" class="info location">E: {{location.longitude[0]}}°{{location.longitude[1]}}′ N: {{location.latitude[0]}}°{{location.latitude[1]}}′</view>
         <view  a:else class="info">未选择位置</view>
     </view>
-    <swan-button  Class="btn" type="primary" loading="{{loading}}" onTap="getLocation">点击获取位置信息</swan-button>
-    <swan-button  Class="btn" type="default" onTap="clearLocation">清空</swan-button>
+    <onekit-button  Class="btn" type="primary" loading="{{loading}}" onTap="getLocation">点击获取位置信息</onekit-button>
+    <onekit-button  Class="btn" type="default" onTap="clearLocation">清空</onekit-button>
 </view>

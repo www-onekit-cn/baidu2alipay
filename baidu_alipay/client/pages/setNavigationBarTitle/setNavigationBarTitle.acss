@@ -3,6 +3,6 @@
  * @author renzhonghua
  */
 
-swan-button {
+.onekit-button {
 	margin-top: 15px;
 }

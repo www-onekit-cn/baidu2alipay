@@ -1,9 +1,8 @@
-body {
-    padding-top: 35px;
-}
-.btn {
-    margin: 15px 23px 0;
-}
 .nav {
     display: block;
+}
+
+.navigator-hover {
+    opacity: .7;
+    background-color: rgba(0, 0, 0, .1);
 }

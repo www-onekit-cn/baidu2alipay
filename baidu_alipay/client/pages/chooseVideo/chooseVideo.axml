@@ -1,6 +1,6 @@
 <view  class="wrap">
     <view  class="video-area">
-        <swan-video  Class="video" a:if="{{videoSrc}}" src="{{videoSrc}}" controls="true" onError="videoError"></swan-video>
+        <onekit-video  Class="video" a:if="{{videoSrc}}" src="{{videoSrc}}" controls="true" onError="videoError"></onekit-video>
         <view  a:else class="empty">视频显示区</view>
     </view>
     <view  class="option-area border-top border-bottom">
@@ -24,7 +24,7 @@
         </view>
     </view>
     <view  class="button-area">
-        <swan-button  Class="btn" type="primary" onTap="selectVideo">添加视频</swan-button>
-        <swan-button  Class="btn" type="default" style="margin-top:016px;" onTap="clearVideo">清空视频</swan-button>
+        <onekit-button  Class="btn" type="primary" onTap="selectVideo">添加视频</onekit-button>
+        <onekit-button  Class="btn" type="default" style="margin-top:016px;" onTap="clearVideo">清空视频</onekit-button>
     </view>
 </view>

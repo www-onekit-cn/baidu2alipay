@@ -1,5 +1,5 @@
-<view  class="wrap">
-    <text >{{text}}</text>
-    <swan-button  Class="btn" type="primary" onTap="add">add text</swan-button>
-    <swan-button  Class="btn" type="primary" onTap="remove">remove text</swan-button>
+<onekit-view  Class="wrap">
+    <onekit-text >{{text}}</onekit-text>
+    <onekit-button  Class="btn" type="primary" onTap="add">add text</onekit-button>
+    <onekit-button  Class="btn" type="primary" onTap="remove">remove text</onekit-button>
 </view>

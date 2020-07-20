@@ -27,8 +27,8 @@
         </view>
          <input  name="input" placeholder="这是一个输入框"></input>
         <view  class="btn-area">
-            <swan-button  formType="submit" type="primary">Submit</swan-button>
-            <swan-button  formType="reset">Reset</swan-button>
+            <onekit-button  formType="submit" type="primary">Submit</onekit-button>
+            <onekit-button  formType="reset">Reset</onekit-button>
         </view>
     </form>
 </view>

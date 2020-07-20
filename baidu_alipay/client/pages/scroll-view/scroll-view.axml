@@ -1,15 +1,15 @@
-<view  class="wrap">
-    <view  class="title">横向滚动</view>
-    <scroll-view  scroll-x class="scroll-view" onScrolltoupper="toLeft" onScrolltolower="toRight" scroll-into-view="one" upper-threshold="1" lower-threshold="1" onScroll="myscroll">
-        <view  id="one" class="color-a row-view">A</view>
-        <view  id="two" class="color-b row-view">B</view>
-        <view  id="three" class="color-c row-view">C</view>
-    </scroll-view>
+<onekit-view  Class="wrap">
+    <onekit-view  Class="title">横向滚动</onekit-view>
+    <onekit-scroll-view  scroll-x Class="scroll-view" onScrolltoupper="toLeft" onScrolltolower="toRight" scroll-into-view="one" upper-threshold="1" lower-threshold="1" onScroll="myscroll">
+        <onekit-view  id="one" Class="color-a row-view">A</onekit-view>
+        <onekit-view  id="two" Class="color-b row-view">B</onekit-view>
+        <onekit-view  id="three" Class="color-c row-view">C</onekit-view>
+    </onekit-scroll-view>
 
-    <view  class="title">纵向滚动</view>
-    <scroll-view  scroll-y class="scroll-view" onScrolltoupper="upper" onScrolltolower="lower" scroll-into-view="four" upper-threshold="10" lower-threshold="10" onScroll="myscroll" enable-back-to-top="true">
-        <view  id="four" class="color-a">A</view>
-        <view  id="five" class="color-b">B</view>
-        <view  id="six" class="color-c">C</view>
-    </scroll-view>
-</view>
+    <onekit-view  Class="title">纵向滚动</onekit-view>
+    <onekit-scroll-view  scroll-y Class="scroll-view" onScrolltoupper="upper" onScrolltolower="lower" scroll-into-view="four" upper-threshold="10" lower-threshold="10" onScroll="myscroll" enable-back-to-top="true">
+        <onekit-view  id="four" Class="color-a">A</onekit-view>
+        <onekit-view  id="five" Class="color-b">B</onekit-view>
+        <onekit-view  id="six" Class="color-c">C</onekit-view>
+    </onekit-scroll-view>
+</onekit-view>

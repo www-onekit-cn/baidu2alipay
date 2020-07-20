@@ -10,8 +10,8 @@
         </view>
     </view>
     <view >
-        <swan-button  Class="btn" onTap="setStorage" type="primary" hover-stop-propagation="true">存储数据</swan-button>
-        <swan-button  Class="btn" onTap="getStorage" hover-stop-propagation="true">读取数据</swan-button>
-        <swan-button  Class="btn" onTap="clearStorage" hover-stop-propagation="true">清理数据</swan-button>    
+        <onekit-button  Class="btn" onTap="setStorage" type="primary" hover-stop-propagation="true">存储数据</onekit-button>
+        <onekit-button  Class="btn" onTap="getStorage" hover-stop-propagation="true">读取数据</onekit-button>
+        <onekit-button  Class="btn" onTap="clearStorage" hover-stop-propagation="true">清理数据</onekit-button>    
     </view>
 </view>

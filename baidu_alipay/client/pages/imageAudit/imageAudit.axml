@@ -13,9 +13,9 @@
                                 </scroll-view>
                         </block>
                 </view> 
-                <swan-button  onTap="submit" a:if="{{!isloading}}" type="primary">提交审核</swan-button>
-                <swan-button  loading="true" a:else type="primary">审核中</swan-button>
-                <swan-button  style="color:#333" onTap="clearImage" type="default" disabled="{{disabled}}">清空</swan-button>
+                <onekit-button  onTap="submit" a:if="{{!isloading}}" type="primary">提交审核</onekit-button>
+                <onekit-button  loading="true" a:else type="primary">审核中</onekit-button>
+                <onekit-button  style="color:#333" onTap="clearImage" type="default" disabled="{{disabled}}">清空</onekit-button>
                 <view  class="tip">审核结果</view>
                 <view  class="result">
                         <text  a:if="{{default}}" class="default">未提交审核</text>

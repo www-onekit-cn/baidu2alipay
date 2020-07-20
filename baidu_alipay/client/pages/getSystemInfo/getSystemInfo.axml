@@ -7,8 +7,8 @@
             </view>
         </view>
         <view  class="btn-ctn">
-            <swan-button  onTap="getSystemInfo" type="primary" hover-stop-propagation="true">点击获取系统信息</swan-button>
-            <swan-button  onTap="clearClick" hover-stop-propagation="true">清空</swan-button>
+            <onekit-button  onTap="getSystemInfo" type="primary" hover-stop-propagation="true">点击获取系统信息</onekit-button>
+            <onekit-button  onTap="clearClick" hover-stop-propagation="true">清空</onekit-button>
         </view>
     </view>
     <view  class="page-title">

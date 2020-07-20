@@ -16,6 +16,6 @@
     text-align: center;
 }
 
-swan-button {
+.onekit-button {
     margin-top: 15px;
 }

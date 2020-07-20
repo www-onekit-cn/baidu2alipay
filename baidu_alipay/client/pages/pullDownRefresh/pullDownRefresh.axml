@@ -1,7 +1,7 @@
 <view  class="container">
     <view  class="page-body">
         <view  class="page-info">下拉页面即可刷新</view>
-        <swan-button  onTap="stopPullDownRefresh" hover-stop-propagation="true" type="primary">停止刷新</swan-button>
+        <onekit-button  onTap="stopPullDownRefresh" hover-stop-propagation="true" type="primary">停止刷新</onekit-button>
     </view>
     <view  class="page-title">
         <view  class="page-title-line"></view>

@@ -1,6 +1,6 @@
 <view  class="container">
     <view  class="page-body">
-        <swan-button  onTap="login" type="primary" hover-stop-propagation="true">登录</swan-button>
+        <onekit-button  onTap="login" type="primary" hover-stop-propagation="true">登录</onekit-button>
     </view>
     <view  class="page-title">
         <view  class="page-title-line"></view>

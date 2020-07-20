@@ -11,8 +11,8 @@
             <view  a:else>未获取位置</view>
         </view>
         <view  class="page-btn">
-            <swan-button  onTap="chooseLocation" Class="btn" type="primary" hover-stop-propagation="true">点击获取位置信息</swan-button>
-            <swan-button  onTap="clearLocation">清空</swan-button>
+            <onekit-button  onTap="chooseLocation" Class="btn" type="primary" hover-stop-propagation="true">点击获取位置信息</onekit-button>
+            <onekit-button  onTap="clearLocation">清空</onekit-button>
         </view>
     </view>
     <view  class="page-title">

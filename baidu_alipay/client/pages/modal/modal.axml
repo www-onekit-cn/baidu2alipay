@@ -1,7 +1,7 @@
 <view  class="container">
     <view  class="page-body">
-        <swan-button  onTap="showModal" type="primary" hover-stop-propagation="true">有标题的modal</swan-button>
-        <swan-button  onTap="showModalNotitle" type="primary" hover-stop-propagation="true">无标题的modal</swan-button>
+        <onekit-button  onTap="showModal" type="primary" hover-stop-propagation="true">有标题的modal</onekit-button>
+        <onekit-button  onTap="showModalNotitle" type="primary" hover-stop-propagation="true">无标题的modal</onekit-button>
         
     </view>
     <view  class="page-title">

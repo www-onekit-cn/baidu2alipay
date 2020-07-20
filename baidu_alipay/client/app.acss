@@ -16,11 +16,11 @@ page {
     }
 }
 
-swan-wrapper {
+.onekit-swan-wrapper {
     height: 100%;
 }
 
-swan-button {
+.onekit-button {
     margin: 0 20px;
 }
 

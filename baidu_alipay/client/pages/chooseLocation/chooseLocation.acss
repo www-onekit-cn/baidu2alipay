@@ -34,13 +34,13 @@
     color: #333333;
 }
 
-swan-button {
+.onekit-button {
     margin-top: 17px;
     padding: 0;
     font-size: 18px;  
 }
 
-swan-button:after {
+.onekit-button:after {
     border: 1px solid #999; 
 }
 

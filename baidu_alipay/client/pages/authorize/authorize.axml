@@ -1,6 +1,6 @@
 <view  class="container">
     <view  class="page-body">
-        <swan-button  a:for-item="item" a:key="item" a:for="{{items}}" id="{{item.id}}" onTap="btnClick" type="primary" hover-stop-propagation="true">{{item.name}}</swan-button>
+        <onekit-button  a:for-item="item" a:key="item" a:for="{{items}}" id="{{item.id}}" onTap="btnClick" type="primary" hover-stop-propagation="true">{{item.name}}</onekit-button>
     </view>
     <view  class="page-title">
         <view  class="page-title-line"></view>

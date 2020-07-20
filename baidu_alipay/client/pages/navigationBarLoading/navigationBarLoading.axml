@@ -1,7 +1,7 @@
 <view  class="container">
     <view  class="page-body">
-        <swan-button  onTap="showNavigationBarLoading" type="primary" hover-stop-propagation="true">显示加载动画</swan-button>
-        <swan-button  onTap="hideNavigationBarLoading" type="primary" hover-stop-propagation="true">隐藏加载动画</swan-button>
+        <onekit-button  onTap="showNavigationBarLoading" type="primary" hover-stop-propagation="true">显示加载动画</onekit-button>
+        <onekit-button  onTap="hideNavigationBarLoading" type="primary" hover-stop-propagation="true">隐藏加载动画</onekit-button>
     </view>
     <view  class="page-title">
         <view  class="page-title-line"></view>

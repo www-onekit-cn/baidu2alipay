@@ -1,0 +1,17 @@
+Component({
+  mixins: [],
+  data: {},
+  props: {
+    Class:"",
+    Style:"",
+    url:"",
+    openType:"navigate",
+    hoverClass:"navigator-hover",
+    hoverStartTime:"",
+    hoverStayTime:""
+  },
+  didMount() {},
+  didUpdate() {},
+  didUnmount() {},
+  methods: {},
+});

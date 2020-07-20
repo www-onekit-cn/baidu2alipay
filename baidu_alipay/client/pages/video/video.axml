@@ -1,6 +1,6 @@
 <view  class="wrap">
     <view  class="video-wrap">
-        <swan-video  id="myde" style="width: 100%;" src="{{src}}" controls onPlay="play" onPause="pause" onFullscreenchange="fullscreen" onEnded="ended" autoplay="{{autoplay}}"></swan-video>
+        <onekit-video  id="myde" style="width: 100%;" src="{{src}}" controls onPlay="play" onPause="pause" onFullscreenchange="fullscreen" onEnded="ended" autoplay="{{autoplay}}"></onekit-video>
     </view>
-    <swan-button  Class="btn" onTap="next" type="primary">切换视频地址</swan-button>
+    <onekit-button  Class="btn" onTap="next" type="primary">切换视频地址</onekit-button>
 </view>

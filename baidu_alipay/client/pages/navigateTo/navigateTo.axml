@@ -1,8 +1,8 @@
 <view  class="container">
     <view  class="page-body">
-        <swan-button  onTap="navigateTo" type="primary" hover-stop-propagation="true">跳转新页面</swan-button>
-        <swan-button  onTap="navigateBack" type="primary" hover-stop-propagation="true">返回上一页</swan-button>
-        <swan-button  onTap="redirectTo" type="primary" hover-stop-propagation="true">在当前页面打开</swan-button>
+        <onekit-button  onTap="navigateTo" type="primary" hover-stop-propagation="true">跳转新页面</onekit-button>
+        <onekit-button  onTap="navigateBack" type="primary" hover-stop-propagation="true">返回上一页</onekit-button>
+        <onekit-button  onTap="redirectTo" type="primary" hover-stop-propagation="true">在当前页面打开</onekit-button>
     </view>
     <view  class="page-title">
         <view  class="page-title-line"></view>

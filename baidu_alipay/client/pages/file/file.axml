@@ -10,8 +10,8 @@
         </view>
     </view>
     <view  class="button-area">
-        <swan-button  type="primary" Class="btn" onTap="saveFile">保存文件</swan-button>
-        <swan-button  type="primary" Class="btn" onTap="openFile">打开文件</swan-button>
-        <swan-button  type="default" Class="btn" onTap="deleteFile">删除文件</swan-button>
+        <onekit-button  type="primary" Class="btn" onTap="saveFile">保存文件</onekit-button>
+        <onekit-button  type="primary" Class="btn" onTap="openFile">打开文件</onekit-button>
+        <onekit-button  type="default" Class="btn" onTap="deleteFile">删除文件</onekit-button>
     </view>
 </view>

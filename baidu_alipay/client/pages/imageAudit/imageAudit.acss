@@ -104,8 +104,7 @@
 button {
     margin-top: 20px;
 }
-
-swan-textarea {
+.onekit-textarea {
     width: auto;
 }
 

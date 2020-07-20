@@ -2,6 +2,6 @@
  * @file swan index apiDemo's css
  * @author renzhonghua
  */
-swan-button {
+.onekit-button {
     margin-bottom: 15px;
 }

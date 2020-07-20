@@ -7,6 +7,6 @@
     margin-top: 42px;
 }
 
-swan-button {
+.onekit-button {
     margin-bottom: 15px;
 }

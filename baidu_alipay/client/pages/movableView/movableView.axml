@@ -7,7 +7,7 @@
             <movable-area >
                 <movable-view  x="{{x}}" y="{{y}}" direction="all">text</movable-view>
             </movable-area>
-            <swan-button  onTap="move" Class="move-button" type="primary">点击移动到 (30px, 30px)</swan-button>
+            <onekit-button  onTap="move" Class="move-button" type="primary">点击移动到 (30px, 30px)</onekit-button>
         </view>
         <view  class="section">
             <view  class="content-title">
@@ -58,7 +58,7 @@
                     text
                 </movable-view>
             </movable-area>
-            <swan-button  onTap="scale" Class="scale-button" type="primary">点击放大3倍</swan-button>
+            <onekit-button  onTap="scale" Class="scale-button" type="primary">点击放大3倍</onekit-button>
         </view>
     </view>
     <view  class="page-title">

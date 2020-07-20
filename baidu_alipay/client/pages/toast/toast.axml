@@ -1,10 +1,10 @@
 <view  class="container">
     <view  class="page-body">
-        <swan-button  onTap="showToast" type="primary" hover-stop-propagation="true">点击弹出默认toast</swan-button>
-        <swan-button  onTap="showToastIcon" type="primary" hover-stop-propagation="true">点击弹出设置icon的toast</swan-button>
-        <swan-button  onTap="showToastDuration" type="primary" hover-stop-propagation="true">点击弹出设置duration的toast</swan-button>
-        <swan-button  onTap="showToastLoading" type="primary" hover-stop-propagation="true">点击弹出显示loading的toast</swan-button>
-        <swan-button  onTap="hideToast" type="primary" hover-stop-propagation="true">点击隐藏toast</swan-button>
+        <onekit-button  onTap="showToast" type="primary" hover-stop-propagation="true">点击弹出默认toast</onekit-button>
+        <onekit-button  onTap="showToastIcon" type="primary" hover-stop-propagation="true">点击弹出设置icon的toast</onekit-button>
+        <onekit-button  onTap="showToastDuration" type="primary" hover-stop-propagation="true">点击弹出设置duration的toast</onekit-button>
+        <onekit-button  onTap="showToastLoading" type="primary" hover-stop-propagation="true">点击弹出显示loading的toast</onekit-button>
+        <onekit-button  onTap="hideToast" type="primary" hover-stop-propagation="true">点击隐藏toast</onekit-button>
     </view>
     <view  class="page-title">
         <view  class="page-title-line"></view>

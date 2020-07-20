@@ -1,16 +1,19 @@
 import swan_ai from "./swan.ai"
 import onekit from "./onekit"
+import CanvasContext from "./api/CanvasContext"
+import VideoContext from "./api/VideoContext"
+
 export default class swan {
-  static getData(that,key) { return that.data[key]; }
-  static setData(that,key,data) { 
-    if(typeof(key)=="string"){
-    var json = {};
-    json[key] = data;
-    return that.setData(json);
-  }else{
+  static getData(that, key) { return that.data[key]; }
+  static setData(that, key, data) {
+    if (typeof (key) == "string") {
+      var json = {};
+      json[key] = data;
+      return that.setData(json);
+    } else {
       that.setData(key);
+    }
   }
-     }
   /////////////////// animation //////////////////////////
   static createAnimation(object) {
     return my.createAnimation(object);
@@ -49,7 +52,7 @@ export default class swan {
   }
   static getSystemInfo(object) {
     var object2 = {}
-    object2.success = function(res) {
+    object2.success = function (res) {
       var result = {
         errMsg: "getSystemInfo:ok",
         SDKVersion: "2.4.2",
@@ -74,7 +77,7 @@ export default class swan {
       if (object.success) { object.success(result); }
       if (object.fail) { object.fail(result); }
     }
-    object2.fail = function(res) {
+    object2.fail = function (res) {
       if (object.fail) {
         object["success"](res);
       }
@@ -197,17 +200,20 @@ export default class swan {
     canvasContext.draw();
   }
   static createContext() {
-    var context = new CanvasContext();
+    var context = new Context();
     return context;
   }
-  static createCanvasContext(object) {
-    return my.createCanvasContext(object);
+  static createCanvasContext(canvasId) {
+    return new CanvasContext(my.createCanvasContext(canvasId));
+  }
+  static createVideoContext(videoId,ui) { 
+    return new VideoContext(my.createVideoContext(videoId)); 
   }
   static canvasToTempFilePath(object) {
     var object2 = {
       canvasId: object.canvasId
     }
-    object2.success = function(res) {
+    object2.success = function (res) {
       var result = {
         errMsg: "canvasToTempFilePath:ok",
         tempFilePath: res.apFilePath
@@ -219,7 +225,7 @@ export default class swan {
         object["complete"](res);
       }
     }
-    object2.fail = function(res) {
+    object2.fail = function (res) {
       if (object.fail) {
         object["success"](res);
       }
@@ -247,7 +253,7 @@ export default class swan {
   static connectWifi(object) { return my.connectWifi(object); }
   //
   static onAccelerometerChange(callback) {
-    my.onAccelerometerChange(function(res) {
+    my.onAccelerometerChange(function (res) {
       if (swan._stopAccelerometer) {
         return;
       }
@@ -291,7 +297,7 @@ export default class swan {
   }
   static getBatteryInfo(object) {
     var object2 = {}
-    object2.success = function(res) {
+    object2.success = function (res) {
       var result = {
         errMsg: "getBatteryInfo:ok",
         isCharging: false,
@@ -300,7 +306,7 @@ export default class swan {
       if (object.success) { object.success(result); }
       if (object.fail) { object.fail(result); }
     },
-      object2.fail = function(res) {
+      object2.fail = function (res) {
         if (object.success) { object.success(res); }
         if (object.fail) { object.fail(res); }
       }
@@ -314,12 +320,12 @@ export default class swan {
       for (var key in object) {
         switch (key) {
           case "success":
-            object2["success"] = function(res) {
+            object2["success"] = function (res) {
               object[key]({ data: res.text });
             };
             break;
           case "complete":
-            object2["complete"] = function(res) {
+            object2["complete"] = function (res) {
               if (res.text) {
                 res = { data: res.text };
               }
@@ -352,7 +358,7 @@ export default class swan {
     return my.setClipboard(object2);
   }
   static onCompassChange(callback) {
-    my.onCompassChange(function(res) {
+    my.onCompassChange(function (res) {
       if (swan._stopCompass) {
         return;
       }
@@ -383,7 +389,7 @@ export default class swan {
     var result = {
       errMsg: errMsg
     }
-    object2.success = function(res) {
+    object2.success = function (res) {
       result.errMsg = "addPhoneContact:ok"
       if (object.success) {
         object["success"](result);
@@ -392,7 +398,7 @@ export default class swan {
         object["complete"](result);
       }
     }
-    object2.fail = function(res) {
+    object2.fail = function (res) {
       result.errMsg = "addPhoneContact:fail cancel"
       if (object.fail) {
         object["fail"](result);
@@ -404,7 +410,7 @@ export default class swan {
     return my.addPhoneContact(object2);
   }
   static onGyroscopeChange(callback) {
-    my.onGyroscopeChange(function(res) {
+    my.onGyroscopeChange(function (res) {
       if (swan._stopGyroscope) {
         return;
       }
@@ -435,7 +441,7 @@ export default class swan {
   static startDeviceMotionListening(object) { return my.startDeviceMotionListening(object); }
   static startDeviceMotionListening(object) { return my.startDeviceMotionListening(object); }
   //
-  static getNetworkType = function(object) {
+  static getNetworkType = function (object) {
     var object2 = {};
     for (var key in object) {
       switch (key) {
@@ -448,7 +454,7 @@ export default class swan {
           break;
       }
     }
-    object2.success = function(res) {
+    object2.success = function (res) {
       var result = { networkType: swan._network(res).networkType };
       if (object.success) {
         object["success"](result);
@@ -457,7 +463,7 @@ export default class swan {
         object["complete"](result);
       }
     }
-    object2.fail = function(res) {
+    object2.fail = function (res) {
       if (object.fail) {
         object["success"](res);
       }
@@ -468,7 +474,7 @@ export default class swan {
 
     return my.getNetworkType(object2);
   }
-  static _network = function(res) {
+  static _network = function (res) {
     var networkType;
     if (res.networkAvailable) {
       switch (res.networkType) {
@@ -484,15 +490,15 @@ export default class swan {
     }
     return { isConnected: res.networkAvailable, networkType: networkType.toLowerCase() };
   }
-  static onNetworkStatusChange = function(callack) {
-    my.onNetworkStatusChange(function(res) {
+  static onNetworkStatusChange = function (callack) {
+    my.onNetworkStatusChange(function (res) {
       callack(swan._network(res));
     });
   }
 
 
   //
-  static makePhoneCall = function(object) {
+  static makePhoneCall = function (object) {
     var object2;
     if (object) {
       object2 = {};
@@ -511,7 +517,7 @@ export default class swan {
     }
   }
 
-  static scanCode = function(object) {
+  static scanCode = function (object) {
     var object2;
     if (object) {
       object2 = {};
@@ -532,7 +538,7 @@ export default class swan {
             break;
         }
       }
-      object2.success = function(res) {
+      object2.success = function (res) {
         var result = {};
         if (res.code) {
           result.charSet = "UTF-8";
@@ -550,7 +556,7 @@ export default class swan {
           object.complete(result);
         }
       }
-      object2.fail = function(res) {
+      object2.fail = function (res) {
         if (object.fail) {
           object.fail(res);
         }
@@ -564,7 +570,7 @@ export default class swan {
   //
   static vibrateLong(object) {
     var object2 = {}
-    object2.success = function(res) {
+    object2.success = function (res) {
       var result = {
         errMsg: "vibrateLong:ok"
       }
@@ -579,7 +585,7 @@ export default class swan {
   }
   static vibrateShort(object) {
     var object2 = {}
-    object2.success = function(res) {
+    object2.success = function (res) {
       var result = {
         errMsg: "vibrateShort:ok"
       }
@@ -626,12 +632,12 @@ export default class swan {
   }
   static openBluetoothAdapter(object) {
     var object2 = {}
-    object2.success = function(res) {
+    object2.success = function (res) {
       var result = { errMsg: "openBluetoothAdapter:ok" }
       if (object.success) { object["success"](result) }
       if (object.complete) { object["complete"](result) }
     }
-    object2.fail = function(res) {
+    object2.fail = function (res) {
       if (object.success) { object["success"](res) }
       if (object.complete) { object["complete"](res) }
     }
@@ -642,7 +648,7 @@ export default class swan {
   static getConnectedBluetoothDevices(object) { return my.getConnectedBluetoothDevices(object); }
   static getBluetoothDevices(object) {
     var object2 = {}
-    object2.success = function(res) {
+    object2.success = function (res) {
       my.getBluetoothDevices({
         success: (res) => {
           // console.log("000", res)
@@ -656,7 +662,7 @@ export default class swan {
       if (object.success) { object["success"](result) }
       if (object.complete) { object["complete"](result) }
     }
-    object2.fail = function(res) {
+    object2.fail = function (res) {
       if (object.success) { object["success"](res) }
       if (object.complete) { object["complete"](res) }
     }
@@ -707,7 +713,7 @@ export default class swan {
         }
       }
     }
-    object2.success = function(res) {
+    object2.success = function (res) {
       var result = { value: res.brightness };
       if (object.success) {
         object["success"](result);
@@ -716,7 +722,7 @@ export default class swan {
         object["complete"](result);
       }
     }
-    object2.fail = function(res) {
+    object2.fail = function (res) {
       if (object.fail) {
         object["success"](res);
       }
@@ -845,7 +851,7 @@ export default class swan {
             break;
         }
       }
-      object2.success = function(res) {
+      object2.success = function (res) {
         var result = {
           header: res.headers
         };
@@ -869,7 +875,7 @@ export default class swan {
           object.complete(result);
         }
       }
-      object2.fail = function(res) {
+      object2.fail = function (res) {
         if (object.fail) {
           object.fail(res);
         }
@@ -924,30 +930,30 @@ export default class swan {
   static offLocalServiceFound(callback) { return my.offLocalServiceFound(callback); }
   static offLocalServiceDiscoveryStop(callback) { return my.offLocalServiceDiscoveryStop(callback); }
   ///////// Open Interface //////////
+  ///////// Open Interface //////////
+  static _checkSession() {
+    return getApp().onekitwx._jscode && getApp().onekitwx._login && now <= getApp().onekitwx._login + 1000 * 60 * 60 * 24 * 3;
+  }
   static checkSession(object) {
-    var object2 = {};
-    var now = new Date().getTime();
-    if (swan._sessoion && now - swan._sessoion <= 7200 * 1000) {
-      var result = { errMsg: "checkSession:ok" };
+    if (swan._checkSession()) {
       if (object.success) {
-        object.success(result);
+        object.success();
       }
       if (object.complete) {
-        object.complete(result);
+        object.complete();
       }
+
     } else {
-      var res = { errMsg: "checkSession:fail" };
       if (object.fail) {
-        object.fail(res);
+        object.fail();
       }
       if (object.complete) {
-        object.complete(res);
+        object.complete();
       }
     }
-    return my.getAuthCode(object2);
   }
 
-  static login = function(object) {
+  static login = function (object) {
     var that = this;
     if (!object) {
       return my.getAuthCode(object);
@@ -955,9 +961,9 @@ export default class swan {
     var object2 = {
       scopes: "auth_user"
     };
-    object2.success = function(res) {
+    object2.success = function (res) {
       swan._sessoion = new Date().getTime();
-      getApp().onekit.jscode = res.authCode;
+      getApp().onekitwx.code = res.authCode;
       var result = { code: res.authCode };
       if (object.success) {
         object.success(result);
@@ -966,7 +972,7 @@ export default class swan {
         object.complete(complete);
       }
     }
-    object2.fail = function(res) {
+    object2.fail = function (res) {
       if (object.fail) {
         object.fail(res);
       }
@@ -974,13 +980,18 @@ export default class swan {
         object.complete(res);
       }
     }
-    return my.getAuthCode(object2);
+    if (swan._checkSession()) {
+      object2.success({ authCode: getApp().onekitwx._jscode });
+    } else {
+      my.getAuthCode(object2);
+    }
+
   };
   static getUserInfo(object) {
-    function getUserInfo(jscode, object) {
+    function getUserInfo(code, object) {
       my.getAuthUserInfo({
         success(res) {
-          var url = getApp().onekit.server + "userinfo";
+          var url = getApp().onekitwx.server + "userinfo";
           my.httpRequest({
             url: url,
             header: {
@@ -988,9 +999,9 @@ export default class swan {
             },
             method: "POST",
             data: {
-              nickname: res.nickName,
-              avatarUrl: res.avatar,
-              js_code: jscode
+              withCredentials: true,
+              isAPI: false,
+              code: code
             },
             success(res) {
               if (object.success) {
@@ -1007,9 +1018,9 @@ export default class swan {
       });
     }
 
-    var jscode = getApp().onekit.jscode;
-    if (jscode) {
-      getUserInfo(jscode, object);
+    var code = getApp().onekitwx.code;
+    if (code) {
+      getUserInfo(code, object);
     } else {
       swan.login({
         success: (res) => {
@@ -1018,7 +1029,7 @@ export default class swan {
       });
     }
   };
-  static getOpenData = function(object) {
+  static getOpenData = function (object) {
     function success(opendata) {
       var opendata = opendata.userInfo;
       getApp().onekit.opendata = opendata;
@@ -1074,8 +1085,8 @@ export default class swan {
     })
 
   };
-  static getPhoneNumber = function(object) {
-    function getPhoneNumber(jscode, object) {
+  static getPhoneNumber = function (object) {
+    function getPhoneNumber(code, object) {
       my.getPhoneNumber({
         success(res) {
           //var response = {
@@ -1085,7 +1096,7 @@ export default class swan {
           //  JSON.parse(res.response);
           var response = JSON.parse(res.response);
           console.log(response);
-          var url = getApp().onekit.server + "phonenumber";
+          var url = getApp().onekitwx.server + "phonenumber";
           my.httpRequest({
             url: url,
             header: {
@@ -1093,9 +1104,8 @@ export default class swan {
             },
             method: "POST",
             data: {
-              response: response.response,
-              sign: response.sign,
-              js_code: jscode
+              data: JSON.stringify(response),
+              code: code
             },
             success(res) {
               var data = res.data;
@@ -1112,9 +1122,9 @@ export default class swan {
         }
       });
     }
-    var jscode = getApp().onekit.jscode;
-    if (jscode) {
-      getPhoneNumber(jscode, object);
+    var code = getApp().onekitwx.code;
+    if (code) {
+      getPhoneNumber(code, object);
     } else {
       swan.login({
         success: (res) => {
@@ -1129,16 +1139,37 @@ export default class swan {
 
   static reportMonitor(object) { return my.reportMonitor(object) }
   static reportAnalytics(object) { return my.reportAnalytics(object) }
-  static requestPayment(object) {
-    var tradeNO = object.package.split("=")[1];
-    console.log(tradeNO);
-    var object2 = {
-      tradeNO: tradeNO,
-      success: object.success,
-      fail: object.fail,
-      complete: object.complete
-    };
-    return my.tradePay(object2);
+  static requestPolymerPayment(object) {
+    swan.login({
+      success(res) {
+        var code = res.code;
+        var url = getApp().onekitwx.server + "orderinfo";
+        my.httpRequest({
+          url: url,
+          header: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          method: "POST",
+          data: {
+            orderInfo: JSON.stringify(object.orderInfo),
+            code: code
+          },
+          success: (res) => {
+            var tradeNO = res.data.trade_no;
+            console.log(tradeNO);
+            var object2 = {
+              tradeNO: tradeNO,
+              success: object.success,
+              fail: object.fail,
+              complete: object.complete
+            };
+            return my.tradePay(object2);
+          },
+        });
+
+
+      }
+    });
   };
   static authorize(object) { return my.authorize(object) }
   static openSetting(object) { return my.openSetting(object) }
@@ -1153,7 +1184,7 @@ export default class swan {
       object.complete();
     }
   };
-  static addCard = function(object) {
+  static addCard = function (object) {
     var url = getApp().onekit.server + "addcard";
     my.httpRequest({
       url: url,
@@ -1201,10 +1232,10 @@ export default class swan {
         console.log("success")
         console.log(res.data);
       },
-      fail: function(res) {
+      fail: function (res) {
         console.log(res);
       },
-      complete: function(res) {
+      complete: function (res) {
         console.log(res)
       }
 
@@ -1226,7 +1257,7 @@ export default class swan {
             break;
         }
       }
-      object2.success = function(res) {
+      object2.success = function (res) {
         if (object.success) {
           object["success"](result);
         }
@@ -1234,7 +1265,7 @@ export default class swan {
           object["complete"](result);
         }
       }
-      object2.fail = function(res) {
+      object2.fail = function (res) {
         if (object.fail) {
           object["success"](res);
         }
@@ -1261,7 +1292,7 @@ export default class swan {
         }
       }
     }
-    object2.success = function(res) {
+    object2.success = function (res) {
       if (object.success) {
         object["success"](result);
       }
@@ -1269,7 +1300,7 @@ export default class swan {
         object["complete"](result);
       }
     }
-    object2.fail = function(res) {
+    object2.fail = function (res) {
       if (object.fail) {
         object["success"](res);
       }
@@ -1295,7 +1326,7 @@ export default class swan {
         }
       }
     }
-    object2.success = function(res) {
+    object2.success = function (res) {
       if (object.success) {
         object["success"](result);
       }
@@ -1303,7 +1334,7 @@ export default class swan {
         object["complete"](result);
       }
     }
-    object2.fail = function(res) {
+    object2.fail = function (res) {
       if (object.fail) {
         object["success"](res);
       }
@@ -1329,7 +1360,7 @@ export default class swan {
         }
       }
     }
-    object2.success = function(res) {
+    object2.success = function (res) {
       if (object.success) {
         object["success"](result);
       }
@@ -1337,7 +1368,7 @@ export default class swan {
         object["complete"](result);
       }
     }
-    object2.fail = function(res) {
+    object2.fail = function (res) {
       if (object.fail) {
         object["success"](res);
       }
@@ -1363,7 +1394,7 @@ export default class swan {
         }
       }
     }
-    object2.success = function(res) {
+    object2.success = function (res) {
       if (object.success) {
         object["success"](result);
       }
@@ -1371,7 +1402,7 @@ export default class swan {
         object["complete"](result);
       }
     }
-    object2.fail = function(res) {
+    object2.fail = function (res) {
       if (object.fail) {
         object["success"](res);
       }
@@ -1397,9 +1428,9 @@ export default class swan {
   static clearStorage(object) { return my.clearStorage(object) }
   static removeStorageSync(object) { return my.removeStorageSync(object) }
   static removeStorage(object) { return my.removeStorage(object) }
-  static setStorageSync = function(key, value) { return my.setStorageSync({ key: key, data: value }) }
+  static setStorageSync = function (key, value) { return my.setStorageSync({ key: key, data: value }) }
   static setStorage(object) { return my.setStorage(object) }
-  static getStorageSync = function(key) {
+  static getStorageSync = function (key) {
     var result = my.getStorageSync({ key: key });
     if (!result) {
       return "";
@@ -1427,7 +1458,7 @@ export default class swan {
             break;
         }
       }
-      object2.success = function(res) {
+      object2.success = function (res) {
         var result = { tapIndex: res.index };
         if (object.success) {
           object.success(result);
@@ -1571,7 +1602,7 @@ export default class swan {
     }
     return my.showNavigationBarLoading(object2)
   }
-  static setNavigationBarTitle = function(object) { return my.setNavigationBar(object); };
+  static setNavigationBarTitle = function (object) { return my.setNavigationBar(object); };
   static setBackgroundTextStyle(object) { return my.setBackgroundTextStyle(object) }
 
   static setBackgroundColor(object) { return my.setBackgroundColor(object) }
@@ -1589,7 +1620,7 @@ export default class swan {
   static stopPullDownRefresh(object) {
     var object2 = {}
     if (object) {
-      object2.success = function(res) {
+      object2.success = function (res) {
         if (object.success) {
           object["success"](res);
         }
@@ -1597,7 +1628,7 @@ export default class swan {
           object["complete"](res);
         }
       }
-      object2.fail = function(res) {
+      object2.fail = function (res) {
         if (object.fail) {
           object["fail"](res);
         }
@@ -1611,7 +1642,7 @@ export default class swan {
   static startPullDownRefresh(object) {
     var object2 = {}
     if (object) {
-      object2.success = function(res) {
+      object2.success = function (res) {
         if (object.success) {
           object["success"](res);
         }
@@ -1619,7 +1650,7 @@ export default class swan {
           object["complete"](res);
         }
       }
-      object2.fail = function(res) {
+      object2.fail = function (res) {
         if (object.fail) {
           object["fail"](res);
         }

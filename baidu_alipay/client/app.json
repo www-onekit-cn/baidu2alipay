@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/component/component",
+    "pages/video/video",
+    "pages/image/image",
     "pages/api/api",
     "pages/form/form",
     "pages/view/view",
@@ -16,11 +18,9 @@
     "pages/input/input",
     "pages/textarea/textarea",
     "pages/navigator/navigator",
-    "pages/image/image",
     "pages/webview/webview",
     "pages/detail/detail",
     "pages/canvas/canvas",
-    "pages/video/video",
     "pages/switch/switch",
     "pages/authorize/authorize",
     "pages/login/login",

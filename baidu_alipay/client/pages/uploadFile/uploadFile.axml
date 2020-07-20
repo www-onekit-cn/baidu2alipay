@@ -8,7 +8,7 @@
         </view>
     </view>
     <view  class="button-area">
-        <swan-button  type="primary" onTap="uploadFile">添加图片</swan-button>
-        <swan-button  type="default" style="margin-top:015px;" onTap="clearImage">清空图片</swan-button>
+        <onekit-button  type="primary" onTap="uploadFile">添加图片</onekit-button>
+        <onekit-button  type="default" style="margin-top:015px;" onTap="clearImage">清空图片</onekit-button>
     </view>
 </view>

@@ -6,6 +6,6 @@
         <view  class="file-label">示例文件.pdf</view>
     </view>
     <view  class="button-area">
-        <swan-button  type="primary" Class="btn" onTap="downloadFile">下载文件</swan-button>
+        <onekit-button  type="primary" Class="btn" onTap="downloadFile">下载文件</onekit-button>
     </view>
 </view>
