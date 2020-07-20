@@ -17,3 +17,5 @@ baidu_alipay/client/.tea/recent.json
 baidu_alipay/client/.tea/recentlyTouched.json
 baidu_alipay/client/.tea/tmp-saving/893efbd2236dfe72d210a1bae54956bb1569575896669160
 baidu_alipay/client/.tea/workbench.json
+.tea/
+.DS_Store
