@@ -4,5 +4,7 @@
  src="{{src}}"
  lazy-load="{{lazyLoad}}"
  
+onError="image_error"
+onLoading="image_load"
  
  />

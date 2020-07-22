@@ -20,12 +20,13 @@ show-mute-btn="{{showMuteBtn}}"
 
 
 
-onPlay="{{onPlay}}" 
-onPause="{{onPause}}" 
-onEnded="{{onEnded}}" 
-onTimeupdate="video_onTimeupdate" 
-onFullscreenchange="{{onFullscreenchange}}" 
-onWaiting="{{onWaiting}}" 
-onError="{{onError}}" 
-onProgress="{{onProgress}}" 
+onPlay="video_play" 
+onPause="video_pause" 
+onEnded="video_end" 
+onTimeupdate="video_timeupdate" 
+onFullscreenchange="video_fullscreenchange" 
+onError="video_error" 
+
+
+
 />

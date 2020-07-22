@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/component/component",
     "pages/video/video",
     "pages/image/image",
+    "pages/component/component",
     "pages/api/api",
     "pages/form/form",
     "pages/view/view",
