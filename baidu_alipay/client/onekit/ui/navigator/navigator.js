@@ -4,6 +4,7 @@ Component({
   props: {
     Class:"",
     Style:"",
+    Id:"",
     url:"",
     openType:"navigate",
     hoverClass:"navigator-hover",

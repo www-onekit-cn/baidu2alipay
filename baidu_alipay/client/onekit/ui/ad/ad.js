@@ -4,6 +4,7 @@ Component({
   props: {
     Class:"",
     Style:"",
+    Id:"",
   },
   didMount() {},
   didUpdate() {},

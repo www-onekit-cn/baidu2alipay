@@ -1,3 +1,7 @@
-<view>
+<view
+class="onekit-web-view {{Class}}"
+style="{{Style}}"
+id="{{Id}}"
+>
   New Component
 </view>
