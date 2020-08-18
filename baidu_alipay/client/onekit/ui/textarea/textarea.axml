@@ -1,6 +1,6 @@
 <textarea
-class="onekit-textarea {{Class}}"
-style="{{Style}}"
+class="onekit-textarea {{onekitClass}}"
+style="{{onekitStyle}}"
 value="{{value}}"
 placeholder="{{placeholder}}"
 placeholder-style="{{placeholderStyle}}"

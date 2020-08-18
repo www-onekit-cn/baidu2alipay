@@ -1,6 +1,6 @@
 <checkbox-group
-class="onekit-checkbox-group {{Class}}"
-style="{{Style}}"
+class="onekit-checkbox-group {{onekitClass}}"
+style="{{onekitStyle}}"
 onChange="checkboxGroup_change"
 >
 <slot></slot>

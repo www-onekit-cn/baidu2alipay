@@ -1,5 +1,5 @@
 <view
-class="onekit-animation-view {{Class}}"
-style="{{Style}}"
+class="onekit-animation-view {{onekitClass}}"
+style="{{onekitStyle}}"
 >
 </view>

@@ -1,4 +1,4 @@
-<view class="onkit-view {{Class}}" style="{{Style}}">
+<view class="onkit-view {{onekitClass}}" style="{{onekitStyle}}">
 <slot>
 
 </slot>
