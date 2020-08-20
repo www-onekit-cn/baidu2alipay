@@ -1,6 +1,7 @@
 <map id="map" 
   class="{{onekitClass}}"
-  style="{{style}}"
+  style="{{onekitStyle}}"
+  id="{{onkitId}}"
   longitude="{{longitude}}"
   latitude="{{latitude}}"
   scale="{{scale}}"

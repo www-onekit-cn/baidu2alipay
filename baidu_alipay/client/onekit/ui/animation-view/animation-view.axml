@@ -1,5 +1,6 @@
 <view
 class="onekit-animation-view {{onekitClass}}"
 style="{{onekitStyle}}"
+id="{{onekitId}}"
 >
 </view>

@@ -1,5 +1,6 @@
 <view>
 <checkbox 
+id="{{onekitId}}"
   value="{{value}}" 
   disabled="{{disabled}}"
   checked="{{checked}}"

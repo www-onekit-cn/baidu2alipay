@@ -1,5 +1,5 @@
 <view
-id="view_id"
+id="onekitId"
 class="onekit-radio-group {{onekitClass}}"
 style="{{onekitStyle}}"
 onclick="radio_click"

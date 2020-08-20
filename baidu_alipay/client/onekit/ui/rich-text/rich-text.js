@@ -1,7 +1,11 @@
 Component({
   mixins: [],
   data: {},
-  props: {},
+  props: {
+    onekitClass:"",
+    onekitStyle:"",
+    onekitId:"",
+  },
   didMount() {
     var nodes = this.props.nodes;
     if (typeof (nodes) === "string") {

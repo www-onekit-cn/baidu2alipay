@@ -1,9 +1,13 @@
 Component({
   mixins: [],
   data: {},
-  props: {},
-  didMount() {},
-  didUpdate() {},
-  didUnmount() {},
+  props: {
+    onekitClass: '',
+    onekitStyle: '',
+    onekitId: '',
+  },
+  didMount() { },
+  didUpdate() { },
+  didUnmount() { },
   methods: {},
 });

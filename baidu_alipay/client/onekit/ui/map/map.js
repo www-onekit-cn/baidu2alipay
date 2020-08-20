@@ -2,6 +2,9 @@ Component({
   mixins: [],
   data: {},
   props: {
+    onekitClass:"",
+    onekitStyle:"",
+    onekitId:"",
     longitude: function(longitude) {
 this.setData({longitude:longitude});
     },

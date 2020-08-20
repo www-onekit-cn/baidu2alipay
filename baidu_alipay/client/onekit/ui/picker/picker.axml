@@ -1,6 +1,7 @@
 <picker
 class="onekit-picker {{onekitClass}}"
 style="{{onekitStyle}}"
+id="{{onkitId}}"
 title="{{headerText}}"
 range="{{range}}"
 disabled="{{disabled}}"

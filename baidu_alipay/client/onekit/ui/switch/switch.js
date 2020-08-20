@@ -2,6 +2,9 @@ Component({
   mixins: [],
   data: {},
   props: {
+    onekitClass:"",
+    onekitStyle:"",
+    onekitId:"",
     checked:false,
     disabled:false,
     type:"switch",

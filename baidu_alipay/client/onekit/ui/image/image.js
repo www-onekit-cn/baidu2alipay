@@ -3,6 +3,9 @@ Component({
   mixins: [],
   data: {},
   props: {
+    onekitClass:"",
+    onekitStyle:"",
+    onekitId:"",
     src: "", 
     mode:  "scaleToFill", 
     lazyLoad: false, 

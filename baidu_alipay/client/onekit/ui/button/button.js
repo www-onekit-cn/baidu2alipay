@@ -7,7 +7,11 @@ Component({
   didMount() { },
   didUpdate() { },
   didUnmount() { },
-  props: {},
+  props: {
+    onekitClass:"",
+    onekitStyle:"",
+    onekitId:"",
+  },
   methods: {
     contactBG_tap() {
       this.setData({ hideContact: true });
