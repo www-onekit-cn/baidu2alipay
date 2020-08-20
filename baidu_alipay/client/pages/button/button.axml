@@ -1,55 +1,55 @@
 <!-- <view  class="wrap">
     <view  class="mini-btn-content">
         <view  class="title">默认态</view>
-        <onekit-button  type="primary" size="mini" Class="mini-btn primary">
+        <onekit-button  type="primary" size="mini" onekitClass="mini-btn primary">
             按钮
         </onekit-button>
-        <onekit-button  type="default" size="mini" Class="mini-btn">按钮</onekit-button>
-        <onekit-button  type="warn" size="mini" Class="mini-btn warn">
+        <onekit-button  type="default" size="mini" onekitClass="mini-btn">按钮</onekit-button>
+        <onekit-button  type="warn" size="mini" onekitClass="mini-btn warn">
             按钮
         </onekit-button>
     </view>
 
     <view  class="mini-btn-content">
         <view  class="title">禁用态</view>
-        <onekit-button  type="primary" size="mini" Class="mini-btn primary" disabled>
+        <onekit-button  type="primary" size="mini" onekitClass="mini-btn primary" disabled>
             按钮
         </onekit-button>
-        <onekit-button  type="default" size="mini" Class="mini-btn" disabled>
+        <onekit-button  type="default" size="mini" onekitClass="mini-btn" disabled>
             按钮
         </onekit-button>
-        <onekit-button  type="warn" size="mini" Class="mini-btn warn" disabled>
+        <onekit-button  type="warn" size="mini" onekitClass="mini-btn warn" disabled>
             按钮
         </onekit-button>
     </view>
 
     <view  class="btn-content">
-        <onekit-button  type="primary" Class="btn primary">
+        <onekit-button  type="primary" onekitClass="btn primary">
             主操作按钮 默认态
         </onekit-button>
-        <onekit-button  type="primary" loading="true" Class="btn primary">
+        <onekit-button  type="primary" loading="true" onekitClass="btn primary">
             主操作按钮 loading
         </onekit-button>
-        <onekit-button  type="primary" Class="btn primary" disabled>
+        <onekit-button  type="primary" onekitClass="btn primary" disabled>
             主操作按钮 禁用态
         </onekit-button>
-        <onekit-button  type="default" Class="btn">
+        <onekit-button  type="default" onekitClass="btn">
             次要操作按钮 默认态
         </onekit-button>
-        <onekit-button  type="default" Class="btn" disabled>
+        <onekit-button  type="default" onekitClass="btn" disabled>
             次要操作按钮 禁用态
         </onekit-button>
-        <onekit-button  type="warn" Class="btn warn">
+        <onekit-button  type="warn" onekitClass="btn warn">
             警告类操作按钮 默认态
         </onekit-button>
-        <onekit-button  type="warn" Class="btn warn" disabled>
+        <onekit-button  type="warn" onekitClass="btn warn" disabled>
             警告类操作按钮 禁用态
         </onekit-button>
     </view>
 
     <view  class="btn-bottom">
-        <onekit-button  type="default" Class="middle-btn">按钮</onekit-button>
-        <onekit-button  type="default" Class="middle-btn disabled">按钮</onekit-button>
+        <onekit-button  type="default" onekitClass="middle-btn">按钮</onekit-button>
+        <onekit-button  type="default" onekitClass="middle-btn disabled">按钮</onekit-button>
     </view>
 </view> -->
 <button size="default" type="primary">Button</button>

@@ -11,7 +11,7 @@
             <view  a:else>未获取位置</view>
         </view>
         <view  class="page-btn">
-            <onekit-button  onTap="chooseLocation" Class="btn" type="primary" hover-stop-propagation="true">点击获取位置信息</onekit-button>
+            <onekit-button  onTap="chooseLocation" onekitClass="btn" type="primary" hover-stop-propagation="true">点击获取位置信息</onekit-button>
             <onekit-button  onTap="clearLocation">清空</onekit-button>
         </view>
     </view>

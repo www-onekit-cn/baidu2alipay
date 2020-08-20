@@ -5,8 +5,8 @@
             <view  class="nickname {{nameColor}}">{{nickname}}</view>
         </view>
         <view  class="button-content">
-            <onekit-button  onTap="getUserInfo" Class="get-info" type="primary" hover-stop-propagation="true">获取用户信息</onekit-button>
-            <onekit-button  onTap="clearUserInfo" Class="clear-info" type="default" hover-stop-propagation="true">清空</onekit-button>
+            <onekit-button  onTap="getUserInfo" onekitClass="get-info" type="primary" hover-stop-propagation="true">获取用户信息</onekit-button>
+            <onekit-button  onTap="clearUserInfo" onekitClass="clear-info" type="default" hover-stop-propagation="true">清空</onekit-button>
         </view>
     </view>
     <view  class="page-title">

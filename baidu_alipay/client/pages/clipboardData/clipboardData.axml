@@ -2,11 +2,11 @@
     <view  class="page-body">
         <view  class="page-item">
             <view  class="info">{{originData}}</view>
-            <onekit-button  id="setClipboardData" Class="btn" onTap="btnClick" type="primary" hover-stop-propagation="true">复制</onekit-button>
+            <onekit-button  id="setClipboardData" onekitClass="btn" onTap="btnClick" type="primary" hover-stop-propagation="true">复制</onekit-button>
         </view>
         <view  class="page-item">
             <view  class="info">{{clipboardData}}</view>
-            <onekit-button  id="getClipboardData" Class="btn" onTap="btnClick" type="primary" hover-stop-propagation="true">粘贴</onekit-button>
+            <onekit-button  id="getClipboardData" onekitClass="btn" onTap="btnClick" type="primary" hover-stop-propagation="true">粘贴</onekit-button>
         </view>
     </view>
 

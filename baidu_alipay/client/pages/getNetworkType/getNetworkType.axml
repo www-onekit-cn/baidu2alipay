@@ -2,7 +2,7 @@
     <view  class="page-body">
         <view  class="title">当前网络状态</view>
         <view  class="page-info">{{networkType}}</view>
-        <onekit-button  Class="btn" onTap="getNetworkType" type="primary" hover-stop-propagation="true">点击获取网络状态</onekit-button>
+        <onekit-button  onekitClass="btn" onTap="getNetworkType" type="primary" hover-stop-propagation="true">点击获取网络状态</onekit-button>
         <onekit-button  onTap="clearClick" hover-stop-propagation="true">清空</onekit-button>
     </view>
     <view  class="page-title">

@@ -1,5 +1,5 @@
-<onekit-view Class="wrap">
-    <onekit-view Class="card-area">
+<onekit-view onekitClass="wrap">
+    <onekit-view onekitClass="card-area">
         <onekit-button type="primary">
             <onekit-navigator 
                 target="self" 

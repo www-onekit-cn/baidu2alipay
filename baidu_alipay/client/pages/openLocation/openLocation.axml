@@ -16,7 +16,7 @@
             <view  class="label">详细位置</view>
             <view  class="value">{{locationInfo.address}}</view>
         </view>
-        <onekit-button  Class="button" onTap="openLocation" type="primary" loading="{{loading}}" hover-stop-propagation="true">查看位置</onekit-button>
+        <onekit-button  onekitClass="button" onTap="openLocation" type="primary" loading="{{loading}}" hover-stop-propagation="true">查看位置</onekit-button>
     </view>
     <view  class="page-title">
         <view  class="page-title-line"></view>

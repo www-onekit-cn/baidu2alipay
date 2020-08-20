@@ -7,6 +7,6 @@
             </text>
             <text >请升级版本后尝试</text>
         </view>
-        <onekit-button  Class="update-button" type="primary" onTap="update">立即升级</onekit-button>
+        <onekit-button  onekitClass="update-button" type="primary" onTap="update">立即升级</onekit-button>
     </view>
 </view>

@@ -1,28 +1,28 @@
 <onekit-view >
-    <onekit-view  Class="title">横向布局</onekit-view>
-    <onekit-view  Class="rowlike">
-        <onekit-view  Class="color-a">
+    <onekit-view  onekitClass="title">横向布局</onekit-view>
+    <onekit-view  onekitClass="rowlike">
+        <onekit-view  onekitClass="color-a">
             <onekit-text >A</onekit-text>
         </onekit-view>
-        <onekit-view  Class="color-b">
+        <onekit-view  onekitClass="color-b">
             <onekit-text >B</onekit-text>
         </onekit-view>
-        <onekit-view  Class="color-c">
+        <onekit-view  onekitClass="color-c">
             <onekit-text >C</onekit-text>
         </onekit-view>
     </onekit-view>
 </onekit-view>
 
-<onekit-view  Class="bottom-block">
-    <onekit-view  Class="title">纵向布局</onekit-view>
-    <onekit-view  Class="collike">
-        <onekit-view  Class="color-a">
+<onekit-view  onekitClass="bottom-block">
+    <onekit-view  onekitClass="title">纵向布局</onekit-view>
+    <onekit-view  onekitClass="collike">
+        <onekit-view  onekitClass="color-a">
             <onekit-text >A</onekit-text>
         </onekit-view>
-        <onekit-view  Class="color-b">
+        <onekit-view  onekitClass="color-b">
             <onekit-text >B</onekit-text>
         </onekit-view>
-        <onekit-view  Class="color-c">
+        <onekit-view  onekitClass="color-c">
             <onekit-text >C</onekit-text>
         </onekit-view>
     </onekit-view>
