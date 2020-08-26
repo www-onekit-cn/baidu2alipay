@@ -2,10 +2,13 @@ Component({
   mixins: [],
   data: {},
   props: {
-  value:"",
-  disabled:false,
-  checked:false,
-  color:""
+    onekitClass:"",
+    onekitStyle:"",
+    onekitId:"",
+    value:"",
+    disabled:false,
+    checked:false,
+    color:""
   },
   didMount() {},
   didUpdate() {},

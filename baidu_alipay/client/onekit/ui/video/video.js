@@ -2,7 +2,7 @@ Component({
   mixins: [],
   data: {},
   props: {
-    onekitClass:'',
+    onekitClass:"",
     onekitStyle:"",
     onekitId:'',
     src:"",
