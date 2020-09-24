@@ -2,94 +2,87 @@ import swan_ai from "./swan.ai"
 import onekit from "./onekit"
 import CanvasContext from "./api/CanvasContext"
 import VideoContext from "./api/VideoContext"
-
 export default class swan {
-  static getData(that, key) { return that.data[key]; }
-  static setData(that, key, data) {
-    if (typeof (key) == "string") {
-      var json = {};
-      json[key] = data;
-      return that.setData(json);
-    } else {
-      that.setData(key);
-    }
+  // ///////////////// animation //////////////////////////
+  static createAnimation(swan_object) {
+    return my.createAnimation(swan_object);
   }
-  /////////////////// animation //////////////////////////
-  static createAnimation(object) {
-    return my.createAnimation(object);
+  //////////////////onKeyboardHeightChange//////////////////
+  static onKeyboardHeightChange(swan_object) {
+    //需要编程支持
   }
-  ///////////////// basic ////////////////////////////////
-  static canIUse(object) { return true; }
-  static _getSystemInfo(result) {
-    result.SDKVersion = "2.7.0";
+  // /////////////// basic ////////////////////////////////
+  static canIUse(swan_object) { return true; }
+  static _getSystemInfo(swan_res) {
+    swan_res.SDKVersion = "2.7.0";
     my.openBluetoothAdapter({
-      success: (res) => {
-        //result.bluetoothEnabled = true;
+      success: (my_res) => {
+        // swan_res.bluetoothEnabled = true;
         my.closeBluetoothAdapter();
       },
-      fail: (res) => {
-        // result.bluetoothEnabled = false;
+      fail: (my_res) => {
+        // swan_res.bluetoothEnabled = false;
         my.closeBluetoothAdapter();
       }
     });
     my.getNetworkType({
-      success: (res) => {
-        //  result.wifiEnabled = (res.networkType === "WIFI");
+      success: (my_res) => {
+        // swan_res.wifiEnabled = (my_res.networkType === "WIFI");
       },
-      fail: (res) => {
-        //  result.wifiEnabled = false;
+      fail: (my_res) => {
+        // swan_res.wifiEnabled = false;
       }
     });
     my.getSetting({
-      success: (res) => {
-        result.locationAuthorized = (res.authSetting.location === true);
-        result.cameraAuthorized = (res.authSetting.camera === true);
-        result.microphoneAuthorized = (res.authSetting.audioRecord === true);
-        result.albumAuthorized = (res.authSetting.album === true);
+      success: (my_res) => {
+        swan_res.locationAuthorized = (my_res.authSetting.location === true);
+        swan_res.cameraAuthorized = (my_res.authSetting.camera === true);
+        swan_res.microphoneAuthorized = (my_res.authSetting.audioRecord === true);
+        swan_res.albumAuthorized = (my_res.authSetting.album === true);
       },
     });
-    return result;
+    return swan_res;
   }
-  static getSystemInfo(object) {
-    var object2 = {}
-    object2.success = function (res) {
-      var result = {
+  static getSystemInfo(swan_object) {
+    var my_object = {};
+    my_object.success = function (my_res) {
+      var swan_res = {
         errMsg: "getSystemInfo:ok",
         SDKVersion: "2.4.2",
-        brand: res.brand,
-        fontSizeSetting: res.fontSizeSetting,
-        language: res.language,
-        model: res.model,
-        //  notificationAuthorized: notificationAuthorized,
-        pixelRatio: res.pixelRatio,
-        platform: res.platform,
-        safeArea: { height: res.screenHeight, width: res.screenWidth, bottom: res.screenHeight, top: 0, left: 0, right: res.screenWidth },
-        screenHeight: res.screenHeight,
-        screenWidth: res.screenWidth,
-        statusBarHeight: res.statusBarHeight,
-        system: res.system,
-        version: res.version,
-        windowHeight: res.windowWidth,
-        windowWidth: res.windowHeight,
+        brand: my_res.brand,
+        fontSizeSetting: my_res.fontSizeSetting,
+        language: my_res.language,
+        model: my_res.model,
+        // notificationAuthorized: notificationAuthorized,
+        pixelRatio: my_res.pixelRatio,
+        platform: my_res.platform,
+        safeArea: { height: my_res.screenHeight, width: my_res.screenWidth, bottom: my_res.screenHeight, top: 0, left: 0, right: my_res.screenWidth },
+        screenHeight: my_res.screenHeight,
+        screenWidth: my_res.screenWidth,
+        statusBarHeight: my_res.statusBarHeight,
+        system: my_res.system,
+        version: my_res.version,
+        windowHeight: my_res.windowWidth,
+        windowWidth: my_res.windowHeight,
       };
 
-      result = swan._getSystemInfo(result);
-      if (object.success) { object.success(result); }
-      if (object.fail) { object.fail(result); }
-    }
-    object2.fail = function (res) {
-      if (object.fail) {
-        object["success"](res);
+      swan_res = swan._getSystemInfo(swan_res);
+      if (swan_object.success) { swan_object.success(swan_res); }
+      if (swan_object.fail) { swan_object.fail(swan_res); }
+    };
+    my_object.fail = function (my_res) {
+      if (swan_object.fail) {
+        swan_object.fail(my_res);
       }
-      if (object.complete) {
-        object["complete"](res);
+      if (swan_object.complete) {
+        objec.complete(my_res);
       }
-    }
+    };
 
-    return my.getSystemInfo(object2);
+    return my.getSystemInfo(my_object);
   }
   static getSystemInfoSync() {
-    return swan._getSystemInfo(my.getSystemInfoSync());
+    return my.getSystemInfoSync();
   }
   static base64ToArrayBuffer(base64) {
     base64 = base64.replace(/\s/g, '+');
@@ -100,24 +93,25 @@ export default class swan {
     let base64Content = Buffer.from(arrayBuffer).toString('base64');
     return base64Content;
   }
-  static getUpdateManager(object) { return my.getUpdateManager(object); }
-  static getLaunchOptionsSync(object) { return my.getLaunchOptionsSync(object); }
-  static offPageNotFound(object) { return my.offPageNotFound(object); }
-  static onPageNotFound(object) { return my.onPageNotFound(object); }
-  static offError(object) { return my.offError(object); }
-  static onError(object) { return my.onError(object); }
-  static offAppShow(object) { return my.offAppShow(object); }
-  static onAppShow(object) { return my.onAppShow(object); }
-  static offAppHide(object) { return my.offAppHide(object); }
-  static onAppHide(object) { return my.onAppHide(object); }
-  static setEnableDebug(object) { return my.setEnableDebug(object); }
-  static getLogManager(object) { return my.getLogManager(object); }
-  /////////////////// Canvas ///////////////////
-  static drawCanvas(object) {
-    var canvasId = object.canvasId;
-    var actions = object.actions;
+  static getUpdateManager(swan_object) { return my.getUpdateManager(swan_object); }
+  static getLaunchOptionsSync(swan_object) { return my.getLaunchOptionsSync(swan_object); }
+  static offPageNotFound(swan_object) { return my.offPageNotFound(swan_object); }
+  static onPageNotFound(swan_object) { return my.onPageNotFound(swan_object); }
+  static offError(swan_object) { return my.offError(swan_object); }
+  static onError(swan_object) { return my.onError(swan_object); }
+  static offAppShow(swan_object) { return my.offAppShow(swan_object); }
+  static onAppShow(swan_object) { return my.onAppShow(swan_object); }
+  static offAppHide(swan_object) { return my.offAppHide(swan_object); }
+  static onAppHide(swan_object) { return my.onAppHide(swan_object); }
+  static setEnableDebug(swan_object) { return my.setEnableDebug(swan_object); }
+  static getLogManager(swan_object) { return my.getLogManager(swan_object); }
+  // ///////////////// Canvas ///////////////////
+  static drawCanvas(swan_object) {
+    var canvasId = swan_object.canvasId;
+    var actions = swan_object.actions;
     var canvasContext = my.createCanvasContext(canvasId);
-    for (var action of actions) {
+    var dt;
+    for (const action of actions) {
       var data = action.data;
       switch (action.method) {
         case "save":
@@ -127,10 +121,10 @@ export default class swan {
           canvasContext.restore();
           break;
         case "setFillStyle":
-          canvasContext.setFillStyle(onekit.color.array2str(data[1]));
+          canvasContext.setFillStyle({ swan, OnekitPage }.array2str(data[1]));
           break;
         case "setStrokeStyle":
-          canvasContext.setStrokeStyle(onekit.color.array2str(data[1]));
+          canvasContext.setStrokeStyle({ swan, OnekitPage }.array2str(data[1]));
           break;
         case "setFontSize":
           canvasContext.setFontSize(data[0]);
@@ -140,16 +134,16 @@ export default class swan {
           break;
         case "setShadow":
           var dat = data[3];
-          canvasContext.setShadow(data[0], data[1], data[2], onekit.color.array2str(data[3]));
+          canvasContext.setShadow(data[0], data[1], data[2], { swan, OnekitPage }.array2str(data[3]));
           break;
         case "setStrokeStyle":
-          canvasContext.setStrokeStyle(onekit.color.array2str(data));
+          canvasContext.setStrokeStyle({ swan, OnekitPage }.array2str(data));
           break;
         case "drawImage":
-          canvasContext.drawImage.apply(canvasContext, data)
+          canvasContext.drawImage.apply(canvasContext, data);
           break;
         case "fillText":
-          canvasContext.fillText.apply(canvasContext, data)
+          canvasContext.fillText.apply(canvasContext, data);
           break;
         case "setLineCap": canvasContext.setLineCap(data[0]); break;
         case "setLineJoin": canvasContext.setLineJoin(data[0]); break;
@@ -159,9 +153,9 @@ export default class swan {
         case "scale": canvasContext.scale(data[0], data[1]); break;
         case "translate": canvasContext.translate(data[0], data[1]); break;
         case "strokePath":
-          canvasContext.beginPath()
-          for (var dat of data) {
-            var dt = dat.data;
+          canvasContext.beginPath();
+          for (dat of data) {
+            dt = dat.data;
             switch (dat.method) {
               case "rect": canvasContext.strokeRect(dt[0], dt[1], dt[2], dt[3]); break;
               case "moveTo": canvasContext.moveTo(dt[0], dt[1]); break;
@@ -176,11 +170,11 @@ export default class swan {
                 break;
             }
           }
-          canvasContext.stroke()
-          break
+          canvasContext.stroke();
+          break;
         case "fillPath":
-          for (var dat of data) {
-            var dt = dat.data;
+          for (dat of data) {
+            dt = dat.data;
             switch (dat.method) {
               case "rect": canvasContext.fillRect(dt[0], dt[1], dt[2], dt[3]); break;
               case "arc": canvasContext.arc.apply(canvasContext, dt); break;
@@ -189,7 +183,7 @@ export default class swan {
                 break;
             }
           }
-          canvasContext.fill()
+          canvasContext.fill();
           break;
         case "clearRect": canvasContext.clearRect(data[0], data[1], data[2], data[3]); break;
         default:
@@ -206,83 +200,140 @@ export default class swan {
   static createCanvasContext(canvasId) {
     return new CanvasContext(my.createCanvasContext(canvasId));
   }
-  static createVideoContext(videoId,ui) { 
-    return new VideoContext(my.createVideoContext(videoId)); 
+  static createVideoContext(videoId, ui) {
+    return new VideoContext(my.createVideoContext(videoId));
   }
-  static canvasToTempFilePath(object) {
-    var object2 = {
-      canvasId: object.canvasId
-    }
-    object2.success = function (res) {
-      var result = {
+  // //////////// swanML ///////////////
+  static createSelectorQuery() {
+    return new SelectorQuery(my.createSelectorQuery());
+  }
+  static canvasToTempFilePath(swan_object) {
+    var my_object = {
+      canvasId: swan_object.canvasId
+    };
+    my_object.success = function (my_res) {
+      var swan_res = {
         errMsg: "canvasToTempFilePath:ok",
-        tempFilePath: res.apFilePath
+        tempFilePath: my_res.apFilePath
       };
-      if (object.success) {
-        object["success"](res);
+      if (swan_object.success) {
+        swan_object.success(my_res);
       }
-      if (object.complete) {
-        object["complete"](res);
+      if (swan_object.complete) {
+        swan_object.complete(my_res);
       }
-    }
-    object2.fail = function (res) {
-      if (object.fail) {
-        object["success"](res);
+    };
+    my_object.fail = function (my_res) {
+      if (swan_object.fail) {
+        swan_object.success(my_res);
       }
-      if (object.complete) {
-        object["complete"](res);
+      if (swan_object.complete) {
+        swan_object.complete(my_res);
       }
-    }
-    return my.canvasToTempFilePath(object2);
+    };
+    return my.canvasToTempFilePath(my_object);
   }
-  static canvasPutImageData(object) { return my.canvasPutImageData(object) };
-  static canvasGetImageData(object) { return my.canvasGetImageData(object) };
-  ////////////// Device //////////////////
-  static onBeaconServiceChange(object) { return my.onBeaconServiceChange(object); }
-  static onBeaconUpdate(object) { return my.onBeaconUpdate(object); }
-  static getBeacons(object) { return my.getBeacons(object); }
-  static stopBeaconDiscovery(object) { return my.stopBeaconDiscovery(object); }
-  static startBeaconDiscovery(object) { return my.startBeaconDiscovery(object); }
-  static stopWifi(object) { return my.stopWifi(object); }
-  static startWifi(object) { return my.startWifi(object); }
-  static setWifiList(object) { return my.setWifiList(object); }
-  static onWifiConnected(object) { return my.onWifiConnected(object); }
-  static onGetWifiList(object) { return my.onGetWifiList(object); }
-  static getWifiList(object) { return my.getWifiList(object); }
-  static getConnectedWifi(object) { return my.getConnectedWifi(object); }
-  static connectWifi(object) { return my.connectWifi(object); }
-  //
+  static canvasPutImageData(swan_object) { return my.canvasPutImageData(swan_object); }
+  static canvasGetImageData(swan_object) { return my.canvasGetImageData(swan_object); }
+  // //////////// Device //////////////////
+  static onBeaconServiceChange(swan_object) { return my.onBeaconServiceChange(swan_object); }
+  static onBeaconUpdate(swan_object) { return my.onBeaconUpdate(swan_object); }
+  static getBeacons(swan_object) { return my.getBeacons(swan_object); }
+  static stopBeaconDiscovery(swan_object) { return my.stopBeaconDiscovery(swan_object); }
+  static startBeaconDiscovery(swan_object) { return my.startBeaconDiscovery(swan_object); }
+  static stopWifi(swan_object) { return my.stopWifi(swan_object); }
+  static startWifi(swan_object) { return my.startWifi(swan_object); }
+  static setWifiList(swan_object) { return my.setWifiList(swan_object); }
+  static onWifiConnected(swan_object) { return my.onWifiConnected(swan_object); }
+  static onGetWifiList(swan_object) { return my.onGetWifiList(swan_object); }
+  static getWifiList(swan_object) { return my.getWifiList(swan_object); }
+  static getConnectedWifi(swan_object) { return my.getConnectedWifi(swan_object); }
+  static connectWifi(swan_object) { return my.connectWifi(swan_object); }
+  // ///////////////////////////////////////////
+//   static setBackgroundFetchToken(my_object) {
+//     var swan_token = my_object.token;
+//     var swan_success = my_object.success;
+//     var swan_fail = my_object.fail;
+//     var swan_complete = my_object.complete;
+//     /////////////////
+//     my.setStorage({
+//       key: "swan_token",
+//       data: {
+//         swan_token: swan_token,
+//       },
+//     })
+//     my_object.success = function (swan_res) {
+//       var swan_res = {
+//         errMsg: "setBackgroundFetchToken:ok"
+//       };
+//       if (swan_success) {
+//         swan_success(swan_res);
+//       }
+//       if (swan_success) {
+//         swan_complete(swan_res);
+//       }
+//     };
+//   };
+//   static getBackgroundFetchToken(my_object) {
+//     var swan_success = my_object.success;
+//     var swan_fail = my_object.fail;
+//     var swan_complete = my_object.complete;
+//     console.log(swan_success)
+//     my.getStorage({
+//       key: 'swan_token',
+//       success(my_res) {
+//         console.log(my_res.data)
+//       }
+//     })
+//     my_object.success = function (swan_res) {
+//       var swan_res = {
+//         errMsg: "getBackgroundFetchToken:ok"
+//       };
+//       console.log("", swan_res)
+
+//       if (swan_success) {
+//         swan_success(swan_res);
+//       }
+//       if (swan_success) {
+//         swan_complete(swan_res);
+//       }
+//     };
+//   };
+//   static onBackgroundFetchData(callback) {
+// //支付宝没有,需要编程
+//   }
+
   static onAccelerometerChange(callback) {
-    my.onAccelerometerChange(function (res) {
+    my.onAccelerometerChange(function (my_res) {
       if (swan._stopAccelerometer) {
         return;
       }
-      callback(res);
+      callback(my_res);
     });
   }
-  static stopAccelerometer(object) {
+  static stopAccelerometer(swan_object) {
     swan._stopAccelerometer = true;
-    if (object.success) {
-      object.success();
+    if (swan_object.success) {
+      swan_object.success();
     }
-    if (object.complete) {
-      object.complete();
+    if (swan_object.complete) {
+      swan_object.complete();
     }
   }
-  static startAccelerometer(object) {
+  static startAccelerometer(swan_object) {
     swan._stopAccelerometer = false;
-    if (object.success) {
-      object.success();
+    if (swan_object.success) {
+      swan_object.success();
     }
-    if (object.complete) {
-      object.complete();
+    if (swan_object.complete) {
+      swan_object.complete();
     }
   }
-  static getBatteryInfoSync(object) { return my.getBatteryInfoSync(object); }
-  static _getBatteryInfo(result) {
+  static getBatteryInfoSync(swan_object) { return my.getBatteryInfoSync(swan_object); }
+  static _getBatteryInfo(swan_res) {
     my.getSystemInfo({
-      success: (res) => {
-        var percent = res.currentBattery;
+      success: (my_res) => {
+        var percent = my_res.currentBattery;
         function toPoint(percent) {
           var str = percent.replace("%", "");
           str = str / 100;
@@ -290,777 +341,899 @@ export default class swan {
         }
         toPoint(percent);
         var results = toPoint(percent);
-        result.level = results
+        swan_res.level = results;
       }
-    })
-    return result;
+    });
+    return swan_res;
   }
-  static getBatteryInfo(object) {
-    var object2 = {}
-    object2.success = function (res) {
-      var result = {
+  static getBatteryInfo(swan_object) {
+    var my_object = {};
+    my_object.success = function (my_res) {
+      var swan_res = {
         errMsg: "getBatteryInfo:ok",
         isCharging: false,
-      }
-      result = swan._getBatteryInfo(result);
-      if (object.success) { object.success(result); }
-      if (object.fail) { object.fail(result); }
-    },
-      object2.fail = function (res) {
-        if (object.success) { object.success(res); }
-        if (object.fail) { object.fail(res); }
-      }
-    return my.getSystemInfo(object2);
+      };
+      swan_res = swan._getBatteryInfo(swan_res);
+      if (swan_object.success) { swan_object.success(swan_res); }
+      if (swan_object.fail) { swan_object.fail(swan_res); }
+    };
+    my_object.fail = function (my_res) {
+      if (swan_object.success) { swan_object.success(my_res); }
+      if (swan_object.fail) { swan_object.fail(my_res); }
+    };
+    return my.getSystemInfo(my_object);
   }
   //
-  static getClipboardData(object) {
-    var object2;
-    if (object) {
-      object2 = {};
-      for (var key in object) {
-        switch (key) {
-          case "success":
-            object2["success"] = function (res) {
-              object[key]({ data: res.text });
-            };
-            break;
-          case "complete":
-            object2["complete"] = function (res) {
-              if (res.text) {
-                res = { data: res.text };
-              }
-              object["complete"](res);
-            };
-            break;
-          default:
-            object2[key] = object[key];
-            break;
-        }
-      }
+  static getClipboardData(swan_object) {
+    var my_object = {};
+    if (swan_object) {
+      my_object.success = function (my_res) {
+        var swan_res = { data: my_res.text };
+        if (swan_object.success) { swan_object.success(swan_res); }
+        if (swan_object.fail) { swan_object.fail(swan_res); }
+      };
+      my_object.fail = function (my_res) {
+        if (swan_object.success) { swan_object.success(my_res); }
+        if (swan_object.fail) { swan_object.fail(my_res); }
+      };
     }
-    return my.getClipboard(object2);
+    return my.getClipboard(my_object);
   }
-  static setClipboardData(object) {
-    var object2;
-    if (object) {
-      object2 = {};
-      for (var key in object) {
-        switch (key) {
+  static setClipboardData(swan_object) {
+   
+    if (swan_object) {
+      var  my_object = {};
+      
+      for (var key in swan_object) {
+        switch (key) {  
           case "data":
-            object2["text"] = object[key];
+            my_object.text = swan_object[key];
             break;
           default:
-            object2[key] = object[key];
+            my_object[key] = swan_object[key];
             break;
         }
       }
     }
-    return my.setClipboard(object2);
+    return my.setClipboard(my_object);
   }
-  static onCompassChange(callback) {
-    my.onCompassChange(function (res) {
-      if (swan._stopCompass) {
+  static onCompassChange(swan_callback) {
+    my.onCompassChange(function (my_res) {
+      if (!swan._startCompass) {
         return;
       }
-      callback(res); s
+      swan_callback(my_res);
     });
-  };
-  static stopCompass(object) {
-    swan._stopCompass = true;
-    if (object.success) {
-      object.success();
+  }
+  static stopCompass(swan_object) {
+    swan._startCompass = false;
+    if (swan_object.success) {
+      swan_object.success();
     }
-    if (object.complete) {
-      object.complete();
+    if (swan_object.complete) {
+      swan_object.complete();
     }
-  };
-  static startCompass(object) {
-    swan._stopCompass = false;
-    if (object.success) {
-      object.success();
+  }
+  static startCompass(swan_object) {
+    swan._startCompass = true;
+    if (swan_object.success) {
+      swan_object.success();
     }
-    if (object.complete) {
-      object.complete();
+    if (swan_object.complete) {
+      swan_object.complete();
     }
-  };
-  static addPhoneContact(object) {
-    var object2 = {};
+  }
+  static addPhoneContact(swan_object) {
+    var my_object = {};
     var errMsg;
-    var result = {
+    var swan_res = {
       errMsg: errMsg
-    }
-    object2.success = function (res) {
-      result.errMsg = "addPhoneContact:ok"
-      if (object.success) {
-        object["success"](result);
+    };
+    my_object.success = function (my_res) {
+      swan_res.errMsg = "addPhoneContact:ok";
+      if (swan_object.success) {
+        swan_object.success(swan_res);
       }
-      if (object.complete) {
-        object["complete"](result);
+      if (swan_object.complete) {
+        swan_object.complete(swan_res);
       }
-    }
-    object2.fail = function (res) {
-      result.errMsg = "addPhoneContact:fail cancel"
-      if (object.fail) {
-        object["fail"](result);
+    };
+    my_object.fail = function (my_res) {
+      swan_res.errMsg = "addPhoneContact:fail cancel";
+      if (swan_object.fail) {
+        swan_object.fail(swan_res);
       }
-      if (object.complete) {
-        object["complete"](result);
+      if (swan_object.complete) {
+        swan_object.complete(swan_res);
       }
-    }
-    return my.addPhoneContact(object2);
+    };
+    return my.addPhoneContact(my_object);
   }
   static onGyroscopeChange(callback) {
-    my.onGyroscopeChange(function (res) {
-      if (swan._stopGyroscope) {
+    my.onGyroscopeChange(function (my_res) {
+      if (!swan._startGyroscope) {
         return;
       }
-      callback(res);
+      callback(my_res);
     });
   }
-  static stopGyroscope(object) {
-    swan._stopGyroscope = true;
-    if (object.success) {
-      object.success();
-    }
-    if (object.complete) {
-      object.complete();
-    }
-  }
-  static startGyroscope(object) {
+  static stopGyroscope(swan_object) {
     swan._startGyroscope = false;
-    if (object.success) {
-      object.success();
+    if (swan_object.success) {
+      swan_object.success();
     }
-    if (object.complete) {
-      object.complete();
+    if (swan_object.complete) {
+      swan_object.complete();
+    }
+  }
+  static startGyroscope(swan_object) {
+    swan._startGyroscope = true;
+    if (swan_object.success) {
+      swan_object.success();
+    }
+    if (swan_object.complete) {
+      swan_object.complete();
     }
   }
   //
-  static onDeviceMotionChange(object) { return my.onDeviceMotionChange(object); }
-  static stopDeviceMotionListening(object) { return my.stopDeviceMotionListening(object); }
-  static startDeviceMotionListening(object) { return my.startDeviceMotionListening(object); }
-  static startDeviceMotionListening(object) { return my.startDeviceMotionListening(object); }
+  static onDeviceMotionChange(swan_object) { return my.onDeviceMotionChange(swan_object); }
+  static stopDeviceMotionListening(swan_object) { return my.stopDeviceMotionListening(swan_object); }
+  static startDeviceMotionListening(swan_object) { return my.startDeviceMotionListening(swan_object); }
   //
-  static getNetworkType = function (object) {
-    var object2 = {};
-    for (var key in object) {
-      switch (key) {
-        case "success":
-        case "fail":
-        case "complete":
-          break;
-        default:
-          object2[key] = object[key];
-          break;
-      }
+  static getNetworkType(swan_object) {
+    if(!swan_object){return} 
+    var my_object = {};
+    var swan_success=swan_object.success
+    var swan_fail=swan_object.fail
+    var swan_complete=swan_object.complete
+     if(swan_success){
+      my_object.success=swan_success
     }
-    object2.success = function (res) {
-      var result = { networkType: swan._network(res).networkType };
-      if (object.success) {
-        object["success"](result);
-      }
-      if (object.complete) {
-        object["complete"](result);
-      }
+    if(swan_fail){
+      my_object.fail=swan_fail
     }
-    object2.fail = function (res) {
-      if (object.fail) {
-        object["success"](res);
-      }
-      if (object.complete) {
-        object["complete"](res);
-      }
+    if(swan_complete){
+      my_object.complete=swan_complete
     }
+    my_object.success = function (my_res) {
+      var swan_res = { networkType: swan._network(my_res).networkType };
+      if (swan_object.success) {
+        swan_object.success(swan_res);
+      }
+      if (swan_object.complete) {
+        swan_object.complete(swan_res);
+      }
+    };
+    my_object.fail = function (my_res) {
+      if (swan_object.fail) {
+        swan_object.success(my_res);
+      }
+      if (swan_object.complete) {
+        swan_object.complete(my_res);
+      }
+    };
 
-    return my.getNetworkType(object2);
+    return my.getNetworkType(my_object);
   }
-  static _network = function (res) {
+  static _network(my_res) {
     var networkType;
-    if (res.networkAvailable) {
-      switch (res.networkType) {
+    if (my_res.networkAvailable) {
+      switch (my_res.networkType) {
         case "WWAN":
           networkType = "WIFI";
           break;
         default:
-          networkType = res.networkType;
+          networkType = my_res.networkType;
           break;
       }
     } else {
       networkType = "NONE";
     }
-    return { isConnected: res.networkAvailable, networkType: networkType.toLowerCase() };
+    return { isConnected: my_res.networkAvailable, networkType: networkType.toLowerCase() };
   }
-  static onNetworkStatusChange = function (callack) {
-    my.onNetworkStatusChange(function (res) {
-      callack(swan._network(res));
+  static onNetworkStatusChange(callack) {
+    my.onNetworkStatusChange(function (my_res) {
+      callack(swan._network(my_res));
     });
   }
 
 
   //
-  static makePhoneCall = function (object) {
-    var object2;
-    if (object) {
-      object2 = {};
-      for (var key in object) {
-        switch (key) {
-          case "phoneNumber":
-            object2["number"] = object[key];
-            break;
-          default:
-            object2[key] = object[key];
-            break;
-        }
-      }
-
-      return my.makePhoneCall(object2);
+  static makePhoneCall(swan_object) {
+    if (swan_object) {
+    var  my_object = {};
+    var swan_phoneNumber=swan_object.phoneNumber
+    var swan_success=swan_object.success
+    var swan_fail=swan_object.fail
+    var swan_complete=swan_object.complete
+    if(swan_phoneNumber){
+     my_object.phoneNumber=swan_phoneNumber
     }
+    if(swan_success){
+     my_object.success=swan_success
+    }
+    if(swan_fail){
+     my_object.fail=swan_fail
+    }
+    if(swan_complete){
+     my_object.complete=swan_complete
+    }
+    my_object.success = function (my_res) {
+        var swan_res = {
+        };
+        if (swan_object.success) {
+          swan_object.success(swan_res);
+        }
+        if (swan_object.complete) {
+          swan_object.complete(swan_res);
+        }
+      };
+      my_object.fail = function (my_res) {
+        if (swan_object.fail) {
+          swan_object.fail(swan_res);
+        }
+        if (swan_object.complete) {
+          swan_object.complete(swan_res);
+        }
+      };
+     
+    }
+     return my.makePhoneCall(my_object);
   }
 
-  static scanCode = function (object) {
-    var object2;
-    if (object) {
-      object2 = {};
-      for (var key in object) {
-        switch (key) {
-          case "onlyFromCamera":
-            object2["hideAlbum"] = object[key];
-            break;
-          case "scanType":
-            object2["type"] = object[key];
-            break;
-          case "success":
-          case "fail":
-          case "complete":
-            break;
-          default:
-            object2[key] = object[key];
-            break;
-        }
-      }
-      object2.success = function (res) {
-        var result = {};
-        if (res.code) {
-          result.charSet = "UTF-8";
-          result.result = res.code;
-          if (res.qrCode) {
-            result.scanType = "QR_CODE";
-          } else if (res.barCode) {
-            result.scanType = "EAN_8";
+  static scanCode(swan_object) {//
+    var my_object;
+    if (swan_object) {
+      my_object = {};
+      var swan_onlyFromCamera=swan_object.onlyFromCamera||false
+      var swan_scanType=swan_object.scanType
+       var swan_success=swan_object.success
+    var swan_fail=swan_object.fail
+    var swan_complete=swan_object.complete
+    if(swan_onlyFromCamera){
+      my_object.hideAlbum=swan_onlyFromCamera
+    }
+    if(swan_scanType){
+      my_object.scanType=swan_scanType
+    }
+    if(swan_success){
+      my_object.success=swan_success
+    }
+    if(swan_fail){
+      my_object.fail=swan_fail
+    }
+    if(swan_complete){
+      my_object.complete=swan_complete
+    }
+      my_object.success = function (my_res) {
+        console.log(my_res)
+        var swan_res = {};
+        if (my_res.code) {
+          swan_res.charSet = "UTF-8";
+          swan_res.swan_res = my_res.code;
+          if (my_res.qrCode) {
+            swan_res.scanType = "QR_CODE";
+          } else if (my_res.barCode) {
+            swan_res.scanType = "EAN_8";
           }
         }
-        if (object.success) {
-          object.success(result);
+        if (swan_object.success) {
+          swan_object.success(swan_res);
         }
-        if (object.complete) {
-          object.complete(result);
+        if (swan_object.complete) {
+          swan_object.complete(swan_res);
         }
-      }
-      object2.fail = function (res) {
-        if (object.fail) {
-          object.fail(res);
+      };
+      my_object.fail = function (my_res) {
+        console.log(my_res)
+        if (swan_object.fail) {
+          swan_object.fail(my_res);
         }
-        if (object.complete) {
-          object.complete(res);
+        if (swan_object.complete) {
+          swan_object.complete(my_res);
         }
-      }
+      };
     }
-    return my.scan(object2);
+    return my.scan(my_object);
   }
   //
-  static vibrateLong(object) {
-    var object2 = {}
-    object2.success = function (res) {
-      var result = {
+  static vibrateLong(swan_object) {
+    var my_object = {};
+    my_object.success = function (my_res) {
+      var swan_res = {
         errMsg: "vibrateLong:ok"
+      };
+      if (swan_object.success) {
+        swan_object.success(swan_res);
       }
-      if (object.success) {
-        object.success(result);
+      if (swan_object.complete) {
+        swan_object.complete(swan_res);
       }
-      if (object.complete) {
-        object.complete(result);
-      }
-    }
-    return my.vibrateLong(object2);
+    };
+    return my.vibrateLong(my_object);
   }
-  static vibrateShort(object) {
-    var object2 = {}
-    object2.success = function (res) {
-      var result = {
+  static vibrateShort(swan_object) {
+    var my_object = {};
+    my_object.success = function (my_res) {
+      var swan_res = {
         errMsg: "vibrateShort:ok"
+      };
+      if (swan_object.success) {
+        swan_object.success(swan_res);
       }
-      if (object.success) {
-        object.success(result);
+      if (swan_object.complete) {
+        swan_object.complete(swan_res);
       }
-      if (object.complete) {
-        object.complete(result);
-      }
-    }
-    return my.vibrateShort(object2);
+    };
+    return my.vibrateShort(my_object);
   }
   //
-  static onMemoryWarning(object) { return my.onMemoryWarning(object); }
+  static onMemoryWarning(swan_object) { return my.onMemoryWarning(swan_object); }
   //
-  static writeBLECharacteristicValue(object) { return my.writeBLECharacteristicValue(object); }
-  static readBLECharacteristicValue(object) { return my.readBLECharacteristicValue(object); }
-  static onBLEConnectionStateChange(object) { return my.onBLEConnectionStateChange(object); }
-  static onBLECharacteristicValueChange(object) { return my.onBLECharacteristicValueChange(object); }
-  static notifyBLECharacteristicValueChange(object) { return my.notifyBLECharacteristicValueChange(object); }
-  static getBLEDeviceServices(object) { return my.getBLEDeviceServices(object); }
-  static getBLEDeviceCharacteristics(object) { return my.getBLEDeviceCharacteristics(object); }
-  static createBLEConnection(object) { return my.createBLEConnection(object); }
-  static closeBLEConnection(object) { return my.closeBLEConnection(object); }
+  static writeBLECharacteristicValue(swan_object) { return my.writeBLECharacteristicValue(swan_object); }
+  static readBLECharacteristicValue(swan_object) { return my.readBLECharacteristicValue(swan_object); }
+  static onBLEConnectionStateChange(swan_object) { return my.onBLEConnectionStateChange(swan_object); }
+  static onBLECharacteristicValueChange(swan_object) { return my.onBLECharacteristicValueChange(swan_object); }
+  static notifyBLECharacteristicValueChange(swan_object) { return my.notifyBLECharacteristicValueChange(swan_object); }
+  static getBLEDeviceServices(swan_object) { return my.getBLEDeviceServices(swan_object); }
+  static getBLEDeviceCharacteristics(swan_object) { return my.getBLEDeviceCharacteristics(swan_object); }
+  static createBLEConnection(swan_object) { return my.createBLEConnection(swan_object); }
+  static closeBLEConnection(swan_object) { return my.closeBLEConnection(swan_object); }
   //
-  static stopBluetoothDevicesDiscovery(object) {
-    var object2 = {};
-    for (var key in object) {
-      switch (key) {
-        case "success":
-        case "fail":
-        case "complete":
-          break;
-        default:
-          object2[key] = object[key];
-          break;
-      }
+  static stopBluetoothDevicesDiscovery(swan_object) {
+    if(!swan_object){return}
+    var my_object = {};
+    var swan_success=swan_object.success
+    var swan_fail=swan_object.fail
+    var swan_complete=swan_object.complete
+    if(swan_success){
+      my_object.success=swan_success
     }
-    return my.stopBluetoothDevicesDiscovery(object2);
-  }
-  static startBluetoothDevicesDiscovery(object) {
-    swan.openBluetoothAdapter(object)
-    return my.startBluetoothDevicesDiscovery(object);
-  }
-  static openBluetoothAdapter(object) {
-    var object2 = {}
-    object2.success = function (res) {
-      var result = { errMsg: "openBluetoothAdapter:ok" }
-      if (object.success) { object["success"](result) }
-      if (object.complete) { object["complete"](result) }
+    if(swan_fail){
+      my_object.fail=swan_fail
     }
-    object2.fail = function (res) {
-      if (object.success) { object["success"](res) }
-      if (object.complete) { object["complete"](res) }
+    if(swan_complete){
+      my_object.complete=swan_complete
     }
-    return my.openBluetoothAdapter(object2);
-  }
-  static onBluetoothDeviceFound(object) { return my.onBluetoothDeviceFound(object); }
-  static onBluetoothAdapterStateChange(object) { return my.onBluetoothAdapterStateChange(object); }
-  static getConnectedBluetoothDevices(object) { return my.getConnectedBluetoothDevices(object); }
-  static getBluetoothDevices(object) {
-    var object2 = {}
-    object2.success = function (res) {
-      my.getBluetoothDevices({
-        success: (res) => {
-          // console.log("000", res)
-          // console.log("000", res.devices)
-          result.devices = res.devices
+    my_object.success = function (my_res) {
+        var swan_res = {
+      
+        };
+        if (swan_object.success) {
+          swan_object.success(swan_res);
         }
-      })
-      var result = {
-        errMsg: "closeBluetoothAdapter:ok"
-      }
-      if (object.success) { object["success"](result) }
-      if (object.complete) { object["complete"](result) }
-    }
-    object2.fail = function (res) {
-      if (object.success) { object["success"](res) }
-      if (object.complete) { object["complete"](res) }
-    }
-    return my.getBluetoothDevices(object2);
-  }
-  static getBluetoothAdapterState(object) { return my.getBluetoothAdapterState(object); }
-  static closeBluetoothAdapter(object) { return my.closeBluetoothAdapter(object); }
-  //
-  static stopHCE(object) { return my.stopHCE(object); }
-  static startHCE(object) { return my.startHCE(object); }
-  static sendHCEMessage(object) { return my.sendHCEMessage(object); }
-  static onHCEMessage(object) { return my.onHCEMessage(object); }
-  static getHCEState(object) { return my.getHCEState(object); }
-  //
-  static setScreenBrightness(object) {
-    var object2;
-    if (object) {
-      object2 = {};
-      for (var key in object) {
-        switch (key) {
-          case "value":
-            object2["brightness"] = object[key];
-            break;
-          default:
-            object2[key] = object[key];
-            break;
+        if (swan_object.complete) {
+          swan_object.complete(swan_res);
         }
-      }
-    }
-    return my.setScreenBrightness(object2);
-  }
-  static setKeepScreenOn(object) { return my.setKeepScreenOn(object); }
-  static onUserCaptureScreen(object) { return my.onUserCaptureScreen(object); }
+      };
+      my_object.fail = function (my_res) {
+        if (swan_object.fail) {
+          swan_object.fail(swan_res);
+        }
+        if (swan_object.complete) {
+          swan_object.complete(swan_res);
+        }
+      };
 
-  static getScreenBrightness(object) {
-    var object2;
-    if (object) {
-      object2 = {};
-      for (var key in object) {
-        switch (key) {
-          case "success":
-          case "fail":
-          case "complete":
-            break;
-          default:
-            object2[key] = object[key];
-            break;
-        }
-      }
-    }
-    object2.success = function (res) {
-      var result = { value: res.brightness };
-      if (object.success) {
-        object["success"](result);
-      }
-      if (object.complete) {
-        object["complete"](result);
-      }
-    }
-    object2.fail = function (res) {
-      if (object.fail) {
-        object["success"](res);
-      }
-      if (object.complete) {
-        object["complete"](res);
-      }
-    }
-    return my.getScreenBrightness(object2);
+    return my.stopBluetoothDevicesDiscovery(my_object);
   }
-  /////////////////// Ext //////////////
-  static getExtConfigSync(object) { return my.getExtConfigSync(object) }
-  static getExtConfig(object) { return my.getExtConfig(object) }
-  //////////////////// File //////////
-  static getFileSystemManager(object) { return my.getFileSystemManager(object) }
-  static getFileInfo(object) { return my.getFileInfo(object) }
-  static removeSavedFile(object) { return my.removeSavedFile(object) }
-  static getSavedFileInfo(object) { return my.getSavedFileInfo(object) }
-  static getSavedFileList(object) { return my.getSavedFileList(object) }
-  static openDocument(object) { return my.openDocument(object) }
-  static saveFile(object) {
+  static startBluetoothDevicesDiscovery(swan_object) {
+    // swan.openBluetoothAdapter(swan_object);
+    return my.startBluetoothDevicesDiscovery(swan_object);
+  }
+  static openBluetoothAdapter(swan_object) {
+    var my_object = {};
+    my_object.success = function (my_res) {
+      var swan_res = { errMsg: "openBluetoothAdapter:ok" };
+      if (swan_object.success) { swan_object.success(swan_res); }
+      if (swan_object.complete) { swan_object.complete(swan_res); }
+    };
+    my_object.fail = function (my_res) {
+      if (swan_object.success) { swan_object.success(my_res); }
+      if (swan_object.complete) { swan_object.complete(my_res); }
+    };
+    return my.openBluetoothAdapter(my_object);
+  }
+  static onBluetoothDeviceFound(swan_object) { return my.onBluetoothDeviceFound(swan_object); }
+  static onBluetoothAdapterStateChange(swan_object) { return my.onBluetoothAdapterStateChange(swan_object); }
+  static getConnectedBluetoothDevices(swan_object) { return my.getConnectedBluetoothDevices(swan_object); }
+  static getBluetoothDevices(swan_object) {
+    var my_object = {};
+    my_object.success = function (my_res) {
+      my.getBluetoothDevices({
+        success: (my_res) => {
+          // console.log("000", my_res)
+          // console.log("000", my_res.devices)
+          swan_res.devices = my_res.devices;
+        }
+      });
+      var swan_res = {
+        errMsg: "closeBluetoothAdapter:ok"
+      };
+      if (swan_object.success) { swan_object.success(swan_res); }
+      if (swan_object.complete) { swan_object.complete(swan_res); }
+    };
+    my_object.fail = function (my_res) {
+      if (swan_object.success) { swan_object.success(my_res); }
+      if (swan_object.complete) { swan_object.complete(my_res); }
+    };
+    return my.getBluetoothDevices(my_object);
+  }
+  static getBluetoothAdapterState(swan_object) { return my.getBluetoothAdapterState(swan_object); }
+  static closeBluetoothAdapter(swan_object) { return my.closeBluetoothAdapter(swan_object); }
+  //
+  static stopHCE(swan_object) { return my.stopHCE(swan_object); }
+  static startHCE(swan_object) { return my.startHCE(swan_object); }
+  static sendHCEMessage(swan_object) { return my.sendHCEMessage(swan_object); }
+  static onHCEMessage(swan_object) { return my.onHCEMessage(swan_object); }
+  static getHCEState(swan_object) { return my.getHCEState(swan_object); }
+  //
+  static setScreenBrightness(swan_object) {
+    var my_object;
+    if (!swan_object) {return}
+      my_object = {};
+      var swan_value=swan_object_value
+      var swan_success=swan_object.success
+    var swan_fail=swan_object.fail
+    var swan_complete=swan_object.complete
+    if(swan_value){
+      my_object.brightness=swan_value
+    }
+     if(swan_success){
+      my_object.success=swan_success
+    }
+    if(swan_fail){
+      my_object.fail=swan_fail
+    }
+    if(swan_complete){
+      my_object.complete=swan_complete
+    }
+     my_object.success = function (my_res) {
+        var swan_res = {
+         
+        };
+        if (swan_object.success) {
+          swan_object.success(swan_res);
+        }
+        if (swan_object.complete) {
+          swan_object.complete(swan_res);
+        }
+      };
+      my_object.fail = function (my_res) {
+        if (swan_object.fail) {
+          swan_object.fail(swan_res);
+        }
+        if (swan_object.complete) {
+          swan_object.complete(swan_res);
+        }
+      };
+
+    
+    return my.setScreenBrightness(my_object);
+  }
+  static setKeepScreenOn(swan_object) { return my.setKeepScreenOn(swan_object); }
+  static onUserCaptureScreen(swan_object) { return my.onUserCaptureScreen(swan_object); }
+
+  static getScreenBrightness(swan_object) {
+    var my_object;
+    if (!swan_object) {return}
+      my_object = {};
+       var swan_success=swan_object.success
+    var swan_fail=swan_object.fail
+    var swan_complete=swan_object.complete
+     if(swan_success){
+      my_object.success=swan_success
+    }
+    if(swan_fail){
+      my_object.fail=swan_fail
+    }
+    if(swan_complete){
+      my_object.complete=swan_complete
+    }
+    my_object.success = function (my_res) {
+      var swan_res = { value: my_res.brightness };
+      if (swan_object.success) {
+        swan_object.success(swan_res);
+      }
+      if (swan_object.complete) {
+        swan_object.complete(swan_res);
+      }
+    };
+    my_object.fail = function (my_res) {
+      if (swan_object.fail) {
+        swan_object.success(my_res);
+      }
+      if (swan_object.complete) {
+        swan_object.complete(my_res);
+      }
+    };
+    return my.getScreenBrightness(my_object);
+  }
+  // ///////////////// Ext //////////////
+  static getExtConfigSync(swan_object) { return my.getExtConfigSync(swan_object); }
+  static getExtConfig(swan_object) { return my.getExtConfig(swan_object); }
+  // ////////////////// File //////////
+  static getFileSystemManager(swan_object) { return my.getFileSystemManager(swan_object); }
+  static getFileInfo(swan_object) { return my.getFileInfo(swan_object); }
+  static removeSavedFile(swan_object) { return my.removeSavedFile(swan_object); }
+  static getSavedFileInfo(swan_object) { return my.getSavedFileInfo(swan_object); }
+  static getSavedFileList(swan_object) { return my.getSavedFileList(swan_object); }
+  static openDocument(swan_object) { return my.openDocument(swan_object); }
+  static saveFile(swan_object) {
     my.saveFile({
-      apFilePath: object.tempFilePath,
-      success(res) {
-        var result = { savedFilePath: res.apFilePath };
-        if (object.success) {
-          object.success(result);
+      apFilePath: swan_object.tempFilePath,
+      success(my_res) {
+        var swan_res = { savedFilePath: my_res.apFilePath };
+        if (swan_object.success) {
+          swan_object.success(swan_res);
         }
-        if (object.complete) {
-          object.complete(result);
+        if (swan_object.complete) {
+          swan_object.complete(swan_res);
         }
-      }, fail(res) {
-        if (object.fail) {
-          object.fail(res);
+      }, fail(my_res) {
+        if (swan_object.fail) {
+          swan_object.fail(my_res);
         }
-        if (object.complete) {
-          object.complete(res);
+        if (swan_object.complete) {
+          swan_object.complete(my_res);
         }
       }
     });
-  };
-  //////////// Location ///////////////
-  static openLocation(object) { return my.openLocation(object) }
-  static getLocation(object) { return my.getLocation(object) }
-  static chooseLocation(object) { return my.chooseLocation(object) }
-  ////////// Media ////////////////////
-  static createMapContext(object) { return my.createMapContext(object) }
-  static compressImage(object) { return my.compressImage(object) }
-  static saveImageToPhotosAlbum(object) { return my.saveImageToPhotosAlbum(object) }
-  static getImageInfo(object) { return my.getImageInfo(object) }
-  static previewImage(object) { return my.previewImage(object) }
-  static chooseImage(object) {
-    if (object.count == 0) {
-      object.count = 0;
+  }
+  // ////////// Location ///////////////
+  static openLocation(swan_object) { return my.openLocation(swan_object); }
+  static getLocation(swan_object) { return my.getLocation(swan_object); }
+  static chooseLocation(swan_object) { return my.chooseLocation(swan_object); }
+  // //////// Media ////////////////////
+  static createMapContext(swan_object) { return my.createMapContext(swan_object); }
+  static compressImage(swan_object) { return my.compressImage(swan_object); }
+  static saveImageToPhotosAlbum(swan_object) { return my.saveImageToPhotosAlbum(swan_object); }
+  static getImageInfo(swan_object) { return my.getImageInfo(swan_object); }
+  static previewImage(swan_object) { return my.previewImage(swan_object); }
+  static chooseImage(swan_object) {
+    if (!swan_object.count) {
+      swan_object.count = 0;
     }
     my.chooseImage({
-      conut: object.count,
-      sizeType: object.sizeType,
-      sourceType: object.scourceType,
-      success: (res) => {
+      conut: swan_object.count,
+      sizeType: swan_object.sizeType,
+      sourceType: swan_object.scourceType,
+      success: (my_res) => {
         var tempFilePaths = [];
         var tempFiles = [];
-        for (var path of res.apFilePaths) {
+        for (var path of my_res.apFilePaths) {
           tempFilePaths.push(path);
           tempFiles.push({ path: path, size: 1000000 });
         }
-        var result = {
+        var swan_res = {
           tempFilePaths: tempFilePaths,
           tempFiles: tempFiles
         };
-        if (object.success) {
-          object.success(result);
+        if (swan_object.success) {
+          swan_object.success(swan_res);
         }
-        if (object.complete) {
-          object.complete(complete);
+        if (swan_object.complete) {
+          swan_object.complete(complete);
         }
       },
-      fail: (res) => {
-        if (object.fail) {
-          object.fail(res);
+      fail: (my_res) => {
+        if (swan_object.fail) {
+          swan_object.fail(my_res);
         }
-        if (object.complete) {
-          object.complete(res);
+        if (swan_object.complete) {
+          swan_object.complete(my_res);
         }
       }
     });
-  };
-  static saveVideoToPhotosAlbum(object) { return my.saveVideoToPhotosAlbum(object) }
-  static chooseVideo(object) { return my.chooseVideo(object) }
-  static createVideoContext(object) { return my.createVideoContext(object) }
-  static stopVoice(object) { return my.stopVoice(object) }
-  static pauseVoice(object) { return my.pauseVoice(object) }
-  static playVoice(object) { return my.playVoice(object) }
-  static setInnerAudioOption(object) { return my.setInnerAudioOption(object) }
-  static getAvailableAudioSources(object) { return my.getAvailableAudioSources(object) }
-  static createInnerAudioContext(object) { return my.createInnerAudioContext(object) }
-  static createAudioContext(object) { return my.createAudioContext(object) }
-  static onBackgroundAudioStop(object) { return my.onBackgroundAudioStop(object) }
-  static onBackgroundAudioPause(object) { return my.onBackgroundAudioPause(object) }
-  static onBackgroundAudioPlay(object) { return my.onBackgroundAudioPlay(object) }
-  static stopBackgroundAudio(object) { return my.stopBackgroundAudio(object) }
-  static seekBackgroundAudio(object) { return my.seekBackgroundAudio(object) }
-  static pauseBackgroundAudio(object) { return my.pauseBackgroundAudio(object) }
-  static playBackgroundAudio(object) { return my.playBackgroundAudio(object) }
-  static getBackgroundAudioPlayerState(object) { return my.getBackgroundAudioPlayerState(object) }
-  static getBackgroundAudioManager(object) { return my.getBackgroundAudioManager(object) }
-  static createLivePusherContext(object) { return my.createLivePusherContext(object) }
-  static startRecord(object) { return my.startRecord(object) }
-  static stopRecord(object) { return my.stopRecord(object) }
-  static getRecorderManager(object) { return my.getRecorderManager(object) }
-  //////////////// Network ///////////////
-  static request(object) {
-    var object2;
-    if (object) {
-      object2 = {};
-      for (var key in object) {
-        switch (key) {
-          case "header":
-            object2["headers"] = object[key];
-            break;
-          case "success":
-          case "fail":
-          case "complete":
-            break;
-          default:
-            object2[key] = object[key];
-            break;
-        }
-      }
-      object2.success = function (res) {
-        var result = {
-          header: res.headers
-        };
-        for (var key in object) {
-          switch (key) {
-            case "status":
-              result["statusCode"] = res[key];
-              break;
-            case "header":
-              result["headers"] = res[key];
-              break;
-            default:
-              result[key] = res[key];
-              break;
-          }
-        }
-        if (object.success) {
-          object.success(result);
-        }
-        if (object.complete) {
-          object.complete(result);
-        }
-      }
-      object2.fail = function (res) {
-        if (object.fail) {
-          object.fail(res);
-        }
-        if (object.complete) {
-          object.complete(res);
-        }
-      }
+  }
+  static saveVideoToPhotosAlbum(swan_object) { return my.saveVideoToPhotosAlbum(swan_object); }
+  static chooseVideo(swan_object) { return my.chooseVideo(swan_object); }
+  static createVideoContext(videoId, ui) { return new VideoContext(my.createVideoContext(videoId)); }
+  static stopVoice(swan_object) { return my.stopVoice(swan_object); }
+  static pauseVoice(swan_object) { return my.pauseVoice(swan_object); }
+  static playVoice(swan_object) { return my.playVoice(swan_object); }
+  static setInnerAudioOption(swan_object) { return my.setInnerAudioOption(swan_object); }
+  static getAvailableAudioSources(swan_object) { return my.getAvailableAudioSources(swan_object); }
+  static createInnerAudioContext(swan_object) { return my.createInnerAudioContext(swan_object); }
+  static createAudioContext(swan_object) { return my.createAudioContext(swan_object); }
+  static onBackgroundAudioStop(swan_object) { return my.onBackgroundAudioStop(swan_object); }
+  static onBackgroundAudioPause(swan_object) { return my.onBackgroundAudioPause(swan_object); }
+  static onBackgroundAudioPlay(swan_object) { return my.onBackgroundAudioPlay(swan_object); }
+  static stopBackgroundAudio(swan_object) { return my.stopBackgroundAudio(swan_object); }
+  static seekBackgroundAudio(swan_object) { return my.seekBackgroundAudio(swan_object); }
+  static pauseBackgroundAudio(swan_object) { return my.pauseBackgroundAudio(swan_object); }
+  static playBackgroundAudio(swan_object) { return my.playBackgroundAudio(swan_object); }
+  static getBackgroundAudioPlayerState(swan_object) { return my.getBackgroundAudioPlayerState(swan_object); }
+  static getBackgroundAudioManager(swan_object) { return my.getBackgroundAudioManager(swan_object); }
+  static createLivePusherContext(swan_object) { return my.createLivePusherContext(swan_object); }
+  static startRecord(swan_object) { return my.startRecord(swan_object); }
+  static stopRecord(swan_object) { return my.stopRecord(swan_object); }
+  static getRecorderManager(swan_object) { return my.getRecorderManager(swan_object); }
+  // ////////////// Network ///////////////
+  static request(swan_object) {
+
+    if (!swan_object) {
+      return;
     }
-    return my.httpRequest(object2);
-  }
-  static downloadFile(object) { return my.downloadFile(object) }
-  static uploadFile(object) {
-    my.uploadFile({
-      url: object.url,
-      filePath: object.filePath,
-      fileName: object.name,
-      fileType: "image",
-      header: object.header,
-      formData: object.formData,
-      success: object.success,
-      fail: object.fail,
-      complete: object.complete
-    });
-  };
-  //
-  static connectSocket(object) { return my.connectSocket(object) }
-  static onSocketError(object) { return my.onSocketError(object) }
-  static onSocketMessage(object) { return my.onSocketMessage(object) }
-  static onSocketClose(object) { return my.onSocketClose(object) }
-  static onSocketOpen(object) { return my.onSocketOpen(object) }
-  static sendSocketMessage(object) { return my.sendSocketMessage(object) }
-  static closeSocket(object) { return my.closeSocket(object) }
-  static offLocalServiceResolveFail(object) { return my.offLocalServiceResolveFail(object) }
-  static onLocalServiceResolveFail(object) { return my.onLocalServiceResolveFail(object) }
-  static offLocalServiceDiscoveryStop(object) { return my.offLocalServiceDiscoveryStop(object) }
-  static onLocalServiceDiscoveryStop(object) { return my.onLocalServiceDiscoveryStop(object) }
-  static offLocalServiceLost(object) { return my.offLocalServiceLost(object) }
-  static onLocalServiceLost(object) { return my.onLocalServiceLost(object) }
-  static offLocalServiceFound(object) { return my.offLocalServiceFound(object) }
-  static onLocalServiceFound(object) { return my.onLocalServiceFound(object) }
-  static stopLocalServiceDiscovery(object) { return my.stopLocalServiceDiscovery(object) }
-  static startLocalServiceDiscovery(object) { return my.startLocalServiceDiscovery(object) }
-  //
-  static stopLocalServiceDiscovery(object) { return my.stopLocalServiceDiscovery(object); }
-  static startLocalServiceDiscovery(object) { return my.startLocalServiceDiscovery(object); }
-  static onLocalServiceResolveFail(callback) { return my.onLocalServiceResolveFail(callback); }
-  static onLocalServiceLost(callback) { return my.onLocalServiceLost(callback); }
-  static onLocalServiceFound(callback) { return my.onLocalServiceFound(callback); }
-  static onLocalServiceDiscoveryStop(callback) { return my.onLocalServiceDiscoveryStop(callback); }
-  static offLocalServiceResolveFail(callback) { return my.offLocalServiceResolveFail(callback); }
-  static offLocalServiceLost(callback) { return my.offLocalServiceLost(callback); }
-  static offLocalServiceFound(callback) { return my.offLocalServiceFound(callback); }
-  static offLocalServiceDiscoveryStop(callback) { return my.offLocalServiceDiscoveryStop(callback); }
-  ///////// Open Interface //////////
-  ///////// Open Interface //////////
-  static _checkSession() {
-    return getApp().onekitwx._jscode && getApp().onekitwx._login && now <= getApp().onekitwx._login + 1000 * 60 * 60 * 24 * 3;
-  }
-  static checkSession(object) {
-    if (swan._checkSession()) {
-      if (object.success) {
-        object.success();
+    const swan_url = swan_object.url;
+    const swan_data = swan_object.data;
+    var swan_header=swan_object.header;
+    var swan_timeout=swan_object.timeout;
+    var swan_dataType=swan_object.dataType||"json"
+    var swan_responseType=swan_object.responseType||"text"
+    var swan_enableHttp2=swan_object.enableHttp2||false
+    var swan_enableQuic=swan_object.enableQuic||false
+    var swan_enableCache=swan_object.enableCache||false
+    const swan_method = swan_object.method || "GET";
+    const swan_success = swan_object.success;
+    const swan_fail = swan_object.fail;
+    const swan_complete = swan_object.complete;
+    //
+    var my_object = {};
+    //
+   if (swan_data) {
+      my_object.data = swan_data;
+    }
+    if (swan_url) {
+      my_object.url = swan_url;
+    }
+    if (swan_header) {
+      my_object.header = swan_header;
+    }
+    if (swan_timeout) {
+      my_object.timeout = swan_timeout;
+    }
+    if (swan_dataType) {
+      my_object.dataType = swan_dataType;
+    }
+    // if (swan_responseType) {
+    //   my_object.responseType = swan_responseType;
+    // }
+    // if (swan_enableHttp2) {
+    //   my_object.enableHttp2 = swan_enableHttp2;       //weixin有alipay没有
+    // }
+    // if (swan_enableQuic) {
+    //   my_object.enableQuic = swan_enableQuic;
+    // }
+    // if (swan_enableCache) {
+    //   my_object.enableCache = swan_enableCache;
+    // }
+    if (swan_method) {
+      my_object.method = swan_method;
+    }
+    if(swan_success){
+      my_object.success=swan_success
+    }
+    if(swan_fail){
+      my_object.fail=swan_fail
+    }
+    if(swan_complete){
+      my_object.complete=swan_complete
+    }
+    //
+    my_object.success = function (my_res) {
+      var swan_res = {
+        data: my_res.data,
+        statusCode: my_res.status,
+        header: my_res.headers,
+        // cookies:my_res.cookies,  需要编程
+        // profile:my_res.profile
+      };
+      if (swan_object.success) {
+        swan_object.success(swan_res);
       }
-      if (object.complete) {
-        object.complete();
+      if (swan_object.complete) {
+        swan_object.complete(swan_res);
+      }
+    };
+    my_object.fail = function (my_res) {
+     var swan_res = {
+
+      };
+      if (swan_object.fail) {
+        swan_object.fail(swan_res);
+      }
+      if (swan_object.complete) {
+        swan_object.complete(swan_res);
+      }
+    };
+
+     my.httpRequest(my_object);
+ 
+    /**/
+    
+  }
+  //////////////////////////////////////////////////////////////
+  static downloadFile(swan_object) { return my.downloadFile(swan_object); }
+  static uploadFile(swan_object) {
+    my.uploadFile({
+      url: swan_object.url,
+      filePath: swan_object.filePath,
+      fileName: swan_object.name,
+      fileType: "image",
+      header: swan_object.header,
+      formData: swan_object.formData,
+      success: swan_object.success,
+      fail: swan_object.fail,
+      complete: swan_object.complete
+    });
+  }
+  //
+  static connectSocket(swan_object) { return my.connectSocket(swan_object); }
+  static onSocketError(swan_object) { return my.onSocketError(swan_object); }
+  static onSocketMessage(swan_object) { return my.onSocketMessage(swan_object); }
+  static onSocketClose(swan_object) { return my.onSocketClose(swan_object); }
+  static onSocketOpen(swan_object) { return my.onSocketOpen(swan_object); }
+  static sendSocketMessage(swan_object) { return my.sendSocketMessage(swan_object); }
+  static closeSocket(swan_object) { return my.closeSocket(swan_object); }
+  static offLocalServiceResolveFail(callbck) { return my.offLocalServiceResolveFail(callbck); }
+  static onLocalServiceResolveFail(callbck) { return my.onLocalServiceResolveFail(callbck); }
+  static onLocalServiceDiscoveryStop(callbck) { return my.onLocalServiceDiscoveryStop(callbck); }
+  static offLocalServiceLost(callbck) { return my.offLocalServiceLost(callbck); }
+  static onLocalServiceLost(callbck) { return my.onLocalServiceLost(callbck); }
+  static offLocalServiceFound(callbck) { return my.offLocalServiceFound(callbck); }
+  static onLocalServiceFound(callbck) { return my.onLocalServiceFound(callbck); }
+  static stopLocalServiceDiscovery(swan_object) { return my.stopLocalServiceDiscovery(swan_object); }
+  static startLocalServiceDiscovery(swan_object) { return my.startLocalServiceDiscovery(swan_object); }
+
+  // /////// Open Interface //////////
+  static _checkSession() {
+    var now = new Date().getTime();
+    return getApp().onekitswan._jscode && getApp().onekitswan._login && now <= getApp().onekitswan._login + 1000 * 60 * 60 * 24 * 3;
+  }
+  static checkSession(swan_object) {
+    if (this._checkSession()) {
+      if (swan_object.success) {
+        swan_object.success();
+      }
+      if (swan_object.complete) {
+        swan_object.complete();
       }
 
     } else {
-      if (object.fail) {
-        object.fail();
+      if (swan_object.fail) {
+        swan_object.fail();
       }
-      if (object.complete) {
-        object.complete();
+      if (swan_object.complete) {
+        swan_object.complete();
       }
     }
+
+    /*
+       var url = getApp().onekitswan.server + "userinfo";
+       my.httpRequest({
+             url: url,
+             header: {
+               'Content-Type': 'application/x-www-form-urlencoded'
+             },
+             method: "POST",
+             data: {
+               nickname: my_res.nickName,
+               avatarUrl: my_res.avatar,
+               js_code: jscode
+             },
+             success(my_res) {
+               if (swan_object.success) {
+                 swan_object.success(my_res.data);
+               }
+               if (swan_object.complete) {
+                 swan_object.complete(my_res.data);
+               }
+             }, fail(my_res) {
+               console.log(my_res.data);
+             }
+           });
+     }*/
+
   }
 
-  static login = function (object) {
+  static login(swan_object) {
     var that = this;
-    if (!object) {
-      return my.getAuthCode(object);
+    if (!swan_object) {
+      return my.getAuthCode(swan_object);
     }
-    var object2 = {
+    var my_object = {
       scopes: "auth_user"
     };
-    object2.success = function (res) {
-      swan._sessoion = new Date().getTime();
-      getApp().onekitwx.code = res.authCode;
-      var result = { code: res.authCode };
-      if (object.success) {
-        object.success(result);
+    my_object.success = function (my_res) {
+      getApp().onekitswan._jscode = my_res.authCode;
+      getApp().onekitswan._login = new Date().getTime();
+      var swan_res = { code: my_res.authCode };
+      if (swan_object.success) {
+        swan_object.success(swan_res);
       }
-      if (object.complete) {
-        object.complete(complete);
+      if (swan_object.complete) {
+        swan_object.complete(complete);
       }
     }
-    object2.fail = function (res) {
-      if (object.fail) {
-        object.fail(res);
+    my_object.fail = function (my_res) {
+      if (swan_object.fail) {
+        swan_object.fail(my_res);
       }
-      if (object.complete) {
-        object.complete(res);
+      if (swan_object.complete) {
+        swan_object.complete(my_res);
       }
     }
     if (swan._checkSession()) {
-      object2.success({ authCode: getApp().onekitwx._jscode });
+      my_object.success({ authCode: getApp().onekitswan._jscode });
     } else {
-      my.getAuthCode(object2);
-    }
-
-  };
-  static getUserInfo(object) {
-    function getUserInfo(code, object) {
-      my.getAuthUserInfo({
-        success(res) {
-          var url = getApp().onekitwx.server + "userinfo";
-          my.httpRequest({
-            url: url,
-            header: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            method: "POST",
-            data: {
-              withCredentials: true,
-              isAPI: false,
-              code: code
-            },
-            success(res) {
-              if (object.success) {
-                object.success(res.data);
-              }
-              if (object.complete) {
-                object.complete(res.data);
-              }
-            }, fail(res) {
-              console.log(res.data);
-            }
-          });
-        }
-      });
-    }
-
-    var code = getApp().onekitwx.code;
-    if (code) {
-      getUserInfo(code, object);
-    } else {
-      swan.login({
-        success: (res) => {
-          getUserInfo(res.code, object);
-        },
-      });
+      my.getAuthCode(my_object);
     }
   };
-  static getOpenData = function (object) {
-    function success(opendata) {
-      var opendata = opendata.userInfo;
-      getApp().onekit.opendata = opendata;
-      for (var cb = 0; cb < getApp().onekit.opendataCallbacks.length; cb++) {
-        getApp().onekit.opendataCallbacks[cb](opendata);
+  static getUserInfo(swan_object) {
+
+
+    swan.login({
+      success: (my_res) => {
+        var jscode = my_res.code;
+        var withCredentials = swan_object.withCredentials;
+        my.getAuthUserInfo({
+          success(my_res) {
+            console.log(my_res);
+            var url = getApp().onekit.server + "api/userinfo";
+            console.log(url);
+            my.httpRequest({
+              url: url,
+              header: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              method: "POST",
+              data: {
+                withCredentials: withCredentials === true,
+                js_code: jscode
+              },
+              success(my_res) {
+                console.log(my_res.data);
+                if (swan_object.success) {
+                  swan_object.success(my_res.data);
+                }
+                if (swan_object.complete) {
+                  swan_object.complete(my_res.data);
+                }
+              }, fail(my_res) {
+                console.log(my_res.data);
+              }
+            });
+          }
+        });
       }
-      getApp().onekit.opendataCallbacks = [];
-      if (object.success) {
-        object.success(opendata);
+    });
+  }
+  static getOpenData(swan_object) {
+
+    if (!getApp().onekit._opendataCallbacks) {
+      getApp().onekit._opendataCallbacks = [];
+    }
+    function success(my_res) {
+      var opendata = my_res.userInfo;
+      getApp().onekit._opendata = opendata;
+      for (var cb = 0; cb < getApp().onekit._opendataCallbacks.length; cb++) {
+        getApp().onekit._opendataCallbacks[cb](opendata);
       }
-      if (object.complete) {
-        object.complete(opendata);
+      if (swan_object.success) {
+        swan_object.success(opendata);
+      }
+      if (swan_object.complete) {
+        swan_object.complete(opendata);
       }
     }
-    var opendata = getApp().onekit.opendata;
+    var opendata = getApp().onekit._opendata;
     if (opendata) {
       if (Object.keys(opendata) > 0) {
-        object.success(opendata);
+        swan_object.success(opendata);
       } else {
-        if (object.success) {
-          getApp().onekit.opendataCallbacks.push(object.success);
+        if (swan_object.success) {
+          getApp().onekit._opendataCallbacks.push(swan_object.success);
         }
       }
       return;
     }
-    getApp().onekit.opendata = {};
+    getApp().onekit._opendata = {};
     swan.login({
-      success(res) {
-        var jscode = res.code;
+      success(my_res) {
+        var jscode = my_res.code;
         my.getAuthUserInfo({
-          success(res) {
+          success(my_res) {
             var url = getApp().onekit.server + "opendata";
             my.httpRequest({
               url: url,
@@ -1069,122 +1242,100 @@ export default class swan {
               },
               method: "POST",
               data: {
-                nickname: res.nickName,
-                avatarUrl: res.avatar,
+                nickname: my_res.nickName,
+                avatarUrl: my_res.avatar,
                 js_code: jscode
               },
-              success(res) {
-                success(res.data);
-              }, fail(res) {
-                console.log(res);
+              success(my_res) {
+                success(my_res.data);
+              }, fail(my_res) {
+                console.log(my_res);
               }
             });
           }
         });
       }
-    })
-
-  };
-  static getPhoneNumber = function (object) {
-    function getPhoneNumber(code, object) {
-      my.getPhoneNumber({
-        success(res) {
-          //var response = {
-          // response: "ZOELfBOrmRHNNiiVR4FmNrvV7Dmog5w/KFaNrfLugkDqdkPzlxBCzmfLBrtQlPptWix+1f9I07p5xNfwGgTgVA==",
-          // sign: "fD6CyFQeJTTgtM1uviy5uAm4YWiN3s0crGtD1v5XdXuDzFEBPTRYqGODcfzskAMFWNXJAK5Zx0/kk+6e9tn/N3U9RcrTgc6VLw7HM9fPTcz8CzVl1+b6fjsi0wWsADF53vKTurFn6HTSTEJvzbMMD5M2lgazni72tZHCNJSkeG1W+kjX/Mj5tfJXNkn6nlrtu1N6BxgsZdgDdkMQfIrWv2TOFlpx043LMBmk4CxXLpGvRfRcHLjixs5wEO1dfqENn6oj9hAQbPA8itYW4TvGlo5qhnzT+ya1rWcKrjn4zh7uvnr0hB0oPiqLu17txS5uIQIF0DJ2cC0k6kuOQLVwTQ=="
-          // }
-          //  JSON.parse(res.response);
-          var response = JSON.parse(res.response);
-          console.log(response);
-          var url = getApp().onekitwx.server + "phonenumber";
-          my.httpRequest({
-            url: url,
-            header: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            method: "POST",
-            data: {
-              data: JSON.stringify(response),
-              code: code
-            },
-            success(res) {
-              var data = res.data;
-              if (object.success) {
-                object.success(data);
-              }
-              if (object.complete) {
-                object.complete(data);
-              }
-            }, fail(res) {
-              console.log(res.data);
-            }
-          });
-        }
-      });
-    }
-    var code = getApp().onekitwx.code;
-    if (code) {
-      getPhoneNumber(code, object);
-    } else {
-      swan.login({
-        success: (res) => {
-          getPhoneNumber(res.code, object);
-        },
-      });
-    }
-  };
-  static navigateToMiniProgram(object) { return my.navigateToMiniProgram(object) }
-  static navigateBackMiniProgram(object) { return my.navigateBackMiniProgram(object) }
-  static getAccountInfoSync(object) { return my.getAccountInfoSync(object) }
-
-  static reportMonitor(object) { return my.reportMonitor(object) }
-  static reportAnalytics(object) { return my.reportAnalytics(object) }
-  static requestPolymerPayment(object) {
-    swan.login({
-      success(res) {
-        var code = res.code;
-        var url = getApp().onekitwx.server + "orderinfo";
-        my.httpRequest({
-          url: url,
-          header: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          method: "POST",
-          data: {
-            orderInfo: JSON.stringify(object.orderInfo),
-            code: code
-          },
-          success: (res) => {
-            var tradeNO = res.data.trade_no;
-            console.log(tradeNO);
-            var object2 = {
-              tradeNO: tradeNO,
-              success: object.success,
-              fail: object.fail,
-              complete: object.complete
-            };
-            return my.tradePay(object2);
-          },
-        });
-
-
-      }
     });
-  };
-  static authorize(object) { return my.authorize(object) }
-  static openSetting(object) { return my.openSetting(object) }
-  static getSetting(object) { return my.getSetting(object) }
-  static chooseAddress(object) { return my.chooseAddress(object) }
-  static openCard(object) {
+
+  }
+  static getPhoneNumber(swan_object) {
+
+    swan.login({
+      success: (my_res) => {
+        var jscode = my_res.code;
+        console.log("ssss" + jscode);
+        my.getPhoneNumber({
+          success(my_res) {
+            // var response = {
+            // response:
+            // "ZOELfBOrmRHNNiiVR4FmNrvV7Dmog5w/KFaNrfLugkDqdkPzlxBCzmfLBrtQlPptWix+1f9I07p5xNfwGgTgVA==",
+            // sign:
+            // "fD6CyFQeJTTgtM1uviy5uAm4YWiN3s0crGtD1v5XdXuDzFEBPTRYqGODcfzskAMFWNXJAK5Zx0/kk+6e9tn/N3U9RcrTgc6VLw7HM9fPTcz8CzVl1+b6fjsi0wWsADF53vKTurFn6HTSTEJvzbMMD5M2lgazni72tZHCNJSkeG1W+kjX/Mj5tfJXNkn6nlrtu1N6BxgsZdgDdkMQfIrWv2TOFlpx043LMBmk4CxXLpGvRfRcHLjixs5wEO1dfqENn6oj9hAQbPA8itYW4TvGlo5qhnzT+ya1rWcKrjn4zh7uvnr0hB0oPiqLu17txS5uIQIF0DJ2cC0k6kuOQLVwTQ=="
+            // }
+            // JSON.parse(my_res.response);
+            var response = JSON.parse(my_res.response);
+            console.log(response);
+            var url = getApp().onekit.server + "phonenumber";
+            my.httpRequest({
+              url: url,
+              header: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              method: "POST",
+              data: {
+                response: response.response,
+                sign: response.sign,
+                js_code: jscode
+              },
+              success(my_res) {
+                var data = my_res.data;
+                if (swan_object.success) {
+                  swan_object.success(data);
+                }
+                if (swan_object.complete) {
+                  swan_object.complete(data);
+                }
+              }, fail(my_res) {
+                console.log(my_res.data);
+              }
+            });
+          }
+        });
+      },
+    });
+
+  }
+  static navigateToMiniProgram(swan_object) { return my.navigateToMiniProgram(swan_object); }
+  static navigateBackMiniProgram(swan_object) { return my.navigateBackMiniProgram(swan_object); }
+  static getAccountInfoSync(swan_object) { return my.getAccountInfoSync(swan_object); }
+
+  static reportMonitor(swan_object) { return my.reportMonitor(swan_object); }
+  static reportAnalytics(swan_object) { return my.reportAnalytics(swan_object); }
+  static requestPayment(swan_object) {
+    var tradeNO = swan_object.package.split("=")[1];
+    console.log(tradeNO);
+    var my_object = {
+      tradeNO: tradeNO,
+      success: swan_object.success,
+      fail: swan_object.fail,
+      complete: swan_object.complete
+    };
+    return my.tradePay(my_object);
+  }
+  static authorize(swan_object) { return my.authorize(swan_object); }
+  static openSetting(swan_object) { return my.openSetting(swan_object); }
+  static getSetting(swan_object) { return my.getSetting(swan_object); }
+  static chooseAddress(swan_object) { return my.chooseAddress(swan_object); }
+  static openCard(swan_object) {
     my.openCardList();
-    if (object.success) {
-      object.success();
+    if (swan_object.success) {
+      swan_object.success();
     }
-    if (object.complete) {
-      object.complete();
+    if (swan_object.complete) {
+      swan_object.complete();
     }
-  };
-  static addCard = function (object) {
+  }
+  static addCard(swan_object) {
     var url = getApp().onekit.server + "addcard";
     my.httpRequest({
       url: url,
@@ -1193,489 +1344,535 @@ export default class swan {
       },
       method: "POST",
       data: {
-        cardList: JSON.stringify(object.cardList),
-        js_code: object.jscode
+        cardList: JSON.stringify(swan_object.cardList),
+        js_code: swan_object.jscode
       },
-      success(res) {
-        var data = res.data;
-        if (object.success) {
-          object.success(data);
+      success(my_res) {
+        var data = my_res.data;
+        if (swan_object.success) {
+          swan_object.success(data);
         }
-        if (object.complete) {
-          object.complete(data);
+        if (swan_object.complete) {
+          swan_object.complete(data);
         }
-      }, fail(res) {
-        console.log(res.data);
+      }, fail(my_res) {
+        console.log(my_res.data);
       }
     });
   }
-  static chooseInvoiceTitle(object) { return my.chooseInvoiceTitle(object) }
-  static chooseInvoice(object) { return my.chooseInvoice(object) }
-  static startSoterAuthentication(object) { return my.startSoterAuthentication(object) }
-  static checkIsSupportSoterAuthentication(object) { return my.checkIsSupportSoterAuthentication(object) }
-  static checkIsSoterEnrolledInDevice(object) { return my.checkIsSoterEnrolledInDevice(object) }
-  static getWeRunData(object) { return my.getWeRunData(object) }
-  static reportMonitor(name, value) {
-    var js_code = getApp().onekit.jscode;
-    my.httpRequest({
-      url: "http://192.168.0.106:8080/onekit_adapter/reportMonitor",
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      method: "POST",
-      data: {
-        js_code: js_code,
-        name: name,
-        number: value
-      },
-      success: (res) => {
-        console.log("success")
-        console.log(res.data);
-      },
-      fail: function (res) {
-        console.log(res);
-      },
-      complete: function (res) {
-        console.log(res)
-      }
+  static chooseInvoiceTitle(swan_object) { return my.chooseInvoiceTitle(swan_object); }
+  static chooseInvoice(swan_object) { return my.chooseInvoice(swan_object); }
+  static startSoterAuthentication(swan_object) { return my.startSoterAuthentication(swan_object); }
+  static checkIsSupportSoterAuthentication(swan_object) { return my.checkIsSupportSoterAuthentication(swan_object); }
+  static checkIsSoterEnrolledInDevice(swan_object) { return my.checkIsSoterEnrolledInDevice(swan_object); }
+  static getWeRunData(swan_object) { return my.getWeRunData(swan_object); }
 
-    });
-  };
-  ////////// Router //////////////
-  static navigateBack(object) {
-    var object2;
-    if (object) {
-      object2 = {};
-      for (var key in object) {
-        switch (key) {
-          case "success":
-          case "fail":
-          case "complete":
-            break;
-          default:
-            object2[key] = object[key];
-            break;
-        }
-      }
-      object2.success = function (res) {
-        if (object.success) {
-          object["success"](result);
-        }
-        if (object.complete) {
-          object["complete"](result);
-        }
-      }
-      object2.fail = function (res) {
-        if (object.fail) {
-          object["success"](res);
-        }
-        if (object.complete) {
-          object["complete"](res);
-        }
-      }
+  // //////// Router //////////////
+  static navigateBack(swan_object) {
+    var my_object;
+    if (!swan_object) {return}
+      my_object = {};
+      var swan_delta=swan_object.swan_delta||1
+       var swan_success=swan_object.success
+    var swan_fail=swan_object.fail
+    var swan_complete=swan_object.complete
+    if(swan_delta){
+      my_object.delta=swan_delta
     }
-    return my.navigateBack(object2);
+    if(swan_success){
+      my_object.success=swan_success
+    }
+    if(swan_fail){
+      my_object.fail=swan_fail
+    }
+    if(swan_complete){
+      my_object.complete=swan_complete
+    }
+      my_object.success = function (my_res) {
+        if (swan_object.success) {
+          swan_object.success(swan_res);
+        }
+        if (swan_object.complete) {
+          swan_object.complete(swan_res);
+        }
+      };
+      my_object.fail = function (my_res) {
+        if (swan_object.fail) {
+          swan_object.success(my_res);
+        }
+        if (swan_object.complete) {
+          swan_object.complete(my_res);
+        }
+      };
+    
+    return my.navigateBack(my_object);
   }
-  static switchTab(object) {
-    var object2;
-    if (object) {
-      object2 = {};
-      for (var key in object) {
-        switch (key) {
-          case "success":
-          case "fail":
-          case "complete":
-            break;
-          default:
-            object2[key] = object[key];
-            break;
-        }
-      }
+  static switchTab(swan_object) {
+    var my_object;
+    if (!swan_object) {return }
+      my_object = {};
+      var swan_url=swan_object.url
+        var swan_success=swan_object.success
+    var swan_fail=swan_object.fail
+    var swan_complete=swan_object.complete    
+    if(swan_url){
+      my_object.url=swan_url
     }
-    object2.success = function (res) {
-      if (object.success) {
-        object["success"](result);
-      }
-      if (object.complete) {
-        object["complete"](result);
-      }
+    if(swan_success){
+      my_object.success=swan_success
     }
-    object2.fail = function (res) {
-      if (object.fail) {
-        object["success"](res);
-      }
-      if (object.complete) {
-        object["complete"](res);
-      }
+    if(swan_fail){
+      my_object.fail=swan_fail
     }
-    return my.switchTab(object2);
+    if(swan_complete){
+      my_object.complete=swan_complete
+    }
+    my_object.success = function (my_res) {
+      if (swan_object.success) {
+        swan_object.success(swan_res);
+      }
+      if (swan_object.complete) {
+        swan_object.complete(swan_res);
+      }
+    };
+    my_object.fail = function (my_res) {
+      if (swan_object.fail) {
+        swan_object.success(my_res);
+      }
+      if (swan_object.complete) {
+        swan_object.complete(my_res);
+      }
+    };
+    return my.switchTab(my_object);
   }
-  static navigateTo(object) {
-    var object2;
-    if (object) {
-      object2 = {};
-      for (var key in object) {
-        switch (key) {
-          case "success":
-          case "fail":
-          case "complete":
-            break;
-          default:
-            object2[key] = object[key];
-            break;
-        }
-      }
+  static navigateTo(swan_object) {
+    var my_object;
+    if (!swan_object) {return }
+      my_object = {};
+      var swan_url=swan_object.url
+      var swan_events=swan_object.events
+      var swan_success=swan_object.success
+      var swan_fail=swan_object.fail
+      var swan_complete=swan_object.complete
+       if(swan_url){
+      my_object.url=swan_url
     }
-    object2.success = function (res) {
-      if (object.success) {
-        object["success"](result);
-      }
-      if (object.complete) {
-        object["complete"](result);
-      }
+    //    if(swan_events){
+    //   my_object.events=swan_events////需要编程
+    // }
+      if(swan_success){
+      my_object.success=swan_success
     }
-    object2.fail = function (res) {
-      if (object.fail) {
-        object["success"](res);
-      }
-      if (object.complete) {
-        object["complete"](res);
-      }
+    if(swan_fail){
+      my_object.fail=swan_fail
     }
-    return my.navigateTo(object2);
+    if(swan_complete){
+      my_object.complete=swan_complete
+    }
+    my_object.success = function (my_res) {
+      if (swan_object.success) {
+        swan_object.success(swan_res);
+      }
+      if (swan_object.complete) {
+        swan_object.complete(swan_res);
+      }
+    };
+    my_object.fail = function (my_res) {
+      if (swan_object.fail) {
+        swan_object.success(my_res);
+      }
+      if (swan_object.complete) {
+        swan_object.complete(my_res);
+      }
+    };
+    return my.navigateTo(my_object);
   }
-  static reLaunch(object) {
-    var object2;
-    if (object) {
-      object2 = {};
-      for (var key in object) {
-        switch (key) {
-          case "success":
-          case "fail":
-          case "complete":
-            break;
-          default:
-            object2[key] = object[key];
-            break;
-        }
-      }
+  static reLaunch(swan_object) {
+    var my_object;
+    if (!swan_object) {return }
+      my_object = {};
+      var swan_url=swan_object.url
+    var swan_success=swan_object.success
+    var swan_fail=swan_object.fail
+    var swan_complete=swan_object.complete
+     if(swan_url){
+      my_object.url=swan_url
     }
-    object2.success = function (res) {
-      if (object.success) {
-        object["success"](result);
-      }
-      if (object.complete) {
-        object["complete"](result);
-      }
+     if(swan_success){
+      my_object.success=swan_success
     }
-    object2.fail = function (res) {
-      if (object.fail) {
-        object["success"](res);
-      }
-      if (object.complete) {
-        object["complete"](res);
-      }
+    if(swan_fail){
+      my_object.fail=swan_fail
     }
-    return my.reLaunch(object2);
+    if(swan_complete){
+      my_object.complete=swan_complete
+    }
+    my_object.success = function (my_res) {
+      if (swan_object.success) {
+        swan_object.success(swan_res);
+      }
+      if (swan_object.complete) {
+        swan_object.complete(swan_res);
+      }
+    };
+    my_object.fail = function (my_res) {
+      if (swan_object.fail) {
+        swan_object.success(my_res);
+      }
+      if (swan_object.complete) {
+        swan_object.complete(my_res);
+      }
+    };
+    return my.reLaunch(my_object);
   }
-  static redirectTo(object) {
-    var object2;
-    if (object) {
-      object2 = {};
-      for (var key in object) {
-        switch (key) {
-          case "success":
-          case "fail":
-          case "complete":
-            break;
-          default:
-            object2[key] = object[key];
-            break;
-        }
-      }
+  static redirectTo(swan_object) {
+    var my_object;
+    if (swan_object) {return}
+      my_object = {};
+      var swan_url=swan_object.url
+    var swan_success=swan_object.success
+    var swan_fail=swan_object.fail
+    var swan_complete=swan_object.complete
+     if(swan_url){
+      my_object.url=swan_url
     }
-    object2.success = function (res) {
-      if (object.success) {
-        object["success"](result);
-      }
-      if (object.complete) {
-        object["complete"](result);
-      }
+     if(swan_success){
+      my_object.success=swan_success
     }
-    object2.fail = function (res) {
-      if (object.fail) {
-        object["success"](res);
-      }
-      if (object.complete) {
-        object["complete"](res);
-      }
+    if(swan_fail){
+      my_object.fail=swan_fail
     }
-    return my.redirectTo(object2);
+    if(swan_complete){
+      my_object.complete=swan_complete
+    }
+    my_object.success = function (my_res) {
+      if (swan_object.success) {
+        swan_object.success(swan_res);
+      }
+      if (swan_object.complete) {
+        swan_object.complete(swan_res);
+      }
+    };
+    my_object.fail = function (my_res) {
+      if (swan_object.fail) {
+        swan_object.success(my_res);
+      }
+      if (swan_object.complete) {
+        swan_object.complete(my_res);
+      }
+    };
+    return my.redirectTo(my_object);
   }
-  ///////////// Share /////////////
-  static updateShareMenu(object) { return my.updateShareMenu(object) }
-  static showShareMenu(object) {
+  // /////////// Share /////////////
+  static updateShareMenu(swan_object) { return my.updateShareMenu(swan_object); }
+  static showShareMenu(swan_object) {
     my.navigateTo({
       url: "/swan/page/share/share"
     });
-  };
-  static hideShareMenu(object) { return my.hideShareMenu(object) }
-  static getShareInfo(object) { return my.getShareInfo(object) }
-  /////////////// Storage //////////////
-  static getStorageInfoSync(object) { return my.getStorageInfoSync(object) }
-  static getStorageInfo(object) { return my.getStorageInfo(object) }
-  static clearStorageSync(object) { return my.clearStorageSync(object) }
-  static clearStorage(object) { return my.clearStorage(object) }
-  static removeStorageSync(object) { return my.removeStorageSync(object) }
-  static removeStorage(object) { return my.removeStorage(object) }
-  static setStorageSync = function (key, value) { return my.setStorageSync({ key: key, data: value }) }
-  static setStorage(object) { return my.setStorage(object) }
-  static getStorageSync = function (key) {
-    var result = my.getStorageSync({ key: key });
-    if (!result) {
+  }
+  static hideShareMenu(swan_object) { return my.hideShareMenu(swan_object); }
+  static getShareInfo(swan_object) { return my.getShareInfo(swan_object); }
+  // ///////////// Storage //////////////
+  static getStorageInfoSync(swan_object) { return my.getStorageInfoSync(swan_object); }
+  static getStorageInfo(swan_object) { return my.getStorageInfo(swan_object); }
+  static clearStorageSync(swan_object) { return my.clearStorageSync(swan_object); }
+  static clearStorage(swan_object) { return my.clearStorage(swan_object); }
+  static removeStorageSync(swan_object) { return my.removeStorageSync(swan_object); }
+  static removeStorage(swan_object) { return my.removeStorage(swan_object); }
+  static setStorageSync(key, value) { return my.setStorageSync({ key: key, data: value }); }
+  static setStorage(swan_object) { return my.setStorage(swan_object); }
+  static getStorageSync(key) {
+    var swan_res = my.getStorageSync({ key: key });
+    if (!swan_res) {
       return "";
-    } else if (result.data) {
-      return result.data;
-    } else if (result.APDataStorage) {
-      return result.APDataStorage;
+    } else if (swan_res.data) {
+      return swan_res.data;
+    } else if (swan_res.APDataStorage) {
+      return swan_res.APDataStorage;
     } else {
       return "";
     }
   }
-  static getStorage(object) { return my.getStorage(object) }
-  ////////////// UI ////////////////
-  static showActionSheet(object) {
-    var object2;
-    if (object) {
-      object2 = {};
-      for (var key in object) {
-        switch (key) {
-          case "itemList":
-            object2["items"] = object[key];
-            break;
-          default:
-            object2[key] = object[key];
-            break;
-        }
-      }
-      object2.success = function (res) {
-        var result = { tapIndex: res.index };
-        if (object.success) {
-          object.success(result);
-        }
-        if (object.complete) {
-          object.complete(result);
-        }
-      }
+  static getStorage(swan_object) { return my.getStorage(swan_object); }
+  // //////////// UI ////////////////
+  static showActionSheet(swan_object) {
+    var my_object;
+    if (!swan_object) {return}
+      my_object = {};
+             var swan_itemList=swan_object.itemList
+       var swan_itemColor=swan_object.itemColor
+       var swan_success=swan_object.success
+    var swan_fail=swan_object.fail
+    var swan_complete=swan_object.complete
+ if(swan_itemList){
+      my_object.items=swan_itemList
     }
-    return my.showActionSheet(object2);
-  }
-  // static redirectTo(object) { return my.redirectTo(object) }
-  // static redirectTo(object) { return my.redirectTo(object) }
-  static hideLoading(object) { return my.hideLoading(object) }
-  static showLoading(object) {
-    var object2;
-    if (object) {
-      if (!object.icon) {
-        object.icon = "success";
-      }
-      //
-      object2 = {};
-      for (var key in object) {
-        switch (key) {
-          case "title":
-            object2["content"] = object[key];
-            break;
-          case "icon":
-            object2["type"] = object[key];
-            break;
-          default:
-            object2[key] = object[key];
-            break;
+    //  if(swan_itemColor){
+    //   my_object.itemColor=swan_itemColor weixin有alipay没有
+    // }
+    if(swan_success){
+      my_object.success=swan_success
+    }
+    if(swan_fail){
+      my_object.fail=swan_fail
+    }
+    if(swan_complete){
+      my_object.complete=swan_complete
+    }
+     
+      my_object.success = function (my_res) {
+        var swan_res = { tapIndex: my_res.index };
+        if (swan_object.success) {
+          swan_object.success(swan_res);
         }
-      }
-    }
-    return my.showLoading(object2)
-  }
-  static hideToast(object) {
-    var object2 = {}
-    for (key in object) {
-      switch (key) {
-        case "success":
-        case "fail":
-        case "complete":
-          break;
-        default:
-          object2[key] = object[key];
-          break;
-      }
-    }
-    return my.hideToast(object2)
-  }
-  static showToast(object) {
-    var object2;
-    if (object) {
-      if (!object.icon) {
-        object.icon = "success";
-        object2 = {};
-        for (var key in object) {
-          switch (key) {
-            case "title":
-              object2["content"] = object[key];
-              break;
-            case "icon":
-              object2["type"] = object[key];
-              break;
-            default:
-              object2[key] = object[key];
-              break;
-          }
+        if (swan_object.complete) {
+          swan_object.complete(swan_res);
         }
-      }
-    }
-    return my.showToast(object2);
+      };
+    
+    return my.showActionSheet(my_object);
   }
-  static showModal(object2) {
-    if (object2 == null) {
+  // static redirectTo(swan_object) { return my.redirectTo(swan_object); }
+  // static redirectTo(swan_object) { return my.redirectTo(swan_object); }
+  static hideLoading(swan_object) { return my.hideLoading(swan_object); }
+  static showLoading(swan_object) {
+    var my_object={};
+    if (!swan_object) { return}
+        var swan_title=swan_object.title
+    var swan_mask=swan_object.mask
+    var swan_success=swan_object.success
+    var swan_fail=swan_object.fail
+    var swan_complete=swan_object.complete
+    if(swan_title){
+      my_object.content=swan_title
+    }
+    // if(swan_mask){
+    //   my_object.mask=swan_mask//需要编程
+    // }
+    if(swan_success){
+      my_object.success=swan_success
+    }
+    if(swan_fail){
+      my_object.fail=swan_fail
+    }
+    if(swan_complete){
+      my_object.complete=swan_complete
+    }
+    my_object.success = function (my_res) {
+        var swan_res = {
+         
+
+        };
+        if (swan_object.success) {
+          swan_object.success(swan_res);
+        }
+        if (swan_object.complete) {
+          swan_object.complete(swan_res);
+        }
+      };
+      my_object.fail = function (my_res) {
+        if (swan_object.fail) {
+          swan_object.fail(swan_res);
+        }
+        if (swan_object.complete) {
+          swan_object.complete(swan_res);
+        }
+      };
+   
+    return my.showLoading(my_object);
+  }
+  static hideToast(swan_object) {
+    return my.hideToast(my_object);
+  }
+  static showToast(swan_object) {
+    if (!swan_object) {
+      return
+    }
+    let swan_title = swan_object.title;   // 必填项 现实的文本
+    let swan_icon = swan_object.icon || 'success';  // 图片
+    let swan_image = swan_object.image;
+    let swan_duration = swan_object.duration || 1500 // 间隔时长
+    let swan_mask = swan_object.mask;
+    let swan_success = swan_object.success;
+    let swan_fail = swan_object.fail;
+    let swan_complete = swan_object.complete;
+    swan_object = null;
+    let my_object = {}
+    if (swan_title) {
+      my_object.content = swan_title
+    }
+    if (swan_icon) {
+      my_object.type = swan_icon
+    }
+    if (swan_duration) {
+      my_object.duration = swan_duration
+    }
+    //////////////
+    my_object.success = function (my_res) {
+      if (swan_success) {
+        swan_success(my_res);
+      }
+      if (swan_complete) {
+        swan_complete(my_res);
+      }
+    };
+    my_object.fail = function (my_res) {
+      if (swan_fail) {
+        swan_fail(my_res);
+      }
+      if (swan_complete) {
+        swan_complete(my_res);
+      }
+    };
+    return my.showToast(my_object);
+  }
+  static showModal(my_object) {
+    if (my_object === null) {
       return my.confirm();
     }
-    if (object2.showCancel == null || object2.showCancel) {
-      var object;
-      object = {};
-      for (var key in object2) {
-        switch (key) {
-          case "cancelText":
-            object["cancelButtonText"] = object2[key];
-            break;
-          case "confirmText":
-            object["confirmButtonText"] = object2[key];
-            break;
-          default:
-            object[key] = object2[key];
-            break;
-        }
-      }
-
-      return my.confirm(object);
+    var swan_object = {};
+    var key;
+    if (my_object.showCancel === null || my_object.showCancel) {
+      var swan_title=swan_object.title
+      var swan_content=swan_object.content
+      var swan_cancelText=swan_object.cancelText
+      var swan_cancelColor=swan_object.cancelColor
+      var swan_confirmText=swan_object.confirmText||"确定"
+      var swan_confirmColor=swan_object.confirmColor
+  if(swan_title){
+      my_object.title=swan_title
+    }
+    if(swan_content){
+      my_object.content=swan_content
+    }
+    if(swan_cancelText){
+      my_object.cancelButtonText=swan_cancelText
+    }
+    if(swan_confirmText){
+      my_object.confirmButtonText=swan_confirmText
+    }
+      return my.confirm(swan_object);
     } else {
-      var object;
-      object = {};
-      for (var key in object2) {
-        switch (key) {
-          default:
-            object[key] = object2[key];
-            break;
-        }
+       var swan_title=swan_object.title
+      var swan_content=swan_object.content
+     var swan_confirmText=swan_object.confirmText||"确定"
+    if(swan_title){
+      my_object.title=swan_title
+    }
+    if(swan_content){
+      my_object.content=swan_content
+    }
+    if(swan_confirmText){
+      my_object.confirmButtonText=swan_confirmText
+    }
       }
+      return my.alert(swan_object);
+    }
+  
+  static setNavigationBarColor(swan_object) { return my.setNavigationBarColor(swan_object); }
+  static hideNavigationBarLoading(swan_object) {
+    return my.hideNavigationBarLoading(my_object);
+  }
+  static showNavigationBarLoading(swan_object) {
+    return my.showNavigationBarLoading(my_object);
+  }
+  static setNaivgationBarTitle(swan_object) { return my.setNavigationBar(swan_object); }
+  static setBackgroundTextStyle(swan_object) { return my.setBackgroundTextStyle(swan_object); }
 
-      return my.alert(object);
-    }
-  }
-  static setNavigationBarColor(object) { return my.setNavigationBarColor(object) }
-  static hideNavigationBarLoading(object) {
-    var object2 = {}
-    for (key in object) {
-      switch (key) {
-        case "success":
-        case "fail":
-        case "complete":
-          break;
-        default:
-          object2[key] = object[key];
-          break;
-      }
-    }
-    return my.hideNavigationBarLoading(object2)
-  }
-  static showNavigationBarLoading(object) {
-    var object2 = {}
-    for (key in object) {
-      switch (key) {
-        case "success":
-        case "fail":
-        case "complete":
-          break;
-        default:
-          object2[key] = object[key];
-          break;
-      }
-    }
-    return my.showNavigationBarLoading(object2)
-  }
-  static setNavigationBarTitle = function (object) { return my.setNavigationBar(object); };
-  static setBackgroundTextStyle(object) { return my.setBackgroundTextStyle(object) }
+  static setBackgroundColor(swan_object) { return my.setBackgroundColor(swan_object); }
+  static setTabBarItem(swan_object) { return my.setTabBarItem(swan_object); }
+  static setTabBarStyle(swan_object) { return my.setTabBarStyle(swan_object); }
+  static hideTabBar(swan_object) { return my.hideTabBar(swan_object); }
+  static showTabBar(swan_object) { return my.showTabBar(swan_object); }
+  static hideTabBarRedDot(swan_object) { return my.hideTabBarRedDot(swan_object); }
+  static showTabBarRedDot(swan_object) { return my.showTabBarRedDot(swan_object); }
+  static removeTabBarBadge(swan_object) { return my.removeTabBarBadge(swan_object); }
+  static setTabBarBadge(swan_object) { return my.setTabBarBadge(swan_object); }
 
-  static setBackgroundColor(object) { return my.setBackgroundColor(object) }
-  static setTabBarItem(object) { return my.setTabBarItem(object) }
-  static setTabBarStyle(object) { return my.setTabBarStyle(object) }
-  static hideTabBar(object) { return my.hideTabBar(object) }
-  static showTabBar(object) { return my.showTabBar(object) }
-  static hideTabBarRedDot(object) { return my.hideTabBarRedDot(object) }
-  static showTabBarRedDot(object) { return my.showTabBarRedDot(object) }
-  static removeTabBarBadge(object) { return my.removeTabBarBadge(object) }
-  static setTabBarBadge(object) { return my.setTabBarBadge(object) }
+  static loadFontFace(swan_object) { return my.loadFontFace(swan_object); }
 
-  static loadFontFace(object) { return my.loadFontFace(object) }
+  static stopPullDownRefresh(swan_object) {
+    var my_object = {};
+    if (!swan_object) {return}
+     var swan_success=swan_object.success
+    var swan_fail=swan_object.fail
+    var swan_complete=swan_object.complete
+    if(swan_success){
+      my_object.success=swan_success
+    }
+    if(swan_fail){
+      my_object.fail=swan_fail
+    }
+    if(swan_complete){
+      my_object.complete=swan_complete
+    }
+      my_object.success = function (my_res) {
+        if (swan_object.success) {
+          swan_object.success(my_res);
+        }
+        if (swan_object.complete) {
+          swan_object.complete(my_res);
+        }
+      };
+      my_object.fail = function (my_res) {
+        if (swan_object.fail) {
+          swan_object.fail(my_res);
+        }
+        if (swan_object.complete) {
+          swan_object.complete(my_res);
+        }
+      };
+    
+    return my.stopPullDownRefresh(my_object);
+  }
+  static startPullDownRefresh(swan_object) {
+    var my_object = {};
+    if (!swan_object) {return }
+     var swan_success=swan_object.success
+    var swan_fail=swan_object.fail
+    var swan_complete=swan_object.complete
+    if(swan_success){
+      my_object.success=swan_success
+    }
+    if(swan_fail){
+      my_object.fail=swan_fail
+    }
+    if(swan_complete){
+      my_object.complete=swan_complete
+    }
+      my_object.success = function (my_res) {
+        if (swan_object.success) {
+          swan_object.success(my_res);
+        }
+        if (swan_object.complete) {
+          swan_object.complete(my_res);
+        }
+      };
+      my_object.fail = function (my_res) {
+        if (swan_object.fail) {
+          swan_object.fail(my_res);
+        }
+        if (swan_object.complete) {
+          swan_object.complete(my_res);
+        }
+      };
+   
+    return my.startPullDownRefresh(my_object);
+  }
+  static pageScrollTo(swan_object) { return my.pageScrollTo(swan_object); }
+  static setTopBarText(swan_object) { return my.setTopBarText(swan_object); }
+  static nextTick(swan_object) { return my.nextTick(swan_object); }
+  static getMenuButtonBoundingClientRect(swan_object) { return my.getMenuButtonBoundingClientRect(swan_object); }
+  static offWindowResize(swan_object) { return my.offWindowResize(swan_object); }
+  static onWindowResize(swan_object) { return my.onWindowResize(swan_object); }
+  // //////////// Worker ///////////////
+  static createWorker(swan_object) { return my.createWorker(swan_object); }
 
-  static stopPullDownRefresh(object) {
-    var object2 = {}
-    if (object) {
-      object2.success = function (res) {
-        if (object.success) {
-          object["success"](res);
-        }
-        if (object.complete) {
-          object["complete"](res);
-        }
-      }
-      object2.fail = function (res) {
-        if (object.fail) {
-          object["fail"](res);
-        }
-        if (object.complete) {
-          object["complete"](res);
-        }
-      }
-    }
-    return my.stopPullDownRefresh(object2)
-  }
-  static startPullDownRefresh(object) {
-    var object2 = {}
-    if (object) {
-      object2.success = function (res) {
-        if (object.success) {
-          object["success"](res);
-        }
-        if (object.complete) {
-          object["complete"](res);
-        }
-      }
-      object2.fail = function (res) {
-        if (object.fail) {
-          object["fail"](res);
-        }
-        if (object.complete) {
-          object["complete"](res);
-        }
-      }
-    }
-    return my.startPullDownRefresh(object2)
-  }
-  static pageScrollTo(object) { return my.pageScrollTo(object) }
-  static setTopBarText(object) { return my.setTopBarText(object) }
-  static nextTick(object) { return my.nextTick(object) }
-  static getMenuButtonBoundingClientRect(object) { return my.getMenuButtonBoundingClientRect(object) }
-  static offWindowResize(object) { return my.offWindowResize(object) }
-  static onWindowResize(object) { return my.onWindowResize(object) }
-  ////////////// Worker ///////////////
-  static createWorker(object) { return my.createWorker(object) }
-  ////////////// WXML ///////////////
-  static createSelectorQuery(object) { return my.createSelectorQuery(object) }
-  static createIntersectionObserver(object) { return my.createIntersectionObserver(object) }
-  /////////////////////////////////////
-  static hideKeyboard(object) { return my.hideKeyboard(object) }
-  ///////////// cloud ////////////////
+  static createIntersectionObserver(swan_object) { return my.createIntersectionObserver(swan_object); }
+  // ///////////////////////////////////
+  static hideKeyboard(swan_object) { return my.hideKeyboard(swan_object); }
+  // /////////// cloud ////////////////
   static get cloud() {
-    return new wx_cloud();
+    return new swan_cloud();
   }
 }
