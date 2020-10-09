@@ -67,14 +67,14 @@ export default class swan {
       };
 
       swan_res = swan._getSystemInfo(swan_res);
-      if (swan_object.success) { swan_object.success(swan_res); }
-      if (swan_object.fail) { swan_object.fail(swan_res); }
+      if (swan_success) { swan_success(swan_res); }
+      if (swan_object.fail) { swan_fail(swan_res); }
     };
     my_object.fail = function (my_res) {
       if (swan_object.fail) {
         swan_object.fail(my_res);
       }
-      if (swan_object.complete) {
+      if (swan_complete) {
         objec.complete(my_res);
       }
     };
@@ -216,19 +216,19 @@ export default class swan {
         errMsg: "canvasToTempFilePath:ok",
         tempFilePath: my_res.apFilePath
       };
-      if (swan_object.success) {
-        swan_object.success(my_res);
+      if (swan_success) {
+        swan_object.success(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(my_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     my_object.fail = function (my_res) {
       if (swan_object.fail) {
-        swan_object.success(my_res);
+        swan_object.fail(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(my_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     return my.canvasToTempFilePath(my_object);
@@ -313,20 +313,20 @@ export default class swan {
   }
   static stopAccelerometer(swan_object) {
     swan._stopAccelerometer = true;
-    if (swan_object.success) {
+    if (swan_success) {
       swan_object.success();
     }
-    if (swan_object.complete) {
-      swan_object.complete();
+    if (swan_complete) {
+      swan_complete();
     }
   }
   static startAccelerometer(swan_object) {
     swan._stopAccelerometer = false;
-    if (swan_object.success) {
+    if (swan_success) {
       swan_object.success();
     }
-    if (swan_object.complete) {
-      swan_object.complete();
+    if (swan_complete) {
+      swan_complete();
     }
   }
   static getBatteryInfoSync(swan_object) { return my.getBatteryInfoSync(swan_object); }
@@ -354,11 +354,11 @@ export default class swan {
         isCharging: false,
       };
       swan_res = swan._getBatteryInfo(swan_res);
-      if (swan_object.success) { swan_object.success(swan_res); }
-      if (swan_object.fail) { swan_object.fail(swan_res); }
+      if (swan_success) { swan_success(swan_res); }
+      if (swan_object.fail) { swan_fail(swan_res); }
     };
     my_object.fail = function (my_res) {
-      if (swan_object.success) { swan_object.success(my_res); }
+      if (swan_success) { swan_object.success(my_res); }
       if (swan_object.fail) { swan_object.fail(my_res); }
     };
     return my.getSystemInfo(my_object);
@@ -369,11 +369,11 @@ export default class swan {
     if (swan_object) {
       my_object.success = function (my_res) {
         var swan_res = { data: my_res.text };
-        if (swan_object.success) { swan_object.success(swan_res); }
-        if (swan_object.fail) { swan_object.fail(swan_res); }
+        if (swan_success) { swan_success(swan_res); }
+        if (swan_object.fail) { swan_fail(swan_res); }
       };
       my_object.fail = function (my_res) {
-        if (swan_object.success) { swan_object.success(my_res); }
+        if (swan_success) { swan_object.success(my_res); }
         if (swan_object.fail) { swan_object.fail(my_res); }
       };
     }
@@ -407,20 +407,20 @@ export default class swan {
   }
   static stopCompass(swan_object) {
     swan._startCompass = false;
-    if (swan_object.success) {
+    if (swan_success) {
       swan_object.success();
     }
-    if (swan_object.complete) {
-      swan_object.complete();
+    if (swan_complete) {
+      swan_complete();
     }
   }
   static startCompass(swan_object) {
     swan._startCompass = true;
-    if (swan_object.success) {
+    if (swan_success) {
       swan_object.success();
     }
-    if (swan_object.complete) {
-      swan_object.complete();
+    if (swan_complete) {
+      swan_complete();
     }
   }
   static addPhoneContact(swan_object) {
@@ -431,20 +431,20 @@ export default class swan {
     };
     my_object.success = function (my_res) {
       swan_res.errMsg = "addPhoneContact:ok";
-      if (swan_object.success) {
-        swan_object.success(swan_res);
+      if (swan_success) {
+        swan_success(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(swan_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     my_object.fail = function (my_res) {
       swan_res.errMsg = "addPhoneContact:fail cancel";
       if (swan_object.fail) {
-        swan_object.fail(swan_res);
+        swan_fail(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(swan_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     return my.addPhoneContact(my_object);
@@ -459,20 +459,20 @@ export default class swan {
   }
   static stopGyroscope(swan_object) {
     swan._startGyroscope = false;
-    if (swan_object.success) {
+    if (swan_success) {
       swan_object.success();
     }
-    if (swan_object.complete) {
-      swan_object.complete();
+    if (swan_complete) {
+      swan_complete();
     }
   }
   static startGyroscope(swan_object) {
     swan._startGyroscope = true;
-    if (swan_object.success) {
+    if (swan_success) {
       swan_object.success();
     }
-    if (swan_object.complete) {
-      swan_object.complete();
+    if (swan_complete) {
+      swan_complete();
     }
   }
   //
@@ -497,19 +497,19 @@ export default class swan {
     }
     my_object.success = function (my_res) {
       var swan_res = { networkType: swan._network(my_res).networkType };
-      if (swan_object.success) {
-        swan_object.success(swan_res);
+      if (swan_success) {
+        swan_success(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(swan_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     my_object.fail = function (my_res) {
       if (swan_object.fail) {
-        swan_object.success(my_res);
+        swan_object.fail(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(my_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
 
@@ -561,19 +561,19 @@ export default class swan {
     my_object.success = function (my_res) {
         var swan_res = {
         };
-        if (swan_object.success) {
-          swan_object.success(swan_res);
+        if (swan_success) {
+          swan_success(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(swan_res);
+        if (swan_complete) {
+          swan_complete(swan_res);
         }
       };
       my_object.fail = function (my_res) {
         if (swan_object.fail) {
-          swan_object.fail(swan_res);
+          swan_fail(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(swan_res);
+        if (swan_complete) {
+          swan_complete(swan_res);
         }
       };
      
@@ -617,20 +617,20 @@ export default class swan {
             swan_res.scanType = "EAN_8";
           }
         }
-        if (swan_object.success) {
-          swan_object.success(swan_res);
+        if (swan_success) {
+          swan_success(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(swan_res);
+        if (swan_complete) {
+          swan_complete(swan_res);
         }
       };
       my_object.fail = function (my_res) {
         console.log(my_res)
-        if (swan_object.fail) {
-          swan_object.fail(my_res);
+        if (swan_fail) {
+          swan_fail(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(my_res);
+        if (swan_complete) {
+          swan_complete(my_res);
         }
       };
     }
@@ -643,11 +643,11 @@ export default class swan {
       var swan_res = {
         errMsg: "vibrateLong:ok"
       };
-      if (swan_object.success) {
-        swan_object.success(swan_res);
+      if (swan_success) {
+        swan_success(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(swan_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     return my.vibrateLong(my_object);
@@ -658,11 +658,11 @@ export default class swan {
       var swan_res = {
         errMsg: "vibrateShort:ok"
       };
-      if (swan_object.success) {
-        swan_object.success(swan_res);
+      if (swan_success) {
+        swan_success(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(swan_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     return my.vibrateShort(my_object);
@@ -699,19 +699,19 @@ export default class swan {
         var swan_res = {
       
         };
-        if (swan_object.success) {
-          swan_object.success(swan_res);
+        if (swan_success) {
+          swan_success(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(swan_res);
+        if (swan_complete) {
+          swan_complete(swan_res);
         }
       };
       my_object.fail = function (my_res) {
         if (swan_object.fail) {
-          swan_object.fail(swan_res);
+          swan_fail(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(swan_res);
+        if (swan_complete) {
+          swan_complete(swan_res);
         }
       };
 
@@ -725,12 +725,12 @@ export default class swan {
     var my_object = {};
     my_object.success = function (my_res) {
       var swan_res = { errMsg: "openBluetoothAdapter:ok" };
-      if (swan_object.success) { swan_object.success(swan_res); }
-      if (swan_object.complete) { swan_object.complete(swan_res); }
+      if (swan_success) { swan_success(swan_res); }
+      if (swan_complete) { swan_complete(swan_res); }
     };
     my_object.fail = function (my_res) {
-      if (swan_object.success) { swan_object.success(my_res); }
-      if (swan_object.complete) { swan_object.complete(my_res); }
+      if (swan_success) { swan_object.success(my_res); }
+      if (swan_complete) { swan_complete(my_res); }
     };
     return my.openBluetoothAdapter(my_object);
   }
@@ -750,12 +750,12 @@ export default class swan {
       var swan_res = {
         errMsg: "closeBluetoothAdapter:ok"
       };
-      if (swan_object.success) { swan_object.success(swan_res); }
-      if (swan_object.complete) { swan_object.complete(swan_res); }
+      if (swan_success) { swan_success(swan_res); }
+      if (swan_complete) { swan_complete(swan_res); }
     };
     my_object.fail = function (my_res) {
-      if (swan_object.success) { swan_object.success(my_res); }
-      if (swan_object.complete) { swan_object.complete(my_res); }
+      if (swan_success) { swan_object.success(my_res); }
+      if (swan_complete) { swan_complete(my_res); }
     };
     return my.getBluetoothDevices(my_object);
   }
@@ -792,19 +792,19 @@ export default class swan {
         var swan_res = {
          
         };
-        if (swan_object.success) {
-          swan_object.success(swan_res);
+        if (swan_success) {
+          swan_success(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(swan_res);
+        if (swan_complete) {
+          swan_complete(swan_res);
         }
       };
       my_object.fail = function (my_res) {
         if (swan_object.fail) {
-          swan_object.fail(swan_res);
+          swan_fail(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(swan_res);
+        if (swan_complete) {
+          swan_complete(swan_res);
         }
       };
 
@@ -832,19 +832,19 @@ export default class swan {
     }
     my_object.success = function (my_res) {
       var swan_res = { value: my_res.brightness };
-      if (swan_object.success) {
-        swan_object.success(swan_res);
+      if (swan_success) {
+        swan_success(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(swan_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     my_object.fail = function (my_res) {
       if (swan_object.fail) {
-        swan_object.success(my_res);
+        swan_object.fail(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(my_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     return my.getScreenBrightness(my_object);
@@ -864,18 +864,18 @@ export default class swan {
       apFilePath: swan_object.tempFilePath,
       success(my_res) {
         var swan_res = { savedFilePath: my_res.apFilePath };
-        if (swan_object.success) {
-          swan_object.success(swan_res);
+        if (swan_success) {
+          swan_success(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(swan_res);
+        if (swan_complete) {
+          swan_complete(swan_res);
         }
       }, fail(my_res) {
-        if (swan_object.fail) {
-          swan_object.fail(my_res);
+        if (swan_fail) {
+          swan_fail(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(my_res);
+        if (swan_complete) {
+          swan_complete(my_res);
         }
       }
     });
@@ -909,19 +909,19 @@ export default class swan {
           tempFilePaths: tempFilePaths,
           tempFiles: tempFiles
         };
-        if (swan_object.success) {
-          swan_object.success(swan_res);
+        if (swan_success) {
+          swan_success(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(complete);
+        if (swan_complete) {
+          swan_complete(complete);
         }
       },
       fail: (my_res) => {
-        if (swan_object.fail) {
-          swan_object.fail(my_res);
+        if (swan_fail) {
+          swan_fail(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(my_res);
+        if (swan_complete) {
+          swan_complete(swan_res);
         }
       }
     });
@@ -967,7 +967,7 @@ export default class swan {
     const swan_method = swan_object.method || "GET";
     const swan_success = swan_object.success;
     const swan_fail = swan_object.fail;
-    const swan_complete = swan_object.complete;
+    const swan_complete = swan_complete;
     //
     var my_object = {};
     //
@@ -1019,11 +1019,11 @@ export default class swan {
         // cookies:my_res.cookies,  需要编程
         // profile:my_res.profile
       };
-      if (swan_object.success) {
-        swan_object.success(swan_res);
+      if (swan_success) {
+        swan_success(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(swan_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     my_object.fail = function (my_res) {
@@ -1031,10 +1031,10 @@ export default class swan {
 
       };
       if (swan_object.fail) {
-        swan_object.fail(swan_res);
+        swan_fail(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(swan_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
 
@@ -1055,7 +1055,7 @@ export default class swan {
       formData: swan_object.formData,
       success: swan_object.success,
       fail: swan_object.fail,
-      complete: swan_object.complete
+      complete: swan_complete
     });
   }
   //
@@ -1083,19 +1083,19 @@ export default class swan {
   }
   static checkSession(swan_object) {
     if (this._checkSession()) {
-      if (swan_object.success) {
-        swan_object.success();
+      if (swan_success) {
+        swan_success();
       }
-      if (swan_object.complete) {
-        swan_object.complete();
+      if (swan_complete) {
+        swan_complete();
       }
 
     } else {
-      if (swan_object.fail) {
-        swan_object.fail();
+      if (swan_fail) {
+        swan_fail();
       }
-      if (swan_object.complete) {
-        swan_object.complete();
+      if (swan_complete) {
+        swan_complete();
       }
     }
 
@@ -1113,11 +1113,11 @@ export default class swan {
                js_code: jscode
              },
              success(my_res) {
-               if (swan_object.success) {
+               if (swan_success) {
                  swan_object.success(my_res.data);
                }
-               if (swan_object.complete) {
-                 swan_object.complete(my_res.data);
+               if (swan_complete) {
+                 swan_complete(my_res.data);
                }
              }, fail(my_res) {
                console.log(my_res.data);
@@ -1139,19 +1139,19 @@ export default class swan {
       getApp().onekitswan._jscode = my_res.authCode;
       getApp().onekitswan._login = new Date().getTime();
       var swan_res = { code: my_res.authCode };
-      if (swan_object.success) {
-        swan_object.success(swan_res);
+      if (swan_success) {
+        swan_success(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(complete);
+      if (swan_complete) {
+        swan_complete(complete);
       }
     }
     my_object.fail = function (my_res) {
       if (swan_object.fail) {
         swan_object.fail(my_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(my_res);
+      if (swan_complete) {
+        swan_complete(my_res);
       }
     }
     if (swan._checkSession()) {
@@ -1184,11 +1184,11 @@ export default class swan {
               },
               success(my_res) {
                 console.log(my_res.data);
-                if (swan_object.success) {
+                if (swan_success) {
                   swan_object.success(my_res.data);
                 }
-                if (swan_object.complete) {
-                  swan_object.complete(my_res.data);
+                if (swan_complete) {
+                  swan_complete(my_res.data);
                 }
               }, fail(my_res) {
                 console.log(my_res.data);
@@ -1210,11 +1210,11 @@ export default class swan {
       for (var cb = 0; cb < getApp().onekit._opendataCallbacks.length; cb++) {
         getApp().onekit._opendataCallbacks[cb](opendata);
       }
-      if (swan_object.success) {
+      if (swan_success) {
         swan_object.success(opendata);
       }
-      if (swan_object.complete) {
-        swan_object.complete(opendata);
+      if (swan_complete) {
+        swan_complete(opendata);
       }
     }
     var opendata = getApp().onekit._opendata;
@@ -1222,7 +1222,7 @@ export default class swan {
       if (Object.keys(opendata) > 0) {
         swan_object.success(opendata);
       } else {
-        if (swan_object.success) {
+        if (swan_success) {
           getApp().onekit._opendataCallbacks.push(swan_object.success);
         }
       }
@@ -1289,11 +1289,11 @@ export default class swan {
               },
               success(my_res) {
                 var data = my_res.data;
-                if (swan_object.success) {
+                if (swan_success) {
                   swan_object.success(data);
                 }
-                if (swan_object.complete) {
-                  swan_object.complete(data);
+                if (swan_complete) {
+                  swan_complete(data);
                 }
               }, fail(my_res) {
                 console.log(my_res.data);
@@ -1318,7 +1318,7 @@ export default class swan {
       tradeNO: tradeNO,
       success: swan_object.success,
       fail: swan_object.fail,
-      complete: swan_object.complete
+      complete: swan_complete
     };
     return my.tradePay(my_object);
   }
@@ -1328,11 +1328,11 @@ export default class swan {
   static chooseAddress(swan_object) { return my.chooseAddress(swan_object); }
   static openCard(swan_object) {
     my.openCardList();
-    if (swan_object.success) {
+    if (swan_success) {
       swan_object.success();
     }
-    if (swan_object.complete) {
-      swan_object.complete();
+    if (swan_complete) {
+      swan_complete();
     }
   }
   static addCard(swan_object) {
@@ -1349,11 +1349,11 @@ export default class swan {
       },
       success(my_res) {
         var data = my_res.data;
-        if (swan_object.success) {
+        if (swan_success) {
           swan_object.success(data);
         }
-        if (swan_object.complete) {
-          swan_object.complete(data);
+        if (swan_complete) {
+          swan_complete(data);
         }
       }, fail(my_res) {
         console.log(my_res.data);
@@ -1389,19 +1389,19 @@ export default class swan {
       my_object.complete=swan_complete
     }
       my_object.success = function (my_res) {
-        if (swan_object.success) {
-          swan_object.success(swan_res);
+        if (swan_success) {
+          swan_success(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(swan_res);
+        if (swan_complete) {
+          swan_complete(swan_res);
         }
       };
       my_object.fail = function (my_res) {
         if (swan_object.fail) {
-          swan_object.success(my_res);
+          swan_object.fail(my_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(my_res);
+        if (swan_complete) {
+          swan_complete(my_res);
         }
       };
     
@@ -1428,19 +1428,19 @@ export default class swan {
       my_object.complete=swan_complete
     }
     my_object.success = function (my_res) {
-      if (swan_object.success) {
-        swan_object.success(swan_res);
+      if (swan_success) {
+        swan_success(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(swan_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     my_object.fail = function (my_res) {
       if (swan_object.fail) {
-        swan_object.success(my_res);
+        swan_object.fail(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(my_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     return my.switchTab(my_object);
@@ -1470,19 +1470,19 @@ export default class swan {
       my_object.complete=swan_complete
     }
     my_object.success = function (my_res) {
-      if (swan_object.success) {
-        swan_object.success(swan_res);
+      if (swan_success) {
+        swan_success(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(swan_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     my_object.fail = function (my_res) {
       if (swan_object.fail) {
-        swan_object.success(my_res);
+        swan_object.fail(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(my_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     return my.navigateTo(my_object);
@@ -1508,19 +1508,19 @@ export default class swan {
       my_object.complete=swan_complete
     }
     my_object.success = function (my_res) {
-      if (swan_object.success) {
-        swan_object.success(swan_res);
+      if (swan_success) {
+        swan_success(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(swan_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     my_object.fail = function (my_res) {
       if (swan_object.fail) {
-        swan_object.success(my_res);
+        swan_object.fail(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(my_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     return my.reLaunch(my_object);
@@ -1546,19 +1546,19 @@ export default class swan {
       my_object.complete=swan_complete
     }
     my_object.success = function (my_res) {
-      if (swan_object.success) {
-        swan_object.success(swan_res);
+      if (swan_success) {
+        swan_success(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(swan_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     my_object.fail = function (my_res) {
       if (swan_object.fail) {
-        swan_object.success(my_res);
+        swan_object.fail(swan_res);
       }
-      if (swan_object.complete) {
-        swan_object.complete(my_res);
+      if (swan_complete) {
+        swan_complete(swan_res);
       }
     };
     return my.redirectTo(my_object);
@@ -1622,11 +1622,11 @@ export default class swan {
      
       my_object.success = function (my_res) {
         var swan_res = { tapIndex: my_res.index };
-        if (swan_object.success) {
-          swan_object.success(swan_res);
+        if (swan_success) {
+          swan_success(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(swan_res);
+        if (swan_complete) {
+          swan_complete(swan_res);
         }
       };
     
@@ -1663,19 +1663,19 @@ export default class swan {
          
 
         };
-        if (swan_object.success) {
-          swan_object.success(swan_res);
+        if (swan_success) {
+          swan_success(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(swan_res);
+        if (swan_complete) {
+          swan_complete(swan_res);
         }
       };
       my_object.fail = function (my_res) {
         if (swan_object.fail) {
-          swan_object.fail(swan_res);
+          swan_fail(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(swan_res);
+        if (swan_complete) {
+          swan_complete(swan_res);
         }
       };
    
@@ -1695,7 +1695,7 @@ export default class swan {
     let swan_mask = swan_object.mask;
     let swan_success = swan_object.success;
     let swan_fail = swan_object.fail;
-    let swan_complete = swan_object.complete;
+    let swan_complete = swan_complete;
     swan_object = null;
     let my_object = {}
     if (swan_title) {
@@ -1807,19 +1807,19 @@ export default class swan {
       my_object.complete=swan_complete
     }
       my_object.success = function (my_res) {
-        if (swan_object.success) {
+        if (swan_success) {
           swan_object.success(my_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(my_res);
+        if (swan_complete) {
+          swan_complete(my_res);
         }
       };
       my_object.fail = function (my_res) {
-        if (swan_object.fail) {
-          swan_object.fail(my_res);
+        if (swan_fail) {
+          swan_fail(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(my_res);
+        if (swan_complete) {
+          swan_complete(my_res);
         }
       };
     
@@ -1841,19 +1841,19 @@ export default class swan {
       my_object.complete=swan_complete
     }
       my_object.success = function (my_res) {
-        if (swan_object.success) {
+        if (swan_success) {
           swan_object.success(my_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(my_res);
+        if (swan_complete) {
+          swan_complete(my_res);
         }
       };
       my_object.fail = function (my_res) {
-        if (swan_object.fail) {
-          swan_object.fail(my_res);
+        if (swan_fail) {
+          swan_fail(swan_res);
         }
-        if (swan_object.complete) {
-          swan_object.complete(my_res);
+        if (swan_complete) {
+          swan_complete(my_res);
         }
       };
    
