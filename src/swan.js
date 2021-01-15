@@ -1,1879 +1,698 @@
-/* eslint-disable max-len */
-// import swan_ai from "./swan.ai"
-// import onekit from "./onekit"
-// import CanvasContext from "./api/CanvasContext"
-// import VideoContext from "./api/VideoContext"
-// export default class swan {
-//   // ///////////////// animation //////////////////////////
-//   static createAnimation(swan_object) {
-//     return my.createAnimation(swan_object);
-//   }
-//   //////////////////onKeyboardHeightChange//////////////////
-//   static onKeyboardHeightChange(swan_object) {
-//     //需要编程支持
-//   }
-//   // /////////////// basic ////////////////////////////////
-//   static canIUse(swan_object) { return true; }
-//   static _getSystemInfo(swan_res) {
-//     swan_res.SDKVersion = "2.7.0";
-//     my.openBluetoothAdapter({
-//       success: (my_res) => {
-//         // swan_res.bluetoothEnabled = true;
-//         my.closeBluetoothAdapter();
-//       },
-//       fail: (my_res) => {
-//         // swan_res.bluetoothEnabled = false;
-//         my.closeBluetoothAdapter();
-//       }
-//     });
-//     my.getNetworkType({
-//       success: (my_res) => {
-//         // swan_res.wifiEnabled = (my_res.networkType === "WIFI");
-//       },
-//       fail: (my_res) => {
-//         // swan_res.wifiEnabled = false;
-//       }
-//     });
-//     my.getSetting({
-//       success: (my_res) => {
-//         swan_res.locationAuthorized = (my_res.authSetting.location === true);
-//         swan_res.cameraAuthorized = (my_res.authSetting.camera === true);
-//         swan_res.microphoneAuthorized = (my_res.authSetting.audioRecord === true);
-//         swan_res.albumAuthorized = (my_res.authSetting.album === true);
-//       },
-//     });
-//     return swan_res;
-//   }
-//   static getSystemInfo(swan_object) {
-//     var my_object = {};
-//     my_object.success = function (my_res) {
-//       var swan_res = {
-//         errMsg: "getSystemInfo:ok",
-//         SDKVersion: "2.4.2",
-//         brand: my_res.brand,
-//         fontSizeSetting: my_res.fontSizeSetting,
-//         language: my_res.language,
-//         model: my_res.model,
-//         // notificationAuthorized: notificationAuthorized,
-//         pixelRatio: my_res.pixelRatio,
-//         platform: my_res.platform,
-//         safeArea: { height: my_res.screenHeight, width: my_res.screenWidth, bottom: my_res.screenHeight, top: 0, left: 0, right: my_res.screenWidth },
-//         screenHeight: my_res.screenHeight,
-//         screenWidth: my_res.screenWidth,
-//         statusBarHeight: my_res.statusBarHeight,
-//         system: my_res.system,
-//         version: my_res.version,
-//         windowHeight: my_res.windowWidth,
-//         windowWidth: my_res.windowHeight,
-//       };
+/* eslint-disable no-octal */
+/* eslint-disable camelcase */
+/* eslint-disable no-console */
 
-//       swan_res = swan._getSystemInfo(swan_res);
-//       if (swan_success) { swan_success(swan_res); }
-//       if (swan_object.fail) { swan_fail(swan_res); }
-//     };
-//     my_object.fail = function (my_res) {
-//       if (swan_object.fail) {
-//         swan_object.fail(my_res);
-//       }
-//       if (swan_complete) {
-//         objec.complete(my_res);
-//       }
-//     };
+import PROMISE from '../node_modules/oneutil/PROMISE'
+import OneKit from './js/OneKit'
 
-//     return my.getSystemInfo(my_object);
-//   }
-//   static getSystemInfoSync() {
-//     return my.getSystemInfoSync();
-//   }
-//   static base64ToArrayBuffer(base64) {
-//     base64 = base64.replace(/\s/g, '+');
-//     let commonContent = Buffer.from(base64, 'base64');
-//     return commonContent;
-//   }
-//   static arrayBufferToBase64(arrayBuffer) {
-//     let base64Content = Buffer.from(arrayBuffer).toString('base64');
-//     return base64Content;
-//   }
-//   static getUpdateManager(swan_object) { return my.getUpdateManager(swan_object); }
-//   static getLaunchOptionsSync(swan_object) { return my.getLaunchOptionsSync(swan_object); }
-//   static offPageNotFound(swan_object) { return my.offPageNotFound(swan_object); }
-//   static onPageNotFound(swan_object) { return my.onPageNotFound(swan_object); }
-//   static offError(swan_object) { return my.offError(swan_object); }
-//   static onError(swan_object) { return my.onError(swan_object); }
-//   static offAppShow(swan_object) { return my.offAppShow(swan_object); }
-//   static onAppShow(swan_object) { return my.onAppShow(swan_object); }
-//   static offAppHide(swan_object) { return my.offAppHide(swan_object); }
-//   static onAppHide(swan_object) { return my.onAppHide(swan_object); }
-//   static setEnableDebug(swan_object) { return my.setEnableDebug(swan_object); }
-//   static getLogManager(swan_object) { return my.getLogManager(swan_object); }
-//   // ///////////////// Canvas ///////////////////
-//   static drawCanvas(swan_object) {
-//     var canvasId = swan_object.canvasId;
-//     var actions = swan_object.actions;
-//     var canvasContext = my.createCanvasContext(canvasId);
-//     var dt;
-//     for (const action of actions) {
-//       var data = action.data;
-//       switch (action.method) {
-//         case "save":
-//           canvasContext.save();
-//           break;
-//         case "restore":
-//           canvasContext.restore();
-//           break;
-//         case "setFillStyle":
-//           canvasContext.setFillStyle({ swan, OnekitPage }.array2str(data[1]));
-//           break;
-//         case "setStrokeStyle":
-//           canvasContext.setStrokeStyle({ swan, OnekitPage }.array2str(data[1]));
-//           break;
-//         case "setFontSize":
-//           canvasContext.setFontSize(data[0]);
-//           break;
-//         case "setGlobalAlpha":
-//           canvasContext.setGlobalAlpha(data[0]);
-//           break;
-//         case "setShadow":
-//           var dat = data[3];
-//           canvasContext.setShadow(data[0], data[1], data[2], { swan, OnekitPage }.array2str(data[3]));
-//           break;
-//         case "setStrokeStyle":
-//           canvasContext.setStrokeStyle({ swan, OnekitPage }.array2str(data));
-//           break;
-//         case "drawImage":
-//           canvasContext.drawImage.apply(canvasContext, data);
-//           break;
-//         case "fillText":
-//           canvasContext.fillText.apply(canvasContext, data);
-//           break;
-//         case "setLineCap": canvasContext.setLineCap(data[0]); break;
-//         case "setLineJoin": canvasContext.setLineJoin(data[0]); break;
-//         case "setLineWidth": canvasContext.setLineWidth(data[0]); break;
-//         case "setMiterLimit": canvasContext.setMiterLimit(data[0]); break;
-//         case "rotate": canvasContext.rotate(data[0]); break;
-//         case "scale": canvasContext.scale(data[0], data[1]); break;
-//         case "translate": canvasContext.translate(data[0], data[1]); break;
-//         case "strokePath":
-//           canvasContext.beginPath();
-//           for (dat of data) {
-//             dt = dat.data;
-//             switch (dat.method) {
-//               case "rect": canvasContext.strokeRect(dt[0], dt[1], dt[2], dt[3]); break;
-//               case "moveTo": canvasContext.moveTo(dt[0], dt[1]); break;
-//               case "lineTo": canvasContext.lineTo(dt[0], dt[1]); break;
-//               case "closePath": canvasContext.closePath(); break;
-//               case "arc": canvasContext.arc.apply(canvasContext, dt); break;
-//               case "quadraticCurveTo": canvasContext.quadraticCurveTo.apply(canvasContext, dt); break;
-//               case "bezierCurveTo": canvasContext.bezierCurveTo.apply(canvasContext, dt); break;
+export default class swan {
+  // ///////////  基础 ////////////
+  static canIUse(schema) {
+    return my.canIUse(schema)
+  }
 
-//               default:
-//                 console.log("[drawCanvas-strokePath]", dat.method);
-//                 break;
-//             }
-//           }
-//           canvasContext.stroke();
-//           break;
-//         case "fillPath":
-//           for (dat of data) {
-//             dt = dat.data;
-//             switch (dat.method) {
-//               case "rect": canvasContext.fillRect(dt[0], dt[1], dt[2], dt[3]); break;
-//               case "arc": canvasContext.arc.apply(canvasContext, dt); break;
-//               default:
-//                 console.log("[drawCanvas-fillPath]", dat.method);
-//                 break;
-//             }
-//           }
-//           canvasContext.fill();
-//           break;
-//         case "clearRect": canvasContext.clearRect(data[0], data[1], data[2], data[3]); break;
-//         default:
-//           console.log("[drawCanvas]", action.method);
-//           break;
-//       }
-//     }
-//     canvasContext.draw();
-//   }
-//   static createContext() {
-//     var context = new Context();
-//     return context;
-//   }
-//   static createCanvasContext(canvasId) {
-//     return new CanvasContext(my.createCanvasContext(canvasId));
-//   }
-//   static createVideoContext(videoId, ui) {
-//     return new VideoContext(my.createVideoContext(videoId));
-//   }
-//   // //////////// swanML ///////////////
-//   static createSelectorQuery() {
-//     return new SelectorQuery(my.createSelectorQuery());
-//   }
-//   static canvasToTempFilePath(swan_object) {
-//     var my_object = {
-//       canvasId: swan_object.canvasId
-//     };
-//     my_object.success = function (my_res) {
-//       var swan_res = {
-//         errMsg: "canvasToTempFilePath:ok",
-//         tempFilePath: my_res.apFilePath
-//       };
-//       if (swan_success) {
-//         swan_object.success(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     my_object.fail = function (my_res) {
-//       if (swan_object.fail) {
-//         swan_object.fail(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     return my.canvasToTempFilePath(my_object);
-//   }
-//   static canvasPutImageData(swan_object) { return my.canvasPutImageData(swan_object); }
-//   static canvasGetImageData(swan_object) { return my.canvasGetImageData(swan_object); }
-//   // //////////// Device //////////////////
-//   static onBeaconServiceChange(swan_object) { return my.onBeaconServiceChange(swan_object); }
-//   static onBeaconUpdate(swan_object) { return my.onBeaconUpdate(swan_object); }
-//   static getBeacons(swan_object) { return my.getBeacons(swan_object); }
-//   static stopBeaconDiscovery(swan_object) { return my.stopBeaconDiscovery(swan_object); }
-//   static startBeaconDiscovery(swan_object) { return my.startBeaconDiscovery(swan_object); }
-//   static stopWifi(swan_object) { return my.stopWifi(swan_object); }
-//   static startWifi(swan_object) { return my.startWifi(swan_object); }
-//   static setWifiList(swan_object) { return my.setWifiList(swan_object); }
-//   static onWifiConnected(swan_object) { return my.onWifiConnected(swan_object); }
-//   static onGetWifiList(swan_object) { return my.onGetWifiList(swan_object); }
-//   static getWifiList(swan_object) { return my.getWifiList(swan_object); }
-//   static getConnectedWifi(swan_object) { return my.getConnectedWifi(swan_object); }
-//   static connectWifi(swan_object) { return my.connectWifi(swan_object); }
-//   // ///////////////////////////////////////////
-// //   static setBackgroundFetchToken(my_object) {
-// //     var swan_token = my_object.token;
-// //     var swan_success = my_object.success;
-// //     var swan_fail = my_object.fail;
-// //     var swan_complete = my_object.complete;
-// //     /////////////////
-// //     my.setStorage({
-// //       key: "swan_token",
-// //       data: {
-// //         swan_token: swan_token,
-// //       },
-// //     })
-// //     my_object.success = function (swan_res) {
-// //       var swan_res = {
-// //         errMsg: "setBackgroundFetchToken:ok"
-// //       };
-// //       if (swan_success) {
-// //         swan_success(swan_res);
-// //       }
-// //       if (swan_success) {
-// //         swan_complete(swan_res);
-// //       }
-// //     };
-// //   };
-// //   static getBackgroundFetchToken(my_object) {
-// //     var swan_success = my_object.success;
-// //     var swan_fail = my_object.fail;
-// //     var swan_complete = my_object.complete;
-// //     console.log(swan_success)
-// //     my.getStorage({
-// //       key: 'swan_token',
-// //       success(my_res) {
-// //         console.log(my_res.data)
-// //       }
-// //     })
-// //     my_object.success = function (swan_res) {
-// //       var swan_res = {
-// //         errMsg: "getBackgroundFetchToken:ok"
-// //       };
-// //       console.log("", swan_res)
+  // ///////////  应用级事件 ////////////
+  static offPageNotFound() {
+    getApp().onekit_onError = null
+  }
 
-// //       if (swan_success) {
-// //         swan_success(swan_res);
-// //       }
-// //       if (swan_success) {
-// //         swan_complete(swan_res);
-// //       }
-// //     };
-// //   };
-// //   static onBackgroundFetchData(callback) {
-// // //支付宝没有,需要编程
-// //   }
+  static onPageNotFound(callback) {
+    getApp().onekit_onPageNotFound = callback
+  }
 
-//   static onAccelerometerChange(callback) {
-//     my.onAccelerometerChange(function (my_res) {
-//       if (swan._stopAccelerometer) {
-//         return;
-//       }
-//       callback(my_res);
-//     });
-//   }
-//   static stopAccelerometer(swan_object) {
-//     swan._stopAccelerometer = true;
-//     if (swan_success) {
-//       swan_object.success();
-//     }
-//     if (swan_complete) {
-//       swan_complete();
-//     }
-//   }
-//   static startAccelerometer(swan_object) {
-//     swan._stopAccelerometer = false;
-//     if (swan_success) {
-//       swan_object.success();
-//     }
-//     if (swan_complete) {
-//       swan_complete();
-//     }
-//   }
-//   static getBatteryInfoSync(swan_object) { return my.getBatteryInfoSync(swan_object); }
-//   static _getBatteryInfo(swan_res) {
-//     my.getSystemInfo({
-//       success: (my_res) => {
-//         var percent = my_res.currentBattery;
-//         function toPoint(percent) {
-//           var str = percent.replace("%", "");
-//           str = str / 100;
-//           return str;
-//         }
-//         toPoint(percent);
-//         var results = toPoint(percent);
-//         swan_res.level = results;
-//       }
-//     });
-//     return swan_res;
-//   }
-//   static getBatteryInfo(swan_object) {
-//     var my_object = {};
-//     my_object.success = function (my_res) {
-//       var swan_res = {
-//         errMsg: "getBatteryInfo:ok",
-//         isCharging: false,
-//       };
-//       swan_res = swan._getBatteryInfo(swan_res);
-//       if (swan_success) { swan_success(swan_res); }
-//       if (swan_object.fail) { swan_fail(swan_res); }
-//     };
-//     my_object.fail = function (my_res) {
-//       if (swan_success) { swan_object.success(my_res); }
-//       if (swan_object.fail) { swan_object.fail(my_res); }
-//     };
-//     return my.getSystemInfo(my_object);
-//   }
-//   //
-//   static getClipboardData(swan_object) {
-//     var my_object = {};
-//     if (swan_object) {
-//       my_object.success = function (my_res) {
-//         var swan_res = { data: my_res.text };
-//         if (swan_success) { swan_success(swan_res); }
-//         if (swan_object.fail) { swan_fail(swan_res); }
-//       };
-//       my_object.fail = function (my_res) {
-//         if (swan_success) { swan_object.success(my_res); }
-//         if (swan_object.fail) { swan_object.fail(my_res); }
-//       };
-//     }
-//     return my.getClipboard(my_object);
-//   }
-//   static setClipboardData(swan_object) {
+  static offError() {
+    return my.offError()
+  }
 
-//     if (swan_object) {
-//       var  my_object = {};
+  static onError(callback) {
+    return my.onError(callback)
+  }
 
-//       for (var key in swan_object) {
-//         switch (key) {
-//           case "data":
-//             my_object.text = swan_object[key];
-//             break;
-//           default:
-//             my_object[key] = swan_object[key];
-//             break;
-//         }
-//       }
-//     }
-//     return my.setClipboard(my_object);
-//   }
-//   static onCompassChange(swan_callback) {
-//     my.onCompassChange(function (my_res) {
-//       if (!swan._startCompass) {
-//         return;
-//       }
-//       swan_callback(my_res);
-//     });
-//   }
-//   static stopCompass(swan_object) {
-//     swan._startCompass = false;
-//     if (swan_success) {
-//       swan_object.success();
-//     }
-//     if (swan_complete) {
-//       swan_complete();
-//     }
-//   }
-//   static startCompass(swan_object) {
-//     swan._startCompass = true;
-//     if (swan_success) {
-//       swan_object.success();
-//     }
-//     if (swan_complete) {
-//       swan_complete();
-//     }
-//   }
-//   static addPhoneContact(swan_object) {
-//     var my_object = {};
-//     var errMsg;
-//     var swan_res = {
-//       errMsg: errMsg
-//     };
-//     my_object.success = function (my_res) {
-//       swan_res.errMsg = "addPhoneContact:ok";
-//       if (swan_success) {
-//         swan_success(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     my_object.fail = function (my_res) {
-//       swan_res.errMsg = "addPhoneContact:fail cancel";
-//       if (swan_object.fail) {
-//         swan_fail(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     return my.addPhoneContact(my_object);
-//   }
-//   static onGyroscopeChange(callback) {
-//     my.onGyroscopeChange(function (my_res) {
-//       if (!swan._startGyroscope) {
-//         return;
-//       }
-//       callback(my_res);
-//     });
-//   }
-//   static stopGyroscope(swan_object) {
-//     swan._startGyroscope = false;
-//     if (swan_success) {
-//       swan_object.success();
-//     }
-//     if (swan_complete) {
-//       swan_complete();
-//     }
-//   }
-//   static startGyroscope(swan_object) {
-//     swan._startGyroscope = true;
-//     if (swan_success) {
-//       swan_object.success();
-//     }
-//     if (swan_complete) {
-//       swan_complete();
-//     }
-//   }
-//   //
-//   static onDeviceMotionChange(swan_object) { return my.onDeviceMotionChange(swan_object); }
-//   static stopDeviceMotionListening(swan_object) { return my.stopDeviceMotionListening(swan_object); }
-//   static startDeviceMotionListening(swan_object) { return my.startDeviceMotionListening(swan_object); }
-//   //
-//   static getNetworkType(swan_object) {
-//     if(!swan_object){return}
-//     var my_object = {};
-//     var swan_success=swan_object.success
-//     var swan_fail=swan_object.fail
-//     var swan_complete=swan_object.complete
-//      if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
-//     my_object.success = function (my_res) {
-//       var swan_res = { networkType: swan._network(my_res).networkType };
-//       if (swan_success) {
-//         swan_success(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     my_object.fail = function (my_res) {
-//       if (swan_object.fail) {
-//         swan_object.fail(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
+  static offAppShow() {
+    return my.offAppShow()
+  }
 
-//     return my.getNetworkType(my_object);
-//   }
-//   static _network(my_res) {
-//     var networkType;
-//     if (my_res.networkAvailable) {
-//       switch (my_res.networkType) {
-//         case "WWAN":
-//           networkType = "WIFI";
-//           break;
-//         default:
-//           networkType = my_res.networkType;
-//           break;
-//       }
-//     } else {
-//       networkType = "NONE";
-//     }
-//     return { isConnected: my_res.networkAvailable, networkType: networkType.toLowerCase() };
-//   }
-//   static onNetworkStatusChange(callack) {
-//     my.onNetworkStatusChange(function (my_res) {
-//       callack(swan._network(my_res));
-//     });
-//   }
+  static onAppShow(callback) {
+    return my.onAppShow(callback)
+  }
 
+  static offAppHide() {
+    return my.offAppHide()
+  }
 
-//   //
-//   static makePhoneCall(swan_object) {
-//     if (swan_object) {
-//     var  my_object = {};
-//     var swan_phoneNumber=swan_object.phoneNumber
-//     var swan_success=swan_object.success
-//     var swan_fail=swan_object.fail
-//     var swan_complete=swan_object.complete
-//     if(swan_phoneNumber){
-//      my_object.phoneNumber=swan_phoneNumber
-//     }
-//     if(swan_success){
-//      my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//      my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//      my_object.complete=swan_complete
-//     }
-//     my_object.success = function (my_res) {
-//         var swan_res = {
-//         };
-//         if (swan_success) {
-//           swan_success(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(swan_res);
-//         }
-//       };
-//       my_object.fail = function (my_res) {
-//         if (swan_object.fail) {
-//           swan_fail(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(swan_res);
-//         }
-//       };
+  static onAppHide(callback) {
+    return my.offAppHide(callback)
+  }
 
-//     }
-//      return my.makePhoneCall(my_object);
-//   }
+  // ///////////  URLQuery ////////////
+  static setURLQuery(urlQuery) {
+    const page = OneKit.current()
+    //
+    const oldURLQuery = page.query
+    const newURLQuery = oldURLQuery
+    for (const key of Object.keys(urlQuery)) {
+      const value = urlQuery[key]
+      newURLQuery[key] = value
+    }
+    page.query = newURLQuery
+    if (page.onURLQueryChange) {
+      page.onURLQueryChange({
+        oldURLQuery,
+        newURLQuery
+      })
+    }
+  }
 
-//   static scanCode(swan_object) {//
-//     var my_object;
-//     if (swan_object) {
-//       my_object = {};
-//       var swan_onlyFromCamera=swan_object.onlyFromCamera||false
-//       var swan_scanType=swan_object.scanType
-//        var swan_success=swan_object.success
-//     var swan_fail=swan_object.fail
-//     var swan_complete=swan_object.complete
-//     if(swan_onlyFromCamera){
-//       my_object.hideAlbum=swan_onlyFromCamera
-//     }
-//     if(swan_scanType){
-//       my_object.scanType=swan_scanType
-//     }
-//     if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
-//       my_object.success = function (my_res) {
-//         console.log(my_res)
-//         var swan_res = {};
-//         if (my_res.code) {
-//           swan_res.charSet = "UTF-8";
-//           swan_res.swan_res = my_res.code;
-//           if (my_res.qrCode) {
-//             swan_res.scanType = "QR_CODE";
-//           } else if (my_res.barCode) {
-//             swan_res.scanType = "EAN_8";
-//           }
-//         }
-//         if (swan_success) {
-//           swan_success(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(swan_res);
-//         }
-//       };
-//       my_object.fail = function (my_res) {
-//         console.log(my_res)
-//         if (swan_fail) {
-//           swan_fail(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(my_res);
-//         }
-//       };
-//     }
-//     return my.scan(my_object);
-//   }
-//   //
-//   static vibrateLong(swan_object) {
-//     var my_object = {};
-//     my_object.success = function (my_res) {
-//       var swan_res = {
-//         errMsg: "vibrateLong:ok"
-//       };
-//       if (swan_success) {
-//         swan_success(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     return my.vibrateLong(my_object);
-//   }
-//   static vibrateShort(swan_object) {
-//     var my_object = {};
-//     my_object.success = function (my_res) {
-//       var swan_res = {
-//         errMsg: "vibrateShort:ok"
-//       };
-//       if (swan_success) {
-//         swan_success(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     return my.vibrateShort(my_object);
-//   }
-//   //
-//   static onMemoryWarning(swan_object) { return my.onMemoryWarning(swan_object); }
-//   //
-//   static writeBLECharacteristicValue(swan_object) { return my.writeBLECharacteristicValue(swan_object); }
-//   static readBLECharacteristicValue(swan_object) { return my.readBLECharacteristicValue(swan_object); }
-//   static onBLEConnectionStateChange(swan_object) { return my.onBLEConnectionStateChange(swan_object); }
-//   static onBLECharacteristicValueChange(swan_object) { return my.onBLECharacteristicValueChange(swan_object); }
-//   static notifyBLECharacteristicValueChange(swan_object) { return my.notifyBLECharacteristicValueChange(swan_object); }
-//   static getBLEDeviceServices(swan_object) { return my.getBLEDeviceServices(swan_object); }
-//   static getBLEDeviceCharacteristics(swan_object) { return my.getBLEDeviceCharacteristics(swan_object); }
-//   static createBLEConnection(swan_object) { return my.createBLEConnection(swan_object); }
-//   static closeBLEConnection(swan_object) { return my.closeBLEConnection(swan_object); }
-//   //
-//   static stopBluetoothDevicesDiscovery(swan_object) {
-//     if(!swan_object){return}
-//     var my_object = {};
-//     var swan_success=swan_object.success
-//     var swan_fail=swan_object.fail
-//     var swan_complete=swan_object.complete
-//     if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
-//     my_object.success = function (my_res) {
-//         var swan_res = {
+  static getURLQuery() {
+    const page = OneKit.current()
+    return page.query
+  }
 
-//         };
-//         if (swan_success) {
-//           swan_success(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(swan_res);
-//         }
-//       };
-//       my_object.fail = function (my_res) {
-//         if (swan_object.fail) {
-//           swan_fail(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(swan_res);
-//         }
-//       };
+  // /////////// 更新 ////////////
+  static getUpdateManager() {
+    return my.getUpdateManager()
+  }
 
-//     return my.stopBluetoothDevicesDiscovery(my_object);
-//   }
-//   static startBluetoothDevicesDiscovery(swan_object) {
-//     // swan.openBluetoothAdapter(swan_object);
-//     return my.startBluetoothDevicesDiscovery(swan_object);
-//   }
-//   static openBluetoothAdapter(swan_object) {
-//     var my_object = {};
-//     my_object.success = function (my_res) {
-//       var swan_res = { errMsg: "openBluetoothAdapter:ok" };
-//       if (swan_success) { swan_success(swan_res); }
-//       if (swan_complete) { swan_complete(swan_res); }
-//     };
-//     my_object.fail = function (my_res) {
-//       if (swan_success) { swan_object.success(my_res); }
-//       if (swan_complete) { swan_complete(my_res); }
-//     };
-//     return my.openBluetoothAdapter(my_object);
-//   }
-//   static onBluetoothDeviceFound(swan_object) { return my.onBluetoothDeviceFound(swan_object); }
-//   static onBluetoothAdapterStateChange(swan_object) { return my.onBluetoothAdapterStateChange(swan_object); }
-//   static getConnectedBluetoothDevices(swan_object) { return my.getConnectedBluetoothDevices(swan_object); }
-//   static getBluetoothDevices(swan_object) {
-//     var my_object = {};
-//     my_object.success = function (my_res) {
-//       my.getBluetoothDevices({
-//         success: (my_res) => {
-//           // console.log("000", my_res)
-//           // console.log("000", my_res.devices)
-//           swan_res.devices = my_res.devices;
-//         }
-//       });
-//       var swan_res = {
-//         errMsg: "closeBluetoothAdapter:ok"
-//       };
-//       if (swan_success) { swan_success(swan_res); }
-//       if (swan_complete) { swan_complete(swan_res); }
-//     };
-//     my_object.fail = function (my_res) {
-//       if (swan_success) { swan_object.success(my_res); }
-//       if (swan_complete) { swan_complete(my_res); }
-//     };
-//     return my.getBluetoothDevices(my_object);
-//   }
-//   static getBluetoothAdapterState(swan_object) { return my.getBluetoothAdapterState(swan_object); }
-//   static closeBluetoothAdapter(swan_object) { return my.closeBluetoothAdapter(swan_object); }
-//   //
-//   static stopHCE(swan_object) { return my.stopHCE(swan_object); }
-//   static startHCE(swan_object) { return my.startHCE(swan_object); }
-//   static sendHCEMessage(swan_object) { return my.sendHCEMessage(swan_object); }
-//   static onHCEMessage(swan_object) { return my.onHCEMessage(swan_object); }
-//   static getHCEState(swan_object) { return my.getHCEState(swan_object); }
-//   //
-//   static setScreenBrightness(swan_object) {
-//     var my_object;
-//     if (!swan_object) {return}
-//       my_object = {};
-//       var swan_value=swan_object_value
-//       var swan_success=swan_object.success
-//     var swan_fail=swan_object.fail
-//     var swan_complete=swan_object.complete
-//     if(swan_value){
-//       my_object.brightness=swan_value
-//     }
-//      if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
-//      my_object.success = function (my_res) {
-//         var swan_res = {
+  // /////////// 调试 ////////////
+  static setEnableDebug() {
+    return console.log('setEnableDebug is not setEnableDebug')
+  }
 
-//         };
-//         if (swan_success) {
-//           swan_success(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(swan_res);
-//         }
-//       };
-//       my_object.fail = function (my_res) {
-//         if (swan_object.fail) {
-//           swan_fail(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(swan_res);
-//         }
-//       };
+  // /////////// 路由 ////////////
+  static navigateTo(object) {
+    return my.navigateTo(object)
+  }
 
+  static redirectTo(object) {
+    return my.redirectTo(object)
+  }
 
-//     return my.setScreenBrightness(my_object);
-//   }
-//   static setKeepScreenOn(swan_object) { return my.setKeepScreenOn(swan_object); }
-//   static onUserCaptureScreen(swan_object) { return my.onUserCaptureScreen(swan_object); }
+  static switchTab(object) {
+    return my.switchTab(object)
+  }
 
-//   static getScreenBrightness(swan_object) {
-//     var my_object;
-//     if (!swan_object) {return}
-//       my_object = {};
-//        var swan_success=swan_object.success
-//     var swan_fail=swan_object.fail
-//     var swan_complete=swan_object.complete
-//      if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
-//     my_object.success = function (my_res) {
-//       var swan_res = { value: my_res.brightness };
-//       if (swan_success) {
-//         swan_success(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     my_object.fail = function (my_res) {
-//       if (swan_object.fail) {
-//         swan_object.fail(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     return my.getScreenBrightness(my_object);
-//   }
-//   // ///////////////// Ext //////////////
-//   static getExtConfigSync(swan_object) { return my.getExtConfigSync(swan_object); }
-//   static getExtConfig(swan_object) { return my.getExtConfig(swan_object); }
-//   // ////////////////// File //////////
-//   static getFileSystemManager(swan_object) { return my.getFileSystemManager(swan_object); }
-//   static getFileInfo(swan_object) { return my.getFileInfo(swan_object); }
-//   static removeSavedFile(swan_object) { return my.removeSavedFile(swan_object); }
-//   static getSavedFileInfo(swan_object) { return my.getSavedFileInfo(swan_object); }
-//   static getSavedFileList(swan_object) { return my.getSavedFileList(swan_object); }
-//   static openDocument(swan_object) { return my.openDocument(swan_object); }
-//   static saveFile(swan_object) {
-//     my.saveFile({
-//       apFilePath: swan_object.tempFilePath,
-//       success(my_res) {
-//         var swan_res = { savedFilePath: my_res.apFilePath };
-//         if (swan_success) {
-//           swan_success(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(swan_res);
-//         }
-//       }, fail(my_res) {
-//         if (swan_fail) {
-//           swan_fail(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(my_res);
-//         }
-//       }
-//     });
-//   }
-//   // ////////// Location ///////////////
-//   static openLocation(swan_object) { return my.openLocation(swan_object); }
-//   static getLocation(swan_object) { return my.getLocation(swan_object); }
-//   static chooseLocation(swan_object) { return my.chooseLocation(swan_object); }
-//   // //////// Media ////////////////////
-//   static createMapContext(swan_object) { return my.createMapContext(swan_object); }
-//   static compressImage(swan_object) { return my.compressImage(swan_object); }
-//   static saveImageToPhotosAlbum(swan_object) { return my.saveImageToPhotosAlbum(swan_object); }
-//   static getImageInfo(swan_object) { return my.getImageInfo(swan_object); }
-//   static previewImage(swan_object) { return my.previewImage(swan_object); }
-//   static chooseImage(swan_object) {
-//     if (!swan_object.count) {
-//       swan_object.count = 0;
-//     }
-//     my.chooseImage({
-//       conut: swan_object.count,
-//       sizeType: swan_object.sizeType,
-//       sourceType: swan_object.scourceType,
-//       success: (my_res) => {
-//         var tempFilePaths = [];
-//         var tempFiles = [];
-//         for (var path of my_res.apFilePaths) {
-//           tempFilePaths.push(path);
-//           tempFiles.push({ path: path, size: 1000000 });
-//         }
-//         var swan_res = {
-//           tempFilePaths: tempFilePaths,
-//           tempFiles: tempFiles
-//         };
-//         if (swan_success) {
-//           swan_success(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(complete);
-//         }
-//       },
-//       fail: (my_res) => {
-//         if (swan_fail) {
-//           swan_fail(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(swan_res);
-//         }
-//       }
-//     });
-//   }
-//   static saveVideoToPhotosAlbum(swan_object) { return my.saveVideoToPhotosAlbum(swan_object); }
-//   static chooseVideo(swan_object) { return my.chooseVideo(swan_object); }
-//   static createVideoContext(videoId, ui) { return new VideoContext(my.createVideoContext(videoId)); }
-//   static stopVoice(swan_object) { return my.stopVoice(swan_object); }
-//   static pauseVoice(swan_object) { return my.pauseVoice(swan_object); }
-//   static playVoice(swan_object) { return my.playVoice(swan_object); }
-//   static setInnerAudioOption(swan_object) { return my.setInnerAudioOption(swan_object); }
-//   static getAvailableAudioSources(swan_object) { return my.getAvailableAudioSources(swan_object); }
-//   static createInnerAudioContext(swan_object) { return my.createInnerAudioContext(swan_object); }
-//   static createAudioContext(swan_object) { return my.createAudioContext(swan_object); }
-//   static onBackgroundAudioStop(swan_object) { return my.onBackgroundAudioStop(swan_object); }
-//   static onBackgroundAudioPause(swan_object) { return my.onBackgroundAudioPause(swan_object); }
-//   static onBackgroundAudioPlay(swan_object) { return my.onBackgroundAudioPlay(swan_object); }
-//   static stopBackgroundAudio(swan_object) { return my.stopBackgroundAudio(swan_object); }
-//   static seekBackgroundAudio(swan_object) { return my.seekBackgroundAudio(swan_object); }
-//   static pauseBackgroundAudio(swan_object) { return my.pauseBackgroundAudio(swan_object); }
-//   static playBackgroundAudio(swan_object) { return my.playBackgroundAudio(swan_object); }
-//   static getBackgroundAudioPlayerState(swan_object) { return my.getBackgroundAudioPlayerState(swan_object); }
-//   static getBackgroundAudioManager(swan_object) { return my.getBackgroundAudioManager(swan_object); }
-//   static createLivePusherContext(swan_object) { return my.createLivePusherContext(swan_object); }
-//   static startRecord(swan_object) { return my.startRecord(swan_object); }
-//   static stopRecord(swan_object) { return my.stopRecord(swan_object); }
-//   static getRecorderManager(swan_object) { return my.getRecorderManager(swan_object); }
-//   // ////////////// Network ///////////////
-//   static request(swan_object) {
+  static navigateBack(object) {
+    return my.navigateBack(object)
+  }
 
-//     if (!swan_object) {
-//       return;
-//     }
-//     const swan_url = swan_object.url;
-//     const swan_data = swan_object.data;
-//     var swan_header=swan_object.header;
-//     var swan_timeout=swan_object.timeout;
-//     var swan_dataType=swan_object.dataType||"json"
-//     var swan_responseType=swan_object.responseType||"text"
-//     var swan_enableHttp2=swan_object.enableHttp2||false
-//     var swan_enableQuic=swan_object.enableQuic||false
-//     var swan_enableCache=swan_object.enableCache||false
-//     const swan_method = swan_object.method || "GET";
-//     const swan_success = swan_object.success;
-//     const swan_fail = swan_object.fail;
-//     const swan_complete = swan_complete;
-//     //
-//     var my_object = {};
-//     //
-//    if (swan_data) {
-//       my_object.data = swan_data;
-//     }
-//     if (swan_url) {
-//       my_object.url = swan_url;
-//     }
-//     if (swan_header) {
-//       my_object.header = swan_header;
-//     }
-//     if (swan_timeout) {
-//       my_object.timeout = swan_timeout;
-//     }
-//     if (swan_dataType) {
-//       my_object.dataType = swan_dataType;
-//     }
-//     // if (swan_responseType) {
-//     //   my_object.responseType = swan_responseType;
-//     // }
-//     // if (swan_enableHttp2) {
-//     //   my_object.enableHttp2 = swan_enableHttp2;       //weixin有alipay没有
-//     // }
-//     // if (swan_enableQuic) {
-//     //   my_object.enableQuic = swan_enableQuic;
-//     // }
-//     // if (swan_enableCache) {
-//     //   my_object.enableCache = swan_enableCache;
-//     // }
-//     if (swan_method) {
-//       my_object.method = swan_method;
-//     }
-//     if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
-//     //
-//     my_object.success = function (my_res) {
-//       var swan_res = {
-//         data: my_res.data,
-//         statusCode: my_res.status,
-//         header: my_res.headers,
-//         // cookies:my_res.cookies,  需要编程
-//         // profile:my_res.profile
-//       };
-//       if (swan_success) {
-//         swan_success(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     my_object.fail = function (my_res) {
-//      var swan_res = {
+  static reLaunch(object) {
+    return my.reLaunch(object)
+  }
 
-//       };
-//       if (swan_object.fail) {
-//         swan_fail(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
+  // /////////// 网络 ////////////
+  static downloadFile(tt_object) {
+    const tt_url = tt_object.url
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const url = tt_url
+    PROMISE((SUCCESS) => {
+      my.downloadFile({
+        url,
+        success: tt_res => {
+          const my_res = {
+            tempFilePath: tt_res.apFilePath,
+            statusCode: 200
+          }
+          SUCCESS(my_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
 
-//      my.httpRequest(my_object);
+  static request(tt_object) {
+    const tt_url = tt_object.url
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const url = tt_url
+    PROMISE((SUCCESS) => {
+      my.request({
+        url,
+        success: tt_res => {
+          const my_res = {
+            data: tt_res.data,
+            statusCode: tt_res.status,
+            header: tt_res.headers
+          }
+          SUCCESS(my_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
 
-//     /**/
+  static uploadFile(tt_object) {
+    const tt_url = tt_object.url
+    const tt_filePath = tt_object.filePath
+    const tt_name = tt_object.name
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const url = tt_url
+    const filePath = tt_filePath
+    const fileName = tt_name
+    const fileType = 'image'
+    PROMISE((SUCCESS) => {
+      my.uploadFile({
+        url,
+        filePath,
+        fileName,
+        fileType,
+        success: tt_res => {
+          const my_res = {
+            data: tt_res.data,
+            statusCode: tt_res.statusCode,
+            header: tt_res.header
+          }
+          SUCCESS(my_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
 
-//   }
-//   //////////////////////////////////////////////////////////////
-//   static downloadFile(swan_object) { return my.downloadFile(swan_object); }
-//   static uploadFile(swan_object) {
-//     my.uploadFile({
-//       url: swan_object.url,
-//       filePath: swan_object.filePath,
-//       fileName: swan_object.name,
-//       fileType: "image",
-//       header: swan_object.header,
-//       formData: swan_object.formData,
-//       success: swan_object.success,
-//       fail: swan_object.fail,
-//       complete: swan_complete
-//     });
-//   }
-//   //
-//   static connectSocket(swan_object) { return my.connectSocket(swan_object); }
-//   static onSocketError(swan_object) { return my.onSocketError(swan_object); }
-//   static onSocketMessage(swan_object) { return my.onSocketMessage(swan_object); }
-//   static onSocketClose(swan_object) { return my.onSocketClose(swan_object); }
-//   static onSocketOpen(swan_object) { return my.onSocketOpen(swan_object); }
-//   static sendSocketMessage(swan_object) { return my.sendSocketMessage(swan_object); }
-//   static closeSocket(swan_object) { return my.closeSocket(swan_object); }
-//   static offLocalServiceResolveFail(callbck) { return my.offLocalServiceResolveFail(callbck); }
-//   static onLocalServiceResolveFail(callbck) { return my.onLocalServiceResolveFail(callbck); }
-//   static onLocalServiceDiscoveryStop(callbck) { return my.onLocalServiceDiscoveryStop(callbck); }
-//   static offLocalServiceLost(callbck) { return my.offLocalServiceLost(callbck); }
-//   static onLocalServiceLost(callbck) { return my.onLocalServiceLost(callbck); }
-//   static offLocalServiceFound(callbck) { return my.offLocalServiceFound(callbck); }
-//   static onLocalServiceFound(callbck) { return my.onLocalServiceFound(callbck); }
-//   static stopLocalServiceDiscovery(swan_object) { return my.stopLocalServiceDiscovery(swan_object); }
-//   static startLocalServiceDiscovery(swan_object) { return my.startLocalServiceDiscovery(swan_object); }
+  static connectSocket(tt_object) {
+    const tt_url = tt_object.url
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const url = tt_url
+    PROMISE((SUCCESS) => {
+      my.connectSocket({
+        url,
+        success: () => {
+          const my_res = {
+            errMsg: 'connectSocket: ok',
+            socketTaskId: 1
+          }
+          SUCCESS(my_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
 
-//   // /////// Open Interface //////////
-//   static _checkSession() {
-//     var now = new Date().getTime();
-//     return getApp().onekitswan._jscode && getApp().onekitswan._login && now <= getApp().onekitswan._login + 1000 * 60 * 60 * 24 * 3;
-//   }
-//   static checkSession(swan_object) {
-//     if (this._checkSession()) {
-//       if (swan_success) {
-//         swan_success();
-//       }
-//       if (swan_complete) {
-//         swan_complete();
-//       }
+  static onSocketOpen(callback) {
+    return my.onSocketOpen(callback)
+  }
 
-//     } else {
-//       if (swan_fail) {
-//         swan_fail();
-//       }
-//       if (swan_complete) {
-//         swan_complete();
-//       }
-//     }
+  static onSocketError(callback) {
+    return my.onSocketError(callback)
+  }
 
-//     /*
-//        var url = getApp().onekitswan.server + "userinfo";
-//        my.httpRequest({
-//              url: url,
-//              header: {
-//                'Content-Type': 'application/x-www-form-urlencoded'
-//              },
-//              method: "POST",
-//              data: {
-//                nickname: my_res.nickName,
-//                avatarUrl: my_res.avatar,
-//                js_code: jscode
-//              },
-//              success(my_res) {
-//                if (swan_success) {
-//                  swan_object.success(my_res.data);
-//                }
-//                if (swan_complete) {
-//                  swan_complete(my_res.data);
-//                }
-//              }, fail(my_res) {
-//                console.log(my_res.data);
-//              }
-//            });
-//      }*/
+  static sendSocketMessage(object) {
+    return my.sendSocketMessage(object)
+  }
 
-//   }
+  static onSocketMessage(callback) {
+    return my.onSocketMessage(callback)
+  }
 
-//   static login(swan_object) {
-//     var that = this;
-//     if (!swan_object) {
-//       return my.getAuthCode(swan_object);
-//     }
-//     var my_object = {
-//       scopes: "auth_user"
-//     };
-//     my_object.success = function (my_res) {
-//       getApp().onekitswan._jscode = my_res.authCode;
-//       getApp().onekitswan._login = new Date().getTime();
-//       var swan_res = { code: my_res.authCode };
-//       if (swan_success) {
-//         swan_success(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(complete);
-//       }
-//     }
-//     my_object.fail = function (my_res) {
-//       if (swan_object.fail) {
-//         swan_object.fail(my_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(my_res);
-//       }
-//     }
-//     if (swan._checkSession()) {
-//       my_object.success({ authCode: getApp().onekitswan._jscode });
-//     } else {
-//       my.getAuthCode(my_object);
-//     }
-//   };
-//   static getUserInfo(swan_object) {
+  static closeSocket(object) {
+    return my.closeSocket(object)
+  }
 
+  static onSocketClose(callback) {
+    return my.onSocketClose(callback)
+  }
 
-//     swan.login({
-//       success: (my_res) => {
-//         var jscode = my_res.code;
-//         var withCredentials = swan_object.withCredentials;
-//         my.getAuthUserInfo({
-//           success(my_res) {
-//             console.log(my_res);
-//             var url = getApp().onekit.server + "api/userinfo";
-//             console.log(url);
-//             my.httpRequest({
-//               url: url,
-//               header: {
-//                 'Content-Type': 'application/x-www-form-urlencoded'
-//               },
-//               method: "POST",
-//               data: {
-//                 withCredentials: withCredentials === true,
-//                 js_code: jscode
-//               },
-//               success(my_res) {
-//                 console.log(my_res.data);
-//                 if (swan_success) {
-//                   swan_object.success(my_res.data);
-//                 }
-//                 if (swan_complete) {
-//                   swan_complete(my_res.data);
-//                 }
-//               }, fail(my_res) {
-//                 console.log(my_res.data);
-//               }
-//             });
-//           }
-//         });
-//       }
-//     });
-//   }
-//   static getOpenData(swan_object) {
+  // /////////// 界面 ////////////
+  // /////////// 交互反馈 ////////////
+  static showToast(tt_object) {
+    const tt_title = tt_object.title
+    const tt_icon = tt_object.icon || 'success'
+    const tt_duration = tt_object.duration || 1500
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const content = tt_title
+    const type = tt_icon
+    const duration = tt_duration
+    PROMISE((SUCCESS) => {
+      my.showToast({
+        content,
+        type,
+        duration,
+        success: () => {
+          const tt_res = {
+            errMsg: 'showToast: ok',
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
 
-//     if (!getApp().onekit._opendataCallbacks) {
-//       getApp().onekit._opendataCallbacks = [];
-//     }
-//     function success(my_res) {
-//       var opendata = my_res.userInfo;
-//       getApp().onekit._opendata = opendata;
-//       for (var cb = 0; cb < getApp().onekit._opendataCallbacks.length; cb++) {
-//         getApp().onekit._opendataCallbacks[cb](opendata);
-//       }
-//       if (swan_success) {
-//         swan_object.success(opendata);
-//       }
-//       if (swan_complete) {
-//         swan_complete(opendata);
-//       }
-//     }
-//     var opendata = getApp().onekit._opendata;
-//     if (opendata) {
-//       if (Object.keys(opendata) > 0) {
-//         swan_object.success(opendata);
-//       } else {
-//         if (swan_success) {
-//           getApp().onekit._opendataCallbacks.push(swan_object.success);
-//         }
-//       }
-//       return;
-//     }
-//     getApp().onekit._opendata = {};
-//     swan.login({
-//       success(my_res) {
-//         var jscode = my_res.code;
-//         my.getAuthUserInfo({
-//           success(my_res) {
-//             var url = getApp().onekit.server + "opendata";
-//             my.httpRequest({
-//               url: url,
-//               header: {
-//                 'Content-Type': 'application/x-www-form-urlencoded'
-//               },
-//               method: "POST",
-//               data: {
-//                 nickname: my_res.nickName,
-//                 avatarUrl: my_res.avatar,
-//                 js_code: jscode
-//               },
-//               success(my_res) {
-//                 success(my_res.data);
-//               }, fail(my_res) {
-//                 console.log(my_res);
-//               }
-//             });
-//           }
-//         });
-//       }
-//     });
+  static hideToast(tt_object) {
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS) => {
+      my.hideToast({
+        success: () => {
+          const tt_res = {
+            errMsg: 'hideToast: ok',
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
 
-//   }
-//   static getPhoneNumber(swan_object) {
+  static showLoading(tt_object) {
+    const tt_title = tt_object.title
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const content = tt_title
+    PROMISE((SUCCESS) => {
+      my.showLoading({
+        content,
+        success: () => {
+          const tt_res = {
+            errMsg: 'showLoading: ok',
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
 
-//     swan.login({
-//       success: (my_res) => {
-//         var jscode = my_res.code;
-//         console.log("ssss" + jscode);
-//         my.getPhoneNumber({
-//           success(my_res) {
-//             // var response = {
-//             // response:
-//             // "ZOELfBOrmRHNNiiVR4FmNrvV7Dmog5w/KFaNrfLugkDqdkPzlxBCzmfLBrtQlPptWix+1f9I07p5xNfwGgTgVA==",
-//             // sign:
-//             // "fD6CyFQeJTTgtM1uviy5uAm4YWiN3s0crGtD1v5XdXuDzFEBPTRYqGODcfzskAMFWNXJAK5Zx0/kk+6e9tn/N3U9RcrTgc6VLw7HM9fPTcz8CzVl1+b6fjsi0wWsADF53vKTurFn6HTSTEJvzbMMD5M2lgazni72tZHCNJSkeG1W+kjX/Mj5tfJXNkn6nlrtu1N6BxgsZdgDdkMQfIrWv2TOFlpx043LMBmk4CxXLpGvRfRcHLjixs5wEO1dfqENn6oj9hAQbPA8itYW4TvGlo5qhnzT+ya1rWcKrjn4zh7uvnr0hB0oPiqLu17txS5uIQIF0DJ2cC0k6kuOQLVwTQ=="
-//             // }
-//             // JSON.parse(my_res.response);
-//             var response = JSON.parse(my_res.response);
-//             console.log(response);
-//             var url = getApp().onekit.server + "phonenumber";
-//             my.httpRequest({
-//               url: url,
-//               header: {
-//                 'Content-Type': 'application/x-www-form-urlencoded'
-//               },
-//               method: "POST",
-//               data: {
-//                 response: response.response,
-//                 sign: response.sign,
-//                 js_code: jscode
-//               },
-//               success(my_res) {
-//                 var data = my_res.data;
-//                 if (swan_success) {
-//                   swan_object.success(data);
-//                 }
-//                 if (swan_complete) {
-//                   swan_complete(data);
-//                 }
-//               }, fail(my_res) {
-//                 console.log(my_res.data);
-//               }
-//             });
-//           }
-//         });
-//       },
-//     });
+  static hideLoading(tt_object) {
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS) => {
+      my.hideLoading({
+        success: () => {
+          const tt_res = {
+            errMsg: 'hideLoading: ok',
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
 
-//   }
-//   static navigateToMiniProgram(swan_object) { return my.navigateToMiniProgram(swan_object); }
-//   static navigateBackMiniProgram(swan_object) { return my.navigateBackMiniProgram(swan_object); }
-//   static getAccountInfoSync(swan_object) { return my.getAccountInfoSync(swan_object); }
+  static showModal(tt_object) {
+    const tt_title = tt_object.title
+    const tt_content = tt_object.content
+    const tt_confirmText = tt_object.confirmText || '确定'
+    const tt_cancelText = tt_object.cancelText || '取消'
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const title = tt_title
+    const content = tt_content
+    const confirmButtonText = tt_confirmText
+    const cancelButtonText = tt_cancelText
+    PROMISE((SUCCESS) => {
+      my.confirm({
+        title,
+        content,
+        confirmButtonText,
+        cancelButtonText,
+        success: my_res => {
+          if (my_res.confirm) {
+            const tt_res = {
+              errMsg: 'showModal: ok',
+              confirm: true,
+              cancel: false
+            }
+            SUCCESS(tt_res)
+          } else {
+            const tt_res = {
+              errMsg: 'showModal: ok',
+              confirm: false,
+              cancel: true
+            }
+            SUCCESS(tt_res)
+          }
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
 
-//   static reportMonitor(swan_object) { return my.reportMonitor(swan_object); }
-//   static reportAnalytics(swan_object) { return my.reportAnalytics(swan_object); }
-//   static requestPayment(swan_object) {
-//     var tradeNO = swan_object.package.split("=")[1];
-//     console.log(tradeNO);
-//     var my_object = {
-//       tradeNO: tradeNO,
-//       success: swan_object.success,
-//       fail: swan_object.fail,
-//       complete: swan_complete
-//     };
-//     return my.tradePay(my_object);
-//   }
-//   static authorize(swan_object) { return my.authorize(swan_object); }
-//   static openSetting(swan_object) { return my.openSetting(swan_object); }
-//   static getSetting(swan_object) { return my.getSetting(swan_object); }
-//   static chooseAddress(swan_object) { return my.chooseAddress(swan_object); }
-//   static openCard(swan_object) {
-//     my.openCardList();
-//     if (swan_success) {
-//       swan_object.success();
-//     }
-//     if (swan_complete) {
-//       swan_complete();
-//     }
-//   }
-//   static addCard(swan_object) {
-//     var url = getApp().onekit.server + "addcard";
-//     my.httpRequest({
-//       url: url,
-//       header: {
-//         'Content-Type': 'application/x-www-form-urlencoded'
-//       },
-//       method: "POST",
-//       data: {
-//         cardList: JSON.stringify(swan_object.cardList),
-//         js_code: swan_object.jscode
-//       },
-//       success(my_res) {
-//         var data = my_res.data;
-//         if (swan_success) {
-//           swan_object.success(data);
-//         }
-//         if (swan_complete) {
-//           swan_complete(data);
-//         }
-//       }, fail(my_res) {
-//         console.log(my_res.data);
-//       }
-//     });
-//   }
-//   static chooseInvoiceTitle(swan_object) { return my.chooseInvoiceTitle(swan_object); }
-//   static chooseInvoice(swan_object) { return my.chooseInvoice(swan_object); }
-//   static startSoterAuthentication(swan_object) { return my.startSoterAuthentication(swan_object); }
-//   static checkIsSupportSoterAuthentication(swan_object) { return my.checkIsSupportSoterAuthentication(swan_object); }
-//   static checkIsSoterEnrolledInDevice(swan_object) { return my.checkIsSoterEnrolledInDevice(swan_object); }
-//   static getWeRunData(swan_object) { return my.getWeRunData(swan_object); }
+  static showActionSheet(tt_object) {
+    const tt_itemList = tt_object.itemList
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const items = tt_itemList
+    PROMISE((SUCCESS) => {
+      my.showActionSheet({
+        items,
+        success: my_res => {
+          const tt_res = {
+            errMsg: 'hideLoading: ok',
+            tapIndex: my_res.index
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
 
-//   // //////// Router //////////////
-//   static navigateBack(swan_object) {
-//     var my_object;
-//     if (!swan_object) {return}
-//       my_object = {};
-//       var swan_delta=swan_object.swan_delta||1
-//        var swan_success=swan_object.success
-//     var swan_fail=swan_object.fail
-//     var swan_complete=swan_object.complete
-//     if(swan_delta){
-//       my_object.delta=swan_delta
-//     }
-//     if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
-//       my_object.success = function (my_res) {
-//         if (swan_success) {
-//           swan_success(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(swan_res);
-//         }
-//       };
-//       my_object.fail = function (my_res) {
-//         if (swan_object.fail) {
-//           swan_object.fail(my_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(my_res);
-//         }
-//       };
+  // /////////// 导航栏 ////////////
+  static showNavigationBarLoading(object) {
+    return my.showNavigationBarLoading(object)
+  }
 
-//     return my.navigateBack(my_object);
-//   }
-//   static switchTab(swan_object) {
-//     var my_object;
-//     if (!swan_object) {return }
-//       my_object = {};
-//       var swan_url=swan_object.url
-//         var swan_success=swan_object.success
-//     var swan_fail=swan_object.fail
-//     var swan_complete=swan_object.complete
-//     if(swan_url){
-//       my_object.url=swan_url
-//     }
-//     if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
-//     my_object.success = function (my_res) {
-//       if (swan_success) {
-//         swan_success(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     my_object.fail = function (my_res) {
-//       if (swan_object.fail) {
-//         swan_object.fail(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     return my.switchTab(my_object);
-//   }
-//   static navigateTo(swan_object) {
-//     var my_object;
-//     if (!swan_object) {return }
-//       my_object = {};
-//       var swan_url=swan_object.url
-//       var swan_events=swan_object.events
-//       var swan_success=swan_object.success
-//       var swan_fail=swan_object.fail
-//       var swan_complete=swan_object.complete
-//        if(swan_url){
-//       my_object.url=swan_url
-//     }
-//     //    if(swan_events){
-//     //   my_object.events=swan_events////需要编程
-//     // }
-//       if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
-//     my_object.success = function (my_res) {
-//       if (swan_success) {
-//         swan_success(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     my_object.fail = function (my_res) {
-//       if (swan_object.fail) {
-//         swan_object.fail(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     return my.navigateTo(my_object);
-//   }
-//   static reLaunch(swan_object) {
-//     var my_object;
-//     if (!swan_object) {return }
-//       my_object = {};
-//       var swan_url=swan_object.url
-//     var swan_success=swan_object.success
-//     var swan_fail=swan_object.fail
-//     var swan_complete=swan_object.complete
-//      if(swan_url){
-//       my_object.url=swan_url
-//     }
-//      if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
-//     my_object.success = function (my_res) {
-//       if (swan_success) {
-//         swan_success(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     my_object.fail = function (my_res) {
-//       if (swan_object.fail) {
-//         swan_object.fail(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     return my.reLaunch(my_object);
-//   }
-//   static redirectTo(swan_object) {
-//     var my_object;
-//     if (swan_object) {return}
-//       my_object = {};
-//       var swan_url=swan_object.url
-//     var swan_success=swan_object.success
-//     var swan_fail=swan_object.fail
-//     var swan_complete=swan_object.complete
-//      if(swan_url){
-//       my_object.url=swan_url
-//     }
-//      if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
-//     my_object.success = function (my_res) {
-//       if (swan_success) {
-//         swan_success(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     my_object.fail = function (my_res) {
-//       if (swan_object.fail) {
-//         swan_object.fail(swan_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(swan_res);
-//       }
-//     };
-//     return my.redirectTo(my_object);
-//   }
-//   // /////////// Share /////////////
-//   static updateShareMenu(swan_object) { return my.updateShareMenu(swan_object); }
-//   static showShareMenu(swan_object) {
-//     my.navigateTo({
-//       url: "/swan/page/share/share"
-//     });
-//   }
-//   static hideShareMenu(swan_object) { return my.hideShareMenu(swan_object); }
-//   static getShareInfo(swan_object) { return my.getShareInfo(swan_object); }
-//   // ///////////// Storage //////////////
-//   static getStorageInfoSync(swan_object) { return my.getStorageInfoSync(swan_object); }
-//   static getStorageInfo(swan_object) { return my.getStorageInfo(swan_object); }
-//   static clearStorageSync(swan_object) { return my.clearStorageSync(swan_object); }
-//   static clearStorage(swan_object) { return my.clearStorage(swan_object); }
-//   static removeStorageSync(swan_object) { return my.removeStorageSync(swan_object); }
-//   static removeStorage(swan_object) { return my.removeStorage(swan_object); }
-//   static setStorageSync(key, value) { return my.setStorageSync({ key: key, data: value }); }
-//   static setStorage(swan_object) { return my.setStorage(swan_object); }
-//   static getStorageSync(key) {
-//     var swan_res = my.getStorageSync({ key: key });
-//     if (!swan_res) {
-//       return "";
-//     } else if (swan_res.data) {
-//       return swan_res.data;
-//     } else if (swan_res.APDataStorage) {
-//       return swan_res.APDataStorage;
-//     } else {
-//       return "";
-//     }
-//   }
-//   static getStorage(swan_object) { return my.getStorage(swan_object); }
-//   // //////////// UI ////////////////
-//   static showActionSheet(swan_object) {
-//     var my_object;
-//     if (!swan_object) {return}
-//       my_object = {};
-//              var swan_itemList=swan_object.itemList
-//        var swan_itemColor=swan_object.itemColor
-//        var swan_success=swan_object.success
-//     var swan_fail=swan_object.fail
-//     var swan_complete=swan_object.complete
-//  if(swan_itemList){
-//       my_object.items=swan_itemList
-//     }
-//     //  if(swan_itemColor){
-//     //   my_object.itemColor=swan_itemColor weixin有alipay没有
-//     // }
-//     if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
+  static hideNavigationBarLoading(object) {
+    return my.hideNavigationBarLoading(object)
+  }
 
-//       my_object.success = function (my_res) {
-//         var swan_res = { tapIndex: my_res.index };
-//         if (swan_success) {
-//           swan_success(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(swan_res);
-//         }
-//       };
+  static setNavigationBarTitle(tt_object) {
+    const tt_title = tt_object.title
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const title = tt_title
+    PROMISE((SUCCESS) => {
+      my.setNavigationBar({
+        title,
+        success: () => {
+          const tt_res = {
+            errMsg: 'setNavigationBarTitle: ok'
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
 
-//     return my.showActionSheet(my_object);
-//   }
-//   // static redirectTo(swan_object) { return my.redirectTo(swan_object); }
-//   // static redirectTo(swan_object) { return my.redirectTo(swan_object); }
-//   static hideLoading(swan_object) { return my.hideLoading(swan_object); }
-//   static showLoading(swan_object) {
-//     var my_object={};
-//     if (!swan_object) { return}
-//         var swan_title=swan_object.title
-//     var swan_mask=swan_object.mask
-//     var swan_success=swan_object.success
-//     var swan_fail=swan_object.fail
-//     var swan_complete=swan_object.complete
-//     if(swan_title){
-//       my_object.content=swan_title
-//     }
-//     // if(swan_mask){
-//     //   my_object.mask=swan_mask//需要编程
-//     // }
-//     if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
-//     my_object.success = function (my_res) {
-//         var swan_res = {
+  static setNavigationBarColor(tt_object) {
+    const tt_backgroundColor = tt_object.backgroundColor
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const backgroundColor = tt_backgroundColor
+    PROMISE((SUCCESS) => {
+      my.setNavigationBar({
+        backgroundColor,
+        success: () => {
+          const tt_res = {
+            errMsg: 'setNavigationBarColor: ok'
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
 
+  // ////// TabBar  ///////
+  static showTabBarRedDot(object) {
+    return my.showTabBarRedDot(object)
+  }
 
-//         };
-//         if (swan_success) {
-//           swan_success(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(swan_res);
-//         }
-//       };
-//       my_object.fail = function (my_res) {
-//         if (swan_object.fail) {
-//           swan_fail(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(swan_res);
-//         }
-//       };
+  static showTabBar(object) {
+    return my.showTabBar(object)
+  }
 
-//     return my.showLoading(my_object);
-//   }
-//   static hideToast(swan_object) {
-//     return my.hideToast(my_object);
-//   }
-//   static showToast(swan_object) {
-//     if (!swan_object) {
-//       return
-//     }
-//     let swan_title = swan_object.title;   // 必填项 现实的文本
-//     let swan_icon = swan_object.icon || 'success';  // 图片
-//     let swan_image = swan_object.image;
-//     let swan_duration = swan_object.duration || 1500 // 间隔时长
-//     let swan_mask = swan_object.mask;
-//     let swan_success = swan_object.success;
-//     let swan_fail = swan_object.fail;
-//     let swan_complete = swan_complete;
-//     swan_object = null;
-//     let my_object = {}
-//     if (swan_title) {
-//       my_object.content = swan_title
-//     }
-//     if (swan_icon) {
-//       my_object.type = swan_icon
-//     }
-//     if (swan_duration) {
-//       my_object.duration = swan_duration
-//     }
-//     //////////////
-//     my_object.success = function (my_res) {
-//       if (swan_success) {
-//         swan_success(my_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(my_res);
-//       }
-//     };
-//     my_object.fail = function (my_res) {
-//       if (swan_fail) {
-//         swan_fail(my_res);
-//       }
-//       if (swan_complete) {
-//         swan_complete(my_res);
-//       }
-//     };
-//     return my.showToast(my_object);
-//   }
-//   static showModal(my_object) {
-//     if (my_object === null) {
-//       return my.confirm();
-//     }
-//     var swan_object = {};
-//     var key;
-//     if (my_object.showCancel === null || my_object.showCancel) {
-//       var swan_title=swan_object.title
-//       var swan_content=swan_object.content
-//       var swan_cancelText=swan_object.cancelText
-//       var swan_cancelColor=swan_object.cancelColor
-//       var swan_confirmText=swan_object.confirmText||"确定"
-//       var swan_confirmColor=swan_object.confirmColor
-//   if(swan_title){
-//       my_object.title=swan_title
-//     }
-//     if(swan_content){
-//       my_object.content=swan_content
-//     }
-//     if(swan_cancelText){
-//       my_object.cancelButtonText=swan_cancelText
-//     }
-//     if(swan_confirmText){
-//       my_object.confirmButtonText=swan_confirmText
-//     }
-//       return my.confirm(swan_object);
-//     } else {
-//        var swan_title=swan_object.title
-//       var swan_content=swan_object.content
-//      var swan_confirmText=swan_object.confirmText||"确定"
-//     if(swan_title){
-//       my_object.title=swan_title
-//     }
-//     if(swan_content){
-//       my_object.content=swan_content
-//     }
-//     if(swan_confirmText){
-//       my_object.confirmButtonText=swan_confirmText
-//     }
-//       }
-//       return my.alert(swan_object);
-//     }
+  static setTabBarStyle(tt_object) {
+    const tt_color = tt_object.color || '#ff3377'
+    const tt_selectedColor = tt_object.selectedColor || '#ff3377'
+    const tt_backgroundColor = tt_object.backgroundColor || '#ffffff'
+    const tt_borderStyle = tt_object.borderStyle || 'black'
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const color = tt_color
+    const selectedColor = tt_selectedColor
+    const backgroundColor = tt_backgroundColor
+    const borderStyle = tt_borderStyle
+    PROMISE((SUCCESS) => {
+      my.setTabBarStyle({
+        color,
+        selectedColor,
+        backgroundColor,
+        borderStyle,
+        success: () => {
+          const tt_res = {
+            errMsg: 'setTabBarStyle: ok'
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
 
-//   static setNavigationBarColor(swan_object) { return my.setNavigationBarColor(swan_object); }
-//   static hideNavigationBarLoading(swan_object) {
-//     return my.hideNavigationBarLoading(my_object);
-//   }
-//   static showNavigationBarLoading(swan_object) {
-//     return my.showNavigationBarLoading(my_object);
-//   }
-//   static setNaivgationBarTitle(swan_object) { return my.setNavigationBar(swan_object); }
-//   static setBackgroundTextStyle(swan_object) { return my.setBackgroundTextStyle(swan_object); }
+  static setTabBarItem(tt_object) {
+    const tt_index = tt_object.index
+    const tt_text = tt_object.text || ''
+    const tt_iconPath = tt_object.iconPath || ''
+    const tt_selectedIconPath = tt_object.selectedIconPath || ''
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const index = tt_index
+    const text = tt_text
+    const iconPath = tt_iconPath
+    const selectedIconPath = tt_selectedIconPath
+    PROMISE((SUCCESS) => {
+      my.setTabBarItem({
+        index,
+        text,
+        iconPath,
+        selectedIconPath,
+        success: () => {
+          const tt_res = {
+            errMsg: 'setTabBarItem: ok'
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
 
-//   static setBackgroundColor(swan_object) { return my.setBackgroundColor(swan_object); }
-//   static setTabBarItem(swan_object) { return my.setTabBarItem(swan_object); }
-//   static setTabBarStyle(swan_object) { return my.setTabBarStyle(swan_object); }
-//   static hideTabBar(swan_object) { return my.hideTabBar(swan_object); }
-//   static showTabBar(swan_object) { return my.showTabBar(swan_object); }
-//   static hideTabBarRedDot(swan_object) { return my.hideTabBarRedDot(swan_object); }
-//   static showTabBarRedDot(swan_object) { return my.showTabBarRedDot(swan_object); }
-//   static removeTabBarBadge(swan_object) { return my.removeTabBarBadge(swan_object); }
-//   static setTabBarBadge(swan_object) { return my.setTabBarBadge(swan_object); }
+  static setTabBarBadge(object) {
+    return my.setTabBarBadge(object)
+  }
 
-//   static loadFontFace(swan_object) { return my.loadFontFace(swan_object); }
+  static removeTabBarBadge(object) {
+    return my.removeTabBarBadge(object)
+  }
 
-//   static stopPullDownRefresh(swan_object) {
-//     var my_object = {};
-//     if (!swan_object) {return}
-//      var swan_success=swan_object.success
-//     var swan_fail=swan_object.fail
-//     var swan_complete=swan_object.complete
-//     if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
-//       my_object.success = function (my_res) {
-//         if (swan_success) {
-//           swan_object.success(my_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(my_res);
-//         }
-//       };
-//       my_object.fail = function (my_res) {
-//         if (swan_fail) {
-//           swan_fail(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(my_res);
-//         }
-//       };
+  static hideTabBarRedDot(object) {
+    return my.hideTabBarRedDot(object)
+  }
 
-//     return my.stopPullDownRefresh(my_object);
-//   }
-//   static startPullDownRefresh(swan_object) {
-//     var my_object = {};
-//     if (!swan_object) {return }
-//      var swan_success=swan_object.success
-//     var swan_fail=swan_object.fail
-//     var swan_complete=swan_object.complete
-//     if(swan_success){
-//       my_object.success=swan_success
-//     }
-//     if(swan_fail){
-//       my_object.fail=swan_fail
-//     }
-//     if(swan_complete){
-//       my_object.complete=swan_complete
-//     }
-//       my_object.success = function (my_res) {
-//         if (swan_success) {
-//           swan_object.success(my_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(my_res);
-//         }
-//       };
-//       my_object.fail = function (my_res) {
-//         if (swan_fail) {
-//           swan_fail(swan_res);
-//         }
-//         if (swan_complete) {
-//           swan_complete(my_res);
-//         }
-//       };
+  static hideTabBar(object) {
+    return my.hideTabBar(object)
+  }
 
-//     return my.startPullDownRefresh(my_object);
-//   }
-//   static pageScrollTo(swan_object) { return my.pageScrollTo(swan_object); }
-//   static setTopBarText(swan_object) { return my.setTopBarText(swan_object); }
-//   static nextTick(swan_object) { return my.nextTick(swan_object); }
-//   static getMenuButtonBoundingClientRect(swan_object) { return my.getMenuButtonBoundingClientRect(swan_object); }
-//   static offWindowResize(swan_object) { return my.offWindowResize(swan_object); }
-//   static onWindowResize(swan_object) { return my.onWindowResize(swan_object); }
-//   // //////////// Worker ///////////////
-//   static createWorker(swan_object) { return my.createWorker(swan_object); }
+  static showFavoriteGuide() {
+    return console.warn('showFavoriteGuide is not support')
+  }
 
-//   static createIntersectionObserver(swan_object) { return my.createIntersectionObserver(swan_object); }
-//   // ///////////////////////////////////
-//   static hideKeyboard(swan_object) { return my.hideKeyboard(swan_object); }
-//   // /////////// cloud ////////////////
-//   static get cloud() {
-//     return new swan_cloud();
-//   }
-// }
+  // ////// 位置  ///////
+  static pageScrollTo(object) {
+    return my.pageScrollTo(object)
+  }
+
+  // ////// 下拉刷新  ///////
+  static startPullDownRefresh(object) {
+    return my.startPullDownRefresh(object)
+  }
+
+  static stopPullDownRefresh(object) {
+    return my.stopPullDownRefresh(object)
+  }
+
+  // ////// 背景  ///////
+  static setBackgroundColor(object) {
+    return my.setBackgroundColor(object)
+  }
+
+  static setBackgroundTextStyle(object) {
+    return my.setBackgroundTextStyle(object)
+  }
+
+  // ////// 动画  ///////
+  static createAnimation(object) {
+    return my.createAnimation(object)
+  }
+
+  // ////// 自定义组件  ///////
+  static nextTick() {
+    return console.warn('nextTick is not support')
+  }
+
+  // ////// 菜单  ///////
+  static getMenuButtonBoundingClientRect() {
+    return my.getMenuButtonBoundingClientRect()
+  }
+
+  // ////// 节点信息  ///////
+  static createSelectorQuery() {
+    return my.createSelectorQuery()
+  }
+
+  static createIntersectionObserver(object) {
+    return my.createIntersectionObserver(object)
+  }
+
+  // ////// 数据储存  ///////
+  static getStorage(object) {
+    return my.getStorage(object)
+  }
+
+  static getStorageSync(key) {
+    return my.getStorageSync(key)
+  }
+
+  static setStorage(key, data) {
+    return my.setStorage(key, data)
+  }
+
+  static setStorageSync(key, data) {
+    return my.setStorageSync(key, data)
+  }
+
+  static removeStorage(key) {
+    return my.removeStorage(key)
+  }
+
+  static removeStorageSync(key) {
+    return my.removeStorageSync(key)
+  }
+
+  static clearStorage(object) {
+    return my.clearStorage(object)
+  }
+
+  static clearStorageSync(object) {
+    return my.clearStorageSync(object)
+  }
+
+  static getStorageInfo(object) {
+    return my.getStorageInfo(object)
+  }
+
+  static getStorageInfoSync() {
+    return my.getStorageInfoSync()
+  }
+
+  // ////// 媒体  ///////
+
+  // ////// 图片  ///////
+  static chooseImage(tt_object) {
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS) => {
+      my.chooseImage({
+        success: tt_res => {
+          const my_res = {
+            tempFiles: tt_res.apFilePaths,
+            tempFilePaths: tt_res.tempFilePaths
+          }
+          SUCCESS(my_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static saveImageToPhotosAlbum(tt_object) {
+    const url = tt_object.filePath
+    const success = tt_object.success
+    const fail = tt_object.fail
+    const complete = tt_object.complete
+    tt_object = null
+    const my_object = {
+      url,
+      success,
+      fail,
+      complete
+    }
+    return my.saveImage(my_object)
+  }
+
+  static previewImage(object) {
+    return my.previewImage(object)
+  }
+
+  static getImageInfo(tt_object) {
+    const tt_src = tt_object.src
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const src = tt_src
+    PROMISE((SUCCESS) => {
+      my.getImageInfo({
+        src,
+        success: tt_res => {
+          const my_res = {
+            errMsg: 'getImageInfo: ok',
+            width: tt_res.width,
+            height: tt_res.height,
+            type: tt_res.type,
+            path: tt_res.path,
+            orientation: tt_res.orientation
+          }
+          SUCCESS(my_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static compressImage(tt_object) {
+    const tt_src = tt_object.src
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const apFilePaths = [tt_src]
+    PROMISE((SUCCESS) => {
+      my.compressImage({
+        apFilePaths,
+        success: tt_res => {
+          const my_res = {
+            errMsg: 'compressImage: ok',
+            tempFilePath: tt_res.apFilePaths[0]
+          }
+          SUCCESS(my_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static chooseAlbum(tt_object) {
+    const swan_success = tt_object.success
+    const swan_fail = tt_object.fail
+    const swan_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS) => {
+      my.chooseImage({
+        success: tt_res => {
+          const tt_tempFiles = tt_res.tempFiles.map(file => ({
+            path: file.path,
+            size: file.size,
+            type: 'image',
+            duration: 0
+
+          }))
+          const swan_res = {
+            tempFilePaths: tt_res.tempFilePaths,
+            tempFiles: tt_tempFiles
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+}
