@@ -1,1 +1,0 @@
-<audio  poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls onError="error" onPlay="audioPlay" onPause="audioPause" onTimeupdate="timeupdate" onEnded="audioEnded"></audio>

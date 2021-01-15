@@ -1,5 +1,0 @@
-<onekit-view  onekitClass="wrap">
-    <onekit-text >{{text}}</onekit-text>
-    <onekit-button  onekitClass="btn" type="primary" onTap="add">add text</onekit-button>
-    <onekit-button  onekitClass="btn" type="primary" onTap="remove">remove text</onekit-button>
-</view>

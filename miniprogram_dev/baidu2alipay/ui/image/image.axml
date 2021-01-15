@@ -1,0 +1,11 @@
+<image class="onekit_image {{onekitClass}}"
+ style="{{onekitStyle}}" 
+ id="{{onekitId}}"
+ mode="{{mode}}" 
+ src="{{src}}"
+ lazy-load="{{lazyLoad}}"
+ 
+onError="image_error"
+onLoad="image_load"
+ 
+ />

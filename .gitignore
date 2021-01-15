@@ -1,21 +1,17 @@
+# Windows
+[Dd]esktop.ini
+Thumbs.db
+$RECYCLE.BIN/
 
-baidu_alipay/client/.tea/configuration/mini-program.json
-baidu_alipay/client/.tea/configuration/node-package-manager.json
-baidu_alipay/client/.tea/debug.json
-baidu_alipay/client/.tea/editor.json
-baidu_alipay/client/.tea/editorTabs.json
-baidu_alipay/client/.tea/entryFiles-development/config$.js
-baidu_alipay/client/.tea/entryFiles-development/importScripts$.js
-baidu_alipay/client/.tea/entryFiles-development/index$.web.js
-baidu_alipay/client/.tea/entryFiles-development/index$.worker.js
-baidu_alipay/client/.tea/entryFiles-production/config$.js
-baidu_alipay/client/.tea/entryFiles-production/importScripts$.js
-baidu_alipay/client/.tea/entryFiles-production/index$.web.js
-baidu_alipay/client/.tea/entryFiles-production/index$.worker.js
-baidu_alipay/client/.tea/layout.json
-baidu_alipay/client/.tea/recent.json
-baidu_alipay/client/.tea/recentlyTouched.json
-baidu_alipay/client/.tea/tmp-saving/893efbd2236dfe72d210a1bae54956bb1569575896669160
-baidu_alipay/client/.tea/workbench.json
-.tea/
+# macOS
 .DS_Store
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+
+# Node.js
+node_modules/
+miniprogram_dist/
+
+.tea/

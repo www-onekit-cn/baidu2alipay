@@ -1,0 +1,3 @@
+<swiper-item class="onekit-swiper-item {{onekitClass}}" style="{{onekitStyle}}" id="{{onekitId}}">
+  <slot></slot>
+</swiper-item>

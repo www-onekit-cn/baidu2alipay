@@ -1,0 +1,27 @@
+Component({
+  mixins: [],
+  data: {},
+  props: {
+    onekitClass: '',
+    onekitStyle: '',
+    onekitId: '',
+    devicePosition: 'back',
+    flash: 'auto'
+  },
+  didMount() { },
+  didUpdate() { },
+  didUnmount() { },
+  methods: {
+    camera_stop(e) {
+      if (this.props.onStop) {
+        this.props.onStop(e)
+      }
+    },
+    camera_error(e) {
+      if (this.props.onError) {
+        this.props.onError(e)
+      }
+    }
+
+  },
+})
