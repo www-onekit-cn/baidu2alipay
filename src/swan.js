@@ -1239,7 +1239,7 @@ export default class swan {
   }
 
   static getBatteryInfoSync() {
-    const my_res = my.getBatteryInfoSync(),
+    const my_res = my.getBatteryInfoSync()
     const swan_res = {
       level: my_res.level.toString(),
       isCharging: my_res.isCharging
@@ -1268,5 +1268,347 @@ export default class swan {
 
   static offKeyboardHeightChange() {
     return console.warn('offKeyboardHeightChange is not support')
+  }
+
+  // ////// 第三方平台  ///////
+  static getExtConfig(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.getExtConfig({
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'getExtConfig: ok',
+            extConfig: my_res.data
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static getExtConfigSync() {
+    const my_res = my.getExtConfigSync()
+    const swan_res = {
+      extConfig: my_res.data
+    }
+    return swan_res
+  }
+
+  // ////// 开放接口  ///////
+  static login(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.getAuthCode({
+        success: swan_res => {
+          const my_res = {
+            errMsg: 'login: ok',
+            code: swan_res.authCode,
+            authErrorScopes: swan_res.authErrorScopes,
+            authSuccessScopes: swan_res.authSuccessScopes,
+          }
+          SUCCESS(my_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+    getApp().onekit_login = true
+  }
+
+  static getLoginCode(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.getAuthCode({
+        success: swan_res => {
+          const my_res = {
+            errMsg: 'getLoginCode: ok',
+            code: swan_res.authCode,
+            authErrorScopes: swan_res.authErrorScopes,
+            authSuccessScopes: swan_res.authSuccessScopes,
+          }
+          SUCCESS(my_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+    getApp().onekit_login = true
+  }
+
+  static checkSession() {
+    return console.warn('checkSession is not support')
+  }
+
+  static isLoginSync() {
+    if (getApp().onekit_login) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  static authorize(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.getAuthCode({
+        success: swan_res => {
+          const my_res = {
+            errMsg: 'authorize: ok',
+            code: swan_res.authCode,
+            authErrorScopes: swan_res.authErrorScopes,
+            authSuccessScopes: swan_res.authSuccessScopes,
+          }
+          SUCCESS(my_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  // ////// 设置  ///////
+  static getSetting(tt_object) {
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS) => {
+      my.getSetting({
+        success: tt_res => {
+          const authSetting = {
+            'scope.userInfo': tt_res.userinfo,
+            'scope.userLocation': tt_res.location,
+            'scope.address': tt_res.aliaddress,
+            'scope.record': false,
+            'scope.album': tt_res.album,
+            'scope.camera': tt_res.camera
+          }
+          const my_res = {
+            errMsg: 'getSetting: ok',
+            authSetting
+          }
+          SUCCESS(my_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static openSetting(tt_object) {
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS) => {
+      my.openSetting({
+        success: tt_res => {
+          const authSetting = {
+            'scope.userInfo': tt_res.userinfo,
+            'scope.userLocation': tt_res.location,
+            'scope.address': false,
+            'scope.record': false,
+            'scope.album': tt_res.album,
+            'scope.camera': tt_res.camera
+          }
+          const my_res = {
+            errMsg: 'getSetting: ok',
+            authSetting
+          }
+          SUCCESS(my_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  // ////// 支付  ///////
+  static requestPolymerPayment() {
+    return console.warn('requestPolymerPayment is not support')
+  }
+
+  // ////// 页面基础信息  ///////
+  static setPageInfo() {
+    return console.warn('setPageInfo is not support')
+  }
+
+  static setMetaDescription() {
+    return console.warn('setMetaDescription is not support')
+  }
+
+  static setMetaKeywords() {
+    return console.warn('setMetaKeywords is not support')
+  }
+
+  static setDocumentTitle() {
+    return console.warn('setDocumentTitle is not support')
+  }
+
+  // ////// 分包预下载  ///////
+  static loadSubPackage() {
+    return console.warn('loadSubPackage is not support')
+  }
+
+  // ////// 数据分析  ///////
+  static reportAnalytics(object) {
+    return my.reportAnalytics(object)
+  }
+
+  // ////// 风控  ///////
+  static getSystemRiskInfo() {
+    return console.warn('getSystemRiskInfo is not support')
+  }
+
+  // ////// 订阅  ///////
+  static subscribeService() {
+    return console.warn('subscribeService is not support')
+  }
+
+  // ////// 书架  ///////
+  static insertBookshelf() {
+    return console.warn('insertBookshelf is not support')
+  }
+
+  static deleteBookshelf() {
+    return console.warn('deleteBookshelf is not support')
+  }
+
+  static queryBookshelf() {
+    return console.warn('queryBookshelf is not support')
+  }
+
+  static updateBookshelfReadTime() {
+    return console.warn('updateBookshelfReadTime is not support')
+  }
+
+  static navigateToBookshelf() {
+    return console.warn('navigateToBookshelf is not support')
+  }
+
+  // ////// 跳转  ///////
+  static openBdboxWebview() {
+    return console.warn('openBdboxWebview is not support')
+  }
+
+  // ////// 用户接口  ///////
+  static getSwanId() {
+    return console.warn('getSwanId is not support')
+  }
+
+  // static getUserInfo(tt_object) {
+  //   const tt_success = tt_object.success
+  //   const tt_fail = tt_object.fail
+  //   const tt_complete = tt_object.complete
+  //   tt_object = null
+  //   PROMISE((SUCCESS) => {
+  //     my.getUserInfo({
+  //       success: tt_res => {
+  //         const tt_userInfo = {
+  //           gender: 0,
+  //           nickName: tt_res.nickName,
+  //           avatarUrl: tt_res.avatar
+  //         }
+  //         const my_res = {
+  //           errMsg: 'getUserInfo: ok',
+  //           userInfo: tt_userInfo,
+  //         }
+  //         SUCCESS(my_res)
+  //       }
+  //     })
+  //   }, tt_success, tt_fail, tt_complete)
+  // }
+
+  // ////// 分享  ///////
+  static openShare(tt_object) {
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS, FAIL) => {
+      my.showSharePanel({
+        success: () => {
+          const my_res = {
+            result: true
+          }
+          SUCCESS(my_res)
+        },
+        fail: () => {
+          const my_res = {
+            result: false
+          }
+          FAIL(my_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static shareFile() {
+    return console.warn('shareFile is not support')
+  }
+
+  // ////// 打开小程序  ///////
+  static navigateToSmartProgram() {
+    return console.warn('navigateToSmartProgram is not support')
+  }
+
+  static navigateBackSmartProgram() {
+    return console.warn('navigateBackSmartProgram is not support')
+  }
+
+  // ////// 获取收货地址  ///////
+  static chooseAddress(tt_object) {
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS) => {
+      my.getAddress({
+        success: tt_res => {
+          const my_res = {
+            errMsg: 'chooseAddress: ok',
+            userName: tt_res.fullname,
+            provinceName: tt_res.prov,
+            cityName: tt_res.city,
+            countyName: tt_res.country,
+            detailInfo: tt_res.address,
+            telNumber: tt_res.mobilePhone,
+            area: tt_res.area,
+            street: tt_res.street,
+          }
+          SUCCESS(my_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  // ////// 获取发票抬头  ///////
+  static chooseInvoiceTitle() {
+    return console.warn('chooseInvoiceTitle is not support')
+  }
+
+  // ////// 全屏内容发布器  ///////
+  static openCommunityEditor() {
+    return console.warn('openCommunityEditor is not support')
+  }
+
+  static closeCommunityEditor() {
+    return console.warn('closeCommunityEditor is not support')
+  }
+
+  // ////// 全屏内容发布器  ///////
+  static openReplyEditor() {
+    return console.warn('openReplyEditor is not support')
+  }
+
+  static closeReplyEditor() {
+    return console.warn('closeReplyEditor is not support')
+  }
+
+  // ////// 激励视频广告  ///////
+  static createRewardedVideoAd() {
+    return console.warn('createRewardedVideoAd is not support')
   }
 }
