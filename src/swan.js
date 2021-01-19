@@ -492,8 +492,18 @@ export default class swan {
     return my.hideTabBar(object)
   }
 
-  static showFavoriteGuide() {
-    return console.warn('showFavoriteGuide is not support')
+  static showFavoriteGuide(swan_object) {
+    const content = swan_object.content || '关注小程序，下次使用更便捷'
+    const success = swan_object.success
+    const fail = swan_object.fail
+    const complete = swan_object.complete
+    swan_object = null
+    my.showToast({
+      content,
+      success,
+      fail,
+      complete
+    })
   }
 
   // ////// 位置  ///////
@@ -525,8 +535,8 @@ export default class swan {
   }
 
   // ////// 自定义组件  ///////
-  static nexswanick() {
-    return console.warn('nexswanick is not support')
+  static nextTick(callback) {
+    return setTimeout(callback, 500)
   }
 
   // ////// 菜单  ///////
@@ -835,12 +845,60 @@ export default class swan {
     return my.createCanvasContext(id)
   }
 
-  static canvasPutImageData() {
-    return console.warn('canvasPutImageData is not support')
+  static canvasPutImageData(swan_object) {
+    const canvasId = swan_object.canvasId
+    const data = swan_object.data
+    const x = swan_object.x
+    const y = swan_object.y
+    const width = swan_object.width
+    const height = swan_object.height
+    const success = swan_object.success
+    const fail = swan_object.fail
+    const complete = swan_object.complete
+    swan_object = null
+    const my_object = {
+      data,
+      x,
+      y,
+      width,
+      height,
+      success,
+      fail,
+      complete
+    }
+    return my.createCanvasContext(canvasId).putImageData(my_object)
   }
 
-  static canvasGetImageData() {
-    return console.warn('canvasGetImageData is not support')
+  static canvasGetImageData(swan_object) {
+    const swan_canvasId = swan_object.canvasId
+    const swan_x = swan_object.x
+    const swan_y = swan_object.y
+    const swan_width = swan_object.width
+    const swan_height = swan_object.height
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const x = swan_x
+    const y = swan_y
+    const width = swan_width
+    const height = swan_height
+    PROMISE((SUCCESS) => {
+      my.createCanvasContext(swan_canvasId).getImageData({
+        x,
+        y,
+        width,
+        height,
+        success: my_res => {
+          const swan_res = {
+            width: my_res.width,
+            height: my_res.height,
+            data: my_res.data
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
   }
 
   static canvasToTempFilePath(swan_object) {
