@@ -1363,14 +1363,14 @@ export default class swan {
     swan_object = null
     PROMISE((SUCCESS) => {
       my.getAuthCode({
-        success: swan_res => {
-          const my_res = {
+        success: my_res => {
+          const swan_res = {
             errMsg: 'login: ok',
-            code: swan_res.authCode,
-            authErrorScopes: swan_res.authErrorScopes,
-            authSuccessScopes: swan_res.authSuccessScopes,
+            code: my_res.authCode,
+            authErrorScopes: my_res.authErrorScopes,
+            authSuccessScopes: my_res.authSuccessScopes,
           }
-          SUCCESS(my_res)
+          SUCCESS(swan_res)
         }
       })
     }, swan_success, swan_fail, swan_complete)
@@ -1384,14 +1384,14 @@ export default class swan {
     swan_object = null
     PROMISE((SUCCESS) => {
       my.getAuthCode({
-        success: swan_res => {
-          const my_res = {
+        success: my_res => {
+          const swan_res = {
             errMsg: 'getLoginCode: ok',
-            code: swan_res.authCode,
-            authErrorScopes: swan_res.authErrorScopes,
-            authSuccessScopes: swan_res.authSuccessScopes,
+            code: my_res.authCode,
+            authErrorScopes: my_res.authErrorScopes,
+            authSuccessScopes: my_res.authSuccessScopes,
           }
-          SUCCESS(my_res)
+          SUCCESS(swan_res)
         }
       })
     }, swan_success, swan_fail, swan_complete)
@@ -1417,75 +1417,91 @@ export default class swan {
     swan_object = null
     PROMISE((SUCCESS) => {
       my.getAuthCode({
-        success: swan_res => {
-          const my_res = {
+        success: my_res => {
+          const swan_res = {
             errMsg: 'authorize: ok',
-            code: swan_res.authCode,
-            authErrorScopes: swan_res.authErrorScopes,
-            authSuccessScopes: swan_res.authSuccessScopes,
+            code: my_res.authCode,
+            authErrorScopes: my_res.authErrorScopes,
+            authSuccessScopes: my_res.authSuccessScopes,
           }
-          SUCCESS(my_res)
+          SUCCESS(swan_res)
         }
       })
     }, swan_success, swan_fail, swan_complete)
   }
 
   // ////// 设置  ///////
-  static getSetting(tt_object) {
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
+  static getSetting(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
     PROMISE((SUCCESS) => {
       my.getSetting({
-        success: tt_res => {
+        success: my_res => {
           const authSetting = {
-            'scope.userInfo': tt_res.userinfo,
-            'scope.userLocation': tt_res.location,
-            'scope.address': tt_res.aliaddress,
+            'scope.userInfo': my_res.userinfo,
+            'scope.userLocation': my_res.location,
+            'scope.address': my_res.aliaddress,
             'scope.record': false,
-            'scope.album': tt_res.album,
-            'scope.camera': tt_res.camera
+            'scope.album': my_res.album,
+            'scope.camera': my_res.camera
           }
-          const my_res = {
+          const swan_res = {
             errMsg: 'getSetting: ok',
             authSetting
           }
-          SUCCESS(my_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
-  static openSetting(tt_object) {
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
+  static openSetting(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
     PROMISE((SUCCESS) => {
       my.openSetting({
-        success: tt_res => {
+        success: my_res => {
           const authSetting = {
-            'scope.userInfo': tt_res.userinfo,
-            'scope.userLocation': tt_res.location,
+            'scope.userInfo': my_res.userinfo,
+            'scope.userLocation': my_res.location,
             'scope.address': false,
             'scope.record': false,
-            'scope.album': tt_res.album,
-            'scope.camera': tt_res.camera
+            'scope.album': my_res.album,
+            'scope.camera': my_res.camera
           }
-          const my_res = {
+          const swan_res = {
             errMsg: 'getSetting: ok',
             authSetting
           }
-          SUCCESS(my_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
   // ////// 支付  ///////
-  static requestPolymerPayment() {
-    return console.warn('requestPolymerPayment is not support')
+  static requestPolymerPayment(swan_object) {
+    const swan_orderInfo = swan_object.orderInfo
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const tradeNO = swan_orderInfo.tpOrderId
+    PROMISE((SUCCESS) => {
+      my.tradePay({
+        tradeNO,
+        success: my_res => {
+          const swan_res = {
+            resultCode: my_res.resultCode
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
   }
 
   // ////// 页面基础信息  ///////
@@ -1506,9 +1522,26 @@ export default class swan {
   }
 
   // ////// 分包预下载  ///////
-  static loadSubPackage() {
-    return console.warn('loadSubPackage is not support')
-  }
+  // static loadSubPackage(swan_object) {
+  //   const swan_root = swan_object.root
+  //   const swan_success = swan_object.success
+  //   const swan_fail = swan_object.fail
+  //   const swan_complete = swan_object.complete
+  //   swan_object = null
+  //   const url = swan_root
+  //   PROMISE((SUCCESS) => {
+  //     my.downloadFile({
+  //       url,
+  //       success: my_res => {
+  //         const swan_res = {
+  //           tempFilePath: my_res.apFilePath,
+  //           statusCode: 200
+  //         }
+  //         SUCCESS(swan_res)
+  //       }
+  //     })
+  //   }, swan_success, swan_fail, swan_complete)
+  // }
 
   // ////// 数据分析  ///////
   static reportAnalytics(object) {
@@ -1556,55 +1589,55 @@ export default class swan {
     return console.warn('getSwanId is not support')
   }
 
-  // static getUserInfo(tt_object) {
-  //   const tt_success = tt_object.success
-  //   const tt_fail = tt_object.fail
-  //   const tt_complete = tt_object.complete
-  //   tt_object = null
+  // static getUserInfo(swan_object) {
+  //   const swan_success = swan_object.success
+  //   const swan_fail = swan_object.fail
+  //   const swan_complete = swan_object.complete
+  //   swan_object = null
   //   PROMISE((SUCCESS) => {
   //     my.getUserInfo({
-  //       success: tt_res => {
-  //         const tt_userInfo = {
+  //       success: my_res => {
+  //         const swan_userInfo = {
   //           gender: 0,
-  //           nickName: tt_res.nickName,
-  //           avatarUrl: tt_res.avatar
+  //           nickName: my_res.nickName,
+  //           avatarUrl: my_res.avatar
   //         }
-  //         const my_res = {
+  //         const swan_res = {
   //           errMsg: 'getUserInfo: ok',
-  //           userInfo: tt_userInfo,
+  //           userInfo: swan_userInfo,
   //         }
-  //         SUCCESS(my_res)
+  //         SUCCESS(swan_res)
   //       }
   //     })
-  //   }, tt_success, tt_fail, tt_complete)
+  //   }, swan_success, swan_fail, swan_complete)
   // }
 
   // ////// 分享  ///////
-  static openShare(tt_object) {
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
+  static openShare(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
     PROMISE((SUCCESS, FAIL) => {
       my.showSharePanel({
         success: () => {
-          const my_res = {
+          const swan_res = {
             result: true
           }
-          SUCCESS(my_res)
+          SUCCESS(swan_res)
         },
         fail: () => {
-          const my_res = {
+          const swan_res = {
             result: false
           }
-          FAIL(my_res)
+          FAIL(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
   static shareFile() {
-    return console.warn('shareFile is not support')
+    return my.showSharePanel()
   }
 
   // ////// 打开小程序  ///////
@@ -1617,29 +1650,29 @@ export default class swan {
   }
 
   // ////// 获取收货地址  ///////
-  static chooseAddress(tt_object) {
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
+  static chooseAddress(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
     PROMISE((SUCCESS) => {
       my.getAddress({
-        success: tt_res => {
-          const my_res = {
+        success: my_res => {
+          const swan_res = {
             errMsg: 'chooseAddress: ok',
-            userName: tt_res.fullname,
-            provinceName: tt_res.prov,
-            cityName: tt_res.city,
-            countyName: tt_res.country,
-            detailInfo: tt_res.address,
-            telNumber: tt_res.mobilePhone,
-            area: tt_res.area,
-            street: tt_res.street,
+            userName: my_res.fullname,
+            provinceName: my_res.prov,
+            cityName: my_res.city,
+            countyName: my_res.country,
+            detailInfo: my_res.address,
+            telNumber: my_res.mobilePhone,
+            area: my_res.area,
+            street: my_res.street,
           }
-          SUCCESS(my_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
   // ////// 获取发票抬头  ///////
