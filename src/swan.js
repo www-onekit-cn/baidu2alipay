@@ -1,7 +1,6 @@
-/* eslint-disable no-octal */
-/* eslint-disable camelcase */
 /* eslint-disable no-console */
-
+/* eslint-disable camelcase */
+import CameraContext from './api/CameraContext'
 import PROMISE from '../node_modules/oneutil/PROMISE'
 import OneKit from './js/OneKit'
 
@@ -83,8 +82,8 @@ export default class swan {
     return my.navigateTo(object)
   }
 
-  static redirectTo(object) {
-    return my.redirectTo(object)
+  static redirecswano(object) {
+    return my.redirecswano(object)
   }
 
   static switchTab(object) {
@@ -100,60 +99,60 @@ export default class swan {
   }
 
   // /////////// 网络 ////////////
-  static downloadFile(tt_object) {
-    const tt_url = tt_object.url
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
-    const url = tt_url
+  static downloadFile(swan_object) {
+    const swan_url = swan_object.url
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const url = swan_url
     PROMISE((SUCCESS) => {
       my.downloadFile({
         url,
-        success: tt_res => {
-          const my_res = {
-            tempFilePath: tt_res.apFilePath,
+        success: my_res => {
+          const swan_res = {
+            tempFilePath: my_res.apFilePath,
             statusCode: 200
           }
-          SUCCESS(my_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
-  static request(tt_object) {
-    const tt_url = tt_object.url
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
-    const url = tt_url
+  static request(swan_object) {
+    const swan_url = swan_object.url
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const url = swan_url
     PROMISE((SUCCESS) => {
       my.request({
         url,
-        success: tt_res => {
-          const my_res = {
-            data: tt_res.data,
-            statusCode: tt_res.status,
-            header: tt_res.headers
+        success: my_res => {
+          const swan_res = {
+            data: my_res.data,
+            statusCode: my_res.status,
+            header: my_res.headers
           }
-          SUCCESS(my_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
-  static uploadFile(tt_object) {
-    const tt_url = tt_object.url
-    const tt_filePath = tt_object.filePath
-    const tt_name = tt_object.name
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
-    const url = tt_url
-    const filePath = tt_filePath
-    const fileName = tt_name
+  static uploadFile(swan_object) {
+    const swan_url = swan_object.url
+    const swan_filePath = swan_object.filePath
+    const swan_name = swan_object.name
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const url = swan_url
+    const filePath = swan_filePath
+    const fileName = swan_name
     const fileType = 'image'
     PROMISE((SUCCESS) => {
       my.uploadFile({
@@ -161,37 +160,37 @@ export default class swan {
         filePath,
         fileName,
         fileType,
-        success: tt_res => {
-          const my_res = {
-            data: tt_res.data,
-            statusCode: tt_res.statusCode,
-            header: tt_res.header
+        success: my_res => {
+          const swan_res = {
+            data: my_res.data,
+            statusCode: my_res.statusCode,
+            header: my_res.header
           }
-          SUCCESS(my_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
-  static connectSocket(tt_object) {
-    const tt_url = tt_object.url
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
-    const url = tt_url
+  static connectSocket(swan_object) {
+    const swan_url = swan_object.url
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const url = swan_url
     PROMISE((SUCCESS) => {
       my.connectSocket({
         url,
         success: () => {
-          const my_res = {
+          const swan_res = {
             errMsg: 'connectSocket: ok',
-            socketTaskId: 1
+            sockeswanaskId: 1
           }
-          SUCCESS(my_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
   static onSocketOpen(callback) {
@@ -220,145 +219,145 @@ export default class swan {
 
   // /////////// 界面 ////////////
   // /////////// 交互反馈 ////////////
-  static showToast(tt_object) {
-    const tt_title = tt_object.title
-    const tt_icon = tt_object.icon || 'success'
-    const tt_duration = tt_object.duration || 1500
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
-    const content = tt_title
-    const type = tt_icon
-    const duration = tt_duration
+  static showToast(swan_object) {
+    const swan_title = swan_object.title
+    const swan_icon = swan_object.icon || 'success'
+    const swan_duration = swan_object.duration || 1500
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const content = swan_title
+    const type = swan_icon
+    const duration = swan_duration
     PROMISE((SUCCESS) => {
       my.showToast({
         content,
         type,
         duration,
         success: () => {
-          const tt_res = {
+          const swan_res = {
             errMsg: 'showToast: ok',
           }
-          SUCCESS(tt_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
-  static hideToast(tt_object) {
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
+  static hideToast(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
     PROMISE((SUCCESS) => {
       my.hideToast({
         success: () => {
-          const tt_res = {
+          const swan_res = {
             errMsg: 'hideToast: ok',
           }
-          SUCCESS(tt_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
-  static showLoading(tt_object) {
-    const tt_title = tt_object.title
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
-    const content = tt_title
+  static showLoading(swan_object) {
+    const swan_title = swan_object.title
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const content = swan_title
     PROMISE((SUCCESS) => {
       my.showLoading({
         content,
         success: () => {
-          const tt_res = {
+          const swan_res = {
             errMsg: 'showLoading: ok',
           }
-          SUCCESS(tt_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
-  static hideLoading(tt_object) {
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
+  static hideLoading(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
     PROMISE((SUCCESS) => {
       my.hideLoading({
         success: () => {
-          const tt_res = {
+          const swan_res = {
             errMsg: 'hideLoading: ok',
           }
-          SUCCESS(tt_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
-  static showModal(tt_object) {
-    const tt_title = tt_object.title
-    const tt_content = tt_object.content
-    const tt_confirmText = tt_object.confirmText || '确定'
-    const tt_cancelText = tt_object.cancelText || '取消'
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
-    const title = tt_title
-    const content = tt_content
-    const confirmButtonText = tt_confirmText
-    const cancelButtonText = tt_cancelText
+  static showModal(swan_object) {
+    const swan_title = swan_object.title
+    const swan_content = swan_object.content
+    const swan_confirmText = swan_object.confirmText || '确定'
+    const swan_cancelText = swan_object.cancelText || '取消'
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const title = swan_title
+    const content = swan_content
+    const confirmBuswanonText = swan_confirmText
+    const cancelBuswanonText = swan_cancelText
     PROMISE((SUCCESS) => {
       my.confirm({
         title,
         content,
-        confirmButtonText,
-        cancelButtonText,
+        confirmBuswanonText,
+        cancelBuswanonText,
         success: my_res => {
           if (my_res.confirm) {
-            const tt_res = {
+            const swan_res = {
               errMsg: 'showModal: ok',
               confirm: true,
               cancel: false
             }
-            SUCCESS(tt_res)
+            SUCCESS(swan_res)
           } else {
-            const tt_res = {
+            const swan_res = {
               errMsg: 'showModal: ok',
               confirm: false,
               cancel: true
             }
-            SUCCESS(tt_res)
+            SUCCESS(swan_res)
           }
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
-  static showActionSheet(tt_object) {
-    const tt_itemList = tt_object.itemList
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
-    const items = tt_itemList
+  static showActionSheet(swan_object) {
+    const swan_itemList = swan_object.itemList
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const items = swan_itemList
     PROMISE((SUCCESS) => {
       my.showActionSheet({
         items,
         success: my_res => {
-          const tt_res = {
+          const swan_res = {
             errMsg: 'hideLoading: ok',
             tapIndex: my_res.index
           }
-          SUCCESS(tt_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
   // /////////// 导航栏 ////////////
@@ -370,44 +369,44 @@ export default class swan {
     return my.hideNavigationBarLoading(object)
   }
 
-  static setNavigationBarTitle(tt_object) {
-    const tt_title = tt_object.title
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
-    const title = tt_title
+  static setNavigationBarTitle(swan_object) {
+    const swan_title = swan_object.title
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const title = swan_title
     PROMISE((SUCCESS) => {
       my.setNavigationBar({
         title,
         success: () => {
-          const tt_res = {
+          const swan_res = {
             errMsg: 'setNavigationBarTitle: ok'
           }
-          SUCCESS(tt_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
-  static setNavigationBarColor(tt_object) {
-    const tt_backgroundColor = tt_object.backgroundColor
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
-    const backgroundColor = tt_backgroundColor
+  static setNavigationBarColor(swan_object) {
+    const swan_backgroundColor = swan_object.backgroundColor
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const backgroundColor = swan_backgroundColor
     PROMISE((SUCCESS) => {
       my.setNavigationBar({
         backgroundColor,
         success: () => {
-          const tt_res = {
+          const swan_res = {
             errMsg: 'setNavigationBarColor: ok'
           }
-          SUCCESS(tt_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
   // ////// TabBar  ///////
@@ -419,66 +418,66 @@ export default class swan {
     return my.showTabBar(object)
   }
 
-  static setTabBarStyle(tt_object) {
-    const tt_color = tt_object.color || '#ff3377'
-    const tt_selectedColor = tt_object.selectedColor || '#ff3377'
-    const tt_backgroundColor = tt_object.backgroundColor || '#ffffff'
-    const tt_borderStyle = tt_object.borderStyle || 'black'
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
-    const color = tt_color
-    const selectedColor = tt_selectedColor
-    const backgroundColor = tt_backgroundColor
-    const borderStyle = tt_borderStyle
+  static seswanabBarStyle(swan_object) {
+    const swan_color = swan_object.color || '#ff3377'
+    const swan_selectedColor = swan_object.selectedColor || '#ff3377'
+    const swan_backgroundColor = swan_object.backgroundColor || '#ffffff'
+    const swan_borderStyle = swan_object.borderStyle || 'black'
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const color = swan_color
+    const selectedColor = swan_selectedColor
+    const backgroundColor = swan_backgroundColor
+    const borderStyle = swan_borderStyle
     PROMISE((SUCCESS) => {
-      my.setTabBarStyle({
+      my.seswanabBarStyle({
         color,
         selectedColor,
         backgroundColor,
         borderStyle,
         success: () => {
-          const tt_res = {
-            errMsg: 'setTabBarStyle: ok'
+          const swan_res = {
+            errMsg: 'seswanabBarStyle: ok'
           }
-          SUCCESS(tt_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
-  static setTabBarItem(tt_object) {
-    const tt_index = tt_object.index
-    const tt_text = tt_object.text || ''
-    const tt_iconPath = tt_object.iconPath || ''
-    const tt_selectedIconPath = tt_object.selectedIconPath || ''
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
-    const index = tt_index
-    const text = tt_text
-    const iconPath = tt_iconPath
-    const selectedIconPath = tt_selectedIconPath
+  static seswanabBarItem(swan_object) {
+    const swan_index = swan_object.index
+    const swan_text = swan_object.text || ''
+    const swan_iconPath = swan_object.iconPath || ''
+    const swan_selectedIconPath = swan_object.selectedIconPath || ''
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const index = swan_index
+    const text = swan_text
+    const iconPath = swan_iconPath
+    const selectedIconPath = swan_selectedIconPath
     PROMISE((SUCCESS) => {
-      my.setTabBarItem({
+      my.seswanabBarItem({
         index,
         text,
         iconPath,
         selectedIconPath,
         success: () => {
-          const tt_res = {
-            errMsg: 'setTabBarItem: ok'
+          const swan_res = {
+            errMsg: 'seswanabBarItem: ok'
           }
-          SUCCESS(tt_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
-  static setTabBarBadge(object) {
-    return my.setTabBarBadge(object)
+  static seswanabBarBadge(object) {
+    return my.seswanabBarBadge(object)
   }
 
   static removeTabBarBadge(object) {
@@ -493,8 +492,18 @@ export default class swan {
     return my.hideTabBar(object)
   }
 
-  static showFavoriteGuide() {
-    return console.warn('showFavoriteGuide is not support')
+  static showFavoriteGuide(swan_object) {
+    const content = swan_object.content || '关注小程序，下次使用更便捷'
+    const success = swan_object.success
+    const fail = swan_object.fail
+    const complete = swan_object.complete
+    swan_object = null
+    my.showToast({
+      content,
+      success,
+      fail,
+      complete
+    })
   }
 
   // ////// 位置  ///////
@@ -526,13 +535,13 @@ export default class swan {
   }
 
   // ////// 自定义组件  ///////
-  static nextTick() {
-    return console.warn('nextTick is not support')
+  static nextTick(callback) {
+    return setTimeout(callback, 500)
   }
 
   // ////// 菜单  ///////
-  static getMenuButtonBoundingClientRect() {
-    return my.getMenuButtonBoundingClientRect()
+  static getMenuBuswanonBoundingClientRect() {
+    return my.getMenuBuswanonBoundingClientRect()
   }
 
   // ////// 节点信息  ///////
@@ -588,30 +597,30 @@ export default class swan {
   // ////// 媒体  ///////
 
   // ////// 图片  ///////
-  static chooseImage(tt_object) {
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
+  static chooseImage(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
     PROMISE((SUCCESS) => {
       my.chooseImage({
-        success: tt_res => {
-          const my_res = {
-            tempFiles: tt_res.apFilePaths,
-            tempFilePaths: tt_res.tempFilePaths
+        success: my_res => {
+          const swan_res = {
+            tempFiles: my_res.apFilePaths,
+            tempFilePaths: my_res.tempFilePaths
           }
-          SUCCESS(my_res)
+          SUCCESS(swan_res)
         }
       })
-    }, tt_success, tt_fail, tt_complete)
+    }, swan_success, swan_fail, swan_complete)
   }
 
-  static saveImageToPhotosAlbum(tt_object) {
-    const url = tt_object.filePath
-    const success = tt_object.success
-    const fail = tt_object.fail
-    const complete = tt_object.complete
-    tt_object = null
+  static saveImageToPhotosAlbum(swan_object) {
+    const url = swan_object.filePath
+    const success = swan_object.success
+    const fail = swan_object.fail
+    const complete = swan_object.complete
+    swan_object = null
     const my_object = {
       url,
       success,
@@ -625,74 +634,1072 @@ export default class swan {
     return my.previewImage(object)
   }
 
-  static getImageInfo(tt_object) {
-    const tt_src = tt_object.src
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
-    const src = tt_src
+  static getImageInfo(swan_object) {
+    const swan_src = swan_object.src
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const src = swan_src
     PROMISE((SUCCESS) => {
       my.getImageInfo({
         src,
-        success: tt_res => {
-          const my_res = {
-            errMsg: 'getImageInfo: ok',
-            width: tt_res.width,
-            height: tt_res.height,
-            type: tt_res.type,
-            path: tt_res.path,
-            orientation: tt_res.orientation
-          }
-          SUCCESS(my_res)
-        }
-      })
-    }, tt_success, tt_fail, tt_complete)
-  }
-
-  static compressImage(tt_object) {
-    const tt_src = tt_object.src
-    const tt_success = tt_object.success
-    const tt_fail = tt_object.fail
-    const tt_complete = tt_object.complete
-    tt_object = null
-    const apFilePaths = [tt_src]
-    PROMISE((SUCCESS) => {
-      my.compressImage({
-        apFilePaths,
-        success: tt_res => {
-          const my_res = {
-            errMsg: 'compressImage: ok',
-            tempFilePath: tt_res.apFilePaths[0]
-          }
-          SUCCESS(my_res)
-        }
-      })
-    }, tt_success, tt_fail, tt_complete)
-  }
-
-  static chooseAlbum(tt_object) {
-    const swan_success = tt_object.success
-    const swan_fail = tt_object.fail
-    const swan_complete = tt_object.complete
-    tt_object = null
-    PROMISE((SUCCESS) => {
-      my.chooseImage({
-        success: tt_res => {
-          const tt_tempFiles = tt_res.tempFiles.map(file => ({
-            path: file.path,
-            size: file.size,
-            type: 'image',
-            duration: 0
-
-          }))
+        success: my_res => {
           const swan_res = {
-            tempFilePaths: tt_res.tempFilePaths,
-            tempFiles: tt_tempFiles
+            errMsg: 'getImageInfo: ok',
+            width: my_res.width,
+            height: my_res.height,
+            type: my_res.type,
+            path: my_res.path,
+            orientation: my_res.orientation
           }
           SUCCESS(swan_res)
         }
       })
     }, swan_success, swan_fail, swan_complete)
+  }
+
+  static compressImage(swan_object) {
+    const swan_src = swan_object.src
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const apFilePaths = [swan_src]
+    PROMISE((SUCCESS) => {
+      my.compressImage({
+        apFilePaths,
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'compressImage: ok',
+            tempFilePath: my_res.apFilePaths[0]
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static chooseAlbum(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.completes
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.chooseImage({
+        success: my_res => {
+          const swan_res = {
+            tempFilePaths: my_res.tempFilePaths,
+            tempFiles: my_res.tempFiles.map(tempFile => ({
+              path: tempFile.path,
+              size: tempFile.size,
+              type: 'image',
+              duration: 15
+            }))
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  // ////// 相机组件控制  ///////
+  static createCameraContext() {
+    return new CameraContext(getApp().onekit_camera)
+  }
+
+  // ////// AR相机组件控制  ///////
+  static createARCameraContext() {
+    return my.createCameraContext()
+  }
+
+  // ////// 背景音频组件控制  ///////
+  static getBackgroundAudioManager() {
+    return my.getBackgroundAudioManager()
+  }
+
+  // ////// 音频组件控制  ///////
+  static createInnerAudioContext() {
+    return my.createInnerAudioContext()
+  }
+
+  static setInnerAudioOption() {
+    return console.warn('setInnerAudioOption is not support')
+  }
+
+  static getRecorderManager() {
+    return my.getRecorderManager()
+  }
+
+  static getAvailableAudioSources() {
+    return my.getAvailableAudioSources()
+  }
+
+  // ////// 视频  ///////
+  static chooseVideo(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.chooseVideo({
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'chooseVideo: ok',
+            tempFilePath: my_res.tempFilePath,
+            duration: my_res.duration,
+            size: my_res.size,
+            width: my_res.width,
+            height: my_res.height,
+            apFilePath: my_res.apFilePath,
+            filePath: my_res.filePath,
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static saveVideoToPhotosAlbum(swan_object) {
+    const src = swan_object.filePath
+    const success = swan_object.success
+    const fail = swan_object.fail
+    const complete = swan_object.complete
+    swan_object = null
+    const my_object = {
+      src,
+      success,
+      fail,
+      complete
+    }
+    return my.saveVideoToPhotosAlbum(my_object)
+  }
+
+  static createVideoContext(videoId) {
+    return my.createVideoContext(videoId)
+  }
+
+  // ////// 透明视频组件控制  ///////
+  static createAnimationVideo(videoId) {
+    return my.createVideoContext(videoId)
+  }
+
+  // ////// 直播组件控制  ///////
+  static createLivePlayerContext(domId) {
+    return my.createLivePlayerContext(domId)
+  }
+
+  // ////// RTC组件控制  ///////
+  static createRtcRoomContext(domId) {
+    return my.createRtcRoomContext(domId)
+  }
+
+  // ////// 位置  ///////
+  static getLocation(object) {
+    return my.getLocation(object)
+  }
+
+  static chooseLocation(object) {
+    return my.chooseLocation(object)
+  }
+
+  static openLocation(swan_object) {
+    const latitude = swan_object.latitude
+    const longitude = swan_object.longitude
+    const name = swan_object.name || ''
+    const address = swan_object.address || ''
+    const success = swan_object.success
+    const fail = swan_object.fail
+    const complete = swan_object.complete
+    swan_object = null
+    const ali_res = {
+      latitude,
+      longitude,
+      name,
+      address,
+      success,
+      fail,
+      complete
+    }
+    return my.openLocation(ali_res)
+  }
+
+  static startLocationUpdate() {
+    return {}
+  }
+
+  static onLocationChange(callback) {
+    getApp().onekit_LocationChange = callback
+  }
+
+  static offLocationChange() {
+    getApp().onekit_LocationChange = null
+  }
+
+  static stopLocationUpdate() {
+    return {}
+  }
+
+  // ////// 画布  ///////
+  static createCanvasContext(id) {
+    return my.createCanvasContext(id)
+  }
+
+  static canvasPutImageData(swan_object) {
+    const canvasId = swan_object.canvasId
+    const data = swan_object.data
+    const x = swan_object.x
+    const y = swan_object.y
+    const width = swan_object.width
+    const height = swan_object.height
+    const success = swan_object.success
+    const fail = swan_object.fail
+    const complete = swan_object.complete
+    swan_object = null
+    const my_object = {
+      data,
+      x,
+      y,
+      width,
+      height,
+      success,
+      fail,
+      complete
+    }
+    return my.createCanvasContext(canvasId).putImageData(my_object)
+  }
+
+  static canvasGetImageData(swan_object) {
+    const swan_canvasId = swan_object.canvasId
+    const swan_x = swan_object.x
+    const swan_y = swan_object.y
+    const swan_width = swan_object.width
+    const swan_height = swan_object.height
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const x = swan_x
+    const y = swan_y
+    const width = swan_width
+    const height = swan_height
+    PROMISE((SUCCESS) => {
+      my.createCanvasContext(swan_canvasId).getImageData({
+        x,
+        y,
+        width,
+        height,
+        success: my_res => {
+          const swan_res = {
+            width: my_res.width,
+            height: my_res.height,
+            data: my_res.data
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static canvasToTempFilePath(swan_object) {
+    const swan_canvasId = swan_object.canvasId
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const canvasId = swan_canvasId
+    PROMISE((SUCCESS) => {
+      my.canvasToTempFilePath({
+        canvasId,
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'canvasToTempFilePath: ok',
+            tempFilePath: my_res.apFilePath
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  // ////// 文件  ///////
+  static saveFile(swan_object) {
+    const swan_tempFilePath = swan_object.tempFilePath
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const apFilePath = swan_tempFilePath
+    PROMISE((SUCCESS) => {
+      my.saveFile({
+        apFilePath,
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'saveFile: ok',
+            savedFilePath: my_res.apFilePath
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static getFileInfo(swan_object) {
+    const swan_filePath = swan_object.filePath
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const apFilePath = swan_filePath
+    PROMISE((SUCCESS) => {
+      my.getFileInfo({
+        apFilePath,
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'getFileInfo: ok',
+            size: my_res.size,
+            digest: my_res.digest
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static getSavedFileList(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.getSavedFileList({
+        success: my_res => {
+          const swan_fileList = my_res.fileList.map(file => ({
+            size: file.size,
+            filePath: file.apFilePath,
+            createTime: file.createTime,
+          }))
+          const swan_res = {
+            errMsg: 'getSavedFileList: ok',
+            fileList: swan_fileList
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static getSavedFileInfo(swan_object) {
+    const swan_filePath = swan_object.filePath
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const apFilePath = swan_filePath
+    PROMISE((SUCCESS) => {
+      my.getSavedFileInfo({
+        apFilePath,
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'getSavedFileInfo: ok',
+            size: my_res.size,
+            createTime: my_res.createTime
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static openDocument(swan_object) {
+    const swan_filePath = swan_object.filePath
+    const swan_fileType = swan_object.fileType || 'pdf'
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const apFilePath = swan_filePath
+    const fileType = swan_fileType
+    PROMISE((SUCCESS) => {
+      my.openDocument({
+        apFilePath,
+        fileType,
+        success: () => {
+          const swan_res = {
+            errMsg: 'openDocument: ok',
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static removeSavedFile(swan_object) {
+    const apFilePath = swan_object.filePath
+    const success = swan_object.success
+    const fail = swan_object.fail
+    const complete = swan_object.complete
+    swan_object = null
+    const my_object = {
+      apFilePath,
+      success,
+      fail,
+      complete
+    }
+    return my.removeSavedFile(my_object)
+  }
+
+  static getFileSystemManager() {
+    return my.getFileSystemManager()
+  }
+
+  // ////// 设备  ///////
+  // ////// 系统信息  ///////
+  static getSystemInfo(object) {
+    return my.getSystemInfo(object)
+  }
+
+  static getSystemInfoSync() {
+    return my.getSystemInfoSync()
+  }
+
+  static getConnectedWifi(object) {
+    return my.getConnectedWifi(object)
+  }
+
+  // ////// 网络状态  ///////
+  static getNetworkType(object) {
+    return my.getNetworkType(object)
+  }
+
+  static onNetworkStatusChange(callback) {
+    return my.onNetworkStatusChange(callback)
+  }
+
+  // ////// 屏幕  ///////
+  static setKeepScreenOn(object) {
+    return my.setKeepScreenOn(object)
+  }
+
+  static getScreenBrightness(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.getScreenBrightness({
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'getScreenBrightness: ok',
+            value: my_res.brightness
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static setScreenBrightness(swan_object) {
+    const swan_value = swan_object.value
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const brightness = swan_value
+    PROMISE((SUCCESS) => {
+      my.setScreenBrightness({
+        brightness,
+        success: () => {
+          const swan_res = {
+            errMsg: 'setScreenBrightness: ok'
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  // ////// 拨打电话  ///////
+  static makePhoneCall(swan_object) {
+    const swan_phoneNumber = swan_object.phoneNumber
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const number = swan_phoneNumber
+    PROMISE((SUCCESS) => {
+      my.makePhoneCall({
+        number,
+        success: () => {
+          const swan_res = {
+            errMsg: 'makePhoneCall: ok'
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  // ////// 震动  ///////
+  static vibrateShort(object) {
+    return my.vibrateShort(object)
+  }
+
+  static vibrateLong(object) {
+    return my.vibrateLong(object)
+  }
+
+  // ////// 剪切板  ///////
+  static getClipboardData(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.getClipboard({
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'getClipboardData: ok',
+            data: my_res.text
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static setClipboardData(swan_object) {
+    const swan_data = swan_object.data
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const text = swan_data
+    PROMISE((SUCCESS) => {
+      my.setClipboard({
+        text,
+        success: () => {
+          const swan_res = {
+            errMsg: 'setClipboardData: ok'
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  // ////// 扫码  ///////
+  static scanCode(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.scan({
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'scanCode: ok',
+            result: my_res.code,
+            qrCode: my_res.qrCode,
+            barCode: my_res.barCode,
+            scanType: my_res.codeType,
+            codeContent: my_res.codeContent,
+            imageChannel: my_res.imageChannel,
+            rawData: my_res.rawData,
+            charSet: 'GBK'
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  // ////// 加速度计  ///////
+  static onAccelerometerChange(callback) {
+    my.onAccelerometerChange(function (res) {
+      if (swan._stopAccelerometer) {
+        return
+      }
+      callback(res)
+    })
+  }
+
+  static offAccelerometerChange(callback) {
+    my.offAccelerometerChange(function (res) {
+      if (swan._stopAccelerometer) {
+        return
+      }
+      callback(res)
+    })
+  }
+
+  static stopAccelerometer(swan_object) {
+    swan._stopAccelerometer = true
+    if (swan_object.success) {
+      swan_object.success()
+    }
+    if (swan_object.complete) {
+      swan_object.complete()
+    }
+  }
+
+  static startAccelerometer(swan_object) {
+    swan._stopAccelerometer = false
+    if (swan_object.success) {
+      swan_object.success()
+    }
+    if (swan_object.complete) {
+      swan_object.complete()
+    }
+  }
+
+  // ////// 设备方向  ///////
+  static onDeviceMotionChange() {
+    return console.warn('onDeviceMotionChange is not support')
+  }
+
+  static startDeviceMotionListening() {
+    return console.warn('startDeviceMotionListening is not support')
+  }
+
+  static stopDeviceMotionListening() {
+    return console.warn('stopDeviceMotionListening is not support')
+  }
+
+  // ////// 性能  ///////
+  static onMemoryWarning(callback) {
+    return my.onMemoryWarning(callback)
+  }
+
+  // ////// 手机联系人  ///////
+  static addPhoneContact(object) {
+    return my.addPhoneContact(object)
+  }
+
+  // ////// 电量  ///////
+  static getBatteryInfo(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.getBatteryInfo({
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'getBatteryInfo: ok',
+            level: my_res.level.toString(),
+            isCharging: my_res.isCharging
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static getBatteryInfoSync() {
+    const my_res = my.getBatteryInfoSync()
+    const swan_res = {
+      level: my_res.level.toString(),
+      isCharging: my_res.isCharging
+    }
+    return swan_res
+  }
+
+  // ////// 截屏  ///////
+  static onUserCaptureScreen(callback) {
+    return my.onUserCaptureScreen(callback)
+  }
+
+  // ////// 日历  ///////
+  static addEventOnCalendar() {
+    return console.warn('addEventOnCalendar is not support')
+  }
+
+  static deleteEventOnCalendar() {
+    return console.warn('deleteEventOnCalendar is not support')
+  }
+
+  // ////// 键盘高度  ///////
+  static onKeyboardHeightChange() {
+    return console.warn('onKeyboardHeightChange is not support')
+  }
+
+  static offKeyboardHeightChange() {
+    return console.warn('offKeyboardHeightChange is not support')
+  }
+
+  // ////// 第三方平台  ///////
+  static getExtConfig(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.getExtConfig({
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'getExtConfig: ok',
+            extConfig: my_res.data
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static getExtConfigSync() {
+    const my_res = my.getExtConfigSync()
+    const swan_res = {
+      extConfig: my_res.data
+    }
+    return swan_res
+  }
+
+  // ////// 开放接口  ///////
+  static login(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.getAuthCode({
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'login: ok',
+            code: my_res.authCode,
+            authErrorScopes: my_res.authErrorScopes,
+            authSuccessScopes: my_res.authSuccessScopes,
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+    getApp().onekit_login = true
+  }
+
+  static getLoginCode(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.getAuthCode({
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'getLoginCode: ok',
+            code: my_res.authCode,
+            authErrorScopes: my_res.authErrorScopes,
+            authSuccessScopes: my_res.authSuccessScopes,
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+    getApp().onekit_login = true
+  }
+
+  static checkSession() {
+    return console.warn('checkSession is not support')
+  }
+
+  static isLoginSync() {
+    if (getApp().onekit_login) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  static authorize(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.getAuthCode({
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'authorize: ok',
+            code: my_res.authCode,
+            authErrorScopes: my_res.authErrorScopes,
+            authSuccessScopes: my_res.authSuccessScopes,
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  // ////// 设置  ///////
+  static getSetting(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.getSetting({
+        success: my_res => {
+          const authSetting = {
+            'scope.userInfo': my_res.userinfo,
+            'scope.userLocation': my_res.location,
+            'scope.address': my_res.aliaddress,
+            'scope.record': false,
+            'scope.album': my_res.album,
+            'scope.camera': my_res.camera
+          }
+          const swan_res = {
+            errMsg: 'getSetting: ok',
+            authSetting
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static openSetting(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.openSetting({
+        success: my_res => {
+          const authSetting = {
+            'scope.userInfo': my_res.userinfo,
+            'scope.userLocation': my_res.location,
+            'scope.address': false,
+            'scope.record': false,
+            'scope.album': my_res.album,
+            'scope.camera': my_res.camera
+          }
+          const swan_res = {
+            errMsg: 'getSetting: ok',
+            authSetting
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  // ////// 支付  ///////
+  static requestPolymerPayment(swan_object) {
+    const swan_orderInfo = swan_object.orderInfo
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    const tradeNO = swan_orderInfo.tpOrderId
+    PROMISE((SUCCESS) => {
+      my.tradePay({
+        tradeNO,
+        success: my_res => {
+          const swan_res = {
+            resultCode: my_res.resultCode
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  // ////// 页面基础信息  ///////
+  static setPageInfo() {
+    return console.warn('setPageInfo is not support')
+  }
+
+  static setMetaDescription() {
+    return console.warn('setMetaDescription is not support')
+  }
+
+  static setMetaKeywords() {
+    return console.warn('setMetaKeywords is not support')
+  }
+
+  static setDocumentTitle() {
+    return console.warn('setDocumentTitle is not support')
+  }
+
+  // ////// 分包预下载  ///////
+  // static loadSubPackage(swan_object) {
+  //   const swan_root = swan_object.root
+  //   const swan_success = swan_object.success
+  //   const swan_fail = swan_object.fail
+  //   const swan_complete = swan_object.complete
+  //   swan_object = null
+  //   const url = swan_root
+  //   PROMISE((SUCCESS) => {
+  //     my.downloadFile({
+  //       url,
+  //       success: my_res => {
+  //         const swan_res = {
+  //           tempFilePath: my_res.apFilePath,
+  //           statusCode: 200
+  //         }
+  //         SUCCESS(swan_res)
+  //       }
+  //     })
+  //   }, swan_success, swan_fail, swan_complete)
+  // }
+
+  // ////// 数据分析  ///////
+  static reportAnalytics(object) {
+    return my.reportAnalytics(object)
+  }
+
+  // ////// 风控  ///////
+  static getSystemRiskInfo() {
+    return console.warn('getSystemRiskInfo is not support')
+  }
+
+  // ////// 订阅  ///////
+  static subscribeService() {
+    return console.warn('subscribeService is not support')
+  }
+
+  // ////// 书架  ///////
+  static insertBookshelf() {
+    return console.warn('insertBookshelf is not support')
+  }
+
+  static deleteBookshelf() {
+    return console.warn('deleteBookshelf is not support')
+  }
+
+  static queryBookshelf() {
+    return console.warn('queryBookshelf is not support')
+  }
+
+  static updateBookshelfReadTime() {
+    return console.warn('updateBookshelfReadTime is not support')
+  }
+
+  static navigateToBookshelf() {
+    return console.warn('navigateToBookshelf is not support')
+  }
+
+  // ////// 跳转  ///////
+  static openBdboxWebview() {
+    return console.warn('openBdboxWebview is not support')
+  }
+
+  // ////// 用户接口  ///////
+  static getSwanId() {
+    return console.warn('getSwanId is not support')
+  }
+
+  // static getUserInfo(swan_object) {
+  //   const swan_success = swan_object.success
+  //   const swan_fail = swan_object.fail
+  //   const swan_complete = swan_object.complete
+  //   swan_object = null
+  //   PROMISE((SUCCESS) => {
+  //     my.getUserInfo({
+  //       success: my_res => {
+  //         const swan_userInfo = {
+  //           gender: 0,
+  //           nickName: my_res.nickName,
+  //           avatarUrl: my_res.avatar
+  //         }
+  //         const swan_res = {
+  //           errMsg: 'getUserInfo: ok',
+  //           userInfo: swan_userInfo,
+  //         }
+  //         SUCCESS(swan_res)
+  //       }
+  //     })
+  //   }, swan_success, swan_fail, swan_complete)
+  // }
+
+  // ////// 分享  ///////
+  static openShare(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS, FAIL) => {
+      my.showSharePanel({
+        success: () => {
+          const swan_res = {
+            result: true
+          }
+          SUCCESS(swan_res)
+        },
+        fail: () => {
+          const swan_res = {
+            result: false
+          }
+          FAIL(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  static shareFile() {
+    return my.showSharePanel()
+  }
+
+  // ////// 打开小程序  ///////
+  static navigateToSmartProgram() {
+    return console.warn('navigateToSmartProgram is not support')
+  }
+
+  static navigateBackSmartProgram() {
+    return console.warn('navigateBackSmartProgram is not support')
+  }
+
+  // ////// 获取收货地址  ///////
+  static chooseAddress(swan_object) {
+    const swan_success = swan_object.success
+    const swan_fail = swan_object.fail
+    const swan_complete = swan_object.complete
+    swan_object = null
+    PROMISE((SUCCESS) => {
+      my.getAddress({
+        success: my_res => {
+          const swan_res = {
+            errMsg: 'chooseAddress: ok',
+            userName: my_res.fullname,
+            provinceName: my_res.prov,
+            cityName: my_res.city,
+            countyName: my_res.country,
+            detailInfo: my_res.address,
+            telNumber: my_res.mobilePhone,
+            area: my_res.area,
+            street: my_res.street,
+          }
+          SUCCESS(swan_res)
+        }
+      })
+    }, swan_success, swan_fail, swan_complete)
+  }
+
+  // ////// 获取发票抬头  ///////
+  static chooseInvoiceTitle() {
+    return console.warn('chooseInvoiceTitle is not support')
+  }
+
+  // ////// 全屏内容发布器  ///////
+  static openCommunityEditor() {
+    return console.warn('openCommunityEditor is not support')
+  }
+
+  static closeCommunityEditor() {
+    return console.warn('closeCommunityEditor is not support')
+  }
+
+  // ////// 全屏内容发布器  ///////
+  static openReplyEditor() {
+    return console.warn('openReplyEditor is not support')
+  }
+
+  static closeReplyEditor() {
+    return console.warn('closeReplyEditor is not support')
+  }
+
+  // ////// 激励视频广告  ///////
+  static createRewardedVideoAd() {
+    return console.warn('createRewardedVideoAd is not support')
   }
 }
