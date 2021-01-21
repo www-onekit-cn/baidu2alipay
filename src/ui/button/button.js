@@ -1,12 +1,30 @@
+/* eslint-disable camelcase */
+import onekit_behavior from '../../behavior/onekit_behavior'
+import weixin_behavior from '../../behavior/weixin_behavior'
+
 Component({
-  mixins: [],
+  mixins: [onekit_behavior, weixin_behavior],
   data: {
     hideContact: true
   },
   didMount() {},
   didUpdate() {},
   didUnmount() {},
-  props: {},
+  props: {
+    size: 'default',
+    type: 'default',
+    plain: false,
+    formType: 'buttonclick',
+    openType: '',
+    hoverClass: 'button-hover',
+    hoverStopPropagation: false,
+    hoverStartTime: 20,
+    hoverStayTime: 70,
+    disabled: false,
+    loading: false,
+    //
+    subscribeId: ''
+  },
   methods: {
     contactBG_tap() {
       this.setData({
@@ -69,5 +87,72 @@ Component({
         this.props.onTap(e)
       }
     },
+  },
+  //
+  _trigger_Getuserinfo({detail}) {
+    const dataset = this._dataset()
+    if (this.props.onGetuserinfo) {
+      this.props.onGetuserinfo({
+        detail,
+        currentTarget: {
+          dataset
+        }
+      })
+    }
+  },
+  _trigger_Contact({detail}) {
+    const dataset = this._dataset()
+    if (this.props.onContact) {
+      this.props.onContact({
+        detail,
+        currentTarget: {
+          dataset
+        }
+      })
+    }
+  },
+  _trigger_Getphonenumber({detail}) {
+    const dataset = this._dataset()
+    if (this.props.onGetphonenumber) {
+      this.props.onGetphonenumber({
+        detail,
+        currentTarget: {
+          dataset
+        }
+      })
+    }
+  },
+  _trigger_Error({detail}) {
+    const dataset = this._dataset()
+    if (this.props.onError) {
+      this.props.onError({
+        detail,
+        currentTarget: {
+          dataset
+        }
+      })
+    }
+  },
+  _trigger_Opensetting({detail}) {
+    const dataset = this._dataset()
+    if (this.props.onOpensetting) {
+      this.props.onOpensetting({
+        detail,
+        currentTarget: {
+          dataset
+        }
+      })
+    }
+  },
+  _trigger_Launchapp({detail}) {
+    const dataset = this._dataset()
+    if (this.props.onLaunchapp) {
+      this.props.onLaunchapp({
+        detail,
+        currentTarget: {
+          dataset
+        }
+      })
+    }
   },
 })

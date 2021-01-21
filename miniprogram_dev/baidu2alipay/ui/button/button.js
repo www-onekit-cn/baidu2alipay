@@ -87,14 +87,130 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ 0:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+/* eslint-disable no-console */
+exports.default = {
+  props: {
+    onekitId: '', // `id_${Math.random() * 1000}`,
+    onekitClass: '',
+    onekitStyle: '',
+    onekitVersion: ''
+  },
+  data: {},
+  onInit: function onInit() {
+    if (this.props.onekitId) {
+      getApp().onekit_nodes['_' + this.props.onekitId] = this;
+    }
+    //
+    if (this.props.onekitClass) {
+      getApp().onekit_nodes['__' + this.props.onekitClass] = this;
+    }
+  }
+};
+
+/***/ }),
+
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
+module.exports = {
+  props: {},
+  methods: {
+    ui_tap: function ui_tap(e) {
+      if (this.props.onTap) {
+        this.props.onTap(e);
+      }
+    },
+    ui_touchstart: function ui_touchstart() {
+      if (this.props.onTouchstart) {
+        this.props.onTouchstart();
+      }
+    },
+    ui_touchmove: function ui_touchmove() {
+      if (this.props.onTouchmove) {
+        this.props.onTouchmove();
+      }
+    },
+    ui_touchcancel: function ui_touchcancel() {
+      if (this.props.onTouchcancel) {
+        this.props.onTouchcancel();
+      }
+    },
+    ui_touchend: function ui_touchend() {
+      if (this.props.onTouchend) {
+        this.props.onTouchend();
+      }
+    },
+    ui_longpress: function ui_longpress() {
+      if (this.props.onLongpress) {
+        this.props.onLongpress();
+      }
+    },
+    ui_longtap: function ui_longtap() {
+      if (this.props.onLongtap) {
+        this.props.onLongtap();
+      }
+    },
+    ui_transitionend: function ui_transitionend() {
+      if (this.props.onTransitionend) {
+        this.props.onTransitionend();
+      }
+    },
+    ui_animationstart: function ui_animationstart() {
+      if (this.props.onAnimationstart) {
+        this.props.onAnimationstart();
+      }
+    },
+    ui_animationiteration: function ui_animationiteration() {
+      if (this.props.onAnimationiteration) {
+        this.props.onAnimationiteration();
+      }
+    },
+    ui_animationend: function ui_animationend() {
+      if (this.props.onAnimationend) {
+        this.props.onAnimationend();
+      }
+    },
+    ui_touchforcechange: function ui_touchforcechange() {
+      if (this.props.onTouchforcechange) {
+        this.props.onTouchforcechange();
+      }
+    }
+  }
+};
+
+/***/ }),
+
 /***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+var _onekit_behavior = __webpack_require__(0);
+
+var _onekit_behavior2 = _interopRequireDefault(_onekit_behavior);
+
+var _weixin_behavior = __webpack_require__(1);
+
+var _weixin_behavior2 = _interopRequireDefault(_weixin_behavior);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* eslint-disable camelcase */
 Component({
-  mixins: [],
+  mixins: [_onekit_behavior2.default, _weixin_behavior2.default],
   data: {
     hideContact: true
   },
@@ -102,7 +218,27 @@ Component({
   didUpdate: function didUpdate() {},
   didUnmount: function didUnmount() {},
 
-  props: {},
+  props: {
+    size: 'default',
+    type: 'default',
+    plain: false,
+    disabled: false,
+    loading: false,
+    formType: '',
+    openType: '',
+    hoverClass: 'button-hover',
+    hoverStopPropagation: false,
+    hoverStartTime: 20,
+    hoverStayTime: 70,
+    //
+    lang: 'en',
+    sessionFrom: '',
+    sendMessageTitle: '当前标题',
+    sendMessagePath: '当前分享路径',
+    sendMessageImg: '截图',
+    appParameter: '',
+    showMessageCard: false
+  },
   methods: {
     contactBG_tap: function contactBG_tap() {
       this.setData({
