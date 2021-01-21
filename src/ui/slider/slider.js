@@ -11,17 +11,12 @@ Component({
     step: 1,
     disabled: false,
     value: 0,
-    color: '#e9e9e9',
-    selectedColor: '#1aad19',
-    activeColor: '#1aad19',
-    backgroundColor: '#e9e9e9',
+    backgroundColor: '#cccccc',
     blockSize: 24,
     blockColor: '#ffffff',
     showValue: false,
+    color: '#e9e9e9',
   },
-  didMount() {},
-  didUpdate() {},
-  didUnmount() {},
   methods: {
     slider_Change(e) {
       if (this.props.onChange) {

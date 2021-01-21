@@ -244,7 +244,8 @@
 
 </onekit-view> -->
 
-<onekit-view onekit-class="wrap">
+<!-- <picker> -->
+<!-- <onekit-view onekit-class="wrap">
     <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">
             <onekit-view>普通选择器</onekit-view>
@@ -342,4 +343,24 @@
             </onekit-picker>
         </onekit-view>
     </onekit-view>
-</onekit-view>
+</onekit-view> -->
+
+<!-- <slider> -->
+<view class="wrap">
+    <view class="card-area">
+        <view class="top-description border-bottom">
+            <view>显示当前取值</view>
+            <view>show-value</view>
+        </view>
+        <slider 
+            class="slider" 
+            min="0" 
+            max="200" 
+            value="30" 
+            show-value 
+            step="30" 
+            bind:change="sliderChange"
+            disabled="{{false}}">
+        </slider>
+    </view>
+</view>
