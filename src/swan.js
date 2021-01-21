@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
+import PROMISE from 'oneutil/PROMISE'
 import CameraContext from './api/CameraContext'
-import PROMISE from '../node_modules/oneutil/PROMISE'
 import OneKit from './js/OneKit'
 
 export default class swan {
