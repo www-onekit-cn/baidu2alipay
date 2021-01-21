@@ -1,5 +1,14 @@
-<view class="onkit-view {{onekitClass}}" style="{{onekitStyle}}" id="{{onekitId}}">
-<slot>
+<view 
+id="{{onekitId}}"
+class="onekit-view {{onekitClass}}"
+style="{{onekitStyle}}"
 
-</slot>
+hover-class="{{hoverClass}}"
+hover-start-time="{{hoverStartTime}}"
+hover-stay-time="{{hoverStayTime}}"
+hover-stop-propagation="{{hoverStopPropagation}}"
+
+onTap="ui_tap"
+>
+<slot></slot>
 </view>

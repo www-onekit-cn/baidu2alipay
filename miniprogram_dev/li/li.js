@@ -1,8 +1,22 @@
 import{OnekitPage,swan} from '../baidu2alipay/index'
+var app = getApp()
+
+//view
 OnekitPage({
-  onLoad(e){
-    const a = !!e.data
-    console.log(e, a)
-  }
-});
+    data:{},
+    onShow:function(){
+      const openParams = app.globalData.openParams
+      if(openParams){
+      swan.reportAnalytics('pageshow',{
+          fr:openParams,
+          type:'component',
+          name:'view'
+        });
+    }
+    },
+    onHide:function(){
+      app.globalData.openParams = ''
+    }
+  })
+
 

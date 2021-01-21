@@ -1,3 +1,32 @@
-<onekit-view>
-  New Page
+<!-- <view> -->
+<onekit-view onekit-class="wrap" ref="_$$_$wrap">
+    <onekit-view onekit-class="card-area" ref="_$$_$card_area">
+        <onekit-view onekit-class="top-description border-bottom" ref="_$$_$top_description_$$_$border_bottom">横向布局</onekit-view>
+        <onekit-view onekit-class="rowlike" ref="_$$_$rowlike">
+            <onekit-view onekit-class="color-a" hover-class="hover" hover-stop-propagation="{{false}}" hover-start-time="100" hover-stay-time="200" ref="_$$_$color_a">
+                <text>A</text>
+            </onekit-view>
+            <onekit-view onekit-class="color-b" ref="_$$_$color_b">
+                <text>B</text>
+            </onekit-view>
+            <onekit-view onekit-class="color-c" ref="_$$_$color_c">
+                <text>C</text>
+            </onekit-view>
+        </onekit-view>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area" ref="_$$_$card_area">
+        <onekit-view onekit-class="top-description border-bottom" ref="_$$_$top_description_$$_$border_bottom">纵向布局</onekit-view>
+        <onekit-view onekit-class="collike" ref="_$$_$collike">
+            <onekit-view onekit-class="color-a" ref="_$$_$color_a">
+                <text>A</text>
+            </onekit-view>
+            <onekit-view onekit-class="color-b" ref="_$$_$color_b">
+                <text>B</text>
+            </onekit-view>
+            <onekit-view onekit-class="color-c" ref="_$$_$color_c">
+                <text>C</text>
+            </onekit-view>
+        </onekit-view>
+    </onekit-view>
 </onekit-view>

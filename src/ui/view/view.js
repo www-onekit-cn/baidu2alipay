@@ -6,12 +6,9 @@ Component({
   mixins: [onekit_behavior, weixin_behavior],
   data: {},
   props: {
-    onekitClass: '',
-    onekitStyle: '',
-    onekitId: ''
+    hoverClass: 'none',
+    hoverStopPropagation: false,
+    hoverStartTime: 50,
+    hoverStayTime: 400,
   },
-  didMount() {},
-  didUpdate() {},
-  didUnmount() {},
-  methods: {},
 })
