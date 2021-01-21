@@ -1,4 +1,5 @@
-.rowlike {
+/* view */
+/* .rowlike {
     margin: calc(.2*var(--onekit-REM)) calc(.57*var(--onekit-REM)) ;
     display: flex ;
 }
@@ -35,4 +36,16 @@
 }
 .hover {
     opacity: .2 ;
+} */
+
+/* progress */
+.progress,
+.inner-progress {
+    margin: calc(.35*var(--onekit-REM)) calc(.23*var(--onekit-REM)) ;
+}
+.inner-progress .progress-bar {
+    border-radius: 50rpx ;
+}
+.inner-progress .progress-inner-bar {
+    border-radius: 50rpx ;
 }

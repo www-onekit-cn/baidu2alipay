@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "onekit-view": "../baidu2alipay/ui/view/view"
+    "onekit-view": "../baidu2alipay/ui/view/view",
+    "onekit-progress": "../baidu2alipay/ui/progress/progress"
   }
 }

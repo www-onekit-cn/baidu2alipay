@@ -102,21 +102,21 @@ Component({
   didUpdate: function didUpdate() {},
   didUnmount: function didUnmount() {},
 
-  props: {
-    onekitClass: '',
-    onekitStyle: '',
-    onekitId: ''
-  },
+  props: {},
   methods: {
     contactBG_tap: function contactBG_tap() {
-      this.setData({ hideContact: true });
+      this.setData({
+        hideContact: true
+      });
     },
     button_onTap: function button_onTap(e) {
       var that = this;
       if (this.props.openType) {
         switch (this.props.openType) {
           case 'contact':
-            this.setData({ hideContact: false });
+            this.setData({
+              hideContact: false
+            });
             break;
           case 'share':
             my.showShareMenu({

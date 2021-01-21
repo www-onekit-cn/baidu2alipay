@@ -82,7 +82,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 34);
+/******/ 	return __webpack_require__(__webpack_require__.s = 33);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1971,7 +1971,7 @@ module.exports = require("oneutil/PROMISE");
 
 /***/ }),
 
-/***/ 34:
+/***/ 33:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1979,22 +1979,22 @@ module.exports = require("oneutil/PROMISE");
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GLOBAL = exports.swan = exports.OnekitPage = exports.OnekitComponent = exports.OnekitBehavior = exports.OnekitApp = void 0;
-var OnekitApp_1 = __webpack_require__(35);
+var OnekitApp_1 = __webpack_require__(34);
 exports.OnekitApp = OnekitApp_1.default;
-var OnekitBehavior_1 = __webpack_require__(36);
+var OnekitBehavior_1 = __webpack_require__(35);
 exports.OnekitBehavior = OnekitBehavior_1.default;
-var OnekitComponent_1 = __webpack_require__(37);
+var OnekitComponent_1 = __webpack_require__(36);
 exports.OnekitComponent = OnekitComponent_1.default;
-var OnekitPage_1 = __webpack_require__(38);
+var OnekitPage_1 = __webpack_require__(37);
 exports.OnekitPage = OnekitPage_1.default;
 var swan_1 = __webpack_require__(2);
 exports.swan = swan_1.default;
-var global_1 = __webpack_require__(39);
+var global_1 = __webpack_require__(38);
 exports.GLOBAL = global_1.default;
 
 /***/ }),
 
-/***/ 35:
+/***/ 34:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2092,7 +2092,7 @@ function OnekitApp(swan_object) {
 
 /***/ }),
 
-/***/ 36:
+/***/ 35:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2219,7 +2219,7 @@ function OnekitBehavior(object) {
 
 /***/ }),
 
-/***/ 37:
+/***/ 36:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2416,7 +2416,7 @@ function OnekitComponent(object) {
 
 /***/ }),
 
-/***/ 38:
+/***/ 37:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2591,7 +2591,7 @@ function OnekitPage(swan_object) {
 
 /***/ }),
 
-/***/ 39:
+/***/ 38:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

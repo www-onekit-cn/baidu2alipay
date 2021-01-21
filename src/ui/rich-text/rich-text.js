@@ -1,58 +1,87 @@
+/* eslint-disable no-console */
 Component({
   mixins: [],
   data: {},
   props: {
-    onekitClass:"",
-    onekitStyle:"",
-    onekitId:"",
+    nodes: [],
+    // 做不了
+    selectable: false,
+    imageMenuPrevent: false,
+    preview: true
   },
-  didMount() {
-    var nodes = this.props.nodes;
-    if (typeof (nodes) === "string") {
-      nodes = this._html2nodes(nodes);
-      this.setData({nodes:nodes});
-    }
-  },
-  didUpdate() { },
-  didUnmount() { },
+  didMount() {},
+  didUpdate() {},
+  didUnmount() {},
   methods: {
-    _html2nodes(html) {
-      function _html2node(xParent) {
-        var nodes = [];
-        for (var xNode of xParent.childNodes) {
-          var node;
-          switch (xNode.nodeType) {
-            case 3:
-              node = {
-                type: "text",
-                text: xNode.nodeValue
-              }
-              break;
-            case 1:
-              node = {
-                name: xNode.tagName.toLowerCase(),
-                children: _html2node(xNode),
-                attrs:{}
-              };
-              if (xNode.attributes["class"]) {
-                node.attrs.class = xNode.attributes["class"].value;
-              }
-              if (xNode.attributes["style"]) {
-                node.attrs.style = xNode.attributes["style"].value;
-              }
-              break;
-            default:
-              console.warn(xNode.nodeType);
-              node = null;
-              break;
+    richText_longTap() {
+      if (this.props.imageMenuPrevent) {
+        my.showActionSheet({
+          // items: ['转发', '保存图片', '收藏'],
+          items: ['查看图片', '识图找信息', '保存到相册', '保存到百度云盘', '分享图片', '设置壁纸'],
+          cancelButtonText: '取消',
+          success: ({
+            index
+          }) => {
+            if (index === -1) {
+              return
+            }
+            switch (index) {
+              case 0:
+                my.alert({
+                  title: '暂不支持查看图片'
+                })
+                // my.previewImage({
+                //   urls: '' // 拿不到URL
+                // })
+                break
+              case 1:
+                my.alert({
+                  title: '暂不支持识图找信息'
+                })
+                break
+              case 2:
+                my.alert({
+                  title: '暂不支持查看图片'
+                })
+                // my.saveImage({
+                //   url: this.props.src,
+                //   showActionSheet: true,
+                //   success: () => {
+                //     my.alert({
+                //       title: '保存成功',
+                //     })
+                //   },
+                // })
+                break
+              case 3:
+                my.alert({
+                  title: '暂不支持保存到百度云盘'
+                })
+                break
+              case 4:
+                my.alert({
+                  title: '暂不支持分享图片'
+                })
+                break
+              case 5:
+                my.alert({
+                  title: '暂不支持识图找信息'
+                })
+                break
+              case 6:
+                my.alert({
+                  title: '暂不支持设置壁纸'
+                })
+                break
+              default:
+                break
+            }
           }
-          if (node) { nodes.push(node); }
-        }
-        return nodes;
+        })
+        this.setData({
+          imageMenuPrevent: this.props.imageMenuPrevent
+        })
       }
-      var document = new DOMParser().parseFromString(html, 'text/html');
-      return _html2node(document.querySelector('body'));
     }
-  },
-
-});
+  }
+})

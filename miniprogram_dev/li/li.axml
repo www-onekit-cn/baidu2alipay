@@ -1,5 +1,5 @@
 <!-- <view> -->
-<onekit-view onekit-class="wrap" ref="_$$_$wrap">
+<!-- <onekit-view onekit-class="wrap" ref="_$$_$wrap">
     <onekit-view onekit-class="card-area" ref="_$$_$card_area">
         <onekit-view onekit-class="top-description border-bottom" ref="_$$_$top_description_$$_$border_bottom">横向布局</onekit-view>
         <onekit-view onekit-class="rowlike" ref="_$$_$rowlike">
@@ -28,5 +28,48 @@
                 <text>C</text>
             </onekit-view>
         </onekit-view>
+    </onekit-view>
+</onekit-view> -->
+
+<!-- <onekit-progress> -->
+<onekit-view onekit-class="wrap">
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">默认样式</onekit-view>
+        <onekit-progress onekit-class="progress" percent="20" />
+    </onekit-view>
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>显示当前百分比</onekit-view>
+            <onekit-view>show-info</onekit-view>
+        </onekit-view>
+        <!-- 请调试基础版本为3.150.1以上查看 font-size="13" 的效果 -->
+        <onekit-progress onekit-class="progress" percent="40" font-size="13" activeColor="#3c76ff" show-info active />
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>设置颜色</onekit-view>
+            <onekit-view>activeColor="#00BC89"</onekit-view>
+        </onekit-view>
+        <onekit-progress onekit-class="progress" percent="60" activeColor="#00BC89" backgroundColor="#E6E6E6" active />
+    </onekit-view>
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>设置宽度、外圆角</onekit-view>
+            <onekit-view>border-radius="90" stroke-width="7"</onekit-view>
+        </onekit-view>
+        <!-- 基础版本为3.150.1以上外层圆角用属性设置，以下用css设置 -->
+        <onekit-progress onekit-class="progress" percent="60" border-radius="90" stroke-width="7" backgroundColor="#E6E6E6" active />
+    </onekit-view>
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            设置宽度、内圆角
+        </onekit-view>
+        <onekit-progress onekit-class="inner-progress" percent="60" backgroundColor="#E6E6E6" stroke-width="7" active />
+    </onekit-view>
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">显示动画</onekit-view>
+        <onekit-progress onekit-class="progress" duration="10" percent="70" color="#38f" active active-mode="backwards" />
+        <onekit-progress onekit-class="progress" percent="80" color="#38f" active active-mode="forwards" />
     </onekit-view>
 </onekit-view>

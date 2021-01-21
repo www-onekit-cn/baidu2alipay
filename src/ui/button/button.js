@@ -3,24 +3,24 @@ Component({
   data: {
     hideContact: true
   },
-  didMount() { },
-  didUpdate() { },
-  didUnmount() { },
-  props: {
-    onekitClass: '',
-    onekitStyle: '',
-    onekitId: '',
-  },
+  didMount() {},
+  didUpdate() {},
+  didUnmount() {},
+  props: {},
   methods: {
     contactBG_tap() {
-      this.setData({hideContact: true})
+      this.setData({
+        hideContact: true
+      })
     },
     button_onTap(e) {
       const that = this
       if (this.props.openType) {
         switch (this.props.openType) {
           case 'contact':
-            this.setData({hideContact: false})
+            this.setData({
+              hideContact: false
+            })
             break
           case 'share':
             my.showShareMenu({
@@ -65,7 +65,9 @@ Component({
             break
         }
       }
-      if (this.props.onTap) { this.props.onTap(e) }
+      if (this.props.onTap) {
+        this.props.onTap(e)
+      }
     },
   },
 })
