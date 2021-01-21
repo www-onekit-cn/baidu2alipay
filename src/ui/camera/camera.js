@@ -1,16 +1,17 @@
+/* eslint-disable camelcase */
+import onekit_behavior from '../../behavior/onekit_behavior'
+import weixin_behavior from '../../behavior/weixin_behavior'
+
 Component({
-  mixins: [],
+  mixins: [onekit_behavior, weixin_behavior],
   data: {},
   props: {
-    onekitClass: '',
-    onekitStyle: '',
-    onekitId: '',
     devicePosition: 'back',
     flash: 'auto'
   },
-  didMount() { },
-  didUpdate() { },
-  didUnmount() { },
+  didMount() {},
+  didUpdate() {},
+  didUnmount() {},
   methods: {
     camera_stop(e) {
       if (this.props.onStop) {
