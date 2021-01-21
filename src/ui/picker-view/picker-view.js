@@ -10,7 +10,8 @@ Component({
     indicatorStyle: '',
     indicatorClass: '',
     maskStyle: '',
-    maskClass: ''
+    maskClass: '',
+    title: '',
   },
   didMount() {},
   didUpdate() {},

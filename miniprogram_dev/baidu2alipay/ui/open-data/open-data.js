@@ -82,67 +82,10 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = 25);
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ 19:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _swan = __webpack_require__(2);
-
-var _swan2 = _interopRequireDefault(_swan);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-Component({
-  mixins: [],
-  data: {},
-  props: {},
-
-  didMount: function didMount() {
-    var that = this;
-    _swan2.default.getOpenData({
-      success: function success(opendata) {
-        switch (that.props.type) {
-          case 'userNickName':
-            that.setData({ userNickName: opendata.nickName });
-            break;
-          case 'userAvatarUrl':
-            that.setData({ userAvatarUrl: opendata.avatarUrl });
-            break;
-          case 'userGender':
-            that.setData({ userGender: opendata.gender });
-            break;
-          case 'userCity':
-            that.setData({ userCity: opendata.city });
-            break;
-          case 'userProvince':
-            that.setData({ userProvince: opendata.province });
-            break;
-          case 'userCountry':
-            that.setData({ userCountry: opendata.country });
-            break;
-          case 'userLanguage':
-            that.setData({ userLanguage: opendata.language });
-            break;
-          default:
-            break;
-        }
-      }
-    });
-  },
-  didUpdate: function didUpdate() {},
-  didUnmount: function didUnmount() {},
-
-  methods: {}
-});
-
-/***/ }),
 
 /***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
@@ -152,15 +95,15 @@ Component({
 
 exports.__esModule = true;
 
-var _PROMISE = __webpack_require__(3);
+var _PROMISE = __webpack_require__(4);
 
 var _PROMISE2 = _interopRequireDefault(_PROMISE);
 
-var _CameraContext = __webpack_require__(4);
+var _CameraContext = __webpack_require__(5);
 
 var _CameraContext2 = _interopRequireDefault(_CameraContext);
 
-var _OneKit = __webpack_require__(5);
+var _OneKit = __webpack_require__(6);
 
 var _OneKit2 = _interopRequireDefault(_OneKit);
 
@@ -2021,14 +1964,71 @@ exports.default = swan;
 
 /***/ }),
 
-/***/ 3:
+/***/ 25:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _swan = __webpack_require__(2);
+
+var _swan2 = _interopRequireDefault(_swan);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+Component({
+  mixins: [],
+  data: {},
+  props: {},
+
+  didMount: function didMount() {
+    var that = this;
+    _swan2.default.getOpenData({
+      success: function success(opendata) {
+        switch (that.props.type) {
+          case 'userNickName':
+            that.setData({ userNickName: opendata.nickName });
+            break;
+          case 'userAvatarUrl':
+            that.setData({ userAvatarUrl: opendata.avatarUrl });
+            break;
+          case 'userGender':
+            that.setData({ userGender: opendata.gender });
+            break;
+          case 'userCity':
+            that.setData({ userCity: opendata.city });
+            break;
+          case 'userProvince':
+            that.setData({ userProvince: opendata.province });
+            break;
+          case 'userCountry':
+            that.setData({ userCountry: opendata.country });
+            break;
+          case 'userLanguage':
+            that.setData({ userLanguage: opendata.language });
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  },
+  didUpdate: function didUpdate() {},
+  didUnmount: function didUnmount() {},
+
+  methods: {}
+});
+
+/***/ }),
+
+/***/ 4:
 /***/ (function(module, exports) {
 
 module.exports = require("oneutil/PROMISE");
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2068,7 +2068,7 @@ exports.default = CameraContext;
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable camelcase */
 import onekit_behavior from '../../behavior/onekit_behavior'
 import weixin_behavior from '../../behavior/weixin_behavior'
@@ -19,6 +20,7 @@ Component({
     duration: 30
   },
   didMount() {
+    console.log(this.props.borderRadius)
     let activeColor
     let activeMode
     let duration

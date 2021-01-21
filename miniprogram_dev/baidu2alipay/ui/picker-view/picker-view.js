@@ -82,7 +82,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 27);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -192,7 +192,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 21:
+/***/ 27:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -217,7 +217,8 @@ Component({
     indicatorStyle: '',
     indicatorClass: '',
     maskStyle: '',
-    maskClass: ''
+    maskClass: '',
+    title: ''
   },
   didMount: function didMount() {},
   didUpdate: function didUpdate() {},

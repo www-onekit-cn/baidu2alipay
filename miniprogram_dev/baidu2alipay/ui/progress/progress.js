@@ -82,7 +82,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 28);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -192,7 +192,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 23:
+/***/ 28:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -208,6 +208,7 @@ var _weixin_behavior2 = _interopRequireDefault(_weixin_behavior);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* eslint-disable no-console */
 /* eslint-disable camelcase */
 Component({
   mixins: [_onekit_behavior2.default, _weixin_behavior2.default],
@@ -228,6 +229,7 @@ Component({
   didMount: function didMount() {
     var _this = this;
 
+    console.log(this.props.borderRadius);
     var activeColor = void 0;
     var activeMode = void 0;
     var duration = void 0;

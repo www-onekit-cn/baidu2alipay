@@ -15,7 +15,7 @@ Component({
     selectedColor: '#1aad19',
     activeColor: '#1aad19',
     backgroundColor: '#e9e9e9',
-    blockSize: 28,
+    blockSize: 24,
     blockColor: '#ffffff',
     showValue: false,
   },

@@ -82,7 +82,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 33);
+/******/ 	return __webpack_require__(__webpack_require__.s = 37);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -95,15 +95,15 @@ module.exports =
 
 exports.__esModule = true;
 
-var _PROMISE = __webpack_require__(3);
+var _PROMISE = __webpack_require__(4);
 
 var _PROMISE2 = _interopRequireDefault(_PROMISE);
 
-var _CameraContext = __webpack_require__(4);
+var _CameraContext = __webpack_require__(5);
 
 var _CameraContext2 = _interopRequireDefault(_CameraContext);
 
-var _OneKit = __webpack_require__(5);
+var _OneKit = __webpack_require__(6);
 
 var _OneKit2 = _interopRequireDefault(_OneKit);
 
@@ -1967,11 +1967,11 @@ exports.default = swan;
 /***/ 3:
 /***/ (function(module, exports) {
 
-module.exports = require("oneutil/PROMISE");
+module.exports = require("oneutil");
 
 /***/ }),
 
-/***/ 33:
+/***/ 37:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1979,22 +1979,22 @@ module.exports = require("oneutil/PROMISE");
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GLOBAL = exports.swan = exports.OnekitPage = exports.OnekitComponent = exports.OnekitBehavior = exports.OnekitApp = void 0;
-var OnekitApp_1 = __webpack_require__(34);
+var OnekitApp_1 = __webpack_require__(38);
 exports.OnekitApp = OnekitApp_1.default;
-var OnekitBehavior_1 = __webpack_require__(35);
+var OnekitBehavior_1 = __webpack_require__(39);
 exports.OnekitBehavior = OnekitBehavior_1.default;
-var OnekitComponent_1 = __webpack_require__(36);
+var OnekitComponent_1 = __webpack_require__(40);
 exports.OnekitComponent = OnekitComponent_1.default;
-var OnekitPage_1 = __webpack_require__(37);
+var OnekitPage_1 = __webpack_require__(41);
 exports.OnekitPage = OnekitPage_1.default;
 var swan_1 = __webpack_require__(2);
 exports.swan = swan_1.default;
-var global_1 = __webpack_require__(38);
+var global_1 = __webpack_require__(42);
 exports.GLOBAL = global_1.default;
 
 /***/ }),
 
-/***/ 34:
+/***/ 38:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2092,7 +2092,7 @@ function OnekitApp(swan_object) {
 
 /***/ }),
 
-/***/ 35:
+/***/ 39:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2101,7 +2101,7 @@ function OnekitApp(swan_object) {
 exports.__esModule = true;
 exports.default = OnekitBehavior;
 
-var _oneutil = __webpack_require__(6);
+var _oneutil = __webpack_require__(3);
 
 var _oneutil2 = _interopRequireDefault(_oneutil);
 
@@ -2219,7 +2219,14 @@ function OnekitBehavior(object) {
 
 /***/ }),
 
-/***/ 36:
+/***/ 4:
+/***/ (function(module, exports) {
+
+module.exports = require("oneutil/PROMISE");
+
+/***/ }),
+
+/***/ 40:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2228,7 +2235,7 @@ function OnekitBehavior(object) {
 exports.__esModule = true;
 exports.default = OnekitComponent;
 
-var _oneutil = __webpack_require__(6);
+var _oneutil = __webpack_require__(3);
 
 var _oneutil2 = _interopRequireDefault(_oneutil);
 
@@ -2416,7 +2423,7 @@ function OnekitComponent(object) {
 
 /***/ }),
 
-/***/ 37:
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2591,7 +2598,7 @@ function OnekitPage(swan_object) {
 
 /***/ }),
 
-/***/ 38:
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2637,7 +2644,7 @@ exports.default = global;
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2677,7 +2684,7 @@ exports.default = CameraContext;
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2691,13 +2698,6 @@ function getCurrentUrl() {
   return getCurrent().path;
 }
 module.exports = { getCurrent: getCurrent, getCurrentUrl: getCurrentUrl };
-
-/***/ }),
-
-/***/ 6:
-/***/ (function(module, exports) {
-
-module.exports = require("oneutil");
 
 /***/ })
 

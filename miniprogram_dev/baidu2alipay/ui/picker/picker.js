@@ -82,7 +82,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 26);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -192,7 +192,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 20:
+/***/ 26:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -214,16 +214,31 @@ Component({
   data: {},
   props: {
     headerText: '',
-    disabled: false
+    disabled: false,
+    mode: 'selector',
+    range: [],
+    value: null,
+    start: '',
+    end: ''
   },
   didMount: function didMount() {},
   didUpdate: function didUpdate() {},
   didUnmount: function didUnmount() {},
 
   methods: {
+    picker_Cancle: function picker_Cancle(e) {
+      if (this.props.onCancle) {
+        this.props.onCancle(e);
+      }
+    },
     picker_Change: function picker_Change(e) {
       if (this.props.onChange) {
         this.props.onChange(e);
+      }
+    },
+    picker_Columnchange: function picker_Columnchange(e) {
+      if (this.props.onColumnchange) {
+        this.props.onColumnchange(e);
       }
     }
   }

@@ -31,19 +31,19 @@
     </onekit-view>
 </onekit-view> -->
 
-<!-- <onekit-progress> -->
-<onekit-view onekit-class="wrap">
+<!-- <progress> -->
+<!-- <onekit-view onekit-class="wrap">
     <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">默认样式</onekit-view>
-        <onekit-progress onekit-class="progress" percent="20" />
+        <onekit-progress onekit-class="progress" percent="20"></onekit-progress>
     </onekit-view>
     <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">
             <onekit-view>显示当前百分比</onekit-view>
             <onekit-view>show-info</onekit-view>
         </onekit-view>
-        <!-- 请调试基础版本为3.150.1以上查看 font-size="13" 的效果 -->
-        <onekit-progress onekit-class="progress" percent="40" font-size="13" activeColor="#3c76ff" show-info active />
+        
+        <onekit-progress onekit-class="progress" percent="40" font-size="13" activeColor="#3c76ff" show-info active></onekit-progress>
     </onekit-view>
 
     <onekit-view onekit-class="card-area">
@@ -51,25 +51,295 @@
             <onekit-view>设置颜色</onekit-view>
             <onekit-view>activeColor="#00BC89"</onekit-view>
         </onekit-view>
-        <onekit-progress onekit-class="progress" percent="60" activeColor="#00BC89" backgroundColor="#E6E6E6" active />
+        <onekit-progress onekit-class="progress" percent="60" activeColor="#00BC89" backgroundColor="#E6E6E6" active></onekit-progress>
     </onekit-view>
     <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">
             <onekit-view>设置宽度、外圆角</onekit-view>
             <onekit-view>border-radius="90" stroke-width="7"</onekit-view>
         </onekit-view>
-        <!-- 基础版本为3.150.1以上外层圆角用属性设置，以下用css设置 -->
-        <onekit-progress onekit-class="progress" percent="60" border-radius="90" stroke-width="7" backgroundColor="#E6E6E6" active />
+        
+        <onekit-progress onekit-class="progress" percent="60" border-radius="90" stroke-width="7" backgroundColor="#E6E6E6" active onekit-style="border-radius:50%"></onekit-progress>
     </onekit-view>
     <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">
             设置宽度、内圆角
         </onekit-view>
-        <onekit-progress onekit-class="inner-progress" percent="60" backgroundColor="#E6E6E6" stroke-width="7" active />
+        <onekit-progress onekit-class="inner-progress" percent="60" backgroundColor="#E6E6E6" stroke-width="7" active></onekit-progress>
     </onekit-view>
     <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">显示动画</onekit-view>
-        <onekit-progress onekit-class="progress" duration="10" percent="70" color="#38f" active active-mode="backwards" />
-        <onekit-progress onekit-class="progress" percent="80" color="#38f" active active-mode="forwards" />
+        <onekit-progress onekit-class="progress" duration="10" percent="70" color="#38f" active active-mode="backwards"></onekit-progress>
+        <onekit-progress onekit-class="progress" percent="80" color="#38f" active active-mode="forwards"></onekit-progress>
+    </onekit-view>
+</onekit-view> -->
+
+<!-- <rich-text> -->
+<!-- <onekit-view onekit-class="wrap">
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">通过HTML String渲染</onekit-view>
+        <onekit-view onekit-class="description">代码示例</onekit-view>
+        <scroll-view scroll-y>
+            <onekit-view onekit-class="cont border-bottom">{{htmlSnip}}</onekit-view>
+        </scroll-view>
+        <onekit-view onekit-class="description">渲染效果</onekit-view>
+        <onekit-view onekit-class="rich-text">
+            
+            <onekit-rich-text nodes="{{htmlSnip}}"></onekit-rich-text>
+            
+            
+        </onekit-view>
+    </onekit-view>
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">通过节点渲染</onekit-view>
+        <onekit-view onekit-class="description">代码示例</onekit-view>
+        <scroll-view scroll-y>
+            <onekit-view onekit-class="cont border-bottom">{{nodeSnip}}</onekit-view>
+        </scroll-view>
+        <onekit-view onekit-class="description">渲染效果</onekit-view>
+        <onekit-view onekit-class="rich-text">
+            
+            <onekit-rich-text nodes="{{nodes}}"></onekit-rich-text>
+            
+            
+        </onekit-view>
+    </onekit-view>
+</onekit-view> -->
+
+<!-- <button> -->
+<!-- <onekit-view onekit-class="wrap">
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>主要按钮</onekit-view>
+            <onekit-view>primary</onekit-view>
+        </onekit-view>
+        <onekit-button type="primary" plain="{{false}}">
+            主按钮 normal
+        </onekit-button>
+        <onekit-button type="primary" loading>
+            主按钮 loading
+        </onekit-button>
+        <onekit-button type="primary" disabled>
+            主按钮 disabled
+        </onekit-button>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>次要按钮</onekit-view>
+            <onekit-view>default</onekit-view>
+        </onekit-view>
+        <onekit-button type="default" plain="{{false}}">
+            次按钮 normal
+        </onekit-button>
+        <onekit-button type="default" loading>
+            次按钮 loading
+        </onekit-button>
+        <onekit-button type="default" disabled>
+            次按钮 disabled
+        </onekit-button>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>警示按钮</onekit-view>
+            <onekit-view>warn</onekit-view>
+        </onekit-view>
+        <onekit-button type="warn">
+            警示按钮 normal
+        </onekit-button>
+        <onekit-button type="warn" loading>
+            警示按钮 loading
+        </onekit-button>
+        <onekit-button type="warn" disabled>
+            警示按钮 disabled
+        </onekit-button>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>小尺寸按钮</onekit-view>
+            <onekit-view>size='mini'</onekit-view>
+        </onekit-view>
+        <onekit-button type="primary" size="mini">
+            按钮
+        </onekit-button>
+        <onekit-button type="default" size="mini">
+            按钮
+        </onekit-button>
+        <onekit-button type="warn" size="mini">
+            按钮
+        </onekit-button>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            自定义点击态
+        </onekit-view>
+        <onekit-button type="primary" hover-class="none" on:tap="tap">
+            无点击态
+        </onekit-button>
+        <onekit-button type="primary" hover-start-time="1000">
+            点击态延迟出现
+        </onekit-button>
+        <onekit-button type="primary" hover-stay-time="2000">
+            点击态延迟消失
+        </onekit-button>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area" a:if="{{!isWeb}}">
+        <onekit-view onekit-class="top-description border-bottom">
+            绑定开放能力
+        </onekit-view>
+        <onekit-button type="primary" onekit-class="middle-btn" open-type="share">触发用户分享</onekit-button>
+        <onekit-button type="primary" onekit-class="middle-btn" open-type="getUserInfo" onGetuserinfo="getUserInfo">获取用户信息</onekit-button>
+        <onekit-button type="primary" onekit-class="middle-btn" open-type="getPhoneNumber" onGetphonenumber="getPhoneNumber">获取用户手机号</onekit-button>
+        <onekit-button type="primary" onekit-class="middle-btn" open-type="openSetting" onOpensetting="openSetting">打开授权设置页</onekit-button>
+        <onekit-button type="primary" onekit-class="middle-btn" open-type="chooseAddress" onChooseAddress="chooseAddress">选择用户收货地址</onekit-button>
+        <onekit-button type="primary" onekit-class="middle-btn" open-type="chooseInvoiceTitle" onChooseInvoiceTitle="chooseInvoiceTitle">选择用户发票抬头</onekit-button>
+        <onekit-button type="primary" onekit-class="middle-btn" contact open-type="contact" onContact="contact">打开客服对话</onekit-button>
+        <onekit-button type="primary" onekit-class="middle-btn" contact open-type="login" onLogin="login">登录</onekit-button>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>绑定表单操作</onekit-view>
+            <onekit-view>form-type="submit/reset"</onekit-view>
+        </onekit-view>
+        <form onSubmit="submit" onReset="reset">
+            <onekit-button form-type="submit" type="primary">
+                提交
+            </onekit-button>
+            <onekit-button form-type="reset">
+                重置
+            </onekit-button>
+        </form>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area" hover-class="hover">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>按钮父级同步出现点击态</onekit-view>
+            <onekit-view>hover-stop-propagation</onekit-view>
+        </onekit-view>
+        <onekit-button type="primary" hover-stop-propagation="true" on:tap="tap">
+            点击卡片空白区域体验效果
+        </onekit-button>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            自定义 button 样式
+        </onekit-view>
+        <onekit-button onekit-class="{{isFavor ? 'Favor' : 'noFavor' }}" onTap="tapChange">
+            {{isFavor ? '已' : '' }}关注
+        </onekit-button>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            同时绑定开放能力、普通点击事件
+        </onekit-view>
+        <onekit-button type="primary" open-type="getPhoneNumber" onGetuserinfo="getPhoneNumber" onTap="tap">获取用户手机号</onekit-button>
+    </onekit-view>
+
+</onekit-view> -->
+
+<onekit-view onekit-class="wrap">
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>普通选择器</onekit-view>
+            <onekit-view>mode="selector"</onekit-view>
+        </onekit-view>
+        <onekit-view onekit-class="section" hover-class="section-active">
+            <onekit-picker mode="selector" value="{{arrIndex}}" range="{{selector}}" range-key="name" title="选择器标题" on:change="selectorChange">
+                <onekit-view onekit-class="picker">
+                    <text class="chooseItem">请选择:</text>{{selector[arrIndex].name}}
+                </onekit-view>
+            </onekit-picker>
+        </onekit-view>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>时间选择器</onekit-view>
+            <onekit-view>mode="time"</onekit-view>
+        </onekit-view>
+        <onekit-view onekit-class="section" hover-class="section-active">
+            <onekit-picker mode="time" value="{{time}}" start="1:01" end="22:59" on:change="timeChange" disabled="{{false}}">
+                <onekit-view onekit-class="picker">
+                    <text class="chooseItem">请选择时间:</text>{{time}}
+                </onekit-view>
+            </onekit-picker>
+        </onekit-view>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>日期选择器</onekit-view>
+            <onekit-view>mode="date"</onekit-view>
+        </onekit-view>
+        <onekit-view onekit-class="section date-section" hover-class="section-active">
+            <onekit-picker mode="date" value="{{dateDay}}" on:change="dateChangeDay" fields="day">
+                <onekit-view>
+                    <text class="chooseItem">请选择日期:</text>{{dateDay}}
+                </onekit-view>
+            </onekit-picker>
+        </onekit-view>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>多列选择器</onekit-view>
+            <onekit-view>mode="multiSelector"</onekit-view>
+        </onekit-view>
+        <onekit-view onekit-class="section date-section" hover-class="section-active">
+            <onekit-picker mode="multiSelector" onChange="bindMultiPickerChange" onColumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" title="多列选择器">
+                <onekit-view onekit-class="picker">
+                    <text class="chooseItem">请选择:</text>{{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}} {{multiArray[2][multiIndex[2]]}}
+                </onekit-view>
+            </onekit-picker>
+        </onekit-view>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>省市区选择器</onekit-view>
+            <onekit-view>mode="region"</onekit-view>
+        </onekit-view>
+        <onekit-view onekit-class="section" hover-class="section-active">
+            <onekit-picker mode="region" on:change="regionChange" custom-item="{{customItem}}" title="地区选择器">
+                <onekit-view onekit-class="picker">
+                    <text class="chooseItem">请选择地区:</text>{{regionData[0]}} {{regionData[1]}} {{regionData[2]}}
+                </onekit-view>
+            </onekit-picker>
+        </onekit-view>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>设置禁用</onekit-view>
+            <onekit-view>disabled</onekit-view>
+        </onekit-view>
+        <onekit-view onekit-class="section" hover-class="section-active">
+            <onekit-picker mode="selector" onekit-class="disabled" value="{{arrIndex}}" range="{{selector}}" range-key="name" disabled>
+                <onekit-view onekit-class="picker">
+                    <text class="chooseItem">请选择:</text>{{selector[arrIndex].name}}
+                </onekit-view>
+            </onekit-picker>
+        </onekit-view>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>取消选择时触发提示</onekit-view>
+            <onekit-view>bindcancel</onekit-view>
+        </onekit-view>
+        <onekit-view onekit-class="section" hover-class="section-active">
+            <onekit-picker mode="selector" value="{{arrIndex}}" range="{{selector}}" range-key="name" on:change="selectorChange" on:cancel="cancel">
+                <onekit-view onekit-class="picker">
+                    <text class="chooseItem">请选择:</text>{{selector[arrIndex].name}}
+                </onekit-view>
+            </onekit-picker>
+        </onekit-view>
     </onekit-view>
 </onekit-view>

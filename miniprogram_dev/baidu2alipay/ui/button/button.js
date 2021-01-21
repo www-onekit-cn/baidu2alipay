@@ -82,7 +82,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 18);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -192,7 +192,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 8:
+/***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -222,22 +222,16 @@ Component({
     size: 'default',
     type: 'default',
     plain: false,
-    disabled: false,
-    loading: false,
-    formType: '',
+    formType: 'buttonclick',
     openType: '',
     hoverClass: 'button-hover',
     hoverStopPropagation: false,
     hoverStartTime: 20,
     hoverStayTime: 70,
+    disabled: false,
+    loading: false,
     //
-    lang: 'en',
-    sessionFrom: '',
-    sendMessageTitle: '当前标题',
-    sendMessagePath: '当前分享路径',
-    sendMessageImg: '截图',
-    appParameter: '',
-    showMessageCard: false
+    subscribeId: ''
   },
   methods: {
     contactBG_tap: function contactBG_tap() {
@@ -255,9 +249,11 @@ Component({
             });
             break;
           case 'share':
-            my.showShareMenu({
-              success: function success() {}
-            });
+            // my.showShareMenu({
+            //   success() {
+
+            //   }
+            // })
             break;
           case 'getUserInfo':
             if (that.props.onGetuserinfo) {
@@ -296,6 +292,85 @@ Component({
       if (this.props.onTap) {
         this.props.onTap(e);
       }
+    }
+  },
+  //
+  _trigger_Getuserinfo: function _trigger_Getuserinfo(_ref) {
+    var detail = _ref.detail;
+
+    var dataset = this._dataset();
+    if (this.props.onGetuserinfo) {
+      this.props.onGetuserinfo({
+        detail: detail,
+        currentTarget: {
+          dataset: dataset
+        }
+      });
+    }
+  },
+  _trigger_Contact: function _trigger_Contact(_ref2) {
+    var detail = _ref2.detail;
+
+    var dataset = this._dataset();
+    if (this.props.onContact) {
+      this.props.onContact({
+        detail: detail,
+        currentTarget: {
+          dataset: dataset
+        }
+      });
+    }
+  },
+  _trigger_Getphonenumber: function _trigger_Getphonenumber(_ref3) {
+    var detail = _ref3.detail;
+
+    var dataset = this._dataset();
+    if (this.props.onGetphonenumber) {
+      this.props.onGetphonenumber({
+        detail: detail,
+        currentTarget: {
+          dataset: dataset
+        }
+      });
+    }
+  },
+  _trigger_Error: function _trigger_Error(_ref4) {
+    var detail = _ref4.detail;
+
+    var dataset = this._dataset();
+    if (this.props.onError) {
+      this.props.onError({
+        detail: detail,
+        currentTarget: {
+          dataset: dataset
+        }
+      });
+    }
+  },
+  _trigger_Opensetting: function _trigger_Opensetting(_ref5) {
+    var detail = _ref5.detail;
+
+    var dataset = this._dataset();
+    if (this.props.onOpensetting) {
+      this.props.onOpensetting({
+        detail: detail,
+        currentTarget: {
+          dataset: dataset
+        }
+      });
+    }
+  },
+  _trigger_Launchapp: function _trigger_Launchapp(_ref6) {
+    var detail = _ref6.detail;
+
+    var dataset = this._dataset();
+    if (this.props.onLaunchapp) {
+      this.props.onLaunchapp({
+        detail: detail,
+        currentTarget: {
+          dataset: dataset
+        }
+      });
     }
   }
 });

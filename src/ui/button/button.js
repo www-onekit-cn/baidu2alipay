@@ -41,11 +41,11 @@ Component({
             })
             break
           case 'share':
-            my.showShareMenu({
-              success() {
+            // my.showShareMenu({
+            //   success() {
 
-              }
-            })
+            //   }
+            // })
             break
           case 'getUserInfo':
             if (that.props.onGetuserinfo) {
@@ -89,7 +89,9 @@ Component({
     },
   },
   //
-  _trigger_Getuserinfo({detail}) {
+  _trigger_Getuserinfo({
+    detail
+  }) {
     const dataset = this._dataset()
     if (this.props.onGetuserinfo) {
       this.props.onGetuserinfo({
@@ -100,7 +102,9 @@ Component({
       })
     }
   },
-  _trigger_Contact({detail}) {
+  _trigger_Contact({
+    detail
+  }) {
     const dataset = this._dataset()
     if (this.props.onContact) {
       this.props.onContact({
@@ -111,7 +115,9 @@ Component({
       })
     }
   },
-  _trigger_Getphonenumber({detail}) {
+  _trigger_Getphonenumber({
+    detail
+  }) {
     const dataset = this._dataset()
     if (this.props.onGetphonenumber) {
       this.props.onGetphonenumber({
@@ -122,7 +128,9 @@ Component({
       })
     }
   },
-  _trigger_Error({detail}) {
+  _trigger_Error({
+    detail
+  }) {
     const dataset = this._dataset()
     if (this.props.onError) {
       this.props.onError({
@@ -133,7 +141,9 @@ Component({
       })
     }
   },
-  _trigger_Opensetting({detail}) {
+  _trigger_Opensetting({
+    detail
+  }) {
     const dataset = this._dataset()
     if (this.props.onOpensetting) {
       this.props.onOpensetting({
@@ -144,7 +154,9 @@ Component({
       })
     }
   },
-  _trigger_Launchapp({detail}) {
+  _trigger_Launchapp({
+    detail
+  }) {
     const dataset = this._dataset()
     if (this.props.onLaunchapp) {
       this.props.onLaunchapp({

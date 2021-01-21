@@ -1,0 +1,10 @@
+<rich-text
+  class="onekit-rich-text {{onekitClass}}"
+  style="{{onekitStyle}}"
+  id="{{onekitId}}"
+
+  nodes="{{nodes}}"
+  onLongTap="richText_longTap"
+/>
+<slot></slot>
+</rich-text>
