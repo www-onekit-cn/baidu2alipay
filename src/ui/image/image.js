@@ -1,32 +1,113 @@
 /* eslint-disable no-console */
 
 /* eslint-disable camelcase */
+import {PATH} from 'oneutil'
 import onekit_behavior from '../../behavior/onekit_behavior'
-import weixin_behavior from '../../behavior/weixin_behavior'
+import baidu_behavior from '../../behavior/baidu_behavior'
 
 Component({
-  mixins: [onekit_behavior, weixin_behavior],
+  mixins: [onekit_behavior, baidu_behavior],
   data: {},
   props: {
     src: '',
     mode: 'scaleToFill',
+    // 不支持
+    webp: false,
     lazyLoad: false,
+    imageMenuPrevent: false,
+    preview: true,
+    originalSrc: ''
   },
-  didMount() {},
-  didUpdate() {},
-  didUnmount() {},
+  didMount() {
+    const pages = getCurrentPages()
+    let alipay_src
+    let originalSrc
+    if (!this.props.src.indexOf('://')) {
+      const currentUrl = pages[pages.length - 1].route
+      alipay_src = '/' + PATH.rel2abs(currentUrl, this.props.src)
+    }
+    if (this.props.preview) {
+      originalSrc = this.props.src
+      my.previewImage({
+        urls: [this.props.src],
+      })
+    }
+    this.setData({
+      src: alipay_src,
+      originalSrc
+    })
+  },
   methods: {
-    image_error(e) {
-      console.log('image_error', e)
+    image_error({detail}) {
+      console.log(detail)
+      const dataset = this._dataset()
       if (this.props.onError) {
-        this.props.onError(e)
+        this.props.onError({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
       }
     },
-    image_load(e) {
-      console.log('image_load', e)
+    image_load({detail}) {
+      const dataset = this._dataset()
       if (this.props.onLoad) {
-        this.props.onLoad(e)
+        this.props.onLoad({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
       }
     },
+    onShareAppMessage() {
+      return {
+        title: '分享 View 组件',
+        desc: 'View 组件很通用',
+        path: 'weixin2alipay/ui/image/image',
+      }
+    },
+    image_longTap() {
+      if (this.props.imageMenuPrevent) {
+        my.showActionSheet({
+          items: ['转发', '保存图片', '收藏'],
+          cancelButtonText: '取消',
+          success: ({
+            index
+          }) => {
+            if (index === -1) {
+              return
+            }
+            switch (index) {
+              case 0:
+                this.onShareAppMessage()
+                break
+              case 1:
+                my.saveImage({
+                  url: this.props.src,
+                  showActionSheet: true,
+                  success: () => {
+                    my.alert({
+                      title: '保存成功',
+                    })
+                  },
+                })
+                break
+              case 2:
+                my.alert({
+                  title: "请点击右上角的'☆'收藏按钮"
+                })
+                break
+              default:
+                break
+            }
+          }
+        })
+        this.setData({
+          imageMenuPrevent: this.props.imageMenuPrevent
+        })
+      }
+    }
   },
 })
