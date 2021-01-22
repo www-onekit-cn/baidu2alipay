@@ -67,23 +67,26 @@ Component({
       }
     },
     _compareTime(time1, time2) {
-      const time1m = time1.split(':')[0]
-      const time1s = time1.split(':')[1]
-      const time2m = time2.split(':')[0]
-      const time2s = time2.split(':')[1]
-      if (time1m > time2m) {
+      const array1 = time1.split(':')
+      const array2 = time2.split(':')
+      const time1h = parseInt(array1[0], 10)
+      const time1m = parseInt(array1[1], 10)
+      const time2h = parseInt(array2[0], 10)
+      const time2m = parseInt(array2[1], 10)
+      if (time1h > time2h) {
         return true
-      } else if (time1m < time2m) {
+      } else if (time1h < time2h) {
         return false
-      } else if (time1m === time2m) {
-        if (time1s > time2s) {
-          console.log('true')
+      } else if (time1h === time2h) {
+        if (time1m > time2m) {
           return true
-        } else {
+        } else if (time1m < time2m) {
           return false
+        } else {
+          return null
         }
       } else {
-        return null
+        throw new Error('what?!')
       }
     },
     time_change(e) {
@@ -105,7 +108,7 @@ Component({
         }
       }
       if (this.props.end) {
-        if (this._compareTime(value, this.props.start) === true) {
+        if (this._compareTime(value, this.props.end) === true) {
           let time = this.props.end.split(':')
           time = [parseInt(time[0], 10), parseInt(time[1], 10)]
           this.setData({

@@ -95,15 +95,15 @@ module.exports =
 
 exports.__esModule = true;
 
-var _PROMISE = __webpack_require__(4);
+var _PROMISE = __webpack_require__(5);
 
 var _PROMISE2 = _interopRequireDefault(_PROMISE);
 
-var _CameraContext = __webpack_require__(5);
+var _CameraContext = __webpack_require__(6);
 
 var _CameraContext2 = _interopRequireDefault(_CameraContext);
 
-var _OneKit = __webpack_require__(3);
+var _OneKit = __webpack_require__(4);
 
 var _OneKit2 = _interopRequireDefault(_OneKit);
 
@@ -562,7 +562,7 @@ var swan = function () {
     return my.showTabBar(object);
   };
 
-  swan.seswanabBarStyle = function seswanabBarStyle(swan_object) {
+  swan.setTabBarStyle = function setTabBarStyle(swan_object) {
     var swan_color = swan_object.color || '#ff3377';
     var swan_selectedColor = swan_object.selectedColor || '#ff3377';
     var swan_backgroundColor = swan_object.backgroundColor || '#ffffff';
@@ -576,14 +576,14 @@ var swan = function () {
     var backgroundColor = swan_backgroundColor;
     var borderStyle = swan_borderStyle;
     (0, _PROMISE2.default)(function (SUCCESS) {
-      my.seswanabBarStyle({
+      my.setTabBarStyle({
         color: color,
         selectedColor: selectedColor,
         backgroundColor: backgroundColor,
         borderStyle: borderStyle,
         success: function success() {
           var swan_res = {
-            errMsg: 'seswanabBarStyle: ok'
+            errMsg: 'setTabBarStyle: ok'
           };
           SUCCESS(swan_res);
         }
@@ -591,7 +591,7 @@ var swan = function () {
     }, swan_success, swan_fail, swan_complete);
   };
 
-  swan.seswanabBarItem = function seswanabBarItem(swan_object) {
+  swan.setTabBarItem = function setTabBarItem(swan_object) {
     var swan_index = swan_object.index;
     var swan_text = swan_object.text || '';
     var swan_iconPath = swan_object.iconPath || '';
@@ -605,14 +605,14 @@ var swan = function () {
     var iconPath = swan_iconPath;
     var selectedIconPath = swan_selectedIconPath;
     (0, _PROMISE2.default)(function (SUCCESS) {
-      my.seswanabBarItem({
+      my.setTabBarItem({
         index: index,
         text: text,
         iconPath: iconPath,
         selectedIconPath: selectedIconPath,
         success: function success() {
           var swan_res = {
-            errMsg: 'seswanabBarItem: ok'
+            errMsg: 'setTabBarItem: ok'
           };
           SUCCESS(swan_res);
         }
@@ -620,8 +620,8 @@ var swan = function () {
     }, swan_success, swan_fail, swan_complete);
   };
 
-  swan.seswanabBarBadge = function seswanabBarBadge(object) {
-    return my.seswanabBarBadge(object);
+  swan.setTabBarBadge = function setTabBarBadge(object) {
+    return my.setTabBarBadge(object);
   };
 
   swan.removeTabBarBadge = function removeTabBarBadge(object) {
@@ -871,7 +871,7 @@ var swan = function () {
 
 
   swan.createCameraContext = function createCameraContext() {
-    return new _CameraContext2.default(getApp().onekit_camera);
+    return new _CameraContext2.default(my.createCameraContext());
   };
 
   // ////// AR相机组件控制  ///////
@@ -2021,7 +2021,7 @@ Component({
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2042,14 +2042,14 @@ module.exports = { current: current, currentUrl: currentUrl };
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /***/ (function(module, exports) {
 
 module.exports = require("oneutil/PROMISE");
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

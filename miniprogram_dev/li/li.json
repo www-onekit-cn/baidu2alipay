@@ -7,6 +7,7 @@
     "onekit-picker": "../baidu2alipay/ui/picker/picker",
     "onekit-slider": "../baidu2alipay/ui/slider/slider",
     "onekit-switch": "../baidu2alipay/ui/switch/switch",
-    "onekit-camera": "../baidu2alipay/ui/camera/camera"
+    "onekit-camera": "../baidu2alipay/ui/camera/camera",
+    "onekit-image": "../baidu2alipay/ui/image/image"
   }
 }

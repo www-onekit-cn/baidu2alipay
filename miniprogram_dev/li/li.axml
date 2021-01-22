@@ -176,7 +176,7 @@
         <onekit-view onekit-class="top-description border-bottom">
             自定义点击态
         </onekit-view>
-        <onekit-button type="primary" hover-class="none" on:tap="tap">
+        <onekit-button type="primary" hover-class="none" onTap="tap">
             无点击态
         </onekit-button>
         <onekit-button type="primary" hover-start-time="1000">
@@ -221,7 +221,7 @@
             <onekit-view>按钮父级同步出现点击态</onekit-view>
             <onekit-view>hover-stop-propagation</onekit-view>
         </onekit-view>
-        <onekit-button type="primary" hover-stop-propagation="true" on:tap="tap">
+        <onekit-button type="primary" hover-stop-propagation="true" onTap="tap">
             点击卡片空白区域体验效果
         </onekit-button>
     </onekit-view>
@@ -245,7 +245,7 @@
 </onekit-view> -->
 
 <!-- <picker> -->
-<!-- <onekit-view onekit-class="wrap">
+<onekit-view onekit-class="wrap">
     <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">
             <onekit-view>普通选择器</onekit-view>
@@ -302,7 +302,7 @@
         </onekit-view>
     </onekit-view>
 
-    <onekit-view onekit-class="card-area">
+    <!-- <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">
             <onekit-view>省市区选择器</onekit-view>
             <onekit-view>mode="region"</onekit-view>
@@ -314,7 +314,7 @@
                 </onekit-view>
             </onekit-picker>
         </onekit-view>
-    </onekit-view>
+    </onekit-view> -->
 
     <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">
@@ -336,14 +336,14 @@
             <onekit-view>bindcancel</onekit-view>
         </onekit-view>
         <onekit-view onekit-class="section" hover-class="section-active">
-            <onekit-picker mode="selector" value="{{arrIndex}}" range="{{selector}}" range-key="name" onChange="selectorChange" on:cancel="cancel">
+            <onekit-picker mode="selector" value="{{arrIndex}}" range="{{selector}}" range-key="name" onChange="selectorChange" onCancel="cancel">
                 <onekit-view onekit-class="picker">
                     <text class="chooseItem">请选择:</text>{{selector[arrIndex].name}}
                 </onekit-view>
             </onekit-picker>
         </onekit-view>
     </onekit-view>
-</onekit-view> -->
+</onekit-view>
 
 <!-- <slider> -->
 <!-- <onekit-view onekit-class="wrap">
@@ -448,17 +448,48 @@
 </onekit-view> -->
 
 <!-- <camera> -->
-<onekit-view onekit-class="wrap">
+<!-- <onekit-view onekit-class="wrap">
     <onekit-view onekit-class="card-area">
         <onekit-camera device-position="{{device}}" flash="off" onStop="stop" onError="error" onekit-class="preview" onekit-style="width: 100%; height: 3rem;">
         </onekit-camera>
         <onekit-button type="primary" onTap="switchCamera">切换摄像头</onekit-button>
-        <onekit-button type="primary" on:tap="takePhoto">拍照</onekit-button>
-        <onekit-button type="primary" on:tap="startRecord">开始录像</onekit-button>
-        <onekit-button type="primary" on:tap="stopRecord">结束录像</onekit-button>
+        <onekit-button type="primary" onTap="takePhoto">拍照</onekit-button>
+        <onekit-button type="primary" onTap="startRecord">开始录像</onekit-button>
+        <onekit-button type="primary" onTap="stopRecord">结束录像</onekit-button>
         
         <onekit-view onekit-class="preview">预览</onekit-view>
         <image a:if="{{imageSrc}}" class="image" mode="widthFix" src="{{imageSrc}}"></image>
         <video a:if="{{videoSrc}}" class="video" src="{{videoSrc}}"></video>
     </onekit-view>
-</onekit-view>
+</onekit-view> -->
+
+<!-- <image> -->
+<!-- <import-sjs name="_" from="../baidu2alipay/_.sjs"/>
+<onekit-view onekit-class="wrap">
+    <onekit-view onekit-class="mode-title mode-title-first">
+        <onekit-view onekit-class="mode-title-line-left"></onekit-view>
+        <onekit-view onekit-class="mode-title-text">自定义缩放模式</onekit-view>
+        <onekit-view onekit-class="mode-title-line-right"></onekit-view>
+    </onekit-view>
+    <onekit-view a:for="{{scaleArray}}" onekit-class="card-area">
+        <onekit-image onekit-class="image-area {{item.hasBackgroud == 1 ? 'back-ground': ''}}" onTap="onTap" image-menu-prevent="true" mode="{{item.mode}}" src="{{src}}" onError="imageError" onLoad="imageLoad" onekit-dataset='"name":{{_(item.mode)}}'></onekit-image>
+        <onekit-view onekit-class="bottom-description">{{item.text}}</onekit-view>
+    </onekit-view>
+    <onekit-view onekit-class="mode-title mode-title-first">
+        <onekit-view onekit-class="mode-title-line-left"></onekit-view>
+        <onekit-view onekit-class="mode-title-text">不缩放图片，自定义裁切模式</onekit-view>
+        <onekit-view onekit-class="mode-title-line-right"></onekit-view>
+    </onekit-view>
+    <onekit-view a:for="{{cutArray}}" onekit-class="card-area">
+        <onekit-image onekit-class="image-area" onTap="onTap" lazy-load="true" image-menu-prevent="true" mode="{{item.mode}}" src="{{src}}" onError="imageError" onLoad="imageLoad" onekit-dataset='"name":{{_(item.mode)}}'></onekit-image>
+        <onekit-view onekit-class="bottom-description">{{item.text}}</onekit-view>
+    </onekit-view>
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">iOS 可支持 webp</onekit-view>
+        <onekit-image mode="aspectFill" onekit-class="image-custom" src="https://b.bdstatic.com/searchbox/icms/searchbox/images/demo.webp" webp></onekit-image>
+    </onekit-view>
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">可放动图</onekit-view>
+        <onekit-image mode="aspectFill" onekit-class="image-custom" src="https://b.bdstatic.com/searchbox/icms/searchbox/img/image-gif.gif"></onekit-image>
+    </onekit-view>
+</onekit-view> -->
