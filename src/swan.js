@@ -418,7 +418,7 @@ export default class swan {
     return my.showTabBar(object)
   }
 
-  static seswanabBarStyle(swan_object) {
+  static setTabBarStyle(swan_object) {
     const swan_color = swan_object.color || '#ff3377'
     const swan_selectedColor = swan_object.selectedColor || '#ff3377'
     const swan_backgroundColor = swan_object.backgroundColor || '#ffffff'
@@ -432,14 +432,14 @@ export default class swan {
     const backgroundColor = swan_backgroundColor
     const borderStyle = swan_borderStyle
     PROMISE((SUCCESS) => {
-      my.seswanabBarStyle({
+      my.setTabBarStyle({
         color,
         selectedColor,
         backgroundColor,
         borderStyle,
         success: () => {
           const swan_res = {
-            errMsg: 'seswanabBarStyle: ok'
+            errMsg: 'setTabBarStyle: ok'
           }
           SUCCESS(swan_res)
         }
@@ -447,7 +447,7 @@ export default class swan {
     }, swan_success, swan_fail, swan_complete)
   }
 
-  static seswanabBarItem(swan_object) {
+  static setTabBarItem(swan_object) {
     const swan_index = swan_object.index
     const swan_text = swan_object.text || ''
     const swan_iconPath = swan_object.iconPath || ''
@@ -461,14 +461,14 @@ export default class swan {
     const iconPath = swan_iconPath
     const selectedIconPath = swan_selectedIconPath
     PROMISE((SUCCESS) => {
-      my.seswanabBarItem({
+      my.setTabBarItem({
         index,
         text,
         iconPath,
         selectedIconPath,
         success: () => {
           const swan_res = {
-            errMsg: 'seswanabBarItem: ok'
+            errMsg: 'setTabBarItem: ok'
           }
           SUCCESS(swan_res)
         }
@@ -476,8 +476,8 @@ export default class swan {
     }, swan_success, swan_fail, swan_complete)
   }
 
-  static seswanabBarBadge(object) {
-    return my.seswanabBarBadge(object)
+  static setTabBarBadge(object) {
+    return my.setTabBarBadge(object)
   }
 
   static removeTabBarBadge(object) {
@@ -705,7 +705,7 @@ export default class swan {
 
   // ////// 相机组件控制  ///////
   static createCameraContext() {
-    return new CameraContext(getApp().onekit_camera)
+    return new CameraContext(my.createCameraContext())
   }
 
   // ////// AR相机组件控制  ///////
