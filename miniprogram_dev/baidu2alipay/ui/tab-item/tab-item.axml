@@ -1,3 +1,11 @@
+  
+ <!-- <view class="weui-tabs-bar__item" style="text-align:center;background-color: {{tabsBackgroundColor}}; color: {{isCurrent ? tabsActiveTextColor : tabsInactiveTextColor}};width:{{width}}" onTap="tab_tap">
+  <view class="weui-tabs-bar__title" style="border-bottom-color: {{isCurrent ? tabsUnderlineColor : 'transparent'}}">
+   <text>{{label}}</text>
+  </view>
+  <text style="position:relative;top:0;display:inline-block;width:10rpx;height:10rpx;background:red;border-radius:5rpx;" a:if="{{badgeType=='dot'}}"></text>
+  <text style="position:relative;top:0;color:#fff;font-size:20rpx;padding:4rpx 6rpx;background:red;border-radius:20rpx;" a:if="{{badgeType=='text'}}">{{badgeText}}</text>
+</view> -->
 <view>
   New Component
 </view>

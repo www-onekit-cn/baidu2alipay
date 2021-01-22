@@ -253,19 +253,49 @@ Component({
     devicePosition: 'back',
     flash: 'auto'
   },
-  didMount: function didMount() {},
+  didMount: function didMount() {
+    var _this = this;
+
+    var onekitId = this.props.onekitId || 'id_' + Math.random() * 1000;
+    this.setData({
+      onekitId: onekitId
+    });
+    getApp().onekit_camera = my.createCameraContext(onekitId);
+    //
+    my.createSelectorQuery().select('.onekit-camera').boundingClientRect().exec(function (rect) {
+      _this.setData({
+        rect: rect[0]
+      });
+    });
+  },
   didUpdate: function didUpdate() {},
   didUnmount: function didUnmount() {},
 
   methods: {
-    camera_stop: function camera_stop(e) {
+    camera_stop: function camera_stop(_ref) {
+      var detail = _ref.detail;
+
+      var dataset = this._dataset();
       if (this.props.onStop) {
-        this.props.onStop(e);
+        this.props.onStop({
+          detail: detail,
+          currentTarget: {
+            dataset: dataset
+          }
+        });
       }
     },
-    camera_error: function camera_error(e) {
+    camera_error: function camera_error(_ref2) {
+      var detail = _ref2.detail;
+
+      var dataset = this._dataset();
       if (this.props.onError) {
-        this.props.onError(e);
+        this.props.onError({
+          detail: detail,
+          currentTarget: {
+            dataset: dataset
+          }
+        });
       }
     }
   }

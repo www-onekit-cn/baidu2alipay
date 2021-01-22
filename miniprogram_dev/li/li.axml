@@ -252,7 +252,7 @@
             <onekit-view>mode="selector"</onekit-view>
         </onekit-view>
         <onekit-view onekit-class="section" hover-class="section-active">
-            <onekit-picker mode="selector" value="{{arrIndex}}" range="{{selector}}" range-key="name" title="选择器标题" on:change="selectorChange">
+            <onekit-picker mode="selector" value="{{arrIndex}}" range="{{selector}}" range-key="name" title="选择器标题" onChange="selectorChange">
                 <onekit-view onekit-class="picker">
                     <text class="chooseItem">请选择:</text>{{selector[arrIndex].name}}
                 </onekit-view>
@@ -266,7 +266,7 @@
             <onekit-view>mode="time"</onekit-view>
         </onekit-view>
         <onekit-view onekit-class="section" hover-class="section-active">
-            <onekit-picker mode="time" value="{{time}}" start="1:01" end="22:59" on:change="timeChange" disabled="{{false}}">
+            <onekit-picker mode="time" value="{{time}}" start="1:01" end="22:59" onChange="timeChange" disabled="{{false}}">
                 <onekit-view onekit-class="picker">
                     <text class="chooseItem">请选择时间:</text>{{time}}
                 </onekit-view>
@@ -280,7 +280,7 @@
             <onekit-view>mode="date"</onekit-view>
         </onekit-view>
         <onekit-view onekit-class="section date-section" hover-class="section-active">
-            <onekit-picker mode="date" value="{{dateDay}}" on:change="dateChangeDay" fields="day">
+            <onekit-picker mode="date" value="{{dateDay}}" onChange="dateChangeDay" fields="day">
                 <onekit-view>
                     <text class="chooseItem">请选择日期:</text>{{dateDay}}
                 </onekit-view>
@@ -308,7 +308,7 @@
             <onekit-view>mode="region"</onekit-view>
         </onekit-view>
         <onekit-view onekit-class="section" hover-class="section-active">
-            <onekit-picker mode="region" on:change="regionChange" custom-item="{{customItem}}" title="地区选择器">
+            <onekit-picker mode="region" onChange="regionChange" custom-item="{{customItem}}" title="地区选择器">
                 <onekit-view onekit-class="picker">
                     <text class="chooseItem">请选择地区:</text>{{regionData[0]}} {{regionData[1]}} {{regionData[2]}}
                 </onekit-view>
@@ -336,7 +336,7 @@
             <onekit-view>bindcancel</onekit-view>
         </onekit-view>
         <onekit-view onekit-class="section" hover-class="section-active">
-            <onekit-picker mode="selector" value="{{arrIndex}}" range="{{selector}}" range-key="name" on:change="selectorChange" on:cancel="cancel">
+            <onekit-picker mode="selector" value="{{arrIndex}}" range="{{selector}}" range-key="name" onChange="selectorChange" on:cancel="cancel">
                 <onekit-view onekit-class="picker">
                     <text class="chooseItem">请选择:</text>{{selector[arrIndex].name}}
                 </onekit-view>
@@ -349,7 +349,7 @@
 <!-- <onekit-view onekit-class="wrap">
     <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">默认样式</onekit-view>
-        <onekit-slider onekit-class="slider" min="0" max="1500" value="200" step="30" on:change="sliderChange" on:changing="sliderChanging" disabled="{{false}}">
+        <onekit-slider onekit-class="slider" min="0" max="1500" value="200" step="30" onChange="sliderChange" on:changing="sliderChanging" disabled="{{false}}">
         </onekit-slider>
     </onekit-view>
     <onekit-view onekit-class="card-area">
@@ -357,7 +357,7 @@
             <onekit-view>显示当前取值</onekit-view>
             <onekit-view>show-value</onekit-view>
         </onekit-view>
-        <onekit-slider onekit-class="slider" min="0" max="200" value="30" show-value step="30" on:change="sliderChange" disabled="{{false}}">
+        <onekit-slider onekit-class="slider" min="0" max="200" value="30" show-value step="30" onChange="sliderChange" disabled="{{false}}">
         </onekit-slider>
     </onekit-view>
     <onekit-view onekit-class="card-area">
@@ -365,7 +365,7 @@
             <onekit-view>自定义最大/最小值</onekit-view>
             <onekit-view>min="200" max="1500"</onekit-view>
         </onekit-view>
-        <onekit-slider onekit-class="slider" min="200" max="1500" value="400" show-value step="30" on:change="sliderChange" disabled="{{false}}">
+        <onekit-slider onekit-class="slider" min="200" max="1500" value="400" show-value step="30" onChange="sliderChange" disabled="{{false}}">
         </onekit-slider>
     </onekit-view>
     <onekit-view onekit-class="card-area">
@@ -373,7 +373,7 @@
             <onekit-view>自定义步长</onekit-view>
             <onekit-view>step="30"</onekit-view>
         </onekit-view>
-        <onekit-slider onekit-class="slider" min="0" max="1500" value="200" step="30" on:change="sliderChange" disabled="{{false}}">
+        <onekit-slider onekit-class="slider" min="0" max="1500" value="200" step="30" onChange="sliderChange" disabled="{{false}}">
         </onekit-slider>
     </onekit-view>
 
@@ -388,7 +388,7 @@
 </onekit-view> -->
 
 <!-- switch -->
-<onekit-view onekit-class="wrap">
+<!-- <onekit-view onekit-class="wrap">
     <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">默认样式</onekit-view>
         <onekit-switch onekit-class="init-switch" checked="true" onChange="switchChange"></onekit-switch>
@@ -444,5 +444,21 @@
             <text class="switch-text">已关闭</text>
             <onekit-switch color="#00BC89"></onekit-switch>     
         </onekit-view>
+    </onekit-view>
+</onekit-view> -->
+
+<!-- <camera> -->
+<onekit-view onekit-class="wrap">
+    <onekit-view onekit-class="card-area">
+        <onekit-camera device-position="{{device}}" flash="off" onStop="stop" onError="error" onekit-class="preview" onekit-style="width: 100%; height: 3rem;">
+        </onekit-camera>
+        <onekit-button type="primary" onTap="switchCamera">切换摄像头</onekit-button>
+        <onekit-button type="primary" on:tap="takePhoto">拍照</onekit-button>
+        <onekit-button type="primary" on:tap="startRecord">开始录像</onekit-button>
+        <onekit-button type="primary" on:tap="stopRecord">结束录像</onekit-button>
+        
+        <onekit-view onekit-class="preview">预览</onekit-view>
+        <image a:if="{{imageSrc}}" class="image" mode="widthFix" src="{{imageSrc}}"></image>
+        <video a:if="{{videoSrc}}" class="video" src="{{videoSrc}}"></video>
     </onekit-view>
 </onekit-view>

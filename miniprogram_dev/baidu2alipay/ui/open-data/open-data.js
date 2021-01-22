@@ -103,7 +103,7 @@ var _CameraContext = __webpack_require__(5);
 
 var _CameraContext2 = _interopRequireDefault(_CameraContext);
 
-var _OneKit = __webpack_require__(6);
+var _OneKit = __webpack_require__(3);
 
 var _OneKit2 = _interopRequireDefault(_OneKit);
 
@@ -2021,6 +2021,27 @@ Component({
 
 /***/ }),
 
+/***/ 3:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function current() {
+  var pages = getCurrentPages();
+  if (pages.length === 0) {
+    return {};
+  }
+  return pages[pages.length - 1];
+}
+
+function currentUrl() {
+  return current().route;
+}
+module.exports = { current: current, currentUrl: currentUrl };
+
+/***/ }),
+
 /***/ 4:
 /***/ (function(module, exports) {
 
@@ -2065,23 +2086,6 @@ var CameraContext = function () {
 }();
 
 exports.default = CameraContext;
-
-/***/ }),
-
-/***/ 6:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function getCurrent() {
-  var pags = getCurrentPages();
-  return pags[pags.length - 1];
-}
-function getCurrentUrl() {
-  return getCurrent().path;
-}
-module.exports = { getCurrent: getCurrent, getCurrentUrl: getCurrentUrl };
 
 /***/ })
 

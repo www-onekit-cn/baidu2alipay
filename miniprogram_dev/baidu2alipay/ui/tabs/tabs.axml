@@ -1,3 +1,12 @@
+<!-- <view class="weui-tabs" onTabclick="tab_click">
+  <view class="weui-tabs-bar__wrp">
+    <scroll-view scroll-x scroll-into-view="item_{{currentView}}">
+      <view class="weui-tabs-bar__content">
+        <slot/>
+      </view>
+    </scroll-view>
+  </view>
+</view> -->
 <view>
   New Component
 </view>

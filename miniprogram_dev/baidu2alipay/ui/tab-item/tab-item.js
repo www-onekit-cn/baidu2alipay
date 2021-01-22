@@ -248,13 +248,47 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /* eslint-disable camelcase */
 Component({
   mixins: [_onekit_behavior2.default, _weixin_behavior2.default],
-  data: {},
-  props: {},
+  data: {
+    current: false,
+    width: 'auto'
+  },
+  props: {
+    label: '',
+    name: '',
+    badgeType: '',
+    badgeText: ''
+  },
   didMount: function didMount() {},
   didUpdate: function didUpdate() {},
   didUnmount: function didUnmount() {},
 
-  methods: {}
+  // relations: {
+  //   '../tabs/tabs': {
+  //     type: 'parent'
+  //   }
+  // },
+  methods: {
+    _name: function _name() {
+      return this.properties.name;
+    },
+    _reset: function _reset(isCurrent) {
+      this.setData({ isCurrent: isCurrent });
+    },
+    _init: function _init(data) {
+      this.setData(data);
+    },
+    _setWidth: function _setWidth(width) {
+      this.setData({
+        width: width + 'px'
+      });
+    },
+    tab_tap: function tab_tap() {
+      this.setData({ isCurrent: true });
+      //
+      var name = this.properties.name;
+      this.triggerEvent('tabclick', { name: name }, { bubbles: true, composed: true });
+    }
+  }
 });
 
 /***/ })

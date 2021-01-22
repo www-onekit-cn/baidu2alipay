@@ -31,7 +31,7 @@ Component({
         hideContact: true
       })
     },
-    button_onTap(e) {
+    button_onTap({detail}) {
       const that = this
       if (this.props.openType) {
         switch (this.props.openType) {
@@ -51,8 +51,8 @@ Component({
             if (that.props.onGetuserinfo) {
               my.getUserInfo({
                 success(res) {
-                  e.detail = res
-                  that.props.onGetuserinfo(e)
+                  detail = res
+                  that.props.onGetuserinfo(detail)
                 }
               })
             }
@@ -61,8 +61,8 @@ Component({
             if (that.props.onGetphonenumber) {
               my.getPhoneNumber({
                 success(res) {
-                  e.detail = res
-                  that.props.onGetphonenumber(e)
+                  detail = res
+                  that.props.onGetphonenumber(detail)
                 }
               })
             }
@@ -83,8 +83,14 @@ Component({
             break
         }
       }
+      const dataset = this._dataset()
       if (this.props.onTap) {
-        this.props.onTap(e)
+        this.props.onTap({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
       }
     },
   },

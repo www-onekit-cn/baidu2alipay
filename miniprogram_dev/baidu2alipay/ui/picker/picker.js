@@ -245,6 +245,7 @@ var _weixin_behavior2 = _interopRequireDefault(_weixin_behavior);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* eslint-disable no-console */
 /* eslint-disable camelcase */
 Component({
   mixins: [_onekit_behavior2.default, _weixin_behavior2.default],
@@ -269,6 +270,7 @@ Component({
       }
     },
     picker_Change: function picker_Change(e) {
+      console.log('picker_Change', e);
       if (this.props.onChange) {
         this.props.onChange(e);
       }

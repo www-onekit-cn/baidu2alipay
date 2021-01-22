@@ -397,19 +397,94 @@ var app = getApp()
 //   })
 
 // switch
+// OnekitPage({
+//     onShow:function(){
+//       const openParams = app.globalData.openParams
+//       if(openParams){
+//       swan.reportAnalytics('pageshow',{
+//           fr:openParams,
+//           type:'component',
+//           name:'switch'
+//         });
+//     }
+//     },
+//     onHide:function(){
+//       app.globalData.openParams = ''
+//     },
+//     switchChange:(e)=>{console.log(e.detail)}
+//   })
+
+//camera
 OnekitPage({
+    data:{
+        imageSrc:'',
+        device:'front',
+        videoSrc:''
+      },
+    onLoad:function(){
+      const ctx = swan.createCameraContext()
+      this.ctx = ctx
+    },
     onShow:function(){
-      const openParams = app.globalData.openParams
-      if(openParams){
-      swan.reportAnalytics('pageshow',{
-          fr:openParams,
-          type:'component',
-          name:'switch'
-        });
-    }
+      swan.authorize({
+        scope:'scope.camera',
+        fail:(err)=>{if(err.errCode == 10003){
+          swan.showToast({
+              title:'用户已拒绝授权申请，请自行开启相机授权',
+              icon:'none'
+            });
+        }}
+      })
     },
     onHide:function(){
       app.globalData.openParams = ''
     },
-    switchChange:(e)=>{console.log(e.detail)}
+    switchCamera:function(){
+      console.log('xxxx')
+      const devices = this.getData('device')
+      if(devices == 'back'){
+      this.setData({
+          device:'front'
+        });
+    } else {
+      this.setData({
+          device:'back'
+        });
+    }
+    },
+    takePhoto:function(){
+      this.ctx.takePhoto({
+        quality:'high',
+        success:(res)=>{this.setData({
+            imageSrc:res.tempImagePath
+          })}
+      })
+    },
+    startRecord:function(){
+      this.ctx.startRecord({
+        success:(res)=>{swan.showToast({
+            title:'startRecord',
+            icon:'none'
+          })}
+      })
+    },
+    stopRecord:function(){
+      this.ctx.stopRecord({
+        success:(res)=>{
+          swan.showModal({
+              title:'提示',
+              content:res.tempVideoPath
+            })
+          this.setData({
+              videoSrc:res.tempVideoPath
+            })
+        }
+      })
+    },
+    error:function(e){
+      swan.showModal({
+        title:'加载出错',
+        content:e.detail
+      })
+    }
   })

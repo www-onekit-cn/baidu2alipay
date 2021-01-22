@@ -276,7 +276,9 @@ Component({
         hideContact: true
       });
     },
-    button_onTap: function button_onTap(e) {
+    button_onTap: function button_onTap(_ref) {
+      var detail = _ref.detail;
+
       var that = this;
       if (this.props.openType) {
         switch (this.props.openType) {
@@ -296,8 +298,8 @@ Component({
             if (that.props.onGetuserinfo) {
               my.getUserInfo({
                 success: function success(res) {
-                  e.detail = res;
-                  that.props.onGetuserinfo(e);
+                  detail = res;
+                  that.props.onGetuserinfo(detail);
                 }
               });
             }
@@ -306,8 +308,8 @@ Component({
             if (that.props.onGetphonenumber) {
               my.getPhoneNumber({
                 success: function success(res) {
-                  e.detail = res;
-                  that.props.onGetphonenumber(e);
+                  detail = res;
+                  that.props.onGetphonenumber(detail);
                 }
               });
             }
@@ -326,14 +328,20 @@ Component({
             break;
         }
       }
+      var dataset = this._dataset();
       if (this.props.onTap) {
-        this.props.onTap(e);
+        this.props.onTap({
+          detail: detail,
+          currentTarget: {
+            dataset: dataset
+          }
+        });
       }
     }
   },
   //
-  _trigger_Getuserinfo: function _trigger_Getuserinfo(_ref) {
-    var detail = _ref.detail;
+  _trigger_Getuserinfo: function _trigger_Getuserinfo(_ref2) {
+    var detail = _ref2.detail;
 
     var dataset = this._dataset();
     if (this.props.onGetuserinfo) {
@@ -345,8 +353,8 @@ Component({
       });
     }
   },
-  _trigger_Contact: function _trigger_Contact(_ref2) {
-    var detail = _ref2.detail;
+  _trigger_Contact: function _trigger_Contact(_ref3) {
+    var detail = _ref3.detail;
 
     var dataset = this._dataset();
     if (this.props.onContact) {
@@ -358,8 +366,8 @@ Component({
       });
     }
   },
-  _trigger_Getphonenumber: function _trigger_Getphonenumber(_ref3) {
-    var detail = _ref3.detail;
+  _trigger_Getphonenumber: function _trigger_Getphonenumber(_ref4) {
+    var detail = _ref4.detail;
 
     var dataset = this._dataset();
     if (this.props.onGetphonenumber) {
@@ -371,8 +379,8 @@ Component({
       });
     }
   },
-  _trigger_Error: function _trigger_Error(_ref4) {
-    var detail = _ref4.detail;
+  _trigger_Error: function _trigger_Error(_ref5) {
+    var detail = _ref5.detail;
 
     var dataset = this._dataset();
     if (this.props.onError) {
@@ -384,8 +392,8 @@ Component({
       });
     }
   },
-  _trigger_Opensetting: function _trigger_Opensetting(_ref5) {
-    var detail = _ref5.detail;
+  _trigger_Opensetting: function _trigger_Opensetting(_ref6) {
+    var detail = _ref6.detail;
 
     var dataset = this._dataset();
     if (this.props.onOpensetting) {
@@ -397,8 +405,8 @@ Component({
       });
     }
   },
-  _trigger_Launchapp: function _trigger_Launchapp(_ref6) {
-    var detail = _ref6.detail;
+  _trigger_Launchapp: function _trigger_Launchapp(_ref7) {
+    var detail = _ref7.detail;
 
     var dataset = this._dataset();
     if (this.props.onLaunchapp) {

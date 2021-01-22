@@ -9,20 +9,43 @@ Component({
     devicePosition: 'back',
     flash: 'auto'
   },
-  didMount() {},
+  didMount() {
+    const onekitId = this.props.onekitId || `id_${Math.random() * 1000}`
+    this.setData({
+      onekitId
+    })
+    getApp().onekit_camera = my.createCameraContext(onekitId)
+    //
+    my.createSelectorQuery().select('.onekit-camera').boundingClientRect().exec((rect) => {
+      this.setData({
+        rect: rect[0]
+      })
+    })
+  },
   didUpdate() {},
   didUnmount() {},
   methods: {
-    camera_stop(e) {
+    camera_stop({detail}) {
+      const dataset = this._dataset()
       if (this.props.onStop) {
-        this.props.onStop(e)
+        this.props.onStop({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
       }
     },
-    camera_error(e) {
+    camera_error({detail}) {
+      const dataset = this._dataset()
       if (this.props.onError) {
-        this.props.onError(e)
+        this.props.onError({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
       }
     }
-
   },
 })
