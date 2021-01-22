@@ -97,10 +97,11 @@ exports.__esModule = true;
 /* eslint-disable no-console */
 exports.default = {
   props: {
-    onekitId: '', // `id_${Math.random() * 1000}`,
+    onekitId: '',
     onekitClass: '',
     onekitStyle: '',
-    onekitVersion: ''
+    onekitVersion: '',
+    onekitDataset: null
   },
   data: {},
   onInit: function onInit() {
@@ -110,6 +111,42 @@ exports.default = {
     //
     if (this.props.onekitClass) {
       getApp().onekit_nodes['__' + this.props.onekitClass] = this;
+    }
+  },
+
+  methods: {
+    _dataset: function _dataset() {
+      if (!this.props.onekitDataset) {
+        return {};
+      }
+      var json = '{' + this.props.onekitDataset + '}';
+      return JSON.parse(json);
+    },
+    _e: function _e(detail, dataset) {
+      // currentTarget: {
+      //   dataset: {},
+      //   id: '',
+      //   offsetLeft: ret[0].left,
+      //   offsetTop: ret[0].top
+      // },
+      // detail: {
+      //   curPercent: parseInt(curPercent, 10)
+      // },
+      // mark: {},
+      // mut: false,
+      // target: {
+      //   dataset: {},
+      //   id: '',
+      //   offsetLeft: ret[0].left,
+      //   offsetTop: ret[0].top
+      // },
+      // timeStamp: 8888888, //
+      // type: 'activeend',
+      // _userTap: false
+      return {
+        detail: detail || {},
+        dataset: dataset || {}
+      };
     }
   }
 };

@@ -97,10 +97,11 @@ exports.__esModule = true;
 /* eslint-disable no-console */
 exports.default = {
   props: {
-    onekitId: '', // `id_${Math.random() * 1000}`,
+    onekitId: '',
     onekitClass: '',
     onekitStyle: '',
-    onekitVersion: ''
+    onekitVersion: '',
+    onekitDataset: null
   },
   data: {},
   onInit: function onInit() {
@@ -110,6 +111,42 @@ exports.default = {
     //
     if (this.props.onekitClass) {
       getApp().onekit_nodes['__' + this.props.onekitClass] = this;
+    }
+  },
+
+  methods: {
+    _dataset: function _dataset() {
+      if (!this.props.onekitDataset) {
+        return {};
+      }
+      var json = '{' + this.props.onekitDataset + '}';
+      return JSON.parse(json);
+    },
+    _e: function _e(detail, dataset) {
+      // currentTarget: {
+      //   dataset: {},
+      //   id: '',
+      //   offsetLeft: ret[0].left,
+      //   offsetTop: ret[0].top
+      // },
+      // detail: {
+      //   curPercent: parseInt(curPercent, 10)
+      // },
+      // mark: {},
+      // mut: false,
+      // target: {
+      //   dataset: {},
+      //   id: '',
+      //   offsetLeft: ret[0].left,
+      //   offsetTop: ret[0].top
+      // },
+      // timeStamp: 8888888, //
+      // type: 'activeend',
+      // _userTap: false
+      return {
+        detail: detail || {},
+        dataset: dataset || {}
+      };
     }
   }
 };
@@ -213,19 +250,38 @@ Component({
   mixins: [_onekit_behavior2.default, _weixin_behavior2.default],
   data: {},
   props: {
+    name: '',
+    type: 'switch',
+    color: '#3388ff',
     checked: false,
     disabled: false,
-    type: 'switch',
-    color: '#04BE02'
+    value: ''
   },
-  didMount: function didMount() {},
-  didUpdate: function didUpdate() {},
-  didUnmount: function didUnmount() {},
-
   methods: {
-    switch_Change: function switch_Change(e) {
+    switch_Change: function switch_Change(_ref) {
+      var detail = _ref.detail;
+
+      var dataset = this._dataset();
       if (this.props.onChange) {
-        this.props.onChange(e);
+        this.props.onChange({
+          detail: detail,
+          currentTarget: {
+            dataset: dataset
+          }
+        });
+      }
+    },
+    checkbox_Change: function checkbox_Change(_ref2) {
+      var detail = _ref2.detail;
+
+      var dataset = this._dataset();
+      if (this.props.onChange) {
+        this.props.onChange({
+          detail: detail,
+          currentTarget: {
+            dataset: dataset
+          }
+        });
       }
     }
   }

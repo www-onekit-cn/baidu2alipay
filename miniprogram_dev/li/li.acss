@@ -74,7 +74,7 @@ scroll-view {
 } */
 
 /* button */
-.hover {
+/* .hover {
     opacity: .2 ;
     background-color: #888 ;
 }
@@ -100,4 +100,22 @@ scroll-view {
     background-position: 35% 50% ;
     border: 1px solid #e6e6e6 ;
     border-radius: 119.565rpx ;
+} */
+
+/* slider */
+/* .slider {
+    margin: calc(.3*var(--onekit-REM)) ;
+} */
+
+/* switch */
+.init-switch {
+    margin: calc(.14*var(--onekit-REM)) 0 calc(.14*var(--onekit-REM)) calc(.17*var(--onekit-REM)) ;
+    vertical-align: middle ;
+}
+.init-switch-after {
+    margin: calc(.14*var(--onekit-REM)) 0 calc(.14*var(--onekit-REM)) calc(.5*var(--onekit-REM)) ;
+    vertical-align: middle ;
+}
+.switch-text {
+    vertical-align: middle ;
 }

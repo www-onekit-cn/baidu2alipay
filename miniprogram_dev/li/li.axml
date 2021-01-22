@@ -346,21 +346,103 @@
 </onekit-view> -->
 
 <!-- <slider> -->
-<view class="wrap">
-    <view class="card-area">
-        <view class="top-description border-bottom">
-            <view>显示当前取值</view>
-            <view>show-value</view>
-        </view>
-        <slider 
-            class="slider" 
-            min="0" 
-            max="200" 
-            value="30" 
-            show-value 
-            step="30" 
-            bind:change="sliderChange"
-            disabled="{{false}}">
-        </slider>
-    </view>
-</view>
+<!-- <onekit-view onekit-class="wrap">
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">默认样式</onekit-view>
+        <onekit-slider onekit-class="slider" min="0" max="1500" value="200" step="30" on:change="sliderChange" on:changing="sliderChanging" disabled="{{false}}">
+        </onekit-slider>
+    </onekit-view>
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>显示当前取值</onekit-view>
+            <onekit-view>show-value</onekit-view>
+        </onekit-view>
+        <onekit-slider onekit-class="slider" min="0" max="200" value="30" show-value step="30" on:change="sliderChange" disabled="{{false}}">
+        </onekit-slider>
+    </onekit-view>
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>自定义最大/最小值</onekit-view>
+            <onekit-view>min="200" max="1500"</onekit-view>
+        </onekit-view>
+        <onekit-slider onekit-class="slider" min="200" max="1500" value="400" show-value step="30" on:change="sliderChange" disabled="{{false}}">
+        </onekit-slider>
+    </onekit-view>
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>自定义步长</onekit-view>
+            <onekit-view>step="30"</onekit-view>
+        </onekit-view>
+        <onekit-slider onekit-class="slider" min="0" max="1500" value="200" step="30" on:change="sliderChange" disabled="{{false}}">
+        </onekit-slider>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>自定义样式</onekit-view>
+            <onekit-view>block-size="16"  block-color="#3388FF"</onekit-view>
+        </onekit-view>
+        <onekit-slider onekit-class="slider" min="0" max="1500" value="200" step="30" block-size="16" block-color="#3388FF" activeColor="#3c76ff" backgroundColor="#cccccc" disabled="{{false}}">
+        </onekit-slider>
+    </onekit-view>
+</onekit-view> -->
+
+<!-- switch -->
+<onekit-view onekit-class="wrap">
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">默认样式</onekit-view>
+        <onekit-switch onekit-class="init-switch" checked="true" onChange="switchChange"></onekit-switch>
+        <text class="switch-text">已开启</text>
+        <onekit-switch onekit-class="init-switch-after" checked="{{false}}" onChange="switchChange"></onekit-switch>
+        <text class="switch-text">已关闭</text>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">设置checkbox样式</onekit-view>
+        <onekit-switch onekit-class="init-switch" type="checkbox" checked></onekit-switch>
+        <text class="switch-text">已开启</text>
+        <onekit-switch onekit-class="init-switch-after" type="checkbox"></onekit-switch>
+        <text class="switch-text">已关闭</text>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">列表展示</onekit-view>
+        <onekit-view onekit-class="item-scroll block border-bottom">
+            <text class="switch-text">已开启</text>
+            <onekit-switch checked></onekit-switch>
+        </onekit-view>
+
+        <onekit-view onekit-class="item-scroll block">
+            <text class="switch-text">已关闭</text>
+            <onekit-switch></onekit-switch>
+        </onekit-view>
+    </onekit-view>
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>包含禁用选项</onekit-view>
+            <onekit-view>disabled</onekit-view>
+        </onekit-view>
+        <onekit-view onekit-class="item-scroll border-bottom block">
+            <text class="switch-text">已开启</text>
+            <onekit-switch checked color="#C3D1FF" disabled></onekit-switch>
+        </onekit-view>
+        <onekit-view onekit-class="item-scroll block">
+            <text class="switch-text">已关闭</text>
+            <onekit-switch disabled></onekit-switch>     
+        </onekit-view>
+    </onekit-view>
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            <onekit-view>自定义颜色</onekit-view>
+            <onekit-view>color="#00BC89"</onekit-view>
+        </onekit-view>
+         <onekit-view onekit-class="item-scroll border-bottom block">
+            <text class="switch-text">已开启</text>
+            <onekit-switch checked color="#00BC89"></onekit-switch>
+        </onekit-view>
+        <onekit-view onekit-class="item-scroll block">
+            <text class="switch-text">已关闭</text>
+            <onekit-switch color="#00BC89"></onekit-switch>     
+        </onekit-view>
+    </onekit-view>
+</onekit-view>

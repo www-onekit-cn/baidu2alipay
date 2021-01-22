@@ -6,18 +6,34 @@ Component({
   mixins: [onekit_behavior, weixin_behavior],
   data: {},
   props: {
+    name: '',
+    type: 'switch',
+    color: '#3388ff',
     checked: false,
     disabled: false,
-    type: 'switch',
-    color: '#04BE02',
+    value: ''
   },
-  didMount() {},
-  didUpdate() {},
-  didUnmount() {},
   methods: {
-    switch_Change(e) {
+    switch_Change({detail}) {
+      const dataset = this._dataset()
       if (this.props.onChange) {
-        this.props.onChange(e)
+        this.props.onChange({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
+      }
+    },
+    checkbox_Change({detail}) {
+      const dataset = this._dataset()
+      if (this.props.onChange) {
+        this.props.onChange({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
       }
     }
   },
