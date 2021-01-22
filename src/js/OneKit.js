@@ -1,8 +1,12 @@
-function getCurrent() {
-  const pags = getCurrentPages()
-  return pags[pags.length - 1]
+function current() {
+  const pages = getCurrentPages()
+  if (pages.length === 0) {
+    return {}
+  }
+  return pages[pages.length - 1]
 }
-function getCurrentUrl() {
-  return getCurrent().path
+
+function currentUrl() {
+  return current().route
 }
-module.exports = {getCurrent, getCurrentUrl}
+module.exports = {current, currentUrl}

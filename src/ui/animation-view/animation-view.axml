@@ -1,6 +1,7 @@
-<view
-class="onekit-animation-view {{onekitClass}}"
-style="{{onekitStyle}}"
-id="{{onekitId}}"
+<canvas 
+  class="onekit-animation-view {{onekitClass}}"
+  style="{{onekitStyle}}"
+  id="{{onekitId}}"
+  type="2d"
 >
-</view>
+</canvas>
