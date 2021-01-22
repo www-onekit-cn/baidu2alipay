@@ -246,7 +246,7 @@
 
 <!-- <picker> -->
 <onekit-view onekit-class="wrap">
-    <onekit-view onekit-class="card-area">
+    <!-- <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">
             <onekit-view>普通选择器</onekit-view>
             <onekit-view>mode="selector"</onekit-view>
@@ -300,9 +300,9 @@
                 </onekit-view>
             </onekit-picker>
         </onekit-view>
-    </onekit-view>
+    </onekit-view> -->
 
-    <!-- <onekit-view onekit-class="card-area">
+    <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">
             <onekit-view>省市区选择器</onekit-view>
             <onekit-view>mode="region"</onekit-view>
@@ -314,9 +314,9 @@
                 </onekit-view>
             </onekit-picker>
         </onekit-view>
-    </onekit-view> -->
+    </onekit-view>
 
-    <onekit-view onekit-class="card-area">
+    <!-- <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">
             <onekit-view>设置禁用</onekit-view>
             <onekit-view>disabled</onekit-view>
@@ -342,7 +342,7 @@
                 </onekit-view>
             </onekit-picker>
         </onekit-view>
-    </onekit-view>
+    </onekit-view> -->
 </onekit-view>
 
 <!-- <slider> -->

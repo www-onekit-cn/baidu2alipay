@@ -165,18 +165,18 @@ Component({
     _compareTime: function _compareTime(time1, time2) {
       var array1 = time1.split(':');
       var array2 = time2.split(':');
-      var time1m = parseInt(array1[0], 10);
-      var time1s = parseInt(array1[1], 10);
-      var time2m = parseInt(array2[0], 10);
-      var time2s = parseInt(array2[1], 10);
-      if (time1m > time2m) {
+      var time1h = parseInt(array1[0], 10);
+      var time1m = parseInt(array1[1], 10);
+      var time2h = parseInt(array2[0], 10);
+      var time2m = parseInt(array2[1], 10);
+      if (time1h > time2h) {
         return true;
-      } else if (time1m < time2m) {
+      } else if (time1h < time2h) {
         return false;
-      } else if (time1m === time2m) {
-        if (time1s > time2s) {
+      } else if (time1h === time2h) {
+        if (time1m > time2m) {
           return true;
-        } else if (time1s < time2s) {
+        } else if (time1m < time2m) {
           return false;
         } else {
           return null;

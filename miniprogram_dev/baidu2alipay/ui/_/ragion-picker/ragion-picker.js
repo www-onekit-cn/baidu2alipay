@@ -137,40 +137,67 @@ Component({
   },
   didMount: function didMount() {
     var value = this.props.value;
-    console.log(value);
     this.init(value);
   },
 
   methods: {
     init: function init(value) {
-      for (var p = 0; p < this.data.provinces.length; p++) {
-        if (this.data.provinces[p].name === value[0]) {
-          var i = [this.props.customItem ? p + 1 : p];
-          this.setData({
-            provinceIndexes: i
-          });
-          this.provinceChange(p);
-          break;
+      if (!value) {
+        this.provinceChange(this.props.customItem ? -1 : 0);
+        this.cityChange(this.props.customItem ? -1 : 0);
+        this.townChange(this.props.customItem ? -1 : 0);
+        return;
+      }
+      if (this.props.customItem && value[0] === this.props.customItem) {
+        this.setData({
+          provinceIndexes: 0
+        });
+        this.provinceChange(-1);
+      } else {
+        for (var p = 0; p < this.data.provinces.length; p++) {
+          if (this.data.provinces[p].name === value[0]) {
+            var i = [this.props.customItem ? p + 1 : p];
+            this.setData({
+              provinceIndexes: i
+            });
+            this.provinceChange(p);
+            break;
+          }
         }
       }
-      for (var c = 0; c < this.data.citys.length; c++) {
-        if (this.data.citys[c].name === value[1]) {
-          var _i = [this.props.customItem ? c + 1 : c];
-          this.setData({
-            cityIndexes: _i
-          });
-          this.cityChange(c);
-          break;
+      console.log(value[1], this.props.customItem);
+      if (this.props.customItem && value[1] === this.props.customItem) {
+        this.setData({
+          cityIndexes: 0
+        });
+        this.cityChange(-1);
+      } else {
+        for (var c = 0; c < this.data.citys.length; c++) {
+          if (this.data.citys[c].name === value[1]) {
+            var _i = [this.props.customItem ? c + 1 : c];
+            this.setData({
+              cityIndexes: _i
+            });
+            this.cityChange(c);
+            break;
+          }
         }
       }
-      for (var t = 0; t < this.data.towns.length; t++) {
-        if (this.data.towns[t].name === value[2]) {
-          var _i2 = [this.props.customItem ? t + 1 : t];
-          this.setData({
-            townIndexes: _i2
-          });
-          this.townChange(t);
-          break;
+      if (this.props.customItem && value[2] === this.props.customItem) {
+        this.setData({
+          townIndexes: 0
+        });
+        this.townChange(-1);
+      } else {
+        for (var t = 0; t < this.data.towns.length; t++) {
+          if (this.data.towns[t].name === value[2]) {
+            var _i2 = [this.props.customItem ? t + 1 : t];
+            this.setData({
+              townIndexes: _i2
+            });
+            this.townChange(t);
+            break;
+          }
         }
       }
     },
