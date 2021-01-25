@@ -121,7 +121,7 @@ scroll-view {
 } */
 
 /* camera */
-.preview {
+/* .preview {
     width: 100% ;
     height: 50px ;
     font-size: 18px ;
@@ -131,4 +131,24 @@ scroll-view {
 .image,
 .video {
     width: 100% ;
+} */
+
+/* image */
+/* .wrap {
+    margin-top: calc(.2*var(--onekit-REM)) ;
 }
+.image-area {
+    width: 100% ;
+    height: calc(1.55*var(--onekit-REM)) ;
+}
+.bottom-description {
+    height: auto ;
+    margin: calc(.17*var(--onekit-REM)) ;
+}
+.back-ground {
+    background-color: #e6e6e6 ;
+}
+.image-custom {
+    width: 100% ;
+    margin-bottom: calc(-.04*var(--onekit-REM)) ;
+} */

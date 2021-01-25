@@ -93,6 +93,7 @@ module.exports =
 "use strict";
 
 
+/* eslint-disable no-console */
 Component({
   mixins: [],
   data: {},
@@ -108,6 +109,9 @@ Component({
     end: ''
   },
   didMount: function didMount() {
+    console.log(this._compareTime('1:01', '22:59'));
+    console.log(this._compareTime('23:01', '22:59'));
+
     var hours = [];
     for (var h = 0; h < 24; h++) {
       var hour = h >= 10 ? h : '0' + h;
@@ -158,6 +162,29 @@ Component({
         });
       }
     },
+    _compareTime: function _compareTime(time1, time2) {
+      var array1 = time1.split(':');
+      var array2 = time2.split(':');
+      var time1h = parseInt(array1[0], 10);
+      var time1m = parseInt(array1[1], 10);
+      var time2h = parseInt(array2[0], 10);
+      var time2m = parseInt(array2[1], 10);
+      if (time1h > time2h) {
+        return true;
+      } else if (time1h < time2h) {
+        return false;
+      } else if (time1h === time2h) {
+        if (time1m > time2m) {
+          return true;
+        } else if (time1m < time2m) {
+          return false;
+        } else {
+          return null;
+        }
+      } else {
+        throw new Error('what?!');
+      }
+    },
     time_change: function time_change(e) {
       var current = e.detail.value;
       var h = current[0];
@@ -166,7 +193,7 @@ Component({
       m = m >= 10 ? m : '0' + m;
       var value = h + ':' + m;
       if (this.props.start) {
-        if (value < this.props.start) {
+        if (this._compareTime(value, this.props.start) === false) {
           var time = this.props.start.split(':');
           time = [parseInt(time[0], 10), parseInt(time[1], 10)];
           this.setData({
@@ -177,7 +204,7 @@ Component({
         }
       }
       if (this.props.end) {
-        if (value > this.props.end) {
+        if (this._compareTime(value, this.props.end) === true) {
           var _time = this.props.end.split(':');
           _time = [parseInt(_time[0], 10), parseInt(_time[1], 10)];
           this.setData({

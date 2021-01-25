@@ -235,46 +235,140 @@ module.exports = {
 "use strict";
 
 
+var _oneutil = __webpack_require__(3);
+
 var _onekit_behavior = __webpack_require__(0);
 
 var _onekit_behavior2 = _interopRequireDefault(_onekit_behavior);
 
-var _weixin_behavior = __webpack_require__(1);
+var _baidu_behavior = __webpack_require__(1);
 
-var _weixin_behavior2 = _interopRequireDefault(_weixin_behavior);
+var _baidu_behavior2 = _interopRequireDefault(_baidu_behavior);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable no-console */
-
-/* eslint-disable camelcase */
 Component({
-  mixins: [_onekit_behavior2.default, _weixin_behavior2.default],
+  mixins: [_onekit_behavior2.default, _baidu_behavior2.default],
   data: {},
   props: {
     src: '',
     mode: 'scaleToFill',
-    lazyLoad: false
+    // 不支持
+    webp: false,
+    lazyLoad: false,
+    imageMenuPrevent: false,
+    preview: true,
+    originalSrc: ''
   },
-  didMount: function didMount() {},
-  didUpdate: function didUpdate() {},
-  didUnmount: function didUnmount() {},
+  didMount: function didMount() {
+    var pages = getCurrentPages();
+    var alipay_src = void 0;
+    var originalSrc = void 0;
+    if (!this.props.src.indexOf('://')) {
+      var currentUrl = pages[pages.length - 1].route;
+      alipay_src = '/' + _oneutil.PATH.rel2abs(currentUrl, this.props.src);
+    }
+    if (this.props.preview) {
+      originalSrc = this.props.src;
+      my.previewImage({
+        urls: [this.props.src]
+      });
+    }
+    this.setData({
+      src: alipay_src,
+      originalSrc: originalSrc
+    });
+  },
 
   methods: {
-    image_error: function image_error(e) {
-      console.log('image_error', e);
+    image_error: function image_error(_ref) {
+      var detail = _ref.detail;
+
+      console.log(detail);
+      var dataset = this._dataset();
       if (this.props.onError) {
-        this.props.onError(e);
+        this.props.onError({
+          detail: detail,
+          currentTarget: {
+            dataset: dataset
+          }
+        });
       }
     },
-    image_load: function image_load(e) {
-      console.log('image_load', e);
+    image_load: function image_load(_ref2) {
+      var detail = _ref2.detail;
+
+      var dataset = this._dataset();
       if (this.props.onLoad) {
-        this.props.onLoad(e);
+        this.props.onLoad({
+          detail: detail,
+          currentTarget: {
+            dataset: dataset
+          }
+        });
+      }
+    },
+    onShareAppMessage: function onShareAppMessage() {
+      return {
+        title: '分享 View 组件',
+        desc: 'View 组件很通用',
+        path: 'weixin2alipay/ui/image/image'
+      };
+    },
+    image_longTap: function image_longTap() {
+      var _this = this;
+
+      if (this.props.imageMenuPrevent) {
+        my.showActionSheet({
+          items: ['转发', '保存图片', '收藏'],
+          cancelButtonText: '取消',
+          success: function success(_ref3) {
+            var index = _ref3.index;
+
+            if (index === -1) {
+              return;
+            }
+            switch (index) {
+              case 0:
+                _this.onShareAppMessage();
+                break;
+              case 1:
+                my.saveImage({
+                  url: _this.props.src,
+                  showActionSheet: true,
+                  success: function success() {
+                    my.alert({
+                      title: '保存成功'
+                    });
+                  }
+                });
+                break;
+              case 2:
+                my.alert({
+                  title: "请点击右上角的'☆'收藏按钮"
+                });
+                break;
+              default:
+                break;
+            }
+          }
+        });
+        this.setData({
+          imageMenuPrevent: this.props.imageMenuPrevent
+        });
       }
     }
   }
-});
+}); /* eslint-disable no-console */
+
+/* eslint-disable camelcase */
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports) {
+
+module.exports = require("oneutil");
 
 /***/ })
 

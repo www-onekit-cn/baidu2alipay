@@ -239,15 +239,15 @@ var _onekit_behavior = __webpack_require__(0);
 
 var _onekit_behavior2 = _interopRequireDefault(_onekit_behavior);
 
-var _weixin_behavior = __webpack_require__(1);
+var _baidu_behavior = __webpack_require__(1);
 
-var _weixin_behavior2 = _interopRequireDefault(_weixin_behavior);
+var _baidu_behavior2 = _interopRequireDefault(_baidu_behavior);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* eslint-disable camelcase */
 Component({
-  mixins: [_onekit_behavior2.default, _weixin_behavior2.default],
+  mixins: [_onekit_behavior2.default, _baidu_behavior2.default],
   data: {},
   props: {
     direction: 'none',

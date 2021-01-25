@@ -1,9 +1,9 @@
 /* eslint-disable camelcase */
 import onekit_behavior from '../../behavior/onekit_behavior'
-import weixin_behavior from '../../behavior/weixin_behavior'
+import baidu_behavior from '../../behavior/baidu_behavior'
 
 Component({
-  mixins: [onekit_behavior, weixin_behavior],
+  mixins: [onekit_behavior, baidu_behavior],
   data: {},
   props: {
     devicePosition: 'back',
@@ -25,7 +25,9 @@ Component({
   didUpdate() {},
   didUnmount() {},
   methods: {
-    camera_stop({detail}) {
+    camera_stop({
+      detail
+    }) {
       const dataset = this._dataset()
       if (this.props.onStop) {
         this.props.onStop({
@@ -36,7 +38,9 @@ Component({
         })
       }
     },
-    camera_error({detail}) {
+    camera_error({
+      detail
+    }) {
       const dataset = this._dataset()
       if (this.props.onError) {
         this.props.onError({

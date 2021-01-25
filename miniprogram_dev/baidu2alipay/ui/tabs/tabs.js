@@ -237,15 +237,15 @@ module.exports = {
 
 exports.__esModule = true;
 
-var _PROMISE = __webpack_require__(4);
+var _PROMISE = __webpack_require__(5);
 
 var _PROMISE2 = _interopRequireDefault(_PROMISE);
 
-var _CameraContext = __webpack_require__(5);
+var _CameraContext = __webpack_require__(6);
 
 var _CameraContext2 = _interopRequireDefault(_CameraContext);
 
-var _OneKit = __webpack_require__(3);
+var _OneKit = __webpack_require__(4);
 
 var _OneKit2 = _interopRequireDefault(_OneKit);
 
@@ -704,7 +704,7 @@ var swan = function () {
     return my.showTabBar(object);
   };
 
-  swan.seswanabBarStyle = function seswanabBarStyle(swan_object) {
+  swan.setTabBarStyle = function setTabBarStyle(swan_object) {
     var swan_color = swan_object.color || '#ff3377';
     var swan_selectedColor = swan_object.selectedColor || '#ff3377';
     var swan_backgroundColor = swan_object.backgroundColor || '#ffffff';
@@ -718,14 +718,14 @@ var swan = function () {
     var backgroundColor = swan_backgroundColor;
     var borderStyle = swan_borderStyle;
     (0, _PROMISE2.default)(function (SUCCESS) {
-      my.seswanabBarStyle({
+      my.setTabBarStyle({
         color: color,
         selectedColor: selectedColor,
         backgroundColor: backgroundColor,
         borderStyle: borderStyle,
         success: function success() {
           var swan_res = {
-            errMsg: 'seswanabBarStyle: ok'
+            errMsg: 'setTabBarStyle: ok'
           };
           SUCCESS(swan_res);
         }
@@ -733,7 +733,7 @@ var swan = function () {
     }, swan_success, swan_fail, swan_complete);
   };
 
-  swan.seswanabBarItem = function seswanabBarItem(swan_object) {
+  swan.setTabBarItem = function setTabBarItem(swan_object) {
     var swan_index = swan_object.index;
     var swan_text = swan_object.text || '';
     var swan_iconPath = swan_object.iconPath || '';
@@ -747,14 +747,14 @@ var swan = function () {
     var iconPath = swan_iconPath;
     var selectedIconPath = swan_selectedIconPath;
     (0, _PROMISE2.default)(function (SUCCESS) {
-      my.seswanabBarItem({
+      my.setTabBarItem({
         index: index,
         text: text,
         iconPath: iconPath,
         selectedIconPath: selectedIconPath,
         success: function success() {
           var swan_res = {
-            errMsg: 'seswanabBarItem: ok'
+            errMsg: 'setTabBarItem: ok'
           };
           SUCCESS(swan_res);
         }
@@ -762,8 +762,8 @@ var swan = function () {
     }, swan_success, swan_fail, swan_complete);
   };
 
-  swan.seswanabBarBadge = function seswanabBarBadge(object) {
-    return my.seswanabBarBadge(object);
+  swan.setTabBarBadge = function setTabBarBadge(object) {
+    return my.setTabBarBadge(object);
   };
 
   swan.removeTabBarBadge = function removeTabBarBadge(object) {
@@ -1013,7 +1013,7 @@ var swan = function () {
 
 
   swan.createCameraContext = function createCameraContext() {
-    return new _CameraContext2.default(getApp().onekit_camera);
+    return new _CameraContext2.default(my.createCameraContext());
   };
 
   // ////// AR相机组件控制  ///////
@@ -2106,27 +2106,6 @@ exports.default = swan;
 
 /***/ }),
 
-/***/ 3:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function current() {
-  var pages = getCurrentPages();
-  if (pages.length === 0) {
-    return {};
-  }
-  return pages[pages.length - 1];
-}
-
-function currentUrl() {
-  return current().route;
-}
-module.exports = { current: current, currentUrl: currentUrl };
-
-/***/ }),
-
 /***/ 33:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2137,11 +2116,11 @@ var _onekit_behavior = __webpack_require__(0);
 
 var _onekit_behavior2 = _interopRequireDefault(_onekit_behavior);
 
-var _weixin_behavior = __webpack_require__(1);
+var _baidu_behavior = __webpack_require__(1);
 
-var _weixin_behavior2 = _interopRequireDefault(_weixin_behavior);
+var _baidu_behavior2 = _interopRequireDefault(_baidu_behavior);
 
-var _OneKit = __webpack_require__(3);
+var _OneKit = __webpack_require__(4);
 
 var _OneKit2 = _interopRequireDefault(_OneKit);
 
@@ -2153,7 +2132,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /* eslint-disable camelcase */
 Component({
-  mixins: [_onekit_behavior2.default, _weixin_behavior2.default],
+  mixins: [_onekit_behavior2.default, _baidu_behavior2.default],
   data: {},
   props: {
     tabsBackgroundColor: '#fff', // 选项卡背景颜色
@@ -2167,7 +2146,9 @@ Component({
   didMount: function didMount() {
     var _this = this;
 
-    my.createSelectorQuery().in(this).select('.weui-tabs').fields({ size: true }).exec(function (res) {
+    my.createSelectorQuery().in(this).select('.weui-tabs').fields({
+      size: true
+    }).exec(function (res) {
       var WIDTH = res[0].width;
       var count = Math.min(Object.keys(_this.tabItems).length, _this.properties.maxTabItemAmount);
       var width = WIDTH / count;
@@ -2241,7 +2222,9 @@ Component({
       //
       that.data.activeName = name;
       //
-      this.triggerEvent('Tabchange', { name: name });
+      this.triggerEvent('Tabchange', {
+        name: name
+      });
       if (this.properties.urlQueryName) {
         var urlQuery = {};
         urlQuery[this.properties.urlQueryName] = name;
@@ -2254,13 +2237,34 @@ Component({
 /***/ }),
 
 /***/ 4:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function current() {
+  var pages = getCurrentPages();
+  if (pages.length === 0) {
+    return {};
+  }
+  return pages[pages.length - 1];
+}
+
+function currentUrl() {
+  return current().route;
+}
+module.exports = { current: current, currentUrl: currentUrl };
+
+/***/ }),
+
+/***/ 5:
 /***/ (function(module, exports) {
 
 module.exports = require("oneutil/PROMISE");
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

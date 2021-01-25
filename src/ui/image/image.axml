@@ -1,11 +1,13 @@
-<image class="onekit_image {{onekitClass}}"
- style="{{onekitStyle}}" 
- id="{{onekitId}}"
- mode="{{mode}}" 
- src="{{src}}"
- lazy-load="{{lazyLoad}}"
- 
-onError="image_error"
+<image
+class="onekit-image {{onekitClass}}"
+style="{{onekitStyle}}"
+id="{{onekitId}}"
+
+src="{{src}}"
+mode="{{mode}}"
+lazy-load="{{lazyLoad}}"
+
 onLoad="image_load"
- 
- />
+onError="image_error"
+onLongTap="image_longTap"
+/>

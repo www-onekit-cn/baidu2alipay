@@ -95,15 +95,15 @@ module.exports =
 
 exports.__esModule = true;
 
-var _PROMISE = __webpack_require__(4);
+var _PROMISE = __webpack_require__(5);
 
 var _PROMISE2 = _interopRequireDefault(_PROMISE);
 
-var _CameraContext = __webpack_require__(5);
+var _CameraContext = __webpack_require__(6);
 
 var _CameraContext2 = _interopRequireDefault(_CameraContext);
 
-var _OneKit = __webpack_require__(3);
+var _OneKit = __webpack_require__(4);
 
 var _OneKit2 = _interopRequireDefault(_OneKit);
 
@@ -562,7 +562,7 @@ var swan = function () {
     return my.showTabBar(object);
   };
 
-  swan.seswanabBarStyle = function seswanabBarStyle(swan_object) {
+  swan.setTabBarStyle = function setTabBarStyle(swan_object) {
     var swan_color = swan_object.color || '#ff3377';
     var swan_selectedColor = swan_object.selectedColor || '#ff3377';
     var swan_backgroundColor = swan_object.backgroundColor || '#ffffff';
@@ -576,14 +576,14 @@ var swan = function () {
     var backgroundColor = swan_backgroundColor;
     var borderStyle = swan_borderStyle;
     (0, _PROMISE2.default)(function (SUCCESS) {
-      my.seswanabBarStyle({
+      my.setTabBarStyle({
         color: color,
         selectedColor: selectedColor,
         backgroundColor: backgroundColor,
         borderStyle: borderStyle,
         success: function success() {
           var swan_res = {
-            errMsg: 'seswanabBarStyle: ok'
+            errMsg: 'setTabBarStyle: ok'
           };
           SUCCESS(swan_res);
         }
@@ -591,7 +591,7 @@ var swan = function () {
     }, swan_success, swan_fail, swan_complete);
   };
 
-  swan.seswanabBarItem = function seswanabBarItem(swan_object) {
+  swan.setTabBarItem = function setTabBarItem(swan_object) {
     var swan_index = swan_object.index;
     var swan_text = swan_object.text || '';
     var swan_iconPath = swan_object.iconPath || '';
@@ -605,14 +605,14 @@ var swan = function () {
     var iconPath = swan_iconPath;
     var selectedIconPath = swan_selectedIconPath;
     (0, _PROMISE2.default)(function (SUCCESS) {
-      my.seswanabBarItem({
+      my.setTabBarItem({
         index: index,
         text: text,
         iconPath: iconPath,
         selectedIconPath: selectedIconPath,
         success: function success() {
           var swan_res = {
-            errMsg: 'seswanabBarItem: ok'
+            errMsg: 'setTabBarItem: ok'
           };
           SUCCESS(swan_res);
         }
@@ -620,8 +620,8 @@ var swan = function () {
     }, swan_success, swan_fail, swan_complete);
   };
 
-  swan.seswanabBarBadge = function seswanabBarBadge(object) {
-    return my.seswanabBarBadge(object);
+  swan.setTabBarBadge = function setTabBarBadge(object) {
+    return my.setTabBarBadge(object);
   };
 
   swan.removeTabBarBadge = function removeTabBarBadge(object) {
@@ -871,7 +871,7 @@ var swan = function () {
 
 
   swan.createCameraContext = function createCameraContext() {
-    return new _CameraContext2.default(getApp().onekit_camera);
+    return new _CameraContext2.default(my.createCameraContext());
   };
 
   // ////// AR相机组件控制  ///////
@@ -1965,23 +1965,9 @@ exports.default = swan;
 /***/ }),
 
 /***/ 3:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-function current() {
-  var pages = getCurrentPages();
-  if (pages.length === 0) {
-    return {};
-  }
-  return pages[pages.length - 1];
-}
-
-function currentUrl() {
-  return current().route;
-}
-module.exports = { current: current, currentUrl: currentUrl };
+module.exports = require("oneutil");
 
 /***/ }),
 
@@ -2115,7 +2101,7 @@ function OnekitApp(swan_object) {
 exports.__esModule = true;
 exports.default = OnekitBehavior;
 
-var _oneutil = __webpack_require__(6);
+var _oneutil = __webpack_require__(3);
 
 var _oneutil2 = _interopRequireDefault(_oneutil);
 
@@ -2234,9 +2220,23 @@ function OnekitBehavior(object) {
 /***/ }),
 
 /***/ 4:
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("oneutil/PROMISE");
+"use strict";
+
+
+function current() {
+  var pages = getCurrentPages();
+  if (pages.length === 0) {
+    return {};
+  }
+  return pages[pages.length - 1];
+}
+
+function currentUrl() {
+  return current().route;
+}
+module.exports = { current: current, currentUrl: currentUrl };
 
 /***/ }),
 
@@ -2249,7 +2249,7 @@ module.exports = require("oneutil/PROMISE");
 exports.__esModule = true;
 exports.default = OnekitComponent;
 
-var _oneutil = __webpack_require__(6);
+var _oneutil = __webpack_require__(3);
 
 var _oneutil2 = _interopRequireDefault(_oneutil);
 
@@ -2447,80 +2447,28 @@ exports.__esModule = true;
 exports.default = OnekitPage;
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
-// export default function OnekitPage(swan_object) {
-//   const my_object = {
-//     events: {
-//       onKeyboardHeight(e) {
-//         for (const onKeyboardHeight of getApp().onekit_onKeyboardHeight) {
-//           onKeyboardHeight(e)
-//         }
-//       }
-//     },
-//     onLoad(query) {
-//       if (!getApp().onekit_onKeyboardHeight) {
-//         getApp().onekit_onKeyboardHeight = []
-//       }
-//       if (swan_object.onLoad) {
-//         swan_object.onLoad.call(this, query)
-//       }
-//     },
-//     animate() {},
-//     selectComponent(selector) {
-//       // selector = selector.replace(".","$");
-//       // selector = selector.replace("-","_");
-//       for (const key of Object.keys(this)) {
-//         if (key.indexOf(selector) >= 0) {
-//           return this[key]
-//         }
-//       }
-//       return null
-//     },
-//     selectAllComponents(selector) {
-//       //  selector = selector.replace(".","$");
-//       //   selector = selector.replace("-","_");
-//       for (const key of Object.keys(this)) {
-//         if (key.indexOf(selector) >= 0) {
-//           return [this[key]]
-//         }
-//       }
-//       return []
-//     }
-//   }
-//   if (swan_object.behaviors) {
-//     for (const behavior of swan_object.behaviors) {
-//       for (const behavior_key of Object.keys(behavior)) {
-//         const behavior_value = behavior[behavior_key]
-//         switch (behavior_key) {
-//           case 'methods':
-//             for (const method_key of Object.keys(behavior_value)) {
-//               const method = behavior_value[method_key]
-//               my_object[method_key] = method
-//             }
-//             break
-//           default:
-//             my_object[behavior_key] = behavior_value
-//             break
-//         }
-//       }
-//     }
-//   }
-//   for (const key of Object.keys(swan_object)) {
-//     const value = swan_object[key]
-//     switch (key) {
-//       case 'behaviors':
-//         break
-//       case 'onLoad':
-//         break
-//       default:
-//         my_object[key] = value
-//         break
-//     }
-//   }
-//   return Page(my_object)
-// }
-
 function OnekitPage(swan_object) {
   var my_object = {
+    events: {
+      onKeyboardHeight: function onKeyboardHeight(e) {
+        for (var _iterator = getApp().onekit_onKeyboardHeight, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+          var _ref;
+
+          if (_isArray) {
+            if (_i >= _iterator.length) break;
+            _ref = _iterator[_i++];
+          } else {
+            _i = _iterator.next();
+            if (_i.done) break;
+            _ref = _i.value;
+          }
+
+          var onKeyboardHeight = _ref;
+
+          onKeyboardHeight(e);
+        }
+      }
+    },
     onLoad: function onLoad(options) {
       this._setData = this.setData;
       this.setData = function (keyOrData, value) {
@@ -2536,35 +2484,184 @@ function OnekitPage(swan_object) {
         swan_object.onLoad.call(this, options || {});
       }
     },
+    onReady: function onReady() {
+      if (swan_object.onLoad) {
+        swan_object.onLoad.call(this, this.query);
+      }
+      if (swan_object.onReady) {
+        swan_object.onReady.call(this);
+      }
+    },
     getData: function getData(key) {
       return this.data[key];
+    },
+    selectComponent: function selectComponent(selector) {
+      // selector = selector.replace(".","$");
+      // selector = selector.replace("-","_");
+      for (var _iterator2 = Object.keys(this), _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+        var _ref2;
+
+        if (_isArray2) {
+          if (_i2 >= _iterator2.length) break;
+          _ref2 = _iterator2[_i2++];
+        } else {
+          _i2 = _iterator2.next();
+          if (_i2.done) break;
+          _ref2 = _i2.value;
+        }
+
+        var key = _ref2;
+
+        if (key.indexOf(selector) >= 0) {
+          return this[key];
+        }
+      }
+      return null;
+    },
+    selectAllComponents: function selectAllComponents(selector) {
+      //  selector = selector.replace(".","$");
+      //   selector = selector.replace("-","_");
+      for (var _iterator3 = Object.keys(this), _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
+        var _ref3;
+
+        if (_isArray3) {
+          if (_i3 >= _iterator3.length) break;
+          _ref3 = _iterator3[_i3++];
+        } else {
+          _i3 = _iterator3.next();
+          if (_i3.done) break;
+          _ref3 = _i3.value;
+        }
+
+        var key = _ref3;
+
+        if (key.indexOf(selector) >= 0) {
+          return [this[key]];
+        }
+      }
+      return [];
     }
   };
-  for (var _iterator = Object.keys(swan_object), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-    var _ref;
+  if (swan_object.behaviors) {
+    for (var _iterator4 = swan_object.behaviors, _isArray4 = Array.isArray(_iterator4), _i4 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
+      var _ref4;
 
-    if (_isArray) {
-      if (_i >= _iterator.length) break;
-      _ref = _iterator[_i++];
+      if (_isArray4) {
+        if (_i4 >= _iterator4.length) break;
+        _ref4 = _iterator4[_i4++];
+      } else {
+        _i4 = _iterator4.next();
+        if (_i4.done) break;
+        _ref4 = _i4.value;
+      }
+
+      var behavior = _ref4;
+
+      for (var _iterator5 = Object.keys(behavior), _isArray5 = Array.isArray(_iterator5), _i5 = 0, _iterator5 = _isArray5 ? _iterator5 : _iterator5[Symbol.iterator]();;) {
+        var _ref5;
+
+        if (_isArray5) {
+          if (_i5 >= _iterator5.length) break;
+          _ref5 = _iterator5[_i5++];
+        } else {
+          _i5 = _iterator5.next();
+          if (_i5.done) break;
+          _ref5 = _i5.value;
+        }
+
+        var behavior_key = _ref5;
+
+        var behavior_value = behavior[behavior_key];
+        switch (behavior_key) {
+          case 'methods':
+            for (var _iterator6 = Object.keys(behavior_value), _isArray6 = Array.isArray(_iterator6), _i6 = 0, _iterator6 = _isArray6 ? _iterator6 : _iterator6[Symbol.iterator]();;) {
+              var _ref6;
+
+              if (_isArray6) {
+                if (_i6 >= _iterator6.length) break;
+                _ref6 = _iterator6[_i6++];
+              } else {
+                _i6 = _iterator6.next();
+                if (_i6.done) break;
+                _ref6 = _i6.value;
+              }
+
+              var method_key = _ref6;
+
+              var method = behavior_value[method_key];
+              my_object[method_key] = method;
+            }
+            break;
+          default:
+            my_object[behavior_key] = behavior_value;
+            break;
+        }
+      }
+    }
+  }
+  for (var _iterator7 = Object.keys(swan_object), _isArray7 = Array.isArray(_iterator7), _i7 = 0, _iterator7 = _isArray7 ? _iterator7 : _iterator7[Symbol.iterator]();;) {
+    var _ref7;
+
+    if (_isArray7) {
+      if (_i7 >= _iterator7.length) break;
+      _ref7 = _iterator7[_i7++];
     } else {
-      _i = _iterator.next();
-      if (_i.done) break;
-      _ref = _i.value;
+      _i7 = _iterator7.next();
+      if (_i7.done) break;
+      _ref7 = _i7.value;
     }
 
-    var key = _ref;
+    var key = _ref7;
 
+    var value = swan_object[key];
     switch (key) {
+      case 'behaviors':
+        break;
       case 'onLoad':
         break;
       default:
-        my_object[key] = swan_object[key];
+        my_object[key] = value;
         break;
     }
   }
-
   return Page(my_object);
 }
+
+/*
+export default function OnekitPage(swan_object) {
+  const my_object = {
+    onLoad(options) {
+      this._setData = this.setData
+      this.setData = function (keyOrData, value) {
+        if (typeof (keyOrData) === 'string') {
+          const data = {}
+          data[keyOrData] = value
+          this._setData(data)
+        } else {
+          this._setData(keyOrData)
+        }
+      }
+      if (swan_object.onLoad) {
+        swan_object.onLoad.call(this, options || {})
+      }
+    },
+    getData(key) {
+      return this.data[key]
+    }
+  }
+  for (const key of Object.keys(swan_object)) {
+    switch (key) {
+      case 'onLoad':
+        break
+      default:
+        my_object[key] = swan_object[key]
+        break
+    }
+  }
+
+  return Page(my_object)
+}
+*/
 
 /***/ }),
 
@@ -2615,6 +2712,13 @@ exports.default = global;
 /***/ }),
 
 /***/ 5:
+/***/ (function(module, exports) {
+
+module.exports = require("oneutil/PROMISE");
+
+/***/ }),
+
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2651,13 +2755,6 @@ var CameraContext = function () {
 }();
 
 exports.default = CameraContext;
-
-/***/ }),
-
-/***/ 6:
-/***/ (function(module, exports) {
-
-module.exports = require("oneutil");
 
 /***/ })
 

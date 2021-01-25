@@ -1,10 +1,10 @@
 /* eslint-disable camelcase */
 import lottie from 'lottie-miniprogram'
 import onekit_behavior from '../../behavior/onekit_behavior'
-import weixin_behavior from '../../behavior/weixin_behavior'
+import baidu_behavior from '../../behavior/baidu_behavior'
 
 Component({
-  mixins: [onekit_behavior, weixin_behavior],
+  mixins: [onekit_behavior, baidu_behavior],
   data: {},
   props: {
     path: '',
@@ -17,7 +17,10 @@ Component({
     const that = this
     // 在组件实例进入页面节点树时执行
     my.createSelectorQuery().in(this).select('.onekit-animation-view')
-      .fields({node: true, size: true})
+      .fields({
+        node: true,
+        size: true
+      })
       .exec((res) => {
         const canvas = res[0].node
         const context = canvas.getContext('2d')

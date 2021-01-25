@@ -1,11 +1,11 @@
 /* eslint-disable camelcase */
 import onekit_behavior from '../../behavior/onekit_behavior'
-import weixin_behavior from '../../behavior/weixin_behavior'
+import baidu_behavior from '../../behavior/baidu_behavior'
 import OneKit from '../../js/OneKit'
 import swan from '../../swan'
 
 Component({
-  mixins: [onekit_behavior, weixin_behavior],
+  mixins: [onekit_behavior, baidu_behavior],
   data: {},
   props: {
     tabsBackgroundColor: '#fff', // 选项卡背景颜色
@@ -18,7 +18,9 @@ Component({
   },
   didMount() {
     my.createSelectorQuery().in(this).select('.weui-tabs')
-      .fields({size: true})
+      .fields({
+        size: true
+      })
       .exec((res) => {
         const WIDTH = res[0].width
         const count = Math.min(Object.keys(this.tabItems).length, this.properties.maxTabItemAmount)
@@ -79,7 +81,9 @@ Component({
       //
       that.data.activeName = name
       //
-      this.triggerEvent('Tabchange', {name})
+      this.triggerEvent('Tabchange', {
+        name
+      })
       if (this.properties.urlQueryName) {
         const urlQuery = {}
         urlQuery[this.properties.urlQueryName] = name
