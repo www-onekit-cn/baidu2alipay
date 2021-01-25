@@ -464,7 +464,7 @@
 </onekit-view> -->
 
 <!-- <image> -->
-<!-- <import-sjs name="_" from="../baidu2alipay/_.sjs"/>
+<import-sjs name="_" from="../baidu2alipay/_.sjs"/>
 <onekit-view onekit-class="wrap">
     <onekit-view onekit-class="mode-title mode-title-first">
         <onekit-view onekit-class="mode-title-line-left"></onekit-view>
@@ -492,6 +492,61 @@
         <onekit-view onekit-class="top-description border-bottom">可放动图</onekit-view>
         <onekit-image mode="aspectFill" onekit-class="image-custom" src="https://b.bdstatic.com/searchbox/icms/searchbox/img/image-gif.gif"></onekit-image>
     </onekit-view>
-</onekit-view> -->
+</onekit-view>
+<!-- <onekit-image src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"></onekit-image> -->
 
-<onekit-image src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"></onekit-image>
+<!-- <video> -->
+<!-- <onekit-view onekit-class="wrap">
+    <onekit-view onekit-class="card-area">
+        <onekit-video onekit-style="width: 100%;" onekit-id="myVideo" title="这是title" src="{{src}}" initial-time="{{initialTime}}" duration="48" controls="{{controls}}" autoplay="{{false}}" loop="{{false}}" muted="{{voice}}" objectFit="{{objectFit}}" poster="{{posterSrc}}" page-gesture="{{pageGesture}}" direction="{{0}}" show-progress="{{progressGesture}}" show-fullscreen-btn="{{fullscreenBtn}}" enable-progress-gesture="{{false}}" danmu-list="{{danmuList}}" danmu-btn="{{true}}" enable-danmu="{{true}}" show-play-btn="{{playBtn}}" show-center-play-btn="{{centerPlayBtn}}" show-mute-btn="{{true}}" show-no-wifi-tip="{{noWifiTip}}" show-rate-btn="{{showRateBtn}}" show-vslide-btn-in-fullscreen="{{showVslideBtnInFullscreen}}" silent-play="{{silentPlay}}" vslide-gesture="{{true}}" vslide-gesture-in-fullscreen="{{true}}" enable-play-gesture="{{true}}" onPlay="videoPlay" onPause="videoPause" onError="videoError" onEnded="videoEnded" onWaiting="videoWaiting" onTimeupdate="videoTimeupdate" onFullscreenchange="fullscreen" onLoadedmetadata="loadedmetadata">
+        </onekit-video>
+    </onekit-view>
+    <onekit-view onekit-class="swan-cells">
+        <onekit-view onekit-class="swan-cell swan-cell_input">
+            <onekit-view onekit-class="swan-cell__hd">
+                <onekit-view onekit-class="swan-label">弹幕内容</onekit-view>
+            </onekit-view>
+            <onekit-view onekit-class="swan-cell__bd">
+                <input onInput="bindInput" type="text" value="{=userMessage=}" placeholder="在此处输入弹幕内容"></input>
+            </onekit-view>
+        </onekit-view>
+    </onekit-view>
+    <onekit-view onekit-class="btn-area">
+        <onekit-button onekit-class="page-body-button" type="primary" onTap="sendDanmu">发送弹幕</onekit-button>
+
+        <onekit-view onekit-class="page-section-btns bottom-border">
+            <onekit-view hover-class="hover" onTap="initialTime">指定初始播放位置为20s(播放前点击)</onekit-view>
+            <onekit-view hover-class="hover" onTap="controls">显示默认播放控件</onekit-view>
+            <onekit-view hover-class="hover" onTap="loop">设置循环播放</onekit-view>
+        </onekit-view>
+        
+        <onekit-view onekit-class="page-section-btns bottom-border">
+            <onekit-view hover-class="hover" onTap="voice">点击{{voice ? '有音':'无音'}}</onekit-view>
+            <onekit-view hover-class="hover" onTap="objectFit" onekit-dataset='"set":{{_("contain")}}'>包含容器</onekit-view>
+            <onekit-view hover-class="hover" onTap="objectFit" onekit-dataset='"set":{{_("fill")}}'>填充容器</onekit-view>
+        </onekit-view>
+
+        <onekit-view onekit-class="page-section-btns bottom-border">
+            <onekit-view hover-class="hover" onTap="objectFit" onekit-dataset='"set":{{_("cover")}}'>覆盖容器</onekit-view>
+            <onekit-view hover-class="hover" onTap="pageGesture">开启手势调节亮度与音量</onekit-view>
+            <onekit-view hover-class="hover" onTap="fullscreenBtn">{{fullscreenBtn?'不显示':'显示'}}全屏按钮</onekit-view>
+        </onekit-view>
+            
+        <onekit-view onekit-class="page-section-btns bottom-border">
+            <onekit-view hover-class="hover" onTap="progressGesture">去掉全屏播放时手势控制进度</onekit-view>
+            <onekit-view hover-class="hover" onTap="playBtn">{{playBtn ? '': '不'}}显示视频底部控制栏的播放按钮</onekit-view>
+            <onekit-view hover-class="hover" onTap="centerPlayBtn">{{centerPlayBtn ? '': '不'}}显示视频中间的播放按钮</onekit-view>
+        </onekit-view>
+
+        <onekit-view onekit-class="page-section-btns bottom-border">
+            <onekit-view hover-class="hover" onTap="noWifiTip">wifi/4g浮层</onekit-view>
+            <onekit-view hover-class="hover" onTap="nextVideo">切换视频地址</onekit-view>
+        </onekit-view>
+
+        <onekit-view onekit-class="page-section-btns bottom-border">
+            <onekit-view hover-class="hover" onTap="rateBtn">{{showRateBtn ? '隐藏' : '显示'}}倍速播放按钮</onekit-view>
+            <onekit-view hover-class="hover" onTap="vslideBtnInFullscreen">{{showVslideBtnInFullscreen ? '隐藏': '显示'}}全屏模式下的侧边栏控件</onekit-view>
+            <onekit-view hover-class="hover" onTap="silentPlayMode">{{silentPlay ? '关闭': '开启'}}无声视频模式</onekit-view>
+        </onekit-view>
+    </onekit-view>
+</onekit-view> -->

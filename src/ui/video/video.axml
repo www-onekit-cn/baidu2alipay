@@ -18,6 +18,7 @@
   show-center-play-btn="{{showCenterPlayBtn}}"
   show-mute-btn="{{showMuteBtn}}"
   enable-progress-gesture="{{enableProgressGesture}}"
+  mobilenet-hint-type="{{showNoWifiTip}}"
 
   onPlay="video_play" 
   onPause="video_pause" 

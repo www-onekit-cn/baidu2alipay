@@ -87,71 +87,274 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ 0:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+/* eslint-disable no-console */
+exports.default = {
+  props: {
+    onekitId: '',
+    onekitClass: '',
+    onekitStyle: '',
+    onekitVersion: '',
+    onekitDataset: null
+  },
+  data: {},
+  onInit: function onInit() {
+    if (this.props.onekitId) {
+      getApp().onekit_nodes['_' + this.props.onekitId] = this;
+    }
+    //
+    if (this.props.onekitClass) {
+      getApp().onekit_nodes['__' + this.props.onekitClass] = this;
+    }
+  },
+
+  methods: {
+    _dataset: function _dataset() {
+      if (!this.props.onekitDataset) {
+        return {};
+      }
+      var json = '{' + this.props.onekitDataset + '}';
+      return JSON.parse(json);
+    },
+    _e: function _e(detail, dataset) {
+      // currentTarget: {
+      //   dataset: {},
+      //   id: '',
+      //   offsetLeft: ret[0].left,
+      //   offsetTop: ret[0].top
+      // },
+      // detail: {
+      //   curPercent: parseInt(curPercent, 10)
+      // },
+      // mark: {},
+      // mut: false,
+      // target: {
+      //   dataset: {},
+      //   id: '',
+      //   offsetLeft: ret[0].left,
+      //   offsetTop: ret[0].top
+      // },
+      // timeStamp: 8888888, //
+      // type: 'activeend',
+      // _userTap: false
+      return {
+        detail: detail || {},
+        dataset: dataset || {}
+      };
+    }
+  }
+};
+
+/***/ }),
+
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
+module.exports = {
+  props: {},
+  methods: {
+    ui_tap: function ui_tap(e) {
+      if (this.props.onTap) {
+        this.props.onTap(e);
+      }
+    },
+    ui_touchstart: function ui_touchstart() {
+      if (this.props.onTouchstart) {
+        this.props.onTouchstart();
+      }
+    },
+    ui_touchmove: function ui_touchmove() {
+      if (this.props.onTouchmove) {
+        this.props.onTouchmove();
+      }
+    },
+    ui_touchcancel: function ui_touchcancel() {
+      if (this.props.onTouchcancel) {
+        this.props.onTouchcancel();
+      }
+    },
+    ui_touchend: function ui_touchend() {
+      if (this.props.onTouchend) {
+        this.props.onTouchend();
+      }
+    },
+    ui_longpress: function ui_longpress() {
+      if (this.props.onLongpress) {
+        this.props.onLongpress();
+      }
+    },
+    ui_longtap: function ui_longtap() {
+      if (this.props.onLongtap) {
+        this.props.onLongtap();
+      }
+    },
+    ui_transitionend: function ui_transitionend() {
+      if (this.props.onTransitionend) {
+        this.props.onTransitionend();
+      }
+    },
+    ui_animationstart: function ui_animationstart() {
+      if (this.props.onAnimationstart) {
+        this.props.onAnimationstart();
+      }
+    },
+    ui_animationiteration: function ui_animationiteration() {
+      if (this.props.onAnimationiteration) {
+        this.props.onAnimationiteration();
+      }
+    },
+    ui_animationend: function ui_animationend() {
+      if (this.props.onAnimationend) {
+        this.props.onAnimationend();
+      }
+    },
+    ui_touchforcechange: function ui_touchforcechange() {
+      if (this.props.onTouchforcechange) {
+        this.props.onTouchforcechange();
+      }
+    }
+  }
+};
+
+/***/ }),
+
 /***/ 35:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+var _onekit_behavior = __webpack_require__(0);
+
+var _onekit_behavior2 = _interopRequireDefault(_onekit_behavior);
+
+var _baidu_behavior = __webpack_require__(1);
+
+var _baidu_behavior2 = _interopRequireDefault(_baidu_behavior);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
 Component({
-  mixins: [],
-  data: {},
+  mixins: [_onekit_behavior2.default, _baidu_behavior2.default],
+  data: {
+    mobilenetHintType: 1
+  },
   props: {
-    onekitClass: '',
-    onekitStyle: '',
-    onekitId: '',
     src: '',
-    duration: '',
+    //
+    title: '',
+    initialTime: null,
     controls: true,
     autoplay: false,
     loop: false,
     muted: false,
-    initialTime: Number,
-    pageGesture: false,
-    direction: '',
+    objectFit: 'contain',
+    poster: '',
+    pagGesture: false,
+    direction: null,
+    //
+    showProgress: true,
     showFullscreenBtn: true,
+    enableProgressGesture: true,
+    //
+    danmuList: [],
+    //
+    danmuBtn: false,
+    //
+    enableDanmu: false,
     showPlayBtn: true,
     showCenterPlayBtn: true,
-    enableProgressGesture: true,
-    poster: '',
-    showMuteBtn: false
+    showMuteBtn: true,
+    //
+    showNoWifiTip: true,
+    //
+    vslideGesture: false,
+    vslideGestureInFullscreen: true,
+    enablePlayGesture: false,
+    //
+    showRateBtn: false,
+    showVslideBtnInFullscreen: true,
+    silentPlay: false,
+    duration: null
+  },
+  deriveDataFromProps: function deriveDataFromProps(data_props) {
+    this._trigger_controlstoggle(data_props.controls);
   },
   didMount: function didMount() {
-    // var video = my.createVideoContext("video");
+    var that = this;
+    my.createSelectorQuery().select('.onekit-video').boundingClientRect().exec(function (rect) {
+      that.setData({
+        rect: rect[0]
+      });
+    });
+    this._trigger_seekcomplete();
+    this._trigger_controlstoggle(this.props.controls);
+    //
+    if (this.props.enableProgressGesture) {
+      this.data.mobilenetHintType = 1 || false;
+    } else {
+      this.data.mobilenetHintType =  false || 2;
+    }
   },
-  didUpdate: function didUpdate() {},
-  didUnmount: function didUnmount() {},
 
   methods: {
-    video_play: function video_play(e) {
+    video_play: function video_play() {
       if (this.props.onPlay) {
-        this.props.onPlay(e);
+        this.props.onPlay();
       }
     },
-    video_pause: function video_pause(e) {
+    video_pause: function video_pause() {
       if (this.props.onPause) {
-        this.props.onPause(e);
+        this.props.onPause();
       }
     },
-    video_end: function video_end(e) {
+    video_end: function video_end() {
       if (this.props.onEnded) {
-        this.props.onEnded(e);
+        this.props.onEnded();
       }
     },
     video_timeupdate: function video_timeupdate(e) {
+      this.currentTime = e.detail.currentTime;
       if (this.props.onTimeUpdate) {
-        this.props.onTimeUpdate(e);
+        this.props.onTimeUpdate(e.detail);
       }
     },
     video_fullscreenchange: function video_fullscreenchange(e) {
+      this._trigger_controlstoggle(this.props.controls && !e.detail.fullScreen);
       if (this.props.onFullScreenChange) {
-        this.props.onFullScreenChange(e);
+        this.props.onFullScreenChange(e.detail);
       }
     },
-    video_error: function video_error(e) {
-      if (this.props.onError) {
-        this.props.onError(e);
+    video_waiting: function video_waiting() {
+      if (this.props.onLoading) {
+        this.props.onLoading({});
       }
+    },
+    video_error: function video_error() {
+      if (this.props.onError) {
+        this.props.onError({});
+      }
+    },
+
+    //
+    video_renderstart: function video_renderstart(e) {
+      console.log('[video.renderstart]', e);
+      //   if (this.props.onLoadedmetadata) {
+      //     this.props.onLoadedmetadata({})
+      //   }
     }
   }
 });

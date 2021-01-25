@@ -152,3 +152,73 @@ scroll-view {
     width: 100% ;
     margin-bottom: calc(-.04*var(--onekit-REM)) ;
 } */
+
+/* video */
+.video-wrap {
+    padding: calc(.3*var(--onekit-REM)) calc(.23*var(--onekit-REM)) 0 ;
+}
+.btn {
+    margin: calc(.15*var(--onekit-REM)) calc(.23*var(--onekit-REM)) 0 ;
+}
+.page-section-btns {
+    display: flex ;
+    margin: 0 40rpx 10rpx 40rpx ;
+    align-items: center ;
+    justify-content: space-around ;
+}
+.page-section-btns > view {
+    display: flex ;
+    height: 130rpx ;
+    border: 1px solid #ddd ;
+    text-align: center ;
+    color: #fff ;
+    border-radius: 5px ;
+    background-color: #3c76ff ;
+    align-items: center ;
+    flex: 1 ;
+    justify-content: space-around ;
+}
+.hover {
+    opacity: .2 ;
+}
+.btn-view-group {
+    display: flex ;
+    flex-direction: column ;
+    width: 100% ;
+    text-align: center ;
+    border-radius: 8px 8px ;
+    justify-content: center ;
+}
+.swan-cells {
+    margin: calc(.2*var(--onekit-REM)) ;
+    text-align: left ;
+}
+.swan-label {
+    width: 5em ;
+}
+.swan-cell {
+    position: relative ;
+    display: -webkit-box ;
+    display: -webkit-flex ;
+    display:         flex ;
+    padding: 10px 15px ;
+    font-size: 16px ;
+    background: #fff ;
+    -webkit-align-items: center ;
+    align-items: center ;
+    -webkit-box-align: center ;
+}
+.swan-cell:before {
+    content: " " ;
+    position: absolute ;
+    top: 0 ;
+    right: 0 ;
+    left: 0 ;
+    left: 15px ;
+    height: 1px ;
+    border-top: 1px solid #d9d9d9 ;
+    color: #d9d9d9 ;
+}
+.swan-cell:first-child:before {
+    display: none ;
+}

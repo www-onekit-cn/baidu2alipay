@@ -253,7 +253,6 @@ Component({
   props: {
     src: '',
     mode: 'scaleToFill',
-    // 不支持
     webp: false,
     lazyLoad: false,
     imageMenuPrevent: false,
@@ -275,7 +274,6 @@ Component({
     image_error: function image_error(_ref) {
       var detail = _ref.detail;
 
-      console.log(detail);
       var dataset = this._dataset();
       if (this.props.onError) {
         this.props.onError({
@@ -289,13 +287,17 @@ Component({
     image_load: function image_load(_ref2) {
       var detail = _ref2.detail;
 
+      detail = {
+        errMsg: 'something wrong'
+      };
       var dataset = this._dataset();
       if (this.props.onLoad) {
         this.props.onLoad({
           detail: detail,
           currentTarget: {
             dataset: dataset
-          }
+          },
+          type: 'load'
         });
       }
     },
@@ -307,11 +309,9 @@ Component({
       };
     },
     image_longTap: function image_longTap() {
-      var _this = this;
-
-      if (this.props.imageMenuPrevent) {
+      if (!this.props.imageMenuPrevent) {
         my.showActionSheet({
-          items: ['转发', '保存图片', '收藏'],
+          items: ['查看图片', '识图找信息', '保存到相册', '保存到百度云盘', '分享图片', '设置壁纸'],
           cancelButtonText: '取消',
           success: function success(_ref3) {
             var index = _ref3.index;
@@ -321,22 +321,50 @@ Component({
             }
             switch (index) {
               case 0:
-                _this.onShareAppMessage();
+                my.alert({
+                  title: '暂不支持查看图片'
+                });
+                // my.previewImage({
+                //   urls: '' // 拿不到URL
+                // })
                 break;
               case 1:
-                my.saveImage({
-                  url: _this.props.src,
-                  showActionSheet: true,
-                  success: function success() {
-                    my.alert({
-                      title: '保存成功'
-                    });
-                  }
+                my.alert({
+                  title: '暂不支持识图找信息'
                 });
                 break;
               case 2:
                 my.alert({
-                  title: "请点击右上角的'☆'收藏按钮"
+                  title: '暂不支持查看图片'
+                });
+                // my.saveImage({
+                //   url: this.props.src,
+                //   showActionSheet: true,
+                //   success: () => {
+                //     my.alert({
+                //       title: '保存成功',
+                //     })
+                //   },
+                // })
+                break;
+              case 3:
+                my.alert({
+                  title: '暂不支持保存到百度云盘'
+                });
+                break;
+              case 4:
+                my.alert({
+                  title: '暂不支持分享图片'
+                });
+                break;
+              case 5:
+                my.alert({
+                  title: '暂不支持识图找信息'
+                });
+                break;
+              case 6:
+                my.alert({
+                  title: '暂不支持设置壁纸'
                 });
                 break;
               default:
@@ -348,17 +376,20 @@ Component({
           imageMenuPrevent: this.props.imageMenuPrevent
         });
       }
-    }
-  },
-  image_tap: function image_tap() {
-    if (this.props.preview) {
-      var originalSrc = this.props.src;
-      my.previewImage({
-        urls: [this.props.src]
-      });
-      this.setData({
-        originalSrc: originalSrc
-      });
+    },
+    image_tap: function image_tap() {
+      if (this.props.preview) {
+        var originalSrc = this.props.src;
+        var urls = [];
+        urls.push(originalSrc);
+        console.log(urls);
+        my.previewImage({
+          urls: [originalSrc]
+        });
+        this.setData({
+          originalSrc: originalSrc
+        });
+      }
     }
   }
 }); /* eslint-disable no-console */

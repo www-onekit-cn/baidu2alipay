@@ -1,10 +1,13 @@
+/* eslint-disable no-console */
 /* eslint-disable camelcase */
 import onekit_behavior from '../../behavior/onekit_behavior'
 import baidu_behavior from '../../behavior/baidu_behavior'
 
 Component({
   mixins: [onekit_behavior, baidu_behavior],
-  data: {},
+  data: {
+    mobilenetHintType: 1,
+  },
   props: {
     src: '',
     //
@@ -22,17 +25,22 @@ Component({
     showProgress: true,
     showFullscreenBtn: true,
     enableProgressGesture: true,
+    //
     danmuList: [],
+    //
     danmuBtn: false,
+    //
     enableDanmu: false,
     showPlayBtn: true,
     showCenterPlayBtn: true,
     showMuteBtn: true,
     //
     showNoWifiTip: true,
+    //
     vslideGesture: false,
     vslideGestureInFullscreen: true,
     enablePlayGesture: false,
+    //
     showRateBtn: false,
     showVslideBtnInFullscreen: true,
     silentPlay: false,
@@ -52,12 +60,11 @@ Component({
     this._trigger_seekcomplete()
     this._trigger_controlstoggle(this.props.controls)
     //
-    if ((!this.props.pictureInPictureMode) || (this.props.pictureInPictureMode.length <= 0)) {
-      this.data.pictureinpicture = 'none'
+    if (this.props.enableProgressGesture) {
+      this.data.mobilenetHintType = 1 || 3
     } else {
-      this.data.pictureinpicture = 'miniprogram'
+      this.data.mobilenetHintType = 0 || 2
     }
-    this.setData(this.data)
   },
   methods: {
     video_play() {
@@ -98,55 +105,11 @@ Component({
       }
     },
     //
-    _trigger_progress() {
-      if (this.props.onProgress) {
-        this.props.onProgress({})
-      }
-    },
-    //
     video_renderstart(e) {
       console.log('[video.renderstart]', e)
       //   if (this.props.onLoadedmetadata) {
       //     this.props.onLoadedmetadata({})
       //   }
-    },
-    _trigger_controlstoggle(show) {
-      if (this.data.show === show) {
-        return
-      }
-      this.data.show = show
-      if (this.props.onControlstoggle) {
-        this.props.onControlstoggle({
-          show
-        })
-      }
-    },
-    //
-    _trigger_enterpictureinpicture() {
-      if (this.props.onEnterpictureinpicture) {
-        this.props.onEnterpictureinpicture({})
-      }
-    },
-    //
-    _trigger_leavepictureinpicture() {
-      if (this.props.onLeavepictureinpicture) {
-        this.props.onLeavepictureinpicture({})
-      }
-    },
-    _trigger_seekcomplete(positon) {
-      if (this.props.duration) {
-        const res = my.getSystemInfo()
-        if (res.platform === 'iOS') {
-          positon = this.props.duration * 1000
-        } else if (res.platform === 'Android ') {
-          positon = this.props.duration
-        }
-        if (this.props.onSeekcomplete) {
-          this.props.onSeekcomplete({
-            positon
-          })
-        }
-      }
     }
-  },
+  }
 })

@@ -262,7 +262,7 @@ Component({
 
   methods: {
     richText_longTap: function richText_longTap() {
-      if (this.props.imageMenuPrevent) {
+      if (!this.props.imageMenuPrevent) {
         my.showActionSheet({
           // items: ['转发', '保存图片', '收藏'],
           items: ['查看图片', '识图找信息', '保存到相册', '保存到百度云盘', '分享图片', '设置壁纸'],

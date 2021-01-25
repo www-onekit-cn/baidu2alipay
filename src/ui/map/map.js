@@ -1,92 +1,178 @@
 /* eslint-disable no-console */
+/* eslint-disable camelcase */
+import onekit_behavior from '../../behavior/onekit_behavior'
+import baidu_behavior from '../../behavior/baidu_behavior'
+
 Component({
-  mixins: [],
+  mixins: [onekit_behavior, baidu_behavior],
   data: {},
   props: {
-    onekitClass: '',
-    onekitStyle: '',
-    onekitId: '',
     longitude(longitude) {
-      this.setData({longitude})
+      this.setData({
+        longitude
+      })
     },
     latitude(latitude) {
-      this.setData({latitude})
+      this.setData({
+        latitude
+      })
     },
-    scale(scale) {
-      this.setData({scale})
-    },
+    scale: 16,
     markers(markers) {
-      this.setData({markers})
-    },
-    covers(covers) {
-      this.setData({markers: covers})
+      this.setData({
+        markers
+      })
     },
     polyline(polyline) {
-      this.setData({polyline})
+      this.setData({
+        polyline
+      })
     },
-    polygons(polygons) {
-      this.setData({polygons})
+    polygons(polygon) {
+      this.setData({
+        polygon
+      })
     },
     circles(circles) {
-      this.setData({circles})
+      this.setData({
+        circles
+      })
     },
     controls(controls) {
-      this.setData({controls})
+      this.setData({
+        controls
+      })
     },
     'include-points': function (includePoints) {
-      this.setData({'include-points': includePoints})
+      this.setData({
+        'include-points': includePoints
+      })
     },
     'show-location': function (showLocation) {
-      this.setData({'show-location': showLocation})
+      this.setData({
+        'show-location': showLocation
+      })
     },
-    subkey(subkey) {
-      this.setData({subkey})
-    },
+    // 支付宝暂时不支持3D'
     'enable-3D': function () {
       console.log('[onekit]enable-3D')
+      my.showToast({
+        content: '支付宝暂时不支持3D',
+      })
     },
     'show-compass': function (showCompass) {
-      this.mapCtx.showsCompass({isShowCompass: showCompass})
+      this.mapCtx.showsCompass({
+        isShowCompass: showCompass
+      })
     },
     'enable-overlooking': function (enableOverlooking) {
-      this.mapCtx.gestureEnable({isGestureEnable: enableOverlooking})
+      this.mapCtx.gestureEnable({
+        isGestureEnable: enableOverlooking
+      })
     },
     'enable-zoom': function (enableZoom) {
-      this.mapCtx.showsScale({isShowsScale: enableZoom})
+      this.mapCtx.showsScale({
+        isShowsScale: enableZoom
+      })
     },
-    'enable-scroll': function () {
-      console.log('[onekit]enable-scroll')
+    'enable-scroll': function (enableScroll) {
+      this.mapCtx.gestureEnable({
+        isGestureEnable: enableScroll
+      })
     },
     'enable-rotate': function (enableRotate) {
-      this.mapCtx.gestureEnable({isGestureEnable: enableRotate})
-    }
+      this.mapCtx.gestureEnable({
+        isGestureEnable: enableRotate
+      })
+    },
+  },
+  onInit() {
+    console.log('onInit', this)
   },
   didMount() {
-    this.mapCtx = my.createMapContext('map')
+    const that = this
+    this.mapCtx = my.createMapContext(this.props.onekitId)
+
+    my.createSelectorQuery().select('.onekit-map').boundingClientRect().exec((rect) => {
+      that.setData({
+        rect: rect[0]
+      })
+    })
   },
-  didUpdate() { },
-  didUnmount() { },
+  didUpdate() {
+    this._trigger_updated()
+  },
+  didUnmount() {},
   methods: {
-    onMarkertap() {
-
+    map_markertap({detail}) {
+      const dataset = this._dataset()
+      if (this.props.onMarkerTap) {
+        this.props.onMarkerTap({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
+      }
     },
-    onCallouttap() {
-
+    map_callouttap({detail}) {
+      const dataset = this._dataset()
+      if (this.props.onCalloutTap) {
+        this.props.onCalloutTap({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
+      }
     },
-    onControltap() {
-
+    map_controltap({detail}) {
+      const dataset = this._dataset()
+      if (this.props.onControltap) {
+        this.props.onControltap({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
+      }
     },
-    onRegionchange() {
-
+    map_regionchange({detail}) {
+      const dataset = this._dataset()
+      if (this.props.onRegionChange) {
+        this.props.onRegionChange({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
+      }
     },
-    onTap() {
-
+    map_tap({detail}) {
+      const dataset = this._dataset()
+      if (this.props.onTap) {
+        this.props.onTap({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
+      }
     },
-    onUpdated() {
-
+    _trigger_updated(e) {
+      this.mapCtx = my.createMapContext(this.props.onekitId)
+      if (this.mapCtx.updateComponents) {
+        if (this.props.onUpdated) {
+          this.props.onUpdated(e)
+        }
+      }
     },
-    onPoitap() {
-
-    }
+    //
+    _trigger_poitap(e) {
+      this.mapCtx = my.createMapContext(this.props.onekitId)
+      if (this.props.onPoiTap) {
+        this.props.onPoiTap(e)
+      }
+    },
   },
 })
