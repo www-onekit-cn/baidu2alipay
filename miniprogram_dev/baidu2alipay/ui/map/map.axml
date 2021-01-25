@@ -1,15 +1,22 @@
-<map id="map" 
-  class="{{onekitClass}}"
+<map 
+  id="{{onekitId}}"
+  class="onekit-map {{onekitClass}}"
   style="{{onekitStyle}}"
-  id="{{onkitId}}"
+
   longitude="{{longitude}}"
   latitude="{{latitude}}"
   scale="{{scale}}"
-  markers="{{markers}}"
+  markers="{{markers || covers}}"
   polyline="{{polyline}}"
   circles="{{circles}}"
   controls="{{controls}}"
-  polygon="{{polygon}}"
-  include-points="{{include-points}}"
-  show-location="{{show-location}}"
-></map>
+  show-location="{{showLocation}}"
+  include-points="{{includePoints}}"
+  polygon="{{polygons}}"
+
+  onMarkerTap="map_markertap"
+  onCalloutTap="map_callouttap"
+  onControlTap="map_controltap"
+  onRegionChange="map_regionchange"
+  onTap="map_tap"
+/>

@@ -380,9 +380,6 @@ Component({
     image_tap: function image_tap() {
       if (this.props.preview) {
         var originalSrc = this.props.src;
-        var urls = [];
-        urls.push(originalSrc);
-        console.log(urls);
         my.previewImage({
           urls: [originalSrc]
         });

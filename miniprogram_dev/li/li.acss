@@ -154,7 +154,7 @@ scroll-view {
 } */
 
 /* video */
-.video-wrap {
+/* .video-wrap {
     padding: calc(.3*var(--onekit-REM)) calc(.23*var(--onekit-REM)) 0 ;
 }
 .btn {
@@ -221,4 +221,12 @@ scroll-view {
 }
 .swan-cell:first-child:before {
     display: none ;
+} */
+
+/* map */
+.map {
+    width: 100% ;
+}
+.switch-text {
+    vertical-align: middle ;
 }

@@ -159,19 +159,42 @@ Component({
         })
       }
     },
-    _trigger_updated(e) {
+    image_load({detail}) {
+      const dataset = this._dataset()
+      if (this.props.onLoad) {
+        this.props.onLoad({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
+      }
+    },
+    _trigger_updated() {
       this.mapCtx = my.createMapContext(this.props.onekitId)
       if (this.mapCtx.updateComponents) {
+        const {detail, dataset} = this._dataset()
         if (this.props.onUpdated) {
-          this.props.onUpdated(e)
+          this.props.onUpdated({
+            detail,
+            currentTarget: {
+              dataset
+            }
+          })
         }
       }
     },
     //
-    _trigger_poitap(e) {
+    _trigger_poitap({detail}) {
       this.mapCtx = my.createMapContext(this.props.onekitId)
+      const dataset = this._dataset()
       if (this.props.onPoiTap) {
-        this.props.onPoiTap(e)
+        this.props.onPoiTap({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
       }
     },
   },

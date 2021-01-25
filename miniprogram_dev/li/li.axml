@@ -464,7 +464,7 @@
 </onekit-view> -->
 
 <!-- <image> -->
-<import-sjs name="_" from="../baidu2alipay/_.sjs"/>
+<!-- <import-sjs name="_" from="../baidu2alipay/_.sjs"/>
 <onekit-view onekit-class="wrap">
     <onekit-view onekit-class="mode-title mode-title-first">
         <onekit-view onekit-class="mode-title-line-left"></onekit-view>
@@ -492,7 +492,7 @@
         <onekit-view onekit-class="top-description border-bottom">可放动图</onekit-view>
         <onekit-image mode="aspectFill" onekit-class="image-custom" src="https://b.bdstatic.com/searchbox/icms/searchbox/img/image-gif.gif"></onekit-image>
     </onekit-view>
-</onekit-view>
+</onekit-view> -->
 <!-- <onekit-image src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"></onekit-image> -->
 
 <!-- <video> -->
@@ -550,3 +550,24 @@
         </onekit-view>
     </onekit-view>
 </onekit-view> -->
+
+<!-- <map> -->
+<onekit-view onekit-class="wrap">
+    <onekit-view onekit-class="card-area">
+        <onekit-map onekit-class="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" markers="{{markers}}" polyline="{{polyline}}" polygons="{{drawPolygon ? polygons : []}}" circles="{{circles}}" controls="{{controls}}" show-location="{{showLocation}}" include-points="{{includePoints}}" enable-3D="{{enable3d}}" show-compass="{{showCompass}}" enable-overlooking="{{enableOverlooking}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" enable-rotate="{{enableRotate}}" onMarkertap="onMarkertap" onCallouttap="onCallouttap" onControltap="onControltap" onRegionchange="onRegionchange" onTap="onTap" onUpdated="onUpdated" onPoitap="onPoitap">
+        </onekit-map>
+        <onekit-view onekit-class="item-scroll block border-bottom">
+            <text class="switch-text">支持缩放</text>
+            <onekit-switch onChange="toggleZoom" checked></onekit-switch>
+        </onekit-view>
+        <onekit-view onekit-class="item-scroll block border-bottom">
+            <text class="switch-text">支持拖动</text>
+            <onekit-switch onChange="toggleScroll" checked></onekit-switch>
+        </onekit-view>
+        <onekit-view onekit-class="item-scroll block border-bottom" a:if="{{!isWeb}}">
+            <text class="switch-text">支持旋转</text>
+            <onekit-switch onChange="toggleRotate" checked></onekit-switch>
+        </onekit-view>
+    </onekit-view>
+    <onekit-view onekit-class="tip-week">工具暂不支持手势控制</onekit-view>
+</onekit-view>
