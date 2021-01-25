@@ -262,22 +262,13 @@ Component({
   },
   didMount: function didMount() {
     var pages = getCurrentPages();
-    var alipay_src = void 0;
-    var originalSrc = void 0;
     if (!this.props.src.indexOf('://')) {
       var currentUrl = pages[pages.length - 1].route;
-      alipay_src = '/' + _oneutil.PATH.rel2abs(currentUrl, this.props.src);
-    }
-    if (this.props.preview) {
-      originalSrc = this.props.src;
-      my.previewImage({
-        urls: [this.props.src]
+      var alipay_src = '/' + _oneutil.PATH.rel2abs(currentUrl, this.props.src);
+      this.setData({
+        src: alipay_src
       });
     }
-    this.setData({
-      src: alipay_src,
-      originalSrc: originalSrc
-    });
   },
 
   methods: {
@@ -358,9 +349,19 @@ Component({
         });
       }
     }
+  },
+  image_tap: function image_tap() {
+    if (this.props.preview) {
+      var originalSrc = this.props.src;
+      my.previewImage({
+        urls: [this.props.src]
+      });
+      this.setData({
+        originalSrc: originalSrc
+      });
+    }
   }
 }); /* eslint-disable no-console */
-
 /* eslint-disable camelcase */
 
 /***/ }),

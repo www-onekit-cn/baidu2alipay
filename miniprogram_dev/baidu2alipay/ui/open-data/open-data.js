@@ -871,7 +871,7 @@ var swan = function () {
 
 
   swan.createCameraContext = function createCameraContext() {
-    return new _CameraContext2.default(my.createCameraContext());
+    return new _CameraContext2.default(getApp().onekit_camera);
   };
 
   // ////// AR相机组件控制  ///////

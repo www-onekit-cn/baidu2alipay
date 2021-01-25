@@ -415,162 +415,162 @@ var app = getApp()
 //   })
 
 //camera
-OnekitPage({
-    data:{
-        imageSrc:'',
-        device:'front',
-        videoSrc:''
-      },
-    onLoad:function(){
-      const ctx = swan.createCameraContext()
-      this.ctx = ctx
-    },
-    onShow:function(){
-      swan.authorize({
-        scope:'scope.camera',
-        fail:(err)=>{if(err.errCode == 10003){
-          swan.showToast({
-              title:'用户已拒绝授权申请，请自行开启相机授权',
-              icon:'none'
-            });
-        }}
-      })
-    },
-    onHide:function(){
-      app.globalData.openParams = ''
-    },
-    switchCamera:function(){
-      const devices = this.getData('device')
-      if(devices == 'back'){
-      this.setData({
-          device:'front'
-        });
-    } else {
-      this.setData({
-          device:'back'
-        });
-    }
-    },
-    takePhoto:function(){
-      console.log('xxx')
-      this.ctx.takePhoto({
-        quality:'high',
-        success:(res)=>{this.setData({
-            imageSrc:res.tempImagePath
-          })}
-      })
-    },
-    startRecord:function(){
-      this.ctx.startRecord({
-        success:(res)=>{swan.showToast({
-            title:'startRecord',
-            icon:'none'
-          })}
-      })
-    },
-    stopRecord:function(){
-      this.ctx.stopRecord({
-        success:(res)=>{
-          swan.showModal({
-              title:'提示',
-              content:res.tempVideoPath
-            })
-          this.setData({
-              videoSrc:res.tempVideoPath
-            })
-        }
-      })
-    },
-    error:function(e){
-      swan.showModal({
-        title:'加载出错',
-        content:e.detail
-      })
-    }
-  })
-
-// image
 // OnekitPage({
 //     data:{
-//         cutArray:[
-//           {
-//               mode:'top',
-//               text:'top：不缩放图片，只显示图片的顶部区域'
-//             },
-//           {
-//               mode:'bottom',
-//               text:'bottom：不缩放图片，只显示图片的底部区域'
-//             },
-//           {
-//               mode:'center',
-//               text:'center：不缩放图片，只显示图片的中间区域'
-//             },
-//           {
-//               mode:'left',
-//               text:'left：不缩放图片，只显示图片的左边区域'
-//             },
-//           {
-//               mode:'right',
-//               text:'right：不缩放图片，只显示图片的右边边区域'
-//             },
-//           {
-//               mode:'top left',
-//               text:'top left：不缩放图片，只显示图片的左上边区域'
-//             },
-//           {
-//               mode:'top right',
-//               text:'top right：不缩放图片，只显示图片的右上边区域'
-//             },
-//           {
-//               mode:'bottom left',
-//               text:'bottom left：不缩放图片，只显示图片的左下边区域'
-//             },
-//           {
-//               mode:'bottom right',
-//               text:'bottom right：不缩放图片，只显示图片的右下边区域'
-//             }
-//         ],
-//         scaleArray:[
-//           {
-//               mode:'scaleToFill',
-//               text:'scaleToFill：不保持纵横比缩放图片，使图片完全适应'
-//             },
-//           {
-//               mode:'aspectFit',
-//               text:'aspectFit：保持纵横比缩放图片，使图片的长边能完全显示出来',
-//               hasBackgroud:1
-//             },
-//           {
-//               mode:'aspectFill',
-//               text:'aspectFill：保持纵横比缩放图片，只保证图片的短边能完全显示出来'
-//             },
-//           {
-//               mode:'widthFix',
-//               text:'widthFix：宽度不变，高度自动变化，保持原图宽高比不变'
-//             }
-//         ],
-//         src:'https://b.bdstatic.com/miniapp/images/demo-dog.png'
+//         imageSrc:'',
+//         device:'front',
+//         videoSrc:''
 //       },
+//     onLoad:function(){
+//       const ctx = swan.createCameraContext()
+//       this.ctx = ctx
+//     },
 //     onShow:function(){
-//       const openParams = app.globalData.openParams
-//       if(openParams){
-//       swan.reportAnalytics('pageshow',{
-//           fr:openParams,
-//           type:'component',
-//           name:'image'
-//         });
-//     }
+//       swan.authorize({
+//         scope:'scope.camera',
+//         fail:(err)=>{if(err.errCode == 10003){
+//           swan.showToast({
+//               title:'用户已拒绝授权申请，请自行开启相机授权',
+//               icon:'none'
+//             });
+//         }}
+//       })
 //     },
 //     onHide:function(){
 //       app.globalData.openParams = ''
 //     },
-//     imageError:function(e){
-//       console.log('image 发生 error 事件，携带值为',e.detail.errMsg)
+//     switchCamera:function(){
+//       const devices = this.getData('device')
+//       if(devices == 'back'){
+//       this.setData({
+//           device:'front'
+//         });
+//     } else {
+//       this.setData({
+//           device:'back'
+//         });
+//     }
 //     },
-//     onTap:function(e){
-//       console.log('image 发生 tap 事件',e)
+//     takePhoto:function(){
+//       console.log('xxx')
+//       this.ctx.takePhoto({
+//         quality:'high',
+//         success:(res)=>{this.setData({
+//             imageSrc:res.tempImagePath
+//           })}
+//       })
 //     },
-//     imageLoad:function(e){
-//       console.log('image 加载成功',e.type)
+//     startRecord:function(){
+//       this.ctx.startRecord({
+//         success:(res)=>{swan.showToast({
+//             title:'startRecord',
+//             icon:'none'
+//           })}
+//       })
+//     },
+//     stopRecord:function(){
+//       this.ctx.stopRecord({
+//         success:(res)=>{
+//           swan.showModal({
+//               title:'提示',
+//               content:res.tempVideoPath
+//             })
+//           this.setData({
+//               videoSrc:res.tempVideoPath
+//             })
+//         }
+//       })
+//     },
+//     error:function(e){
+//       swan.showModal({
+//         title:'加载出错',
+//         content:e.detail
+//       })
 //     }
 //   })
+
+// image
+OnekitPage({
+    data:{
+        cutArray:[
+          {
+              mode:'top',
+              text:'top：不缩放图片，只显示图片的顶部区域'
+            },
+          {
+              mode:'bottom',
+              text:'bottom：不缩放图片，只显示图片的底部区域'
+            },
+          {
+              mode:'center',
+              text:'center：不缩放图片，只显示图片的中间区域'
+            },
+          {
+              mode:'left',
+              text:'left：不缩放图片，只显示图片的左边区域'
+            },
+          {
+              mode:'right',
+              text:'right：不缩放图片，只显示图片的右边边区域'
+            },
+          {
+              mode:'top left',
+              text:'top left：不缩放图片，只显示图片的左上边区域'
+            },
+          {
+              mode:'top right',
+              text:'top right：不缩放图片，只显示图片的右上边区域'
+            },
+          {
+              mode:'bottom left',
+              text:'bottom left：不缩放图片，只显示图片的左下边区域'
+            },
+          {
+              mode:'bottom right',
+              text:'bottom right：不缩放图片，只显示图片的右下边区域'
+            }
+        ],
+        scaleArray:[
+          {
+              mode:'scaleToFill',
+              text:'scaleToFill：不保持纵横比缩放图片，使图片完全适应'
+            },
+          {
+              mode:'aspectFit',
+              text:'aspectFit：保持纵横比缩放图片，使图片的长边能完全显示出来',
+              hasBackgroud:1
+            },
+          {
+              mode:'aspectFill',
+              text:'aspectFill：保持纵横比缩放图片，只保证图片的短边能完全显示出来'
+            },
+          {
+              mode:'widthFix',
+              text:'widthFix：宽度不变，高度自动变化，保持原图宽高比不变'
+            }
+        ],
+        src:'https://b.bdstatic.com/miniapp/images/demo-dog.png'
+      },
+    onShow:function(){
+      const openParams = app.globalData.openParams
+      if(openParams){
+      swan.reportAnalytics('pageshow',{
+          fr:openParams,
+          type:'component',
+          name:'image'
+        });
+    }
+    },
+    onHide:function(){
+      app.globalData.openParams = ''
+    },
+    imageError:function(e){
+      console.log('image 发生 error 事件，携带值为',e.detail.errMsg)
+    },
+    onTap:function(e){
+      console.log('image 发生 tap 事件',e)
+    },
+    imageLoad:function(e){
+      console.log('image 加载成功',e.type)
+    }
+  })

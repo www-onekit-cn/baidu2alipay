@@ -10,4 +10,5 @@ lazy-load="{{lazyLoad}}"
 onLoad="image_load"
 onError="image_error"
 onLongTap="image_longTap"
+onTap="image_tap"
 />

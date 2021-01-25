@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
-
 /* eslint-disable camelcase */
-import {PATH} from 'oneutil'
+import {
+  PATH
+} from 'oneutil'
 import onekit_behavior from '../../behavior/onekit_behavior'
 import baidu_behavior from '../../behavior/baidu_behavior'
 
@@ -20,25 +21,18 @@ Component({
   },
   didMount() {
     const pages = getCurrentPages()
-    let alipay_src
-    let originalSrc
     if (!this.props.src.indexOf('://')) {
       const currentUrl = pages[pages.length - 1].route
-      alipay_src = '/' + PATH.rel2abs(currentUrl, this.props.src)
-    }
-    if (this.props.preview) {
-      originalSrc = this.props.src
-      my.previewImage({
-        urls: [this.props.src],
+      const alipay_src = '/' + PATH.rel2abs(currentUrl, this.props.src)
+      this.setData({
+        src: alipay_src
       })
     }
-    this.setData({
-      src: alipay_src,
-      originalSrc
-    })
   },
   methods: {
-    image_error({detail}) {
+    image_error({
+      detail
+    }) {
       console.log(detail)
       const dataset = this._dataset()
       if (this.props.onError) {
@@ -50,7 +44,9 @@ Component({
         })
       }
     },
-    image_load({detail}) {
+    image_load({
+      detail
+    }) {
       const dataset = this._dataset()
       if (this.props.onLoad) {
         this.props.onLoad({
@@ -110,4 +106,15 @@ Component({
       }
     }
   },
+  image_tap() {
+    if (this.props.preview) {
+      const originalSrc = this.props.src
+      my.previewImage({
+        urls: [this.props.src],
+      })
+      this.setData({
+        originalSrc
+      })
+    }
+  }
 })
