@@ -705,7 +705,7 @@ export default class swan {
 
   // ////// 相机组件控制  ///////
   static createCameraContext() {
-    return new CameraContext(my.createCameraContext())
+    return new CameraContext(getApp().onekit_camera)
   }
 
   // ////// AR相机组件控制  ///////
