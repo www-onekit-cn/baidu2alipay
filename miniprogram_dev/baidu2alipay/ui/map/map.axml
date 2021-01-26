@@ -20,3 +20,11 @@
   onRegionChange="map_regionchange"
   onTap="map_tap"
 />
+<cover-view style="position:absolute;pointer-events: none;background-color:transparent;
+width:{{rect.width}}px;height:{{rect.height}}px;
+left:{{rect.left}}px;top:{{rect.top}}px;">
+<!--
+<cover-image a:for="{{groundOverlays}}" src="{{item.src}}" style="pointer-event:none"/>
+-->
+<slot></slot>
+</cover-view>

@@ -7,94 +7,37 @@ Component({
   mixins: [onekit_behavior, baidu_behavior],
   data: {},
   props: {
-    longitude(longitude) {
-      this.setData({
-        longitude
-      })
-    },
-    latitude(latitude) {
-      this.setData({
-        latitude
-      })
-    },
+    longitude: 0,
+    latitude: 0,
     scale: 16,
-    markers(markers) {
-      this.setData({
-        markers
-      })
-    },
-    polyline(polyline) {
-      this.setData({
-        polyline
-      })
-    },
-    polygons(polygon) {
-      this.setData({
-        polygon
-      })
-    },
-    circles(circles) {
-      this.setData({
-        circles
-      })
-    },
-    controls(controls) {
-      this.setData({
-        controls
-      })
-    },
-    'include-points': function (includePoints) {
-      this.setData({
-        'include-points': includePoints
-      })
-    },
-    'show-location': function (showLocation) {
-      this.setData({
-        'show-location': showLocation
-      })
-    },
-    // 支付宝暂时不支持3D'
-    'enable-3D': function () {
-      console.log('[onekit]enable-3D')
-      my.showToast({
-        content: '支付宝暂时不支持3D',
-      })
-    },
-    'show-compass': function (showCompass) {
-      this.mapCtx.showsCompass({
-        isShowCompass: showCompass
-      })
-    },
-    'enable-overlooking': function (enableOverlooking) {
-      this.mapCtx.gestureEnable({
-        isGestureEnable: enableOverlooking
-      })
-    },
-    'enable-zoom': function (enableZoom) {
-      this.mapCtx.showsScale({
-        isShowsScale: enableZoom
-      })
-    },
-    'enable-scroll': function (enableScroll) {
-      this.mapCtx.gestureEnable({
-        isGestureEnable: enableScroll
-      })
-    },
-    'enable-rotate': function (enableRotate) {
-      this.mapCtx.gestureEnable({
-        isGestureEnable: enableRotate
-      })
-    },
+    markers: [],
+    polyline: [],
+    polygons: [],
+    circles: [],
+    controls: [],
+    includePoints: [],
+    showLocation: [],
+    // 支付宝暂时不支持3D
+    enable3D: false,
+    showCompass: false,
+    // 支付宝暂时不支持3D
+    enableOverlooking: false,
+    enableZoom: true,
+    enableScroll: true,
+    enableRotate: false
+  },
+  deriveDataFromProps(props) {
+    const mapCtx = my.createMapContext(props.onekitId)
+    this.enableZoom_(mapCtx, props.enableZoom)
+    this.enableScroll_(mapCtx, props.enableScroll)
+    this.enableRotate_(mapCtx, props.enableRotate)
   },
   onInit() {
     console.log('onInit', this)
   },
   didMount() {
-    const that = this
-    this.mapCtx = my.createMapContext(this.props.onekitId)
-
     my.createSelectorQuery().select('.onekit-map').boundingClientRect().exec((rect) => {
-      that.setData({
+      this.setData({
         rect: rect[0]
       })
     })
@@ -104,7 +47,27 @@ Component({
   },
   didUnmount() {},
   methods: {
-    map_markertap({detail}) {
+    enableZoom_(mapCtx, enableZoom) {
+      mapCtx.gestureEnable({
+        isGestureEnable: enableZoom ? 1 : 0
+      })
+      console.warn('支付宝小程序地图组件会禁用全部手势')
+    },
+    enableScroll_(mapCtx, enableScroll) {
+      mapCtx.gestureEnable({
+        isGestureEnable: enableScroll ? 1 : 0
+      })
+      console.warn('支付宝小程序地图组件会禁用全部手势')
+    },
+    enableRotate_(mapCtx, enableRotate) {
+      mapCtx.gestureEnable({
+        isGestureEnable: enableRotate ? 1 : 0
+      })
+      console.warn('支付宝小程序地图组件会禁用全部手势')
+    },
+    map_markertap({
+      detail
+    }) {
       const dataset = this._dataset()
       if (this.props.onMarkerTap) {
         this.props.onMarkerTap({
@@ -115,7 +78,9 @@ Component({
         })
       }
     },
-    map_callouttap({detail}) {
+    map_callouttap({
+      detail
+    }) {
       const dataset = this._dataset()
       if (this.props.onCalloutTap) {
         this.props.onCalloutTap({
@@ -126,7 +91,9 @@ Component({
         })
       }
     },
-    map_controltap({detail}) {
+    map_controltap({
+      detail
+    }) {
       const dataset = this._dataset()
       if (this.props.onControltap) {
         this.props.onControltap({
@@ -137,7 +104,9 @@ Component({
         })
       }
     },
-    map_regionchange({detail}) {
+    map_regionchange({
+      detail
+    }) {
       const dataset = this._dataset()
       if (this.props.onRegionChange) {
         this.props.onRegionChange({
@@ -148,7 +117,9 @@ Component({
         })
       }
     },
-    map_tap({detail}) {
+    map_tap({
+      detail
+    }) {
       const dataset = this._dataset()
       if (this.props.onTap) {
         this.props.onTap({
@@ -159,7 +130,9 @@ Component({
         })
       }
     },
-    image_load({detail}) {
+    image_load({
+      detail
+    }) {
       const dataset = this._dataset()
       if (this.props.onLoad) {
         this.props.onLoad({
@@ -173,19 +146,21 @@ Component({
     _trigger_updated() {
       this.mapCtx = my.createMapContext(this.props.onekitId)
       if (this.mapCtx.updateComponents) {
-        const {detail, dataset} = this._dataset()
         if (this.props.onUpdated) {
           this.props.onUpdated({
-            detail,
+            detail: {},
             currentTarget: {
-              dataset
-            }
+              dataset: {}
+            },
+            type: 'updated'
           })
         }
       }
     },
     //
-    _trigger_poitap({detail}) {
+    _trigger_poitap({
+      detail
+    }) {
       this.mapCtx = my.createMapContext(this.props.onekitId)
       const dataset = this._dataset()
       if (this.props.onPoiTap) {

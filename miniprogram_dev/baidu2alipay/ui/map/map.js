@@ -97,7 +97,7 @@ exports.__esModule = true;
 /* eslint-disable no-console */
 exports.default = {
   props: {
-    onekitId: '',
+    onekitId: 'id' + new Date().getTime(),
     onekitClass: '',
     onekitStyle: '',
     onekitVersion: '',
@@ -251,96 +251,39 @@ Component({
   mixins: [_onekit_behavior2.default, _baidu_behavior2.default],
   data: {},
   props: {
-    longitude: function longitude(_longitude) {
-      this.setData({
-        longitude: _longitude
-      });
-    },
-    latitude: function latitude(_latitude) {
-      this.setData({
-        latitude: _latitude
-      });
-    },
-
+    longitude: 0,
+    latitude: 0,
     scale: 16,
-    markers: function markers(_markers) {
-      this.setData({
-        markers: _markers
-      });
-    },
-    polyline: function polyline(_polyline) {
-      this.setData({
-        polyline: _polyline
-      });
-    },
-    polygons: function polygons(polygon) {
-      this.setData({
-        polygon: polygon
-      });
-    },
-    circles: function circles(_circles) {
-      this.setData({
-        circles: _circles
-      });
-    },
-    controls: function controls(_controls) {
-      this.setData({
-        controls: _controls
-      });
-    },
-
-    'include-points': function includePoints(_includePoints) {
-      this.setData({
-        'include-points': _includePoints
-      });
-    },
-    'show-location': function showLocation(_showLocation) {
-      this.setData({
-        'show-location': _showLocation
-      });
-    },
-    // 支付宝暂时不支持3D'
-    'enable-3D': function enable3D() {
-      console.log('[onekit]enable-3D');
-      my.showToast({
-        content: '支付宝暂时不支持3D'
-      });
-    },
-    'show-compass': function showCompass(_showCompass) {
-      this.mapCtx.showsCompass({
-        isShowCompass: _showCompass
-      });
-    },
-    'enable-overlooking': function enableOverlooking(_enableOverlooking) {
-      this.mapCtx.gestureEnable({
-        isGestureEnable: _enableOverlooking
-      });
-    },
-    'enable-zoom': function enableZoom(_enableZoom) {
-      this.mapCtx.showsScale({
-        isShowsScale: _enableZoom
-      });
-    },
-    'enable-scroll': function enableScroll(_enableScroll) {
-      this.mapCtx.gestureEnable({
-        isGestureEnable: _enableScroll
-      });
-    },
-    'enable-rotate': function enableRotate(_enableRotate) {
-      this.mapCtx.gestureEnable({
-        isGestureEnable: _enableRotate
-      });
-    }
+    markers: [],
+    polyline: [],
+    polygons: [],
+    circles: [],
+    controls: [],
+    includePoints: [],
+    showLocation: [],
+    // 支付宝暂时不支持3D
+    enable3D: false,
+    showCompass: false,
+    // 支付宝暂时不支持3D
+    enableOverlooking: false,
+    enableZoom: true,
+    enableScroll: true,
+    enableRotate: false
+  },
+  deriveDataFromProps: function deriveDataFromProps(props) {
+    var mapCtx = my.createMapContext(props.onekitId);
+    this.enableZoom_(mapCtx, props.enableZoom);
+    this.enableScroll_(mapCtx, props.enableScroll);
+    this.enableRotate_(mapCtx, props.enableRotate);
   },
   onInit: function onInit() {
     console.log('onInit', this);
   },
   didMount: function didMount() {
-    var that = this;
-    this.mapCtx = my.createMapContext(this.props.onekitId);
+    var _this = this;
 
     my.createSelectorQuery().select('.onekit-map').boundingClientRect().exec(function (rect) {
-      that.setData({
+      _this.setData({
         rect: rect[0]
       });
     });
@@ -351,6 +294,24 @@ Component({
   didUnmount: function didUnmount() {},
 
   methods: {
+    enableZoom_: function enableZoom_(mapCtx, enableZoom) {
+      mapCtx.gestureEnable({
+        isGestureEnable: enableZoom ? 1 : 0
+      });
+      console.warn('支付宝小程序地图组件会禁用全部手势');
+    },
+    enableScroll_: function enableScroll_(mapCtx, enableScroll) {
+      mapCtx.gestureEnable({
+        isGestureEnable: enableScroll ? 1 : 0
+      });
+      console.warn('支付宝小程序地图组件会禁用全部手势');
+    },
+    enableRotate_: function enableRotate_(mapCtx, enableRotate) {
+      mapCtx.gestureEnable({
+        isGestureEnable: enableRotate ? 1 : 0
+      });
+      console.warn('支付宝小程序地图组件会禁用全部手势');
+    },
     map_markertap: function map_markertap(_ref) {
       var detail = _ref.detail;
 
@@ -432,16 +393,13 @@ Component({
     _trigger_updated: function _trigger_updated() {
       this.mapCtx = my.createMapContext(this.props.onekitId);
       if (this.mapCtx.updateComponents) {
-        var _dataset = this._dataset(),
-            detail = _dataset.detail,
-            dataset = _dataset.dataset;
-
         if (this.props.onUpdated) {
           this.props.onUpdated({
-            detail: detail,
+            detail: {},
             currentTarget: {
-              dataset: dataset
-            }
+              dataset: {}
+            },
+            type: 'updated'
           });
         }
       }
