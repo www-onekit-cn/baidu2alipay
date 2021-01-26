@@ -97,7 +97,9 @@ exports.__esModule = true;
 /* eslint-disable no-console */
 exports.default = {
   props: {
-    onekitId: 'id' + new Date().getTime(),
+    // onekitId: `id${new Date().getTime()}`,
+    onekitId:  false || 'id' + new Date().getTime(),
+
     onekitClass: '',
     onekitStyle: '',
     onekitVersion: '',
@@ -272,6 +274,7 @@ Component({
   },
   deriveDataFromProps: function deriveDataFromProps(props) {
     var mapCtx = my.createMapContext(props.onekitId);
+    this.showCompass_(mapCtx, props.showCompass);
     this.enableZoom_(mapCtx, props.enableZoom);
     this.enableScroll_(mapCtx, props.enableScroll);
     this.enableRotate_(mapCtx, props.enableRotate);
@@ -294,6 +297,11 @@ Component({
   didUnmount: function didUnmount() {},
 
   methods: {
+    showCompass_: function showCompass_(mapCtx, showCompass) {
+      mapCtx.showsCompass({
+        isShowCompass: showCompass ? 1 : 0
+      });
+    },
     enableZoom_: function enableZoom_(mapCtx, enableZoom) {
       mapCtx.gestureEnable({
         isGestureEnable: enableZoom ? 1 : 0

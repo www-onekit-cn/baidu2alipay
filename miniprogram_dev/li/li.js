@@ -749,189 +749,277 @@ var app = getApp()
 //   })
 
 //map
+// OnekitPage({
+//     data:{
+//         latitude:'40.048828',
+//         longitude:'116.280412',
+//         scale:16,
+//         isWeb:false,
+//         polygons:[
+//         ],
+//         drawPolygon:false,
+//         includePoints:[
+//         ],
+//         showLocation:false,
+//         enable3d:false,
+//         showCompass:false,
+//         enableOverlooking:false,
+//         enableZoom:true,
+//         enableScroll:true,
+//         enableRotate:true,
+//         markers:[
+//           {
+//               markerId:'1',
+//               latitude:'40.052751',
+//               longitude:'116.278796'
+//             },
+//           {
+//               markerId:'2',
+//               latitude:'40.048828',
+//               longitude:'116.280412',
+//               title:'markerId: 2',
+//               zIndex:100,
+//               iconPath:'https://b.bdstatic.com/searchbox/icms/searchbox/img/demo_location.png',
+//               rotate:0,
+//               width:30,
+//               height:50,
+//               callout:{
+//                   display:'ALWAYS',
+//                   content:'百度科技园',
+//                   color:'#000',
+//                   fontSize:'16',
+//                   borderRadius:50,
+//                   bgColor:'#5B9FFF',
+//                   padding:2,
+//                   textAlign:'center'
+//                 }
+//             },
+//           {
+//               markerId:'3',
+//               latitude:'40.049655',
+//               longitude:'116.27505',
+//               callout:{
+//                   display:'ALWAYS',
+//                   content:'西山壹号院'
+//                 }
+//             }
+//         ],
+//         polyline:[
+//           {
+//               points:[
+//                 {
+//                     longitude:116.278796,
+//                     latitude:40.048828
+//                   },
+//                 {
+//                     longitude:116.27505,
+//                     latitude:40.049655
+//                   }
+//               ],
+//               color:'#FF5F41FF',
+//               width:2,
+//               dottedLine:true
+//             }
+//         ],
+//         controls:[
+//           {
+//               controlId:1,
+//               iconPath:'https://b.bdstatic.com/searchbox/icms/searchbox/img/api_logo.png',
+//               position:{
+//                   left:0,
+//                   top:100,
+//                   width:50,
+//                   height:50
+//                 },
+//               clickable:true
+//             }
+//         ],
+//         circles:[
+//           {
+//               latitude:'40.052751',
+//               longitude:'116.278796',
+//               color:'#FF5F41FF',
+//               fillColor:'#21FFFFFF',
+//               radius:'200',
+//               strokeWidth:'2'
+//             }
+//         ]
+//       },
+//     onShow:function(){
+//       const openParams = app.globalData.openParams
+//       if(openParams){
+//       swan.reportAnalytics('pageshow',{
+//           fr:openParams,
+//           type:'component',
+//           name:'map'
+//         });
+//     }
+//       swan.getSystemInfo({
+//         success:(res)=>{this.setData('isWeb',res.platform == 'web')}
+//       })
+//     },
+//     onHide:function(){
+//       app.globalData.openParams = ''
+//     },
+//     showLocation:function(){
+//       this.setData({
+//         showLocation:!this.data.showLocation
+//       })
+//     },
+//     toggle3d:function(){
+//       this.setData({
+//         enable3d:!this.data.enable3d
+//       })
+//     },
+//     toggleShowCompass:function(){
+//       this.setData({
+//         showCompass:!this.data.showCompass
+//       })
+//     },
+//     toggleOverlooking:function(){
+//       this.setData({
+//         enableOverlooking:!this.data.enableOverlooking
+//       })
+//     },
+//     toggleZoom:function(){
+//       this.setData({
+//         enableZoom:!this.data.enableZoom
+//       })
+//     },
+//     toggleScroll:function(){
+//       this.setData({
+//         enableScroll:!this.data.enableScroll
+//       })
+//     },
+//     toggleRotate:function(){
+//       this.setData({
+//         enableRotate:!this.data.enableRotate
+//       })
+//     },
+//     togglePolygon:function(){
+//       this.setData({
+//         drawPolygon:!this.data.drawPolygon
+//       })
+//     },
+//     onMarkertap:function(e){
+//       console.log('onMarkertap callback:',e)
+//     },
+//     onCallouttap:function(e){
+//       console.log('onCallouttap callback:',e)
+//     },
+//     onControltap:function(e){
+//       console.log('onControltap callback:',e)
+//     },
+//     onRegionchange:function(e){
+//       console.log('onRegionchange callback:',e)
+//     },
+//     onTap:function(e){
+//       console.log('onTap callback:',e)
+//     },
+//     onUpdated:function(e){
+//       console.log('onUpdated callback:',e)
+//     },
+//     onPoitap:function(e){
+//       console.log('onPoitap callback:',e)
+//     },
+//     bindmarkertap:function(){
+//       swan.showToast({
+//         title:'点击标记啦',
+//         icon:'none'
+//       })
+//     },
+//     bindcallouttap:function(){
+//       swan.showToast({
+//         title:'点击标记上方气泡啦',
+//         icon:'none'
+//       })
+//     }
+//   })
+
+//canvas
 OnekitPage({
     data:{
-        latitude:'40.048828',
-        longitude:'116.280412',
-        scale:16,
-        isWeb:false,
-        polygons:[
-        ],
-        drawPolygon:false,
-        includePoints:[
-        ],
-        showLocation:false,
-        enable3d:false,
-        showCompass:false,
-        enableOverlooking:false,
-        enableZoom:true,
-        enableScroll:true,
-        enableRotate:true,
-        markers:[
-          {
-              markerId:'1',
-              latitude:'40.052751',
-              longitude:'116.278796'
-            },
-          {
-              markerId:'2',
-              latitude:'40.048828',
-              longitude:'116.280412',
-              title:'markerId: 2',
-              zIndex:100,
-              iconPath:'https://b.bdstatic.com/searchbox/icms/searchbox/img/demo_location.png',
-              rotate:0,
-              width:30,
-              height:50,
-              callout:{
-                  display:'ALWAYS',
-                  content:'百度科技园',
-                  color:'#000',
-                  fontSize:'16',
-                  borderRadius:50,
-                  bgColor:'#5B9FFF',
-                  padding:2,
-                  textAlign:'center'
-                }
-            },
-          {
-              markerId:'3',
-              latitude:'40.049655',
-              longitude:'116.27505',
-              callout:{
-                  display:'ALWAYS',
-                  content:'西山壹号院'
-                }
-            }
-        ],
-        polyline:[
-          {
-              points:[
-                {
-                    longitude:116.278796,
-                    latitude:40.048828
-                  },
-                {
-                    longitude:116.27505,
-                    latitude:40.049655
-                  }
-              ],
-              color:'#FF5F41FF',
-              width:2,
-              dottedLine:true
-            }
-        ],
-        controls:[
-          {
-              controlId:1,
-              iconPath:'https://b.bdstatic.com/searchbox/icms/searchbox/img/api_logo.png',
-              position:{
-                  left:0,
-                  top:100,
-                  width:50,
-                  height:50
-                },
-              clickable:true
-            }
-        ],
-        circles:[
-          {
-              latitude:'40.052751',
-              longitude:'116.278796',
-              color:'#FF5F41FF',
-              fillColor:'#21FFFFFF',
-              radius:'200',
-              strokeWidth:'2'
-            }
-        ]
+        timer:'',
+        resultComment:'',
+        per:''
       },
     onShow:function(){
+      swan.getSystemInfo({
+        success:(res)=>{
+          var systemWidth = res.screenWidth
+          if(res.platform == 'web'){
+            this.data.per = 0.853;
+            return;
+          }
+          this.data.per = systemWidth / 375
+        }
+      })
       const openParams = app.globalData.openParams
       if(openParams){
       swan.reportAnalytics('pageshow',{
           fr:openParams,
           type:'component',
-          name:'map'
+          name:'canvas'
         });
     }
-      swan.getSystemInfo({
-        success:(res)=>{this.setData('isWeb',res.platform == 'web')}
-      })
+      const totalItems = 100
+      const rightItems = 80
+      var completePercent = parseInt(((rightItems / totalItems)) * 100,10)
+      this.getResultComment(completePercent)
+      this.showScoreAnimation(rightItems,totalItems)
     },
     onHide:function(){
       app.globalData.openParams = ''
     },
-    showLocation:function(){
+    getResultComment:function(completePercent){
+      const cp = completePercent
       this.setData({
-        showLocation:!this.data.showLocation
+        resultComment:cp < 80?cp < 60?'不及格':'中等':cp < 90?'良好':'优秀'
       })
     },
-    toggle3d:function(){
+    showScoreAnimation:function(rightItems,totalItems){
+      var copyRightItems = 0
       this.setData({
-        enable3d:!this.data.enable3d
+        timer:setInterval(()=>{
+          copyRightItems++
+          if(copyRightItems == rightItems){
+            clearInterval(this.data.timer);
+          } else {
+            var ctx = swan.createCanvasContext('mycanvas');
+            var per = this.data.per;
+            ctx.setLineWidth(6);
+            ctx.setStrokeStyle('#F3F4F7');
+            ctx.setLineCap('round');
+            ctx.beginPath();
+            ctx.arc(165 * per,110 * per,70 * per,0,2 * Math.PI,false);
+            ctx.stroke();
+            ctx.setLineWidth(6);
+            ctx.setStrokeStyle('#38F');
+            ctx.setLineCap('round');
+            ctx.beginPath();
+            ctx.arc(165 * per,110 * per,70 * per,((-Math.PI * 1)) / 2,((((2 * Math.PI)) * ((copyRightItems / totalItems)))) - ((((Math.PI * 1)) / 2)),false);
+            ctx.stroke();
+            ctx.draw();
+          }
+        },20)
       })
     },
-    toggleShowCompass:function(){
-      this.setData({
-        showCompass:!this.data.showCompass
-      })
+    touchstart:function(e){
+      console.log('touchstart',e)
     },
-    toggleOverlooking:function(){
-      this.setData({
-        enableOverlooking:!this.data.enableOverlooking
-      })
+    touchmove:function(e){
+      console.log('touchmove',e)
     },
-    toggleZoom:function(){
-      this.setData({
-        enableZoom:!this.data.enableZoom
-      })
+    touchend:function(e){
+      console.log('touchend',e)
     },
-    toggleScroll:function(){
-      this.setData({
-        enableScroll:!this.data.enableScroll
-      })
+    touchcancel:function(e){
+      console.log('touchcancel',e)
     },
-    toggleRotate:function(){
-      this.setData({
-        enableRotate:!this.data.enableRotate
-      })
+    longtap:function(e){
+      console.log('longtap',e)
     },
-    togglePolygon:function(){
-      this.setData({
-        drawPolygon:!this.data.drawPolygon
-      })
-    },
-    onMarkertap:function(e){
-      console.log('onMarkertap callback:',e)
-    },
-    onCallouttap:function(e){
-      console.log('onCallouttap callback:',e)
-    },
-    onControltap:function(e){
-      console.log('onControltap callback:',e)
-    },
-    onRegionchange:function(e){
-      console.log('onRegionchange callback:',e)
-    },
-    onTap:function(e){
-      console.log('onTap callback:',e)
-    },
-    onUpdated:function(e){
-      console.log('onUpdated callback:',e)
-    },
-    onPoitap:function(e){
-      console.log('onPoitap callback:',e)
-    },
-    bindmarkertap:function(){
-      swan.showToast({
-        title:'点击标记啦',
-        icon:'none'
-      })
-    },
-    bindcallouttap:function(){
-      swan.showToast({
-        title:'点击标记上方气泡啦',
-        icon:'none'
-      })
+    error:function(e){
+      console.log('error',e.detail.errMsg)
     }
   })

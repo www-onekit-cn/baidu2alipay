@@ -224,9 +224,28 @@ scroll-view {
 } */
 
 /* map */
-.map {
+/* .map {
     width: 100% ;
 }
 .switch-text {
     vertical-align: middle ;
+} */
+
+/* canvas */
+.card-area {
+    position: relative ;
+    width: calc(3.8*var(--onekit-REM)) ;
+    height: calc(2.5*var(--onekit-REM)) ;
+}
+.center-text {
+    width: 100% ;
+    text-align: center ;
+    color: #38f ;
+    z-index: 200 ;
+    font-size: calc(.3*var(--onekit-REM)) ;
+    position: absolute ;
+    top: 50% ;
+    left: 50% ;
+    padding: 8px 16px ;
+    transform: translate(-50%, -50%) ;
 }

@@ -552,7 +552,7 @@
 </onekit-view> -->
 
 <!-- <map> -->
-<onekit-view onekit-class="wrap">
+<!-- <onekit-view onekit-class="wrap">
     <onekit-view onekit-class="card-area">
         <onekit-map onekit-class="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" markers="{{markers}}" polyline="{{polyline}}" polygons="{{drawPolygon ? polygons : []}}" circles="{{circles}}" controls="{{controls}}" show-location="{{showLocation}}" include-points="{{includePoints}}" enable-3D="{{enable3d}}" show-compass="{{showCompass}}" enable-overlooking="{{enableOverlooking}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" enable-rotate="{{enableRotate}}" onMarkertap="onMarkertap" onCallouttap="onCallouttap" onControltap="onControltap" onRegionchange="onRegionchange" onTap="onTap" onUpdated="onUpdated" onPoitap="onPoitap">
         </onekit-map>
@@ -570,4 +570,13 @@
         </onekit-view>
     </onekit-view>
     <onekit-view onekit-class="tip-week">工具暂不支持手势控制</onekit-view>
+</onekit-view> -->
+
+<!-- <canvas> -->
+<onekit-view onekit-class="wrap">
+    <onekit-view onekit-class="card-area">
+        <onekit-canvas canvas-id="mycanvas" disable-scroll="{{false}}" onTouchstart="touchstart" onTouchmove="touchmove" onTouchend="touchend" onTouchcancel="touchcancel" onLongtap="longtap" onError="error">
+        </onekit-canvas>
+        <onekit-view onekit-class="center-text">{{resultComment}}</onekit-view>
+    </onekit-view>
 </onekit-view>

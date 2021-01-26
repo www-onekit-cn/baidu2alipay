@@ -1,7 +1,14 @@
 <canvas
 class="onekit-canvas {{onekitClass}}"
 style="{{onekitStyle}}"
-id="{{canvasId}}"
+id="{{onekitId}}"
+
 disable-scroll="{{disableScroll}}"
+
+onTouchStart="canvas_touchstart"
+onTouchMove="canvas_touchmove"
+onTouchEnd="canvas_touchend"
+onTouchCancel="canvas_touchcancel"
+onLongTap="canvas_longtap"
 >
 </canvas>
