@@ -134,7 +134,7 @@ scroll-view {
 } */
 
 /* image */
-/* .wrap {
+.wrap {
     margin-top: calc(.2*var(--onekit-REM)) ;
 }
 .image-area {
@@ -151,7 +151,7 @@ scroll-view {
 .image-custom {
     width: 100% ;
     margin-bottom: calc(-.04*var(--onekit-REM)) ;
-} */
+}
 
 /* video */
 /* .video-wrap {
@@ -251,7 +251,7 @@ scroll-view {
 } */
 
 /* movable-view */
-movable-area {
+/* movable-area {
     overflow: hidden ;
     width: calc(3.88*var(--onekit-REM)) ;
     height: calc(2.18*var(--onekit-REM)) ;
@@ -272,4 +272,4 @@ movable-area {
 .bigger-area {
     width: calc(4.8*var(--onekit-REM)) ;
     height: calc(2.8*var(--onekit-REM)) ;
-}
+} */
