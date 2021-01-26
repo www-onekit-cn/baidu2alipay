@@ -11,6 +11,7 @@
     "onekit-image": "../baidu2alipay/ui/image/image",
     "onekit-map": "../baidu2alipay/ui/map/map",
     "onekit-canvas": "../baidu2alipay/ui/canvas/canvas",
+    "onekit-movable-view": "../baidu2alipay/ui/movable-view/movable-view",
     "onekit-video": "../baidu2alipay/ui/video/video"
   }
 }

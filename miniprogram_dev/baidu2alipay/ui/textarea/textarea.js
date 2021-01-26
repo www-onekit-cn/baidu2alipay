@@ -99,7 +99,6 @@ exports.default = {
   props: {
     // onekitId: `id${new Date().getTime()}`,
     onekitId:  false || 'id' + new Date().getTime(),
-
     onekitClass: '',
     onekitStyle: '',
     onekitVersion: '',

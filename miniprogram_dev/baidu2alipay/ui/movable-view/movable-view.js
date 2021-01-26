@@ -99,7 +99,6 @@ exports.default = {
   props: {
     // onekitId: `id${new Date().getTime()}`,
     onekitId:  false || 'id' + new Date().getTime(),
-
     onekitClass: '',
     onekitStyle: '',
     onekitVersion: '',
@@ -266,19 +265,54 @@ Component({
     scaleValue: 1,
     animation: true
   },
-  didMount: function didMount() {},
-  didUpdate: function didUpdate() {},
-  didUnmount: function didUnmount() {},
-
+  // deriveDataFromProps(props) {
+  //   this.setData({
+  //     x: 0,
+  //     y: 0
+  //   })
+  //   // setTimeout(() => {
+  //   //   this.setData(props)
+  //   // }, 1000)
+  //   this.setData(props)
+  // },
   methods: {
-    movable_Change: function movable_Change(e) {
-      if (this.props.change) {
-        this.props.change(e);
+    movable_change: function movable_change(e) {
+      if (this.props.onChange) {
+        this.props.onChange(e);
       }
     },
     movable_scale: function movable_scale(e) {
-      if (this.props.scale) {
-        this.props.scale(e);
+      if (this.props.onScale) {
+        this.props.onScale(e);
+      }
+    },
+    movable_move: function movable_move(e) {
+      var dx = this.props.x;
+      var dy = this.props.y;
+      if (dy < 2 && dx > dy) {
+        this._trigger_htouchmove(e);
+      } else if (dx < 2 && dy > dx) {
+        this._trigger_vtouchmove(e);
+      } else {
+        this._trigger_htouchmove(e);
+        this._trigger_vtouchmove(e);
+      }
+      if (this.props.onTouchmove) {
+        this.props.onTouchmove(e);
+      }
+    },
+    _trigger_htouchmove: function _trigger_htouchmove(e) {
+      if (this.props.onHtouchmove) {
+        this.props.onHtouchmove(e);
+      } else if (this.props.catchHtouchmove) {
+        this.props.catchHtouchmove(e);
+      }
+    },
+    _trigger_vtouchmove: function _trigger_vtouchmove(e) {
+      if (this.props.onVtouchmove) {
+        this.props.onVtouchmove(e);
+      } else if (this.props.catchVtouchmove) {
+        this.props.catchVtouchmove(e);
       }
     }
   }

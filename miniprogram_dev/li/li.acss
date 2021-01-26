@@ -232,7 +232,7 @@ scroll-view {
 } */
 
 /* canvas */
-.card-area {
+/* .card-area {
     position: relative ;
     width: calc(3.8*var(--onekit-REM)) ;
     height: calc(2.5*var(--onekit-REM)) ;
@@ -248,4 +248,28 @@ scroll-view {
     left: 50% ;
     padding: 8px 16px ;
     transform: translate(-50%, -50%) ;
+} */
+
+/* movable-view */
+movable-area {
+    overflow: hidden ;
+    width: calc(3.88*var(--onekit-REM)) ;
+    height: calc(2.18*var(--onekit-REM)) ;
+    margin: 0 ;
+    border-radius: calc(.05*var(--onekit-REM)) ;
+    background-color: #fff ;
+}
+.onekit-movable-view {
+    display: flex ;
+    width: calc(.6*var(--onekit-REM)) ;
+    height: calc(.6*var(--onekit-REM)) ;
+    color: #fff ;
+    border-radius: calc(.05*var(--onekit-REM)) ;
+    background-color: #5b9fff ;
+    align-items: center ;
+    justify-content: center ;
+}
+.bigger-area {
+    width: calc(4.8*var(--onekit-REM)) ;
+    height: calc(2.8*var(--onekit-REM)) ;
 }

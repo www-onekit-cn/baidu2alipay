@@ -573,10 +573,83 @@
 </onekit-view> -->
 
 <!-- <canvas> -->
-<onekit-view onekit-class="wrap">
+<!-- <onekit-view onekit-class="wrap">
     <onekit-view onekit-class="card-area">
         <onekit-canvas canvas-id="mycanvas" disable-scroll="{{false}}" onTouchstart="touchstart" onTouchmove="touchmove" onTouchend="touchend" onTouchcancel="touchcancel" onLongtap="longtap" onError="error">
         </onekit-canvas>
         <onekit-view onekit-class="center-text">{{resultComment}}</onekit-view>
+    </onekit-view>
+</onekit-view> -->
+
+<!-- <movable-view> -->
+<onekit-view onekit-class="wrap">
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            movable-view区域小于movable-area
+        </onekit-view>
+        <movable-area>
+            <onekit-movable-view x="{{x1}}" y="{{y1}}" damping="20" disabled="{{false}}" direction="all">text</onekit-movable-view>
+        </movable-area>
+
+        <onekit-button onTap="move" onekit-class="move-button" type="primary">点击移动到 (50px, 50px)</onekit-button>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            movable-view区域大于movable-area
+        </onekit-view>
+        <movable-area>
+            <onekit-movable-view x="{{x}}" y="{{y}}" onekit-class="bigger-area" direction="all">text</onekit-movable-view>
+        </movable-area>
+    </onekit-view>
+
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            只可以横向移动
+        </onekit-view>
+        <movable-area htouchmove>
+            <onekit-movable-view x="{{x}}" y="{{y}}" direction="horizontal">text</onekit-movable-view>
+        </movable-area>
+    </onekit-view>
+   <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            只可以纵向移动
+        </onekit-view>
+        <movable-area vtouchmove>
+            <onekit-movable-view x="{{x}}" y="{{y}}" direction="vertical">text</onekit-movable-view>
+        </movable-area>
+    </onekit-view>
+   <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            可超出边界
+        </onekit-view>
+        <movable-area>
+            <onekit-movable-view x="{{x}}" y="{{y}}" direction="all" out-of-bounds>text</onekit-movable-view>
+        </movable-area>
+    </onekit-view>
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            带有惯性
+        </onekit-view>
+        <movable-area>
+            <onekit-movable-view x="{{x}}" y="{{y}}" direction="all" inertia friction="1">text</onekit-movable-view>
+        </movable-area>
+    </onekit-view>
+    <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            可放缩
+        </onekit-view>
+        <movable-area scale-area="{{true}}">
+            <onekit-movable-view x="{{x}}" y="{{y}}" scale scale-min="0.5" scale-max="4" scale-value="{{scale}}" direction="all" animation="{{false}}" onChange="onChange" onScale="onScale">
+               text
+            </onekit-movable-view>
+        </movable-area>
+        <onekit-button onTap="scale" onekit-class="scale-button" type="primary">点击放大3倍</onekit-button>
+    </onekit-view>
+   <onekit-view onekit-class="card-area">
+        <onekit-view onekit-class="top-description border-bottom">
+            可悬浮菜单
+        </onekit-view>
+        <onekit-button type="primary" onTap="movableView">跳转查看效果</onekit-button>
     </onekit-view>
 </onekit-view>

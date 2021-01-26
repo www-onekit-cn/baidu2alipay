@@ -937,89 +937,135 @@ var app = getApp()
 //   })
 
 //canvas
+// OnekitPage({
+//     data:{
+//         timer:'',
+//         resultComment:'',
+//         per:''
+//       },
+//     onShow:function(){
+//       swan.getSystemInfo({
+//         success:(res)=>{
+//           var systemWidth = res.screenWidth
+//           if(res.platform == 'web'){
+//             this.data.per = 0.853;
+//             return;
+//           }
+//           this.data.per = systemWidth / 375
+//         }
+//       })
+//       const openParams = app.globalData.openParams
+//       if(openParams){
+//       swan.reportAnalytics('pageshow',{
+//           fr:openParams,
+//           type:'component',
+//           name:'canvas'
+//         });
+//     }
+//       const totalItems = 100
+//       const rightItems = 80
+//       var completePercent = parseInt(((rightItems / totalItems)) * 100,10)
+//       this.getResultComment(completePercent)
+//       this.showScoreAnimation(rightItems,totalItems)
+//     },
+//     onHide:function(){
+//       app.globalData.openParams = ''
+//     },
+//     getResultComment:function(completePercent){
+//       const cp = completePercent
+//       this.setData({
+//         resultComment:cp < 80?cp < 60?'不及格':'中等':cp < 90?'良好':'优秀'
+//       })
+//     },
+//     showScoreAnimation:function(rightItems,totalItems){
+//       var copyRightItems = 0
+//       this.setData({
+//         timer:setInterval(()=>{
+//           copyRightItems++
+//           if(copyRightItems == rightItems){
+//             clearInterval(this.data.timer);
+//           } else {
+//             var ctx = swan.createCanvasContext('mycanvas');
+//             var per = this.data.per;
+//             ctx.setLineWidth(6);
+//             ctx.setStrokeStyle('#F3F4F7');
+//             ctx.setLineCap('round');
+//             ctx.beginPath();
+//             ctx.arc(165 * per,110 * per,70 * per,0,2 * Math.PI,false);
+//             ctx.stroke();
+//             ctx.setLineWidth(6);
+//             ctx.setStrokeStyle('#38F');
+//             ctx.setLineCap('round');
+//             ctx.beginPath();
+//             ctx.arc(165 * per,110 * per,70 * per,((-Math.PI * 1)) / 2,((((2 * Math.PI)) * ((copyRightItems / totalItems)))) - ((((Math.PI * 1)) / 2)),false);
+//             ctx.stroke();
+//             ctx.draw();
+//           }
+//         },20)
+//       })
+//     },
+//     touchstart:function(e){
+//       console.log('touchstart',e)
+//     },
+//     touchmove:function(e){
+//       console.log('touchmove',e)
+//     },
+//     touchend:function(e){
+//       console.log('touchend',e)
+//     },
+//     touchcancel:function(e){
+//       console.log('touchcancel',e)
+//     },
+//     longtap:function(e){
+//       console.log('longtap',e)
+//     },
+//     error:function(e){
+//       console.log('error',e.detail.errMsg)
+//     }
+//   })
+
+
+//movable-view
 OnekitPage({
     data:{
-        timer:'',
-        resultComment:'',
-        per:''
+        title:'movable-view',
+        x:30,
+        y:30,
+        scale:1
       },
     onShow:function(){
-      swan.getSystemInfo({
-        success:(res)=>{
-          var systemWidth = res.screenWidth
-          if(res.platform == 'web'){
-            this.data.per = 0.853;
-            return;
-          }
-          this.data.per = systemWidth / 375
-        }
-      })
       const openParams = app.globalData.openParams
       if(openParams){
       swan.reportAnalytics('pageshow',{
           fr:openParams,
           type:'component',
-          name:'canvas'
+          name:'movable-view'
         });
     }
-      const totalItems = 100
-      const rightItems = 80
-      var completePercent = parseInt(((rightItems / totalItems)) * 100,10)
-      this.getResultComment(completePercent)
-      this.showScoreAnimation(rightItems,totalItems)
     },
     onHide:function(){
       app.globalData.openParams = ''
     },
-    getResultComment:function(completePercent){
-      const cp = completePercent
+    move:function(){
       this.setData({
-        resultComment:cp < 80?cp < 60?'不及格':'中等':cp < 90?'良好':'优秀'
+        x1:50,
+        y1:50
       })
     },
-    showScoreAnimation:function(rightItems,totalItems){
-      var copyRightItems = 0
+    scale:function(){
       this.setData({
-        timer:setInterval(()=>{
-          copyRightItems++
-          if(copyRightItems == rightItems){
-            clearInterval(this.data.timer);
-          } else {
-            var ctx = swan.createCanvasContext('mycanvas');
-            var per = this.data.per;
-            ctx.setLineWidth(6);
-            ctx.setStrokeStyle('#F3F4F7');
-            ctx.setLineCap('round');
-            ctx.beginPath();
-            ctx.arc(165 * per,110 * per,70 * per,0,2 * Math.PI,false);
-            ctx.stroke();
-            ctx.setLineWidth(6);
-            ctx.setStrokeStyle('#38F');
-            ctx.setLineCap('round');
-            ctx.beginPath();
-            ctx.arc(165 * per,110 * per,70 * per,((-Math.PI * 1)) / 2,((((2 * Math.PI)) * ((copyRightItems / totalItems)))) - ((((Math.PI * 1)) / 2)),false);
-            ctx.stroke();
-            ctx.draw();
-          }
-        },20)
+        scale:3
       })
     },
-    touchstart:function(e){
-      console.log('touchstart',e)
+    onChange:function(e){
+      console.log(e.detail)
     },
-    touchmove:function(e){
-      console.log('touchmove',e)
+    onScale:function(e){
+      console.log(e.detail)
     },
-    touchend:function(e){
-      console.log('touchend',e)
-    },
-    touchcancel:function(e){
-      console.log('touchcancel',e)
-    },
-    longtap:function(e){
-      console.log('longtap',e)
-    },
-    error:function(e){
-      console.log('error',e.detail.errMsg)
+    movableView:function(){
+      swan.navigateTo({
+        url:'/component/nav-movable-view/nav-movable-view'
+      })
     }
   })
