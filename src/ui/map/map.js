@@ -28,6 +28,7 @@ Component({
   },
   deriveDataFromProps(props) {
     const mapCtx = my.createMapContext(props.onekitId)
+    this.showCompass_(mapCtx, props.showCompass)
     this.enableZoom_(mapCtx, props.enableZoom)
     this.enableScroll_(mapCtx, props.enableScroll)
     this.enableRotate_(mapCtx, props.enableRotate)
@@ -47,6 +48,11 @@ Component({
   },
   didUnmount() {},
   methods: {
+    showCompass_(mapCtx, showCompass) {
+      mapCtx.showsCompass({
+        isShowCompass: showCompass ? 1 : 0
+      })
+    },
     enableZoom_(mapCtx, enableZoom) {
       mapCtx.gestureEnable({
         isGestureEnable: enableZoom ? 1 : 0
