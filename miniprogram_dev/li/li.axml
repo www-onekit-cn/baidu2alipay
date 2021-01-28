@@ -245,7 +245,7 @@
 </onekit-view> -->
 
 <!-- <picker> -->
-<!-- <onekit-view onekit-class="wrap">
+<onekit-view onekit-class="wrap">
     <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">
             <onekit-view>普通选择器</onekit-view>
@@ -343,7 +343,7 @@
             </onekit-picker>
         </onekit-view>
     </onekit-view>
-</onekit-view> -->
+</onekit-view>
 
 <!-- <slider> -->
 <!-- <onekit-view onekit-class="wrap">
@@ -464,7 +464,7 @@
 </onekit-view> -->
 
 <!-- <image> -->
-<import-sjs name="_" from="../baidu2alipay/_.sjs"/>
+<!-- <import-sjs name="_" from="../baidu2alipay/_.sjs"/>
 <onekit-view onekit-class="wrap">
     <onekit-view onekit-class="mode-title mode-title-first">
         <onekit-view onekit-class="mode-title-line-left"></onekit-view>
@@ -492,7 +492,7 @@
         <onekit-view onekit-class="top-description border-bottom">可放动图</onekit-view>
         <onekit-image mode="aspectFill" onekit-class="image-custom" src="https://b.bdstatic.com/searchbox/icms/searchbox/img/image-gif.gif"></onekit-image>
     </onekit-view>
-</onekit-view>
+</onekit-view> -->
 <!-- <onekit-image src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"></onekit-image> -->
 
 <!-- <video> -->

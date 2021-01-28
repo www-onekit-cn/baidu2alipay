@@ -134,7 +134,7 @@ scroll-view {
 } */
 
 /* image */
-.wrap {
+/* .wrap {
     margin-top: calc(.2*var(--onekit-REM)) ;
 }
 .image-area {
@@ -151,7 +151,7 @@ scroll-view {
 .image-custom {
     width: 100% ;
     margin-bottom: calc(-.04*var(--onekit-REM)) ;
-}
+} */
 
 /* video */
 /* .video-wrap {

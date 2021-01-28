@@ -109,9 +109,6 @@ Component({
     end: ''
   },
   didMount: function didMount() {
-    console.log(this._compareTime('1:01', '22:59'));
-    console.log(this._compareTime('23:01', '22:59'));
-
     var hours = [];
     for (var h = 0; h < 24; h++) {
       var hour = h >= 10 ? h : '0' + h;

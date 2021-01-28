@@ -258,7 +258,8 @@ Component({
     range: [],
     value: null,
     start: '',
-    end: ''
+    end: '',
+    customItem: ''
   },
   didMount: function didMount() {},
   didUpdate: function didUpdate() {},
