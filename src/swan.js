@@ -3,6 +3,7 @@
 import PROMISE from 'oneutil/PROMISE'
 import CameraContext from './api/CameraContext'
 import CanvasContext from './api/CanvasContext'
+import VideoContext from './api/VideoContext'
 import OneKit from './js/OneKit'
 
 export default class swan {
@@ -777,7 +778,7 @@ export default class swan {
   }
 
   static createVideoContext(videoId) {
-    return my.createVideoContext(videoId)
+    return new VideoContext(my.createVideoContext(videoId), videoId)
   }
 
   // ////// 透明视频组件控制  ///////
