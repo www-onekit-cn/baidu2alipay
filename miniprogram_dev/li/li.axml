@@ -670,7 +670,7 @@
 
 <!-- CanvasContext -->
 <!-- <onekit-canvas canvas-id="myCanvas" onekit-class="myCanvas"></onekit-canvas> -->
-<onekit-view onekit-class="wrap">
+<!-- <onekit-view onekit-class="wrap">
     <onekit-view onekit-class="card-area">
         <onekit-canvas canvas-id="canvas"></onekit-canvas>
     </onekit-view>
@@ -681,4 +681,21 @@
             <onekit-button onTap="toTempFilePath" type="primary">toTempFilePath</onekit-button>
         </scroll-view>
     </onekit-view>
+</onekit-view> -->
+
+<!-- VideoContext -->
+<import-sjs name="_" from="../baidu2alipay/_.sjs"/>
+<onekit-view onekit-class="wrap">
+    <onekit-video onekit-id="myVideo" enable-danmu="{{true}}" src="https://b.bdstatic.com/swan-temp/940fe716b0eaad38f47b209d61657490.mp4"></onekit-video>
+    <onekit-button type="primary" onTap="play">play</onekit-button>
+    <onekit-button type="primary" onTap="stop">stop</onekit-button>
+    <onekit-button type="primary" onTap="pause">pause</onekit-button>
+    <onekit-button type="primary" onTap="seek">seek</onekit-button>
+    <onekit-button type="primary" onTap="sendDanmu">sendDanmu</onekit-button>
+    <onekit-button type="primary" onTap="fullScreen">requestFullScreen</onekit-button>
+    <onekit-button type="primary" onTap="playbackRate" onekit-dataset='"set":{{_("0.75")}}'>点击0.75倍速播放</onekit-button>
+    <onekit-button type="primary" onTap="playbackRate" onekit-dataset='"set":{{_("1.0")}}'>点击1.0倍速播放</onekit-button>
+    <onekit-button type="primary" onTap="playbackRate" onekit-dataset='"set":{{_("1.25")}}'>点击1.25倍速播放</onekit-button>
+    <onekit-button type="primary" onTap="playbackRate" onekit-dataset='"set":{{_("1.5")}}'>点击1.5倍速播放</onekit-button>
+    <onekit-button type="primary" onTap="playbackRate" onekit-dataset='"set":{{_("2.0")}}'>点击2.0倍速播放</onekit-button>
 </onekit-view>

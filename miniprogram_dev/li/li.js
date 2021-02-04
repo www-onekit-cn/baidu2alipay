@@ -1129,48 +1129,105 @@ var app = getApp()
 //       canvasContext.draw()
 //     }
 //   })
-const canvas = require('./canvas.js')
-OnekitPage({
-    data:{
-        methods:[
-        ],
-        isIPhoneX:false
-      },
-    onReady:function(){
-      this.canvasContext = swan.createCanvasContext('canvas')
-      const methods = Object.keys(canvas)
-      this.setData({
-        methods
-      })
-      const that = this
-      methods.forEach(function(method){
-      that[method] = function(){
-      canvas[method](that.canvasContext)
-      that.canvasContext.draw()
-    }
-    })
-      swan.getSystemInfo({
-        success:(systemInfo)=>{
-          console.log('systemInfo',systemInfo)
-          if((((systemInfo.model && (systemInfo.model.indexOf('iPhone X') > -1))) || (((systemInfo.model == 'iPhone Simulator <x86-64>') && (systemInfo.screenWidth == 375))))){
-            this.setData({
-                isIPhoneX:true
-              });
-          }
-        }
-      })
+// const canvas = require('./canvas.js')
+// OnekitPage({
+//     data:{
+//         methods:[
+//         ],
+//         isIPhoneX:false
+//       },
+//     onReady:function(){
+//       this.canvasContext = swan.createCanvasContext('canvas')
+//       const methods = Object.keys(canvas)
+//       this.setData({
+//         methods
+//       })
+//       const that = this
+//       methods.forEach(function(method){
+//       that[method] = function(){
+//       canvas[method](that.canvasContext)
+//       that.canvasContext.draw()
+//     }
+//     })
+//       swan.getSystemInfo({
+//         success:(systemInfo)=>{
+//           console.log('systemInfo',systemInfo)
+//           if((((systemInfo.model && (systemInfo.model.indexOf('iPhone X') > -1))) || (((systemInfo.model == 'iPhone Simulator <x86-64>') && (systemInfo.screenWidth == 375))))){
+//             this.setData({
+//                 isIPhoneX:true
+//               });
+//           }
+//         }
+//       })
+//     },
+//     toTempFilePath:function(){
+//       swan.canvasToTempFilePath({
+//         canvasId:'canvas',
+//         success:(res)=>{
+//           swan.showToast({
+//               title:res.tempFilePath,
+//               icon:'none'
+//             })
+//           console.log('canvasToTempFilePath success',res)
+//         },
+//         fail:(err)=>{console.log('canvasToTempFilePath fail',err)}
+//       })
+//     }
+//   })
+
+// VideoContext
+Page({
+    onLoad() {
+        this.videoContext = swan.createVideoContext('myVideo');
+        console.log('这是一个VideoContext的实例', this.videoContext);
     },
-    toTempFilePath:function(){
-      swan.canvasToTempFilePath({
-        canvasId:'canvas',
-        success:(res)=>{
-          swan.showToast({
-              title:res.tempFilePath,
-              icon:'none'
-            })
-          console.log('canvasToTempFilePath success',res)
-        },
-        fail:(err)=>{console.log('canvasToTempFilePath fail',err)}
-      })
+    sendDanmu() {
+        this.videoContext.sendDanmu({
+            text: '这是一条弹幕',
+            color: '#f60'
+        });
+        swan.showToast({
+            title: '发送成功',
+            icon: 'none'
+        });
+    },
+    play() {
+        this.videoContext.play();
+        swan.showToast({
+            title: 'play',
+            icon: 'none'
+        });
+    },
+    stop() {
+        this.videoContext.stop();
+        swan.showToast({
+            title: 'stop',
+            icon: 'none'
+        });
+    },
+    pause() {
+        this.videoContext.pause();
+        swan.showToast({
+            title: 'pause',
+            icon: 'none'
+        });
+    },
+    seek() {
+        this.videoContext.seek(10);
+        swan.showToast({
+            title: '跳转到10s处',
+            icon: 'none'
+        });
+    },
+    fullScreen() {
+        this.videoContext.requestFullScreen();
+    },
+    playbackRate(e) {
+        console.log('当前倍速', +e.target.dataset.set);
+        swan.showToast({
+            title: '当前倍速为' + +e.target.dataset.set,
+            icon: 'none'
+        });
+        this.videoContext.playbackRate(+e.target.dataset.set);
     }
-  })
+});

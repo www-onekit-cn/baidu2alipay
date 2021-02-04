@@ -16,7 +16,7 @@ export default class VideoContext {
   }
 
   seek(position) {
-    return this.alipayConvasContext.seek(position)
+    return this.alipayVideoContext.seek(position)
   }
 
   sendDanmu(data) {
@@ -25,16 +25,11 @@ export default class VideoContext {
   }
 
   requestFullScreen(object) {
-    return this.alipayConvasContext.requestFullScreen(object)
+    return this.alipayVideoContext.requestFullScreen(object)
   }
 
   exitFullScreen() {
-    return this.alipayConvasContext.exitFullScreen()
-  }
-
-  exitPictureInPicture(wx_object) {
-    const video = getApp().onekit_nodes[`_${this.id}`]
-    video.exitPictureInPicture(wx_object)
+    return this.alipayVideoContext.exitFullScreen()
   }
 
   showStatusBar() {
@@ -42,7 +37,7 @@ export default class VideoContext {
   }
 
   hideStatusBar() {
-    return this.alipayConvasContext.hideStatusBar()
+    return this.alipayVideoContext.hideStatusBar()
   }
 
   stop() {

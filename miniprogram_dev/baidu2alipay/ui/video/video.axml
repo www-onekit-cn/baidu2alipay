@@ -29,3 +29,22 @@
   onFullscreenchange="video_fullscreenchange"
   onRenderStart="video_renderstart"
 />
+<cover-view
+  style="pointer-events: none;
+  top:{{rect.top}}px;
+  left:{{rect.left}}px;
+  width:{{rect.width}}px;
+  height:{{rect.height}}px;
+  background:transparent;
+  position:absolute;"
+  > 
+  <block a:for="{{[0,1]}}" a:key="item">
+    <cover-view a:for="{{danmus[index]}}"   a:key="item"
+    style="position:absolute;
+      left:750rpx;
+      top:{{ (index*30) % (rect.height-30)}}px;
+      background:transparent;
+      animation: danmu 2s linear forwards {{index*0.05}}s infinite;
+      color:{{item.color}};">{{item.text}}</cover-view>
+  <block>
+</cover-view>

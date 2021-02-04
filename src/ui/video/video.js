@@ -7,6 +7,10 @@ Component({
   mixins: [onekit_behavior, baidu_behavior],
   data: {
     mobilenetHintType: 1,
+    danmus: [
+      [],
+      []
+    ]
   },
   props: {
     src: '',
@@ -25,7 +29,6 @@ Component({
     showProgress: true,
     showFullscreenBtn: true,
     enableProgressGesture: true,
-    //
     danmuList: [],
     //
     danmuBtn: false,
@@ -47,19 +50,28 @@ Component({
     duration: null,
   },
   didMount() {
-    const that = this
     my.createSelectorQuery()
       .select('.onekit-video').boundingClientRect().exec((rect) => {
-        that.setData({
+        this.setData({
           rect: rect[0]
         })
       })
+    //
+    const danmuDict = {}
+    this.props.danmuList.forEach((danmu) => {
+      if (!danmuDict[danmu.time]) {
+        danmuDict[danmu.time] = []
+      }
+      danmuDict[danmu.time].push(danmu)
+    })
+    this.data.danmuDict = danmuDict
     //
     if (this.props.enableProgressGesture) {
       this.data.mobilenetHintType = 1 || 3
     } else {
       this.data.mobilenetHintType = 0 || 2
     }
+    this.setData(this.data)
   },
   methods: {
     video_play() {
@@ -78,7 +90,17 @@ Component({
       }
     },
     video_timeupdate(e) {
-      this.currentTime = e.detail.currentTime
+      const currentTime = Math.ceil(e.detail.currentTime)
+      //
+      if (currentTime !== this.data.currentTime) {
+        this.data.currentTime = currentTime
+        const AorB = currentTime % 2
+        const danmus = this.data.danmuDict[currentTime]
+        const key = `danmus[${AorB}]`
+        this.setData({
+          [key]: danmus || []
+        })
+      }
       if (this.props.onTimeUpdate) {
         this.props.onTimeUpdate(e.detail)
       }

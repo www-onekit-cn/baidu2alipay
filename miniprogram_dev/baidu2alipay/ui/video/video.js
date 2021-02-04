@@ -82,7 +82,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 36);
+/******/ 	return __webpack_require__(__webpack_require__.s = 37);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -230,7 +230,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 36:
+/***/ 37:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -251,7 +251,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 Component({
   mixins: [_onekit_behavior2.default, _baidu_behavior2.default],
   data: {
-    mobilenetHintType: 1
+    mobilenetHintType: 1,
+    danmus: [[], []]
   },
   props: {
     src: '',
@@ -270,7 +271,6 @@ Component({
     showProgress: true,
     showFullscreenBtn: true,
     enableProgressGesture: true,
-    //
     danmuList: [],
     //
     danmuBtn: false,
@@ -292,18 +292,29 @@ Component({
     duration: null
   },
   didMount: function didMount() {
-    var that = this;
+    var _this = this;
+
     my.createSelectorQuery().select('.onekit-video').boundingClientRect().exec(function (rect) {
-      that.setData({
+      _this.setData({
         rect: rect[0]
       });
     });
+    //
+    var danmuDict = {};
+    this.props.danmuList.forEach(function (danmu) {
+      if (!danmuDict[danmu.time]) {
+        danmuDict[danmu.time] = [];
+      }
+      danmuDict[danmu.time].push(danmu);
+    });
+    this.data.danmuDict = danmuDict;
     //
     if (this.props.enableProgressGesture) {
       this.data.mobilenetHintType = 1 || false;
     } else {
       this.data.mobilenetHintType =  false || 2;
     }
+    this.setData(this.data);
   },
 
   methods: {
@@ -323,7 +334,17 @@ Component({
       }
     },
     video_timeupdate: function video_timeupdate(e) {
-      this.currentTime = e.detail.currentTime;
+      var currentTime = Math.ceil(e.detail.currentTime);
+      //
+      if (currentTime !== this.data.currentTime) {
+        var _setData;
+
+        this.data.currentTime = currentTime;
+        var AorB = currentTime % 2;
+        var danmus = this.data.danmuDict[currentTime];
+        var key = 'danmus[' + AorB + ']';
+        this.setData((_setData = {}, _setData[key] = danmus || [], _setData));
+      }
       if (this.props.onTimeUpdate) {
         this.props.onTimeUpdate(e.detail);
       }

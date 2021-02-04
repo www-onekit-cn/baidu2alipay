@@ -282,7 +282,7 @@ scroll-view {
 
 
 /* CanvasContext */
-.onekit-canvas {
+/* .onekit-canvas {
     height: calc(2.3*var(--onekit-REM)) ;
     width: calc(3.88*var(--onekit-REM)) ;
 }
@@ -301,4 +301,18 @@ scroll-view {
 }
 .card-area {
     margin: calc(.13*var(--onekit-REM)) calc(.13*var(--onekit-REM)) 0 calc(.13*var(--onekit-REM)) ;
+} */
+
+/* VideoContext */
+/* .wrap {
+    padding: 50rpx 30rpx;
 }
+
+.wrap video {
+    width: 100%;
+    margin-bottom: 30rpx;
+}
+
+.wrap button {
+    margin-bottom: 50rpx;
+} */
