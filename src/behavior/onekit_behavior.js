@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 export default {
   props: {
-    // onekitId: `id${new Date().getTime()}`,
-    onekitId: '' || `id${new Date().getTime()}`,
+    onekitId: `id${new Date().getTime()}`,
+    // onekitId: '' || `id${new Date().getTime()}`,
     onekitClass: '',
     onekitStyle: '',
     onekitVersion: '',

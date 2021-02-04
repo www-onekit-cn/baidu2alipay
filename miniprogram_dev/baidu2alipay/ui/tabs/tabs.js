@@ -97,8 +97,8 @@ exports.__esModule = true;
 /* eslint-disable no-console */
 exports.default = {
   props: {
-    // onekitId: `id${new Date().getTime()}`,
-    onekitId:  false || 'id' + new Date().getTime(),
+    onekitId: 'id' + new Date().getTime(),
+    // onekitId: '' || `id${new Date().getTime()}`,
     onekitClass: '',
     onekitStyle: '',
     onekitVersion: '',
@@ -2317,6 +2317,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
 /* eslint-disable max-len */
 var CanvasContext = function () {
   function CanvasContext(alipayCanvasContext) {
@@ -2339,6 +2341,7 @@ var CanvasContext = function () {
   };
 
   CanvasContext.prototype.bezierCurveTo = function bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) {
+    this._reset();
     return this.alipayCanvasContext.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
   };
 
@@ -2386,7 +2389,8 @@ var CanvasContext = function () {
   };
 
   CanvasContext.prototype.fillText = function fillText(text, x, y) {
-    this.alipayCanvasContext.setFillStyle('#000');
+    this._reset();
+    // this.alipayCanvasContext.setFillStyle('#000')
     return this.alipayCanvasContext.fillText(text, x, y);
   };
 
@@ -2502,15 +2506,16 @@ var CanvasContext = function () {
     return this.alipayCanvasContext.translate(x, y);
   };
 
-  // _reset() {
-  //   this.alipayCanvasContext.setFillStyle('#000000')
-  //   this.alipayCanvasContext.setStrokeStyle('#000000')
-  //   this.alipayCanvasContext.setFontSize(10)
-  //   this.alipayCanvasContext.setShadow(0, 0, 0, 'rgba(0, 0, 0, 0)')
-  //   this.alipayCanvasContext.setLineJoin('miter')
-  //   this.alipayCanvasContext.setLineWidth(1)
-  // }
-
+  CanvasContext.prototype._reset = function _reset() {
+    this.alipayCanvasContext.setFillStyle('#000000');
+    this.alipayCanvasContext.setStrokeStyle('#000000');
+    this.alipayCanvasContext.setFontSize(10);
+    this.alipayCanvasContext.setShadow(0, 0, 0, 'rgba(0, 0, 0, 0)');
+    this.alipayCanvasContext.setLineJoin('miter');
+    this.alipayCanvasContext.setLineWidth(1);
+    this.alipayCanvasContext.setMiterLimit(10);
+    this.alipayCanvasContext.clearRect(0, 0, 1000, 1000);
+  };
 
   _createClass(CanvasContext, [{
     key: 'lineDashOffset',

@@ -10,10 +10,15 @@ Component({
     canvasId: '',
     disableScroll: false,
   },
-
   didMount() {
     const onekitId = this.props.canvasId || this.props.onekitId
     this.setData({onekitId})
+    my.createSelectorQuery()
+      .select('.onekit-canvas').boundingClientRect().exec((rect) => {
+        this.setData({
+          rect: rect[0]
+        })
+      })
   },
   didUpdate() {},
   didUnmount() {},

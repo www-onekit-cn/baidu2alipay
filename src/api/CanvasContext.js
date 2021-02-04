@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
 /* eslint-disable max-len */
 export default class CanvasContext {
   constructor(alipayCanvasContext) {
@@ -18,6 +20,7 @@ export default class CanvasContext {
   }
 
   bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) {
+    this._reset()
     return this.alipayCanvasContext.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)
   }
 
@@ -65,7 +68,8 @@ export default class CanvasContext {
   }
 
   fillText(text, x, y) {
-    this.alipayCanvasContext.setFillStyle('#000')
+    this._reset()
+    // this.alipayCanvasContext.setFillStyle('#000')
     return this.alipayCanvasContext.fillText(text, x, y)
   }
 
@@ -188,12 +192,14 @@ export default class CanvasContext {
     return this.alipayCanvasContext.translate(x, y)
   }
 
-  // _reset() {
-  //   this.alipayCanvasContext.setFillStyle('#000000')
-  //   this.alipayCanvasContext.setStrokeStyle('#000000')
-  //   this.alipayCanvasContext.setFontSize(10)
-  //   this.alipayCanvasContext.setShadow(0, 0, 0, 'rgba(0, 0, 0, 0)')
-  //   this.alipayCanvasContext.setLineJoin('miter')
-  //   this.alipayCanvasContext.setLineWidth(1)
-  // }
+  _reset() {
+    this.alipayCanvasContext.setFillStyle('#000000')
+    this.alipayCanvasContext.setStrokeStyle('#000000')
+    this.alipayCanvasContext.setFontSize(10)
+    this.alipayCanvasContext.setShadow(0, 0, 0, 'rgba(0, 0, 0, 0)')
+    this.alipayCanvasContext.setLineJoin('miter')
+    this.alipayCanvasContext.setLineWidth(1)
+    this.alipayCanvasContext.setMiterLimit(10)
+    this.alipayCanvasContext.clearRect(0, 0, 1000, 1000)
+  }
 }

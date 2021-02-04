@@ -97,8 +97,8 @@ exports.__esModule = true;
 /* eslint-disable no-console */
 exports.default = {
   props: {
-    // onekitId: `id${new Date().getTime()}`,
-    onekitId:  false || 'id' + new Date().getTime(),
+    onekitId: 'id' + new Date().getTime(),
+    // onekitId: '' || `id${new Date().getTime()}`,
     onekitClass: '',
     onekitStyle: '',
     onekitVersion: '',
@@ -255,10 +255,16 @@ Component({
     canvasId: '',
     disableScroll: false
   },
-
   didMount: function didMount() {
+    var _this = this;
+
     var onekitId = this.props.canvasId || this.props.onekitId;
     this.setData({ onekitId: onekitId });
+    my.createSelectorQuery().select('.onekit-canvas').boundingClientRect().exec(function (rect) {
+      _this.setData({
+        rect: rect[0]
+      });
+    });
   },
   didUpdate: function didUpdate() {},
   didUnmount: function didUnmount() {},
