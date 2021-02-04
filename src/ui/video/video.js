@@ -46,9 +46,6 @@ Component({
     silentPlay: false,
     duration: null,
   },
-  deriveDataFromProps(data_props) {
-    this._trigger_controlstoggle(data_props.controls)
-  },
   didMount() {
     const that = this
     my.createSelectorQuery()
@@ -57,8 +54,6 @@ Component({
           rect: rect[0]
         })
       })
-    this._trigger_seekcomplete()
-    this._trigger_controlstoggle(this.props.controls)
     //
     if (this.props.enableProgressGesture) {
       this.data.mobilenetHintType = 1 || 3
@@ -89,7 +84,6 @@ Component({
       }
     },
     video_fullscreenchange(e) {
-      this._trigger_controlstoggle(this.props.controls && !e.detail.fullScreen)
       if (this.props.onFullScreenChange) {
         this.props.onFullScreenChange(e.detail)
       }

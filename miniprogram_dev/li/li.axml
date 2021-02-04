@@ -245,7 +245,7 @@
 </onekit-view> -->
 
 <!-- <picker> -->
-<onekit-view onekit-class="wrap">
+<!-- <onekit-view onekit-class="wrap">
     <onekit-view onekit-class="card-area">
         <onekit-view onekit-class="top-description border-bottom">
             <onekit-view>普通选择器</onekit-view>
@@ -343,7 +343,7 @@
             </onekit-picker>
         </onekit-view>
     </onekit-view>
-</onekit-view>
+</onekit-view> -->
 
 <!-- <slider> -->
 <!-- <onekit-view onekit-class="wrap">
@@ -448,7 +448,7 @@
 </onekit-view> -->
 
 <!-- <camera> -->
-<!-- <onekit-view onekit-class="wrap">
+<onekit-view onekit-class="wrap">
     <onekit-view onekit-class="card-area">
         <onekit-camera device-position="{{device}}" flash="off" onStop="stop" onError="error" onekit-class="preview" onekit-style="width: 100%; height: 3rem;">
         </onekit-camera>
@@ -461,7 +461,7 @@
         <image a:if="{{imageSrc}}" class="image" mode="widthFix" src="{{imageSrc}}"></image>
         <video a:if="{{videoSrc}}" class="video" src="{{videoSrc}}"></video>
     </onekit-view>
-</onekit-view> -->
+</onekit-view>
 
 <!-- <image> -->
 <!-- <import-sjs name="_" from="../baidu2alipay/_.sjs"/>
@@ -652,4 +652,18 @@
         </onekit-view>
         <onekit-button type="primary" onTap="movableView">跳转查看效果</onekit-button>
     </onekit-view>
+</onekit-view> -->
+
+
+
+
+
+
+<!-- CameraContext -->
+<!-- <onekit-view onekit-class="wrap">
+    <onekit-camera flash="off" onError="error" onekit-style="width: 100%; height: 500rpx;">
+    </onekit-camera>
+    <onekit-button type="primary" onTap="startRecord">开始录像</onekit-button>
+    <onekit-button type="primary" onTap="stopRecord">结束录像</onekit-button>
+    <onekit-video a:if="{{videoSrc}}" onekit-class="video" src="{{videoSrc}}"></onekit-video>
 </onekit-view> -->

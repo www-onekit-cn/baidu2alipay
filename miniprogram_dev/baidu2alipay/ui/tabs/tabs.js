@@ -2294,10 +2294,6 @@ var CameraContext = function () {
     return this.myCameraContext.stopRecord(object);
   };
 
-  CameraContext.prototype.onCameraFrame = function onCameraFrame(callback) {
-    return this.myCameraContext.onCameraFrame(callback);
-  };
-
   return CameraContext;
 }();
 

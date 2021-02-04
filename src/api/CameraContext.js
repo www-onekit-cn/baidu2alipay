@@ -14,8 +14,4 @@ export default class CameraContext {
   stopRecord(object) {
     return this.myCameraContext.stopRecord(object)
   }
-
-  onCameraFrame(callback) {
-    return this.myCameraContext.onCameraFrame(callback)
-  }
 }

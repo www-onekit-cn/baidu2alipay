@@ -291,9 +291,6 @@ Component({
     silentPlay: false,
     duration: null
   },
-  deriveDataFromProps: function deriveDataFromProps(data_props) {
-    this._trigger_controlstoggle(data_props.controls);
-  },
   didMount: function didMount() {
     var that = this;
     my.createSelectorQuery().select('.onekit-video').boundingClientRect().exec(function (rect) {
@@ -301,8 +298,6 @@ Component({
         rect: rect[0]
       });
     });
-    this._trigger_seekcomplete();
-    this._trigger_controlstoggle(this.props.controls);
     //
     if (this.props.enableProgressGesture) {
       this.data.mobilenetHintType = 1 || false;
@@ -334,7 +329,6 @@ Component({
       }
     },
     video_fullscreenchange: function video_fullscreenchange(e) {
-      this._trigger_controlstoggle(this.props.controls && !e.detail.fullScreen);
       if (this.props.onFullScreenChange) {
         this.props.onFullScreenChange(e.detail);
       }
