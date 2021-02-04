@@ -2,6 +2,7 @@
 /* eslint-disable camelcase */
 import PROMISE from 'oneutil/PROMISE'
 import CameraContext from './api/CameraContext'
+import CanvasContext from './api/CanvasContext'
 import OneKit from './js/OneKit'
 
 export default class swan {
@@ -841,8 +842,8 @@ export default class swan {
   }
 
   // ////// 画布  ///////
-  static createCanvasContext(id) {
-    return my.createCanvasContext(id)
+  static createCanvasContext(canvasId) {
+    return new CanvasContext(my.createCanvasContext(canvasId))
   }
 
   static canvasPutImageData(swan_object) {

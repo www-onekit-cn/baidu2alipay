@@ -660,10 +660,25 @@
 
 
 <!-- CameraContext -->
-<onekit-view onekit-class="wrap">
+<!-- <onekit-view onekit-class="wrap">
     <onekit-camera flash="off" onError="error" onekit-style="width: 100%; height: 500rpx;">
     </onekit-camera>
     <onekit-button type="primary" onTap="startRecord">开始录像</onekit-button>
     <onekit-button type="primary" onTap="stopRecord">结束录像</onekit-button>
     <onekit-video a:if="{{videoSrc}}" onekit-class="video" src="{{videoSrc}}"></onekit-video>
+</onekit-view> -->
+
+<!-- CanvasContext -->
+<!-- <onekit-canvas canvas-id="myCanvas" onekit-class="myCanvas"></onekit-canvas> -->
+<onekit-view onekit-class="wrap">
+    <onekit-view onekit-class="card-area">
+        <onekit-canvas canvas-id="canvas"></onekit-canvas>
+    </onekit-view>
+    <onekit-view onekit-class="card-area flexBottom swan-security-padding-bottom" onekit-style="height:{{isIPhoneX ? 5.4 : 4.1}}rem">
+        <onekit-view onekit-class="top-description border-bottom">展示绘图</onekit-view>
+        <scroll-view scroll-y class="scroll">
+            <onekit-button a:for="{{methods}}" a:for-item='item' onekit-class="canvas-button" type="primary" onTap="{{item}}">{{item}}</onekit-button>
+            <onekit-button onTap="toTempFilePath" type="primary">toTempFilePath</onekit-button>
+        </scroll-view>
+    </onekit-view>
 </onekit-view>

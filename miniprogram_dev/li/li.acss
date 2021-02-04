@@ -273,3 +273,32 @@ scroll-view {
     width: calc(4.8*var(--onekit-REM)) ;
     height: calc(2.8*var(--onekit-REM)) ;
 } */
+
+
+
+
+
+
+
+
+/* CanvasContext */
+.onekit-canvas {
+    height: calc(2.3*var(--onekit-REM)) ;
+    width: calc(3.88*var(--onekit-REM)) ;
+}
+.scroll {
+    height: calc(4.3*var(--onekit-REM)) ;
+}
+.flexTop {
+    position: fixed ;
+    top: calc(1.1*var(--onekit-REM)) ;
+    height: calc(2.18*var(--onekit-REM)) ;
+}
+.flexBottom {
+    position: fixed ;
+    bottom: 0 ;
+    width: calc(3.88*var(--onekit-REM)) ;
+}
+.card-area {
+    margin: calc(.13*var(--onekit-REM)) calc(.13*var(--onekit-REM)) 0 calc(.13*var(--onekit-REM)) ;
+}

@@ -1080,32 +1080,97 @@ var app = getApp()
 
 
 // CameraContext
+// OnekitPage({
+//     data: {
+//         videoSrc: ''
+//     },
+//     startRecord() {
+//         this.cameraContext = swan.createCameraContext();
+//         this.cameraContext.startRecord({
+//             success: res => {
+//                 swan.showToast({
+//                     title: 'startRecord',
+//                     icon: 'none'
+//                 });
+//             }
+//         });
+//     },
+//     stopRecord() {
+//         this.cameraContext.stopRecord({
+//             success: res => {
+//                 swan.showModal({
+//                     title: '提示',
+//                     content: res.tempVideoPath
+//                 });
+//                 this.setData({
+//                     videoSrc: res.tempVideoPath
+//                 });
+//             }
+//         });
+//     }
+// });
+
+// CanvasContext
+// OnekitPage({
+//     onLoad:function(){
+//       const canvasContext = swan.createCanvasContext('myCanvas')
+//       canvasContext.beginPath()
+//       canvasContext.setLineDashOffset(400)
+//       canvasContext.moveTo(10,20)
+//       canvasContext.lineTo(100,20)
+//       canvasContext.setLineDash([
+//       10,
+//       20
+//     ],5)
+//       canvasContext.moveTo(10,100)
+//       canvasContext.lineTo(100,100)
+//       canvasContext.closePath()
+//       canvasContext.stroke()
+//       canvasContext.draw()
+//     }
+//   })
+const canvas = require('./canvas.js')
 OnekitPage({
-    data: {
-        videoSrc: ''
-    },
-    startRecord() {
-        this.cameraContext = swan.createCameraContext();
-        this.cameraContext.startRecord({
-            success: res => {
-                swan.showToast({
-                    title: 'startRecord',
-                    icon: 'none'
-                });
-            }
-        });
-    },
-    stopRecord() {
-        this.cameraContext.stopRecord({
-            success: res => {
-                swan.showModal({
-                    title: '提示',
-                    content: res.tempVideoPath
-                });
-                this.setData({
-                    videoSrc: res.tempVideoPath
-                });
-            }
-        });
+    data:{
+        methods:[
+        ],
+        isIPhoneX:false
+      },
+    onReady:function(){
+      this.canvasContext = swan.createCanvasContext('canvas')
+      const methods = Object.keys(canvas)
+      this.setData({
+        methods
+      })
+      const that = this
+      methods.forEach(function(method){
+      that[method] = function(){
+      canvas[method](that.canvasContext)
+      that.canvasContext.draw()
     }
-});
+    })
+      swan.getSystemInfo({
+        success:(systemInfo)=>{
+          console.log('systemInfo',systemInfo)
+          if((((systemInfo.model && (systemInfo.model.indexOf('iPhone X') > -1))) || (((systemInfo.model == 'iPhone Simulator <x86-64>') && (systemInfo.screenWidth == 375))))){
+            this.setData({
+                isIPhoneX:true
+              });
+          }
+        }
+      })
+    },
+    toTempFilePath:function(){
+      swan.canvasToTempFilePath({
+        canvasId:'canvas',
+        success:(res)=>{
+          swan.showToast({
+              title:res.tempFilePath,
+              icon:'none'
+            })
+          console.log('canvasToTempFilePath success',res)
+        },
+        fail:(err)=>{console.log('canvasToTempFilePath fail',err)}
+      })
+    }
+  })

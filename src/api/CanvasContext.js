@@ -4,6 +4,10 @@ export default class CanvasContext {
     this.alipayCanvasContext = alipayCanvasContext
   }
 
+  addColorStop(stop, color) {
+    return this.alipayCanvasContext.addColorStop(stop, color)
+  }
+
   arc(x, y, r, sAngle, eAngle) {
     const counterclockwise = 0
     return this.alipayCanvasContext.arc(x, y, r, sAngle, eAngle, counterclockwise)
@@ -22,6 +26,7 @@ export default class CanvasContext {
   }
 
   clip() {
+    this.alipayCanvasContext.setFillStyle('#000')
     return this.alipayCanvasContext.clip()
   }
 
@@ -41,7 +46,6 @@ export default class CanvasContext {
     return this.alipayCanvasContext.draw(reserve, callback)
   }
 
-  //
   drawImage(imageResource, sx, sy) {
     const sWidth = 0
     const sHeight = 0
@@ -69,8 +73,8 @@ export default class CanvasContext {
     return this.alipayCanvasContext.lineTo(x, y)
   }
 
-  measureText(text) {
-    return this.alipayCanvasContext.measureText(text)
+  measureText(width) {
+    return this.alipayCanvasContext.measureText(width)
   }
 
   moveTo(x, y) {
@@ -101,56 +105,21 @@ export default class CanvasContext {
     return this.alipayCanvasContext.scale(scaleWidth, scaleHeight)
   }
 
-  //
-  set fillStyle(color) {
-    this.alipayCanvasContext.setFillStyle(color)
-  }
-
-  get fillStyle() {
-    return this.alipayCanvasContext.getFillStyle()
-  }
 
   setFillStyle(color) {
-    this.fillStyle = color
-  }
-
-  //
-  set font(fontSize) {
-    this.alipayCanvasContext.setFontSize(fontSize)
-  }
-
-  get font() {
-    return this.alipayCanvasContext.getFontSize()
+    return this.alipayCanvasContext.setFillStyle(color)
   }
 
   setFontSize(fontSize) {
-    this.font = fontSize
-  }
-
-  //
-  set globalAlpha(alpha) {
-    this.alipayCanvasContext.setGlobalAlpha(alpha)
-  }
-
-  get globalAlpha() {
-    return this.alipayCanvasContext.getGlobalAlpha()
+    return this.alipayCanvasContext.setFontSize(fontSize)
   }
 
   setGlobalAlpha(alpha) {
-    this.globalAlpha = alpha
-  }
-
-  //
-  set lineCap(lineCap) {
-    this.alipayCanvasContext.setLineCap(lineCap)
-  }
-
-  get lineCap() {
-    return this.alipayCanvasContext.getLineCap()
+    return this.alipayCanvasContext.setGlobalAlpha(alpha)
   }
 
   setLineCap(lineCap) {
-    this.lineCap = lineCap
+    return this.alipayCanvasContext.setLineCap(lineCap)
   }
 
   //
@@ -166,113 +135,24 @@ export default class CanvasContext {
     this.lineDashOffset = (pattern, offset)
   }
 
-  //
-  set lineJoin(lineJoin) {
-    this.alipayCanvasContext.setLineJoin(lineJoin)
-  }
-
-  get lineJoin() {
-    return this.alipayCanvasContext.getLineJoin()
-  }
-
   setLineJoin(lineJoin) {
-    this.lineJoin = lineJoin
-  }
-
-  //
-  set lineWidth(lineWidth) {
-    this.alipayCanvasContext.setLineWidth(lineWidth)
-  }
-
-  get lineWidth() {
-    return this.alipayCanvasContext.getLineWidth()
+    return this.alipayCanvasContext.setLineJoin(lineJoin)
   }
 
   setLineWidth(lineWidth) {
-    this.lineWidth = lineWidth
-  }
-
-  //
-  set miterLimit(miterLimit) {
-    this.alipayCanvasContext.setMiterLimit(miterLimit)
-  }
-
-  get miterLimit() {
-    return this.alipayCanvasContext.getMiterLimit()
+    return this.alipayCanvasContext.setLineWidth(lineWidth)
   }
 
   setMiterLimit(miterLimit) {
-    this.miterLimit = miterLimit
+    return this.alipayCanvasContext.setMiterLimit(miterLimit)
   }
 
-  //
-  set shadowOffsetX(offsetX) {
-    const offsetY = this._shadowOffsetY || 0
-    const blur = this._shadowBlur || 0
-    const color = this._shadowColor || 'black'
-    this._shadowOffsetX = offsetX
-    this.alipayCanvasContext.setShadow(offsetX, offsetY, blur, color)
-  }
-
-  get shadowOffsetX() {
-    return this._shadowOffsetX || 0
-  }
-
-  set shadowOffsetY(offsetY) {
-    const offsetX = this._shadowOffsetX || 0
-    const blur = this._shadowBlur || 0
-    const color = this._shadowColor || 'black'
-    this._shadowOffsetY = offsetY
-    this.alipayCanvasContext.setShadow(offsetX, offsetY, blur, color)
-  }
-
-  get shadowOffsetY() {
-    return this._shadowOffsetY || 0
-  }
-
-  set shadowBlur(blur) {
-    const offsetX = this._shadowOffsetX || 0
-    const offsetY = this._shadowOffsetY || 0
-    const color = this._shadowColor || 'black'
-    this._shadowBlur = blur
-    this.alipayCanvasContext.setShadow(offsetX, offsetY, blur, color)
-  }
-
-  get shadowBlur() {
-    return this._shadowBlur || 0
-  }
-
-  set shadowColor(color) {
-    const offsetX = this._shadowOffsetX || 0
-    const offsetY = this._shadowOffsetY || 0
-    const blur = this._shadowBlur || 0
-    this._shadowColor = color
-    this.alipayCanvasContext.setShadow(offsetX, offsetY, blur, color)
-  }
-
-  get shadowColor() {
-    return this._shadowColor || 'black'
-  }
-
-  setShadowBlur(offsetX, offsetY, blur, color) {
-    this.shadowOffsetX = offsetX
-    this.shadowOffsetY = offsetY
-    this.shadowBlur = blur
-    this.shadowColor = color
-  }
-
-
-  //
-  set strokeStyle(color) {
-    this.alipayCanvasContext.setStrokeStyle(color)
-  }
-
-  get strokeStyle() {
-    return this.alipayCanvasContext.getStrokeStyle()
+  setShadow(offsetX, offsetY, blur, color) {
+    return this.alipayCanvasContext.setShadow(offsetX, offsetY, blur, color)
   }
 
   setStrokeStyle(color) {
-    this.strokeStyle = color
+    return this.alipayCanvasContext.setStrokeStyle(color)
   }
 
   setTextAlign(align) {
@@ -307,4 +187,13 @@ export default class CanvasContext {
   translate(x, y) {
     return this.alipayCanvasContext.translate(x, y)
   }
+
+  // _reset() {
+  //   this.alipayCanvasContext.setFillStyle('#000000')
+  //   this.alipayCanvasContext.setStrokeStyle('#000000')
+  //   this.alipayCanvasContext.setFontSize(10)
+  //   this.alipayCanvasContext.setShadow(0, 0, 0, 'rgba(0, 0, 0, 0)')
+  //   this.alipayCanvasContext.setLineJoin('miter')
+  //   this.alipayCanvasContext.setLineWidth(1)
+  // }
 }
