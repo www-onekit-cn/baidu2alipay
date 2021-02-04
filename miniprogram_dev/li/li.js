@@ -415,78 +415,78 @@ var app = getApp()
 //   })
 
 //camera
-OnekitPage({
-    data:{
-        imageSrc:'',
-        device:'front',
-        videoSrc:''
-      },
-    onLoad:function(){
-      const ctx = swan.createCameraContext()
-      this.ctx = ctx
-    },
-    onShow:function(){
-      swan.authorize({
-        scope:'scope.camera',
-        fail:(err)=>{if(err.errCode == 10003){
-          swan.showToast({
-              title:'用户已拒绝授权申请，请自行开启相机授权',
-              icon:'none'
-            });
-        }}
-      })
-    },
-    onHide:function(){
-      app.globalData.openParams = ''
-    },
-    switchCamera:function(){
-      const devices = this.getData('device')
-      if(devices == 'back'){
-      this.setData({
-          device:'front'
-        });
-    } else {
-      this.setData({
-          device:'back'
-        });
-    }
-    },
-    takePhoto:function(){
-      this.ctx.takePhoto({
-        quality:'high',
-        success:(res)=>{this.setData({
-            imageSrc:res.tempImagePath
-          })}
-      })
-    },
-    startRecord:function(){
-      this.ctx.startRecord({
-        success:(res)=>{swan.showToast({
-            title:'startRecord',
-            icon:'none'
-          })}
-      })
-    },
-    stopRecord:function(){
-      this.ctx.stopRecord({
-        success:(res)=>{
-          swan.showModal({
-              title:'提示',
-              content:res.tempVideoPath
-            })
-          this.setData({
-              videoSrc:res.tempVideoPath
-            })
-        }
-      })
-    },
-    error:function(e){
-      swan.showModal({
-        title:'加载出错',
-        content:e.detail
-      })
-    }
-  })
+// OnekitPage({
+//     data:{
+//         imageSrc:'',
+//         device:'front',
+//         videoSrc:''
+//       },
+//     onLoad:function(){
+//       const ctx = swan.createCameraContext()
+//       this.ctx = ctx
+//     },
+//     onShow:function(){
+//       swan.authorize({
+//         scope:'scope.camera',
+//         fail:(err)=>{if(err.errCode == 10003){
+//           swan.showToast({
+//               title:'用户已拒绝授权申请，请自行开启相机授权',
+//               icon:'none'
+//             });
+//         }}
+//       })
+//     },
+//     onHide:function(){
+//       app.globalData.openParams = ''
+//     },
+//     switchCamera:function(){
+//       const devices = this.getData('device')
+//       if(devices == 'back'){
+//       this.setData({
+//           device:'front'
+//         });
+//     } else {
+//       this.setData({
+//           device:'back'
+//         });
+//     }
+//     },
+//     takePhoto:function(){
+//       this.ctx.takePhoto({
+//         quality:'high',
+//         success:(res)=>{this.setData({
+//             imageSrc:res.tempImagePath
+//           })}
+//       })
+//     },
+//     startRecord:function(){
+//       this.ctx.startRecord({
+//         success:(res)=>{swan.showToast({
+//             title:'startRecord',
+//             icon:'none'
+//           })}
+//       })
+//     },
+//     stopRecord:function(){
+//       this.ctx.stopRecord({
+//         success:(res)=>{
+//           swan.showModal({
+//               title:'提示',
+//               content:res.tempVideoPath
+//             })
+//           this.setData({
+//               videoSrc:res.tempVideoPath
+//             })
+//         }
+//       })
+//     },
+//     error:function(e){
+//       swan.showModal({
+//         title:'加载出错',
+//         content:e.detail
+//       })
+//     }
+//   })
 
 // image
 // OnekitPage({
@@ -1080,32 +1080,32 @@ OnekitPage({
 
 
 // CameraContext
-// OnekitPage({
-//     data: {
-//         videoSrc: ''
-//     },
-//     startRecord() {
-//         this.cameraContext = swan.createCameraContext();
-//         this.cameraContext.startRecord({
-//             success: res => {
-//                 swan.showToast({
-//                     title: 'startRecord',
-//                     icon: 'none'
-//                 });
-//             }
-//         });
-//     },
-//     stopRecord() {
-//         this.cameraContext.stopRecord({
-//             success: res => {
-//                 swan.showModal({
-//                     title: '提示',
-//                     content: res.tempVideoPath
-//                 });
-//                 this.setData({
-//                     videoSrc: res.tempVideoPath
-//                 });
-//             }
-//         });
-//     }
-// });
+OnekitPage({
+    data: {
+        videoSrc: ''
+    },
+    startRecord() {
+        this.cameraContext = swan.createCameraContext();
+        this.cameraContext.startRecord({
+            success: res => {
+                swan.showToast({
+                    title: 'startRecord',
+                    icon: 'none'
+                });
+            }
+        });
+    },
+    stopRecord() {
+        this.cameraContext.stopRecord({
+            success: res => {
+                swan.showModal({
+                    title: '提示',
+                    content: res.tempVideoPath
+                });
+                this.setData({
+                    videoSrc: res.tempVideoPath
+                });
+            }
+        });
+    }
+});
