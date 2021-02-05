@@ -261,6 +261,7 @@ Component({
   mixins: [_onekit_behavior2.default, _baidu_behavior2.default, _VideoContext_behavior2.default],
   data: {
     mobilenetHintType: 1,
+    currentTime: 0,
     danmus: [[], []]
   },
   props: {
@@ -352,6 +353,7 @@ Component({
         var AorB = currentTime % 2;
         var danmus = this.data.danmuDict[currentTime];
         var key = 'danmus[' + AorB + ']';
+        console.log(AorB, danmus, key);
         this.setData((_setData = {}, _setData[key] = danmus || [], _setData));
       }
       if (this.props.onTimeUpdate) {
@@ -427,10 +429,8 @@ module.exports = {
           text: wx_text,
           color: wx_color
         };
-        console(time,danmu)
         var danmus = _this.data.danmuDict[time] || [];
         danmus.push(danmu);
-        console(time,danmu,danmus)
         var key = 'danmuDict[\'' + time + '\']';
         _this.setData((_this$setData = {}, _this$setData[key] = danmus, _this$setData));
         SUCCESS({

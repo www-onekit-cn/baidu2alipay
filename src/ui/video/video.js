@@ -8,6 +8,7 @@ Component({
   mixins: [onekit_behavior, baidu_behavior, VideoContext_behavior],
   data: {
     mobilenetHintType: 1,
+    currentTime: 0,
     danmus: [
       [],
       []
@@ -98,6 +99,7 @@ Component({
         const AorB = currentTime % 2
         const danmus = this.data.danmuDict[currentTime]
         const key = `danmus[${AorB}]`
+        console.log(AorB, danmus, key)
         this.setData({
           [key]: danmus || []
         })

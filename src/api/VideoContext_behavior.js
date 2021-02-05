@@ -1,6 +1,8 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-console */
-import {PROMISE} from 'oneutil'
+import {
+  PROMISE
+} from 'oneutil'
 
 module.exports = {
   methods: {
