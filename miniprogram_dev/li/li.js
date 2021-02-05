@@ -653,7 +653,7 @@ var app = getApp()
 //     },
 //     objectFit:function(e){
 //       this.setData({
-//         objectFit:e.currentTarget.dataset.set
+//         objectFit:dataset
 //       })
 //       console.log('objectFit',e.currentTarget.dataset.set)
 //     },

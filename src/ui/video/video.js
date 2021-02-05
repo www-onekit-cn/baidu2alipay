@@ -2,9 +2,10 @@
 /* eslint-disable camelcase */
 import onekit_behavior from '../../behavior/onekit_behavior'
 import baidu_behavior from '../../behavior/baidu_behavior'
+import VideoContext_behavior from '../../api/VideoContext_behavior'
 
 Component({
-  mixins: [onekit_behavior, baidu_behavior],
+  mixins: [onekit_behavior, baidu_behavior, VideoContext_behavior],
   data: {
     mobilenetHintType: 1,
     danmus: [

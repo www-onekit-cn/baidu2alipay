@@ -230,7 +230,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2133,7 +2133,7 @@ var _OneKit = __webpack_require__(4);
 
 var _OneKit2 = _interopRequireDefault(_OneKit);
 
-var _swan = __webpack_require__(2);
+var _swan = __webpack_require__(3);
 
 var _swan2 = _interopRequireDefault(_swan);
 
@@ -2591,8 +2591,8 @@ var VideoContext = function () {
     return this.alipayVideoContext.stop();
   };
 
-  VideoContext.prototype.playbackRate = function playbackRate() {
-    return this.alipayVideoContext.playbackRate();
+  VideoContext.prototype.playbackRate = function playbackRate(rate) {
+    return this.alipayVideoContext.playbackRate(rate);
   };
 
   return VideoContext;

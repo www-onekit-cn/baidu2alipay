@@ -38,7 +38,7 @@
   background:transparent;
   position:absolute;"
   > 
-  <block a:for="{{[0,1]}}" a:key="item">
+  <!-- <block a:for="{{[0,1]}}" a:key="item">
     <cover-view a:for="{{danmus[index]}}"   a:key="item"
     style="position:absolute;
       left:750rpx;
@@ -46,5 +46,5 @@
       background:transparent;
       animation: danmu 2s linear forwards {{index*0.05}}s infinite;
       color:{{item.color}};">{{item.text}}</cover-view>
-  <block>
+  <block> -->
 </cover-view>

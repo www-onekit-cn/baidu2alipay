@@ -230,13 +230,20 @@ module.exports = {
 
 /***/ }),
 
+/***/ 2:
+/***/ (function(module, exports) {
+
+module.exports = require("oneutil");
+
+/***/ }),
+
 /***/ 23:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _oneutil = __webpack_require__(3);
+var _oneutil = __webpack_require__(2);
 
 var _onekit_behavior = __webpack_require__(0);
 
@@ -392,13 +399,6 @@ Component({
   }
 }); /* eslint-disable no-console */
 /* eslint-disable camelcase */
-
-/***/ }),
-
-/***/ 3:
-/***/ (function(module, exports) {
-
-module.exports = require("oneutil");
 
 /***/ })
 

@@ -230,6 +230,13 @@ module.exports = {
 
 /***/ }),
 
+/***/ 2:
+/***/ (function(module, exports) {
+
+module.exports = require("oneutil");
+
+/***/ }),
+
 /***/ 37:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -244,12 +251,14 @@ var _baidu_behavior = __webpack_require__(1);
 
 var _baidu_behavior2 = _interopRequireDefault(_baidu_behavior);
 
+var _VideoContext_behavior = __webpack_require__(38);
+
+var _VideoContext_behavior2 = _interopRequireDefault(_VideoContext_behavior);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable no-console */
-/* eslint-disable camelcase */
 Component({
-  mixins: [_onekit_behavior2.default, _baidu_behavior2.default],
+  mixins: [_onekit_behavior2.default, _baidu_behavior2.default, _VideoContext_behavior2.default],
   data: {
     mobilenetHintType: 1,
     danmus: [[], []]
@@ -373,7 +382,65 @@ Component({
       //   }
     }
   }
-});
+}); /* eslint-disable no-console */
+/* eslint-disable camelcase */
+
+/***/ }),
+
+/***/ 38:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _oneutil = __webpack_require__(2);
+
+module.exports = {
+  methods: {
+    sendDanmu: function sendDanmu(wx_object) {
+      var _this = this;
+
+      if (!wx_object) {
+        return;
+      }
+      var wx_text = wx_object.text;
+      var wx_color = wx_object.color;
+      var wx_success = wx_object.success;
+      var wx_fail = wx_object.fail;
+      var wx_complete = wx_object.complete;
+      wx_object = null;
+      //
+      (0, _oneutil.PROMISE)(function (SUCCESS, FAIL) {
+        var _this$setData;
+
+        if (_this.data.currentTime <= 0) {
+          return;
+        }
+        if (!wx_text) {
+          FAIL({
+            errMsg: 'sendDanmu:error'
+          });
+          return;
+        }
+        var time = _this.data.currentTime + 1;
+        var danmu = {
+          text: wx_text,
+          color: wx_color
+        };
+        console(time,danmu)
+        var danmus = _this.data.danmuDict[time] || [];
+        danmus.push(danmu);
+        console(time,danmu,danmus)
+        var key = 'danmuDict[\'' + time + '\']';
+        _this.setData((_this$setData = {}, _this$setData[key] = danmus, _this$setData));
+        SUCCESS({
+          errMsg: 'sendDanmu:ok'
+        });
+      }, wx_success, wx_fail, wx_complete);
+    }
+  }
+}; /* eslint-disable camelcase */
+/* eslint-disable no-console */
 
 /***/ })
 

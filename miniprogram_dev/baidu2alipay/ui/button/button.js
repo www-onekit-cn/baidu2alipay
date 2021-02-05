@@ -335,6 +335,9 @@ Component({
           detail: detail,
           currentTarget: {
             dataset: dataset
+          },
+          target: {
+            dataset: dataset
           }
         });
       }

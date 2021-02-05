@@ -44,7 +44,7 @@ export default class VideoContext {
     return this.alipayVideoContext.stop()
   }
 
-  playbackRate() {
-    return this.alipayVideoContext.playbackRate()
+  playbackRate(rate) {
+    return this.alipayVideoContext.playbackRate(rate)
   }
 }

@@ -82,12 +82,19 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 39);
+/******/ 	return __webpack_require__(__webpack_require__.s = 40);
 /******/ })
 /************************************************************************/
 /******/ ({
 
 /***/ 2:
+/***/ (function(module, exports) {
+
+module.exports = require("oneutil");
+
+/***/ }),
+
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1972,36 +1979,6 @@ exports.default = swan;
 
 /***/ }),
 
-/***/ 3:
-/***/ (function(module, exports) {
-
-module.exports = require("oneutil");
-
-/***/ }),
-
-/***/ 39:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GLOBAL = exports.swan = exports.OnekitPage = exports.OnekitComponent = exports.OnekitBehavior = exports.OnekitApp = void 0;
-var OnekitApp_1 = __webpack_require__(40);
-exports.OnekitApp = OnekitApp_1.default;
-var OnekitBehavior_1 = __webpack_require__(41);
-exports.OnekitBehavior = OnekitBehavior_1.default;
-var OnekitComponent_1 = __webpack_require__(42);
-exports.OnekitComponent = OnekitComponent_1.default;
-var OnekitPage_1 = __webpack_require__(43);
-exports.OnekitPage = OnekitPage_1.default;
-var swan_1 = __webpack_require__(2);
-exports.swan = swan_1.default;
-var global_1 = __webpack_require__(44);
-exports.GLOBAL = global_1.default;
-
-/***/ }),
-
 /***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2024,6 +2001,29 @@ module.exports = { current: current, currentUrl: currentUrl };
 /***/ }),
 
 /***/ 40:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GLOBAL = exports.swan = exports.OnekitPage = exports.OnekitComponent = exports.OnekitBehavior = exports.OnekitApp = void 0;
+var OnekitApp_1 = __webpack_require__(41);
+exports.OnekitApp = OnekitApp_1.default;
+var OnekitBehavior_1 = __webpack_require__(42);
+exports.OnekitBehavior = OnekitBehavior_1.default;
+var OnekitComponent_1 = __webpack_require__(43);
+exports.OnekitComponent = OnekitComponent_1.default;
+var OnekitPage_1 = __webpack_require__(44);
+exports.OnekitPage = OnekitPage_1.default;
+var swan_1 = __webpack_require__(3);
+exports.swan = swan_1.default;
+var global_1 = __webpack_require__(45);
+exports.GLOBAL = global_1.default;
+
+/***/ }),
+
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2121,7 +2121,7 @@ function OnekitApp(swan_object) {
 
 /***/ }),
 
-/***/ 41:
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2130,11 +2130,11 @@ function OnekitApp(swan_object) {
 exports.__esModule = true;
 exports.default = OnekitBehavior;
 
-var _oneutil = __webpack_require__(3);
+var _oneutil = __webpack_require__(2);
 
 var _oneutil2 = _interopRequireDefault(_oneutil);
 
-var _swan = __webpack_require__(2);
+var _swan = __webpack_require__(3);
 
 var _swan2 = _interopRequireDefault(_swan);
 
@@ -2248,7 +2248,7 @@ function OnekitBehavior(object) {
 
 /***/ }),
 
-/***/ 42:
+/***/ 43:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2257,11 +2257,11 @@ function OnekitBehavior(object) {
 exports.__esModule = true;
 exports.default = OnekitComponent;
 
-var _oneutil = __webpack_require__(3);
+var _oneutil = __webpack_require__(2);
 
 var _oneutil2 = _interopRequireDefault(_oneutil);
 
-var _swan = __webpack_require__(2);
+var _swan = __webpack_require__(3);
 
 var _swan2 = _interopRequireDefault(_swan);
 
@@ -2445,7 +2445,7 @@ function OnekitComponent(object) {
 
 /***/ }),
 
-/***/ 43:
+/***/ 44:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2673,7 +2673,7 @@ export default function OnekitPage(swan_object) {
 
 /***/ }),
 
-/***/ 44:
+/***/ 45:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3044,8 +3044,8 @@ var VideoContext = function () {
     return this.alipayVideoContext.stop();
   };
 
-  VideoContext.prototype.playbackRate = function playbackRate() {
-    return this.alipayVideoContext.playbackRate();
+  VideoContext.prototype.playbackRate = function playbackRate(rate) {
+    return this.alipayVideoContext.playbackRate(rate);
   };
 
   return VideoContext;

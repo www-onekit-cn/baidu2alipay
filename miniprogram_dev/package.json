@@ -1,6 +1,6 @@
 {
 	"dependencies": {
-		"oneutil": "2.3.5",
-		"lottie-miniprogram": "^1.0.11"
+		"lottie-miniprogram": "^1.0.11",
+		"oneutil": "2.3.5"
 	}
 }

@@ -87,7 +87,64 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ 2:
+/***/ 27:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _swan = __webpack_require__(3);
+
+var _swan2 = _interopRequireDefault(_swan);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+Component({
+  mixins: [],
+  data: {},
+  props: {},
+
+  didMount: function didMount() {
+    var that = this;
+    _swan2.default.getOpenData({
+      success: function success(opendata) {
+        switch (that.props.type) {
+          case 'userNickName':
+            that.setData({ userNickName: opendata.nickName });
+            break;
+          case 'userAvatarUrl':
+            that.setData({ userAvatarUrl: opendata.avatarUrl });
+            break;
+          case 'userGender':
+            that.setData({ userGender: opendata.gender });
+            break;
+          case 'userCity':
+            that.setData({ userCity: opendata.city });
+            break;
+          case 'userProvince':
+            that.setData({ userProvince: opendata.province });
+            break;
+          case 'userCountry':
+            that.setData({ userCountry: opendata.country });
+            break;
+          case 'userLanguage':
+            that.setData({ userLanguage: opendata.language });
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  },
+  didUpdate: function didUpdate() {},
+  didUnmount: function didUnmount() {},
+
+  methods: {}
+});
+
+/***/ }),
+
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1972,63 +2029,6 @@ exports.default = swan;
 
 /***/ }),
 
-/***/ 27:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _swan = __webpack_require__(2);
-
-var _swan2 = _interopRequireDefault(_swan);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-Component({
-  mixins: [],
-  data: {},
-  props: {},
-
-  didMount: function didMount() {
-    var that = this;
-    _swan2.default.getOpenData({
-      success: function success(opendata) {
-        switch (that.props.type) {
-          case 'userNickName':
-            that.setData({ userNickName: opendata.nickName });
-            break;
-          case 'userAvatarUrl':
-            that.setData({ userAvatarUrl: opendata.avatarUrl });
-            break;
-          case 'userGender':
-            that.setData({ userGender: opendata.gender });
-            break;
-          case 'userCity':
-            that.setData({ userCity: opendata.city });
-            break;
-          case 'userProvince':
-            that.setData({ userProvince: opendata.province });
-            break;
-          case 'userCountry':
-            that.setData({ userCountry: opendata.country });
-            break;
-          case 'userLanguage':
-            that.setData({ userLanguage: opendata.language });
-            break;
-          default:
-            break;
-        }
-      }
-    });
-  },
-  didUpdate: function didUpdate() {},
-  didUnmount: function didUnmount() {},
-
-  methods: {}
-});
-
-/***/ }),
-
 /***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2375,8 +2375,8 @@ var VideoContext = function () {
     return this.alipayVideoContext.stop();
   };
 
-  VideoContext.prototype.playbackRate = function playbackRate() {
-    return this.alipayVideoContext.playbackRate();
+  VideoContext.prototype.playbackRate = function playbackRate(rate) {
+    return this.alipayVideoContext.playbackRate(rate);
   };
 
   return VideoContext;

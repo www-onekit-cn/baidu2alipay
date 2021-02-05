@@ -91,6 +91,9 @@ Component({
           detail,
           currentTarget: {
             dataset
+          },
+          target: {
+            dataset
           }
         })
       }
